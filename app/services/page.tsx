@@ -1,0 +1,406 @@
+"use client";
+
+import { useEffect } from "react";
+import Link from "next/link";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+
+const services = [
+    {
+        slug: "corporate-governance",
+        title: "Corporate Governance",
+        shortDescription: "Architecting governance structures that go beyond compliance to become competitive advantages.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+        ),
+        features: ["Board Effectiveness Audits", "Shareholder Activism Defense", "ESG Integration", "Policy Development"]
+    },
+    {
+        slug: "investment-advisory",
+        title: "Investment Advisory",
+        shortDescription: "Conflict-free counsel for institutional allocators focusing on asymmetric risk profiles.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+            </svg>
+        ),
+        features: ["Strategic Asset Allocation", "Private Markets Access", "Risk Overlay", "Portfolio Construction"]
+    },
+    {
+        slug: "risk-intelligence",
+        title: "Risk & Intelligence",
+        shortDescription: "Equipping leaders with intelligence to anticipate shifts in power and policy.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+        ),
+        features: ["Crisis Management", "Geopolitical Risk Analysis", "Cyber Governance", "Regulatory Mapping"]
+    },
+    {
+        slug: "family-office",
+        title: "Family Office Services",
+        shortDescription: "Holistic management of family affairs and intergenerational wealth transfer.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+            </svg>
+        ),
+        features: ["Wealth Structuring", "Next-Gen Education", "Philanthropic Strategy", "Family Governance"]
+    },
+    {
+        slug: "mergers-acquisitions",
+        title: "Cross-Border M&A",
+        shortDescription: "Expert guidance on international mergers ensuring seamless integration and value realization.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        ),
+        features: ["Due Diligence", "Deal Structuring", "Integration Planning", "Value Optimization"]
+    },
+    {
+        slug: "board-advisory",
+        title: "Board Advisory",
+        shortDescription: "Optimizing board composition and effectiveness to drive long-term strategic value.",
+        icon: (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+        ),
+        features: ["Board Evaluation", "Succession Planning", "Director Recruitment", "Governance Training"]
+    }
+];
+
+export default function ServicesPage() {
+    useEffect(() => {
+        const reveals = document.querySelectorAll(".reveal");
+        const revealOnScroll = () => {
+            reveals.forEach((element) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    element.classList.add("active");
+                }
+            });
+        };
+        window.addEventListener("scroll", revealOnScroll);
+        revealOnScroll();
+        return () => window.removeEventListener("scroll", revealOnScroll);
+    }, []);
+
+    return (
+        <>
+            <Header />
+
+            {/* Hero Section */}
+            <header className="relative h-[60vh] min-h-[500px] flex items-center justify-center bg-hero-pattern">
+                <div className="absolute inset-0 bg-gradient-to-b from-onyx/90 to-onyx/70" />
+                <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+                    <h1 className="text-5xl md:text-7xl font-serif font-medium text-white mb-6 leading-tight tracking-tight reveal">
+                        Strategic <br />
+                        <span className="italic text-brand font-serif">Architecture.</span>
+                    </h1>
+                    <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300 font-light leading-relaxed reveal" style={{ transitionDelay: "100ms" }}>
+                        We deploy multidisciplinary teams to solve the most intricate governance and capital challenges across the GCC.
+                    </p>
+                </div>
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+                    <div className="w-px h-12 bg-gradient-to-b from-brand to-transparent" />
+                </div>
+            </header>
+
+            {/* All Services Grid - NOW FIRST */}
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-16 reveal">
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Services</h2>
+                        <h3 className="text-4xl font-serif text-onyx">What We Offer</h3>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {services.map((service, index) => (
+                            <Link
+                                key={service.slug}
+                                href={`/services/${service.slug}`}
+                                className="group p-8 bg-gray-50 border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal"
+                                style={{ transitionDelay: `${index * 50}ms` }}
+                            >
+                                <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300 text-brand group-hover:text-white">
+                                    {service.icon}
+                                </div>
+                                <h4 className="text-xl font-serif mb-3 text-onyx">{service.title}</h4>
+                                <p className="text-gray-600 text-sm font-light leading-relaxed mb-4">{service.shortDescription}</p>
+                                <span className="inline-flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-widest group-hover:underline">
+                                    Explore Service
+                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </span>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Intro Text / Philosophy */}
+            <section className="py-20 bg-onyx text-white">
+                <div className="max-w-4xl mx-auto px-6 text-center reveal">
+                    <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-6">Our Methodology</h2>
+                    <p className="text-2xl md:text-3xl font-serif leading-relaxed">
+                        &ldquo;We do not offer pre-packaged solutions. Every engagement begins with a forensic analysis of the status quo, followed by the bespoke engineering of a strategy designed to endure.&rdquo;
+                    </p>
+                </div>
+            </section>
+
+            {/* Service Detail 1: Corporate Governance */}
+            <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 lg:order-1 reveal">
+                            <div className="relative">
+                                <div className="absolute -top-4 -left-4 w-24 h-24 border-t-2 border-l-2 border-brand opacity-50"></div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop"
+                                    alt="Board Meeting"
+                                    className="w-full h-[500px] object-cover shadow-2xl filter grayscale hover:grayscale-0 transition-all duration-700"
+                                />
+                            </div>
+                        </div>
+                        <div className="order-1 lg:order-2 reveal" style={{ transitionDelay: "100ms" }}>
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="p-3 bg-brand/10 rounded-full text-brand">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                </div>
+                                <h2 className="text-3xl font-serif text-onyx">Corporate Governance</h2>
+                            </div>
+                            <p className="text-gray-600 font-light leading-relaxed mb-8">
+                                In an era of heightened scrutiny, the boardroom is the first line of defense. We architect governance structures that go beyond compliance to become competitive advantages, aligned with Qatar Vision 2030.
+                            </p>
+                            <ul className="space-y-4 mb-8">
+                                <li className="flex items-start gap-3">
+                                    <svg className="w-5 h-5 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <div>
+                                        <h4 className="font-bold text-onyx text-sm uppercase tracking-wide">Board Effectiveness Audits</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Rigorous evaluation of board composition, skill gaps, and decision-making dynamics.</p>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <svg className="w-5 h-5 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <div>
+                                        <h4 className="font-bold text-onyx text-sm uppercase tracking-wide">Shareholder Activism Defense</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Proactive strategies to engage stakeholders and neutralize hostile narratives.</p>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <svg className="w-5 h-5 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <div>
+                                        <h4 className="font-bold text-onyx text-sm uppercase tracking-wide">ESG Integration</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Moving beyond greenwashing to integrate sustainability into the core operational DNA.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <Link href="/services/corporate-governance" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
+                                Learn More
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Service Detail 2: Investment Advisory (Dark) */}
+            <section className="py-24 bg-onyx relative">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="reveal">
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="p-3 bg-white/10 rounded-full text-brand">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    </svg>
+                                </div>
+                                <h2 className="text-3xl font-serif text-white">Investment Advisory</h2>
+                            </div>
+                            <p className="text-gray-400 font-light leading-relaxed mb-8">
+                                We provide conflict-free, macroeconomic counsel to institutional allocators and family offices. Our focus is on asymmetric risk profiles and long-horizon compounding across regional and global markets.
+                            </p>
+                            <ul className="space-y-6 mb-8">
+                                <li className="flex items-start gap-3 border-l border-brand/30 pl-6">
+                                    <div>
+                                        <h4 className="font-bold text-white text-sm uppercase tracking-wide">Strategic Asset Allocation</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Dynamic portfolio modeling that adjusts to inflation regimes and monetary policy shifts.</p>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-3 border-l border-brand/30 pl-6">
+                                    <div>
+                                        <h4 className="font-bold text-white text-sm uppercase tracking-wide">Private Markets Access</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Proprietary deal flow in private equity, real assets, and venture capital unavailable to the broader market.</p>
+                                    </div>
+                                </li>
+                                <li className="flex items-start gap-3 border-l border-brand/30 pl-6">
+                                    <div>
+                                        <h4 className="font-bold text-white text-sm uppercase tracking-wide">Risk Overlay</h4>
+                                        <p className="text-sm text-gray-500 mt-1">Hedging strategies utilizing derivatives to protect capital during market volatility.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <Link href="/services/investment-advisory" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:text-white transition-colors">
+                                Learn More
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
+                        </div>
+                        <div className="reveal" style={{ transitionDelay: "100ms" }}>
+                            <div className="relative">
+                                <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b-2 border-r-2 border-brand opacity-50"></div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop"
+                                    alt="Data Analysis"
+                                    className="w-full h-[500px] object-cover shadow-2xl opacity-80 hover:opacity-100 transition-all duration-700"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Service Detail 3: Risk & Intelligence */}
+            <section className="py-24 bg-white text-onyx relative">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                        <div className="order-2 lg:order-1 reveal">
+                            <div className="relative">
+                                <div className="absolute -top-4 -right-4 w-24 h-24 border-t-2 border-r-2 border-brand opacity-50"></div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1526304640152-d4619684e484?q=80&w=2670&auto=format&fit=crop"
+                                    alt="Global Markets"
+                                    className="w-full h-[500px] object-cover shadow-2xl filter grayscale hover:grayscale-0 transition-all duration-700"
+                                />
+                            </div>
+                        </div>
+                        <div className="order-1 lg:order-2 reveal" style={{ transitionDelay: "100ms" }}>
+                            <div className="flex items-center gap-4 mb-6">
+                                <div className="p-3 bg-brand/10 rounded-full text-brand">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
+                                </div>
+                                <h2 className="text-3xl font-serif text-onyx">Risk & Intelligence</h2>
+                            </div>
+                            <p className="text-gray-600 font-light leading-relaxed mb-8">
+                                Capital does not exist in a vacuum. It operates within a volatile geopolitical framework. We equip leaders with the intelligence to anticipate shifts in power and policy across the GCC and global markets.
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <div className="p-5 border border-gray-100 bg-gray-50 hover:border-brand/30 transition-colors">
+                                    <h4 className="font-bold text-sm uppercase mb-2">Crisis Management</h4>
+                                    <p className="text-xs text-gray-500 leading-relaxed">Rapid response protocols for regulatory investigations and reputational threats.</p>
+                                </div>
+                                <div className="p-5 border border-gray-100 bg-gray-50 hover:border-brand/30 transition-colors">
+                                    <h4 className="font-bold text-sm uppercase mb-2">Geopolitical Risk</h4>
+                                    <p className="text-xs text-gray-500 leading-relaxed">Analysis of sanctions, trade dynamics, and regime stability in regional markets.</p>
+                                </div>
+                                <div className="p-5 border border-gray-100 bg-gray-50 hover:border-brand/30 transition-colors">
+                                    <h4 className="font-bold text-sm uppercase mb-2">Cyber Governance</h4>
+                                    <p className="text-xs text-gray-500 leading-relaxed">Bridging the gap between technical cybersecurity teams and board-level oversight.</p>
+                                </div>
+                                <div className="p-5 border border-gray-100 bg-gray-50 hover:border-brand/30 transition-colors">
+                                    <h4 className="font-bold text-sm uppercase mb-2">Regulatory Mapping</h4>
+                                    <p className="text-xs text-gray-500 leading-relaxed">Forward-looking analysis of legislative changes across GCC and global jurisdictions.</p>
+                                </div>
+                            </div>
+                            <Link href="/services/risk-intelligence" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
+                                Learn More
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Engagement Process */}
+            <section className="py-24 bg-onyx-800 text-white relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 relative z-10">
+                    <div className="text-center mb-16 reveal">
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Engagement Model</h2>
+                        <h3 className="text-4xl font-serif">The Path to Clarity</h3>
+                    </div>
+                    <div className="grid md:grid-cols-4 gap-8">
+                        <div className="relative p-8 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors reveal">
+                            <span className="absolute top-4 right-4 text-6xl font-serif font-bold text-white/5">01</span>
+                            <div className="w-12 h-12 rounded-full border border-brand flex items-center justify-center mb-6 text-brand">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-lg font-serif mb-3">Discovery</h4>
+                            <p className="text-sm text-gray-400 font-light leading-relaxed">Deep-dive audit of current structures, assets, and liabilities. We interview key stakeholders to identify misalignment.</p>
+                        </div>
+                        <div className="relative p-8 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors reveal" style={{ transitionDelay: "100ms" }}>
+                            <span className="absolute top-4 right-4 text-6xl font-serif font-bold text-white/5">02</span>
+                            <div className="w-12 h-12 rounded-full border border-brand flex items-center justify-center mb-6 text-brand">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-lg font-serif mb-3">Design</h4>
+                            <p className="text-sm text-gray-400 font-light leading-relaxed">Development of the strategic roadmap. This includes legal structuring, policy drafting, and asset reallocation models.</p>
+                        </div>
+                        <div className="relative p-8 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors reveal" style={{ transitionDelay: "200ms" }}>
+                            <span className="absolute top-4 right-4 text-6xl font-serif font-bold text-white/5">03</span>
+                            <div className="w-12 h-12 rounded-full border border-brand flex items-center justify-center mb-6 text-brand">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <h4 className="text-lg font-serif mb-3">Implementation</h4>
+                            <p className="text-sm text-gray-400 font-light leading-relaxed">Execution of the strategy. We work alongside your legal and tax teams to ensure seamless integration.</p>
+                        </div>
+                        <div className="relative p-8 border border-white/5 bg-white/5 hover:bg-white/10 transition-colors reveal" style={{ transitionDelay: "300ms" }}>
+                            <span className="absolute top-4 right-4 text-6xl font-serif font-bold text-white/5">04</span>
+                            <div className="w-12 h-12 rounded-full border border-brand flex items-center justify-center mb-6 text-brand">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-lg font-serif mb-3">Oversight</h4>
+                            <p className="text-sm text-gray-400 font-light leading-relaxed">Ongoing monitoring and adjustment. Quarterly reviews ensure the strategy evolves with market conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA Section */}
+            <section className="py-24 bg-white relative">
+                <div className="max-w-4xl mx-auto px-6 text-center reveal">
+                    <h2 className="text-5xl font-serif text-onyx mb-8">
+                        Ready to elevate your <span className="text-brand">standard?</span>
+                    </h2>
+                    <p className="text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto">
+                        Schedule a confidential briefing with our senior partners to discuss your specific governance needs.
+                    </p>
+                    <Link href="/contact" className="inline-block px-10 py-4 bg-onyx text-white text-sm uppercase tracking-widest font-bold hover:bg-brand transition-colors duration-300">
+                        Initiate Consultation
+                    </Link>
+                </div>
+            </section>
+
+            <Footer />
+        </>
+    );
+}

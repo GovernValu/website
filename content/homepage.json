@@ -1,0 +1,123 @@
+{
+    "hero": {
+        "badge": "Qatar-Based Advisory",
+        "title": "Precision in",
+        "titleHighlight": "Governance.",
+        "subtitle": "We architect resilient strategies for sovereign wealth funds, regional corporations, and distinguished family offices across the GCC.",
+        "ctaPrimary": {
+            "text": "Partner With Us",
+            "link": "/contact"
+        },
+        "ctaSecondary": {
+            "text": "Explore Our Expertise",
+            "link": "/about/expertise"
+        }
+    },
+    "metrics": [
+        {
+            "value": "$8B+",
+            "label": "Assets Advised"
+        },
+        {
+            "value": "50+",
+            "label": "Regional Entities"
+        },
+        {
+            "value": "GCC",
+            "label": "Market Coverage"
+        },
+        {
+            "value": "100%",
+            "label": "Fiduciary Standard"
+        }
+    ],
+    "expertise": {
+        "sectionTitle": "Our Expertise",
+        "headline": "Strategic counsel for the complexity of modern wealth.",
+        "cards": [
+            {
+                "icon": "building",
+                "title": "Corporate Governance",
+                "description": "Implementing rigorous frameworks aligned with Qatar Vision 2030 to ensure accountability, fairness, and transparency.",
+                "link": "/about/expertise"
+            },
+            {
+                "icon": "chart",
+                "title": "Investment Strategy",
+                "description": "Bespoke portfolio construction focusing on asymmetric risk-reward profiles and generational wealth preservation.",
+                "link": "/about/expertise"
+            },
+            {
+                "icon": "shield",
+                "title": "Risk Mitigation",
+                "description": "Navigating regulatory landscapes and geopolitical shifts to safeguard assets in the evolving GCC landscape.",
+                "link": "/about/expertise"
+            },
+            {
+                "icon": "users",
+                "title": "Board Advisory",
+                "description": "Optimizing board composition and effectiveness to drive long-term strategic value and stakeholder confidence.",
+                "link": "/about/expertise"
+            },
+            {
+                "icon": "bank",
+                "title": "Family Office Services",
+                "description": "Holistic management of family affairs, philanthropy, and intergenerational transfer of wealth and values.",
+                "link": "/about/expertise"
+            },
+            {
+                "icon": "globe",
+                "title": "Cross-Border M&A",
+                "description": "Expert guidance on international mergers and acquisitions, ensuring seamless integration and value realization.",
+                "link": "/about/expertise"
+            }
+        ]
+    },
+    "philosophy": {
+        "sectionTitle": "Our Philosophy",
+        "headline": "The Art of Balanced Stewardship",
+        "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop",
+        "points": [
+            {
+                "title": "Unwavering Integrity",
+                "description": "We believe that true value is built on a foundation of trust. Our governance models prioritize ethical leadership."
+            },
+            {
+                "title": "Long-Horizon Thinking",
+                "description": "In a market obsessed with quarterly results, we engineer strategies for decades, honoring Qatar Vision 2030."
+            },
+            {
+                "title": "Adaptive Intelligence",
+                "description": "We combine traditional financial wisdom with cutting-edge data analytics to anticipate market shifts."
+            }
+        ],
+        "link": {
+            "text": "Learn More About Our Philosophy",
+            "url": "/about/philosophy"
+        }
+    },
+    "testimonial": {
+        "quote": "GovernValu didn't just restructure our portfolio; they fundamentally redefined how our board approaches risk.",
+        "author": "Ahmad Al-Thani",
+        "position": "Chairman, Al-Thani Holdings"
+    },
+    "contact": {
+        "headline": "Let's discuss your",
+        "headlineHighlight": "legacy.",
+        "subtitle": "Private consultations are by appointment only. Please enquire to schedule a briefing with a senior partner.",
+        "info": {
+            "address": {
+                "label": "Headquarters",
+                "value": "West Bay, Doha, Qatar"
+            },
+            "phone": {
+                "label": "Direct Line",
+                "value": "+974 4444 5555"
+            },
+            "email": {
+                "label": "General Inquiries",
+                "value": "advisory@governvalu.qa"
+            }
+        }
+    }
+}

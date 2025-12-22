@@ -1,0 +1,166 @@
+{
+    "hero": {
+        "title": "Sector",
+        "titleHighlight": "Expertise.",
+        "subtitle": "Deep industry knowledge combined with governance excellence. We understand the unique challenges of each sector across the GCC."
+    },
+    "intro": {
+        "sectionTitle": "Industry Focus",
+        "description": "Every industry operates within its own regulatory framework, market dynamics, and stakeholder expectations. Our sector-specific expertise ensures solutions that truly fit."
+    },
+    "industries": [
+        {
+            "slug": "banking-finance",
+            "title": "Banking & Finance",
+            "description": "Navigating regulatory complexity and driving transformation in financial services.",
+            "image": "https://images.unsplash.com/photo-1541354329998-f4d9a9f9297f?q=80&w=2574&auto=format&fit=crop",
+            "stats": {
+                "clients": "15+",
+                "assets": "$4B+"
+            },
+            "services": [
+                "Board Governance",
+                "Risk Frameworks",
+                "Regulatory Compliance",
+                "M&A Advisory"
+            ]
+        },
+        {
+            "slug": "real-estate",
+            "title": "Real Estate & Development",
+            "description": "Strategic governance for property portfolios and development projects across the GCC.",
+            "image": "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "20+",
+                "assets": "$2B+"
+            },
+            "services": [
+                "Asset Governance",
+                "Joint Venture Structuring",
+                "Investment Strategy",
+                "Family Office Real Estate"
+            ]
+        },
+        {
+            "slug": "energy-utilities",
+            "title": "Energy & Utilities",
+            "description": "Supporting the energy transition with robust governance and strategic investment frameworks.",
+            "image": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "8+",
+                "assets": "$1.5B+"
+            },
+            "services": [
+                "ESG Integration",
+                "Regulatory Navigation",
+                "Capital Allocation",
+                "Board Effectiveness"
+            ]
+        },
+        {
+            "slug": "sovereign-wealth",
+            "title": "Sovereign Wealth Funds",
+            "description": "Advising state-owned investment entities on governance excellence and sustainable returns.",
+            "image": "https://images.unsplash.com/photo-1526304640581-d334cdbbe462?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "5+",
+                "assets": "$8B+"
+            },
+            "services": [
+                "Investment Governance",
+                "Strategic Planning",
+                "Performance Oversight",
+                "Stakeholder Management"
+            ]
+        },
+        {
+            "slug": "family-enterprises",
+            "title": "Family Enterprises",
+            "description": "Preserving legacy while professionalizing governance for multi-generational success.",
+            "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "25+",
+                "assets": "$3B+"
+            },
+            "services": [
+                "Family Constitution",
+                "Succession Planning",
+                "Wealth Structuring",
+                "Next-Gen Development"
+            ]
+        },
+        {
+            "slug": "healthcare",
+            "title": "Healthcare & Life Sciences",
+            "description": "Governance frameworks for healthcare organizations navigating rapid innovation and regulation.",
+            "image": "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2653&auto=format&fit=crop",
+            "stats": {
+                "clients": "10+",
+                "assets": "$500M+"
+            },
+            "services": [
+                "Board Advisory",
+                "Regulatory Strategy",
+                "Partnership Structuring",
+                "Risk Management"
+            ]
+        },
+        {
+            "slug": "technology",
+            "title": "Technology & Innovation",
+            "description": "Enabling tech enterprises to scale with governance that supports rapid growth.",
+            "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "12+",
+                "assets": "$800M+"
+            },
+            "services": [
+                "Startup Governance",
+                "Investor Relations",
+                "Cyber Risk",
+                "Exit Strategy"
+            ]
+        },
+        {
+            "slug": "hospitality-tourism",
+            "title": "Hospitality & Tourism",
+            "description": "Strategic advisory for Qatar's growing hospitality sector aligned with Vision 2030.",
+            "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2670&auto=format&fit=crop",
+            "stats": {
+                "clients": "8+",
+                "assets": "$600M+"
+            },
+            "services": [
+                "Asset Management",
+                "Brand Partnerships",
+                "Expansion Strategy",
+                "Stakeholder Governance"
+            ]
+        }
+    ],
+    "stats": [
+        {
+            "value": "8+",
+            "label": "Industries Served"
+        },
+        {
+            "value": "100+",
+            "label": "Sector Engagements"
+        },
+        {
+            "value": "$20B+",
+            "label": "Sector Assets Advised"
+        },
+        {
+            "value": "GCC",
+            "label": "Regional Coverage"
+        }
+    ],
+    "cta": {
+        "headline": "Which sector is",
+        "headlineHighlight": "your focus?",
+        "subtitle": "Let us demonstrate how our industry expertise can address your specific governance and investment challenges.",
+        "buttonText": "Start a Conversation",
+        "buttonLink": "/contact"
+    }
+}

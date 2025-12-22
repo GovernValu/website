@@ -1,0 +1,72 @@
+{
+    "hero": {
+        "badge": "Available for Consultation",
+        "title": "Let's Build",
+        "titleHighlight": "Together.",
+        "subtitle": "Begin a confidential dialogue with our senior partners about your governance and investment objectives.",
+        "backgroundImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+    },
+    "quickContact": {
+        "phone": "+974 4412 3456",
+        "email": "info@governvalu.com",
+        "officeHours": "Sun-Thu, 8:00 AM - 5:00 PM (GST)"
+    },
+    "form": {
+        "sectionTitle": "Contact Us",
+        "headline": "Start Your Journey",
+        "subtitle": "Whether you're seeking governance optimization, investment advisory, or strategic counsel, our senior partners are ready to listen.",
+        "formTitle": "Request a Consultation",
+        "formSubtitle": "All communications are treated with strict confidentiality.",
+        "inquiryOptions": [
+            "Corporate Governance Audit",
+            "Investment Advisory",
+            "Risk & Crisis Management",
+            "Family Office Services",
+            "Board Advisory",
+            "Cross-Border M&A",
+            "Speaking Engagement / Media",
+            "General Inquiry"
+        ]
+    },
+    "headquarters": {
+        "title": "Headquarters",
+        "city": "Doha, Qatar",
+        "address": "Qatar Financial Centre\nTower 1, Floor 25\nWest Bay, Doha"
+    },
+    "responsePromise": {
+        "title": "24-Hour Response",
+        "description": "Our team responds to all inquiries within one business day. Urgent matters are prioritized."
+    },
+    "map": {
+        "sectionTitle": "Visit Our Office",
+        "headline": "Qatar Financial Centre",
+        "description": "Located in the heart of Doha's West Bay, our headquarters offers a world-class environment for confidential strategic discussions.",
+        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5176454881595!2d51.52084931501227!3d25.286106483863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534ffdce87f%3A0x1cfa88cf2f0c6b1b!2sQatar%20Financial%20Centre!5e0!3m2!1sen!2sus!4v1639000000000!5m2!1sen!2sus"
+    },
+    "regionalOffices": {
+        "sectionTitle": "Global Presence",
+        "headline": "Regional Offices"
+    },
+    "faq": {
+        "sectionTitle": "Common Questions",
+        "headline": "Frequently Asked",
+        "items": [
+            {
+                "question": "What is the minimum asset threshold?",
+                "answer": "For family office services, engagements begin at $50M in investable assets. Corporate governance audits have no asset minimum."
+            },
+            {
+                "question": "Do you provide tax or legal counsel?",
+                "answer": "We work alongside your legal and tax teams. While we provide strategic structuring advice, we don't act as legal counsel of record."
+            },
+            {
+                "question": "Are virtual consultations available?",
+                "answer": "Yes. We use encrypted, secure channels for all virtual briefings. However, we recommend an initial in-person discovery session."
+            },
+            {
+                "question": "How long does a typical engagement last?",
+                "answer": "Governance audits typically span 8-12 weeks. Ongoing advisory retainers are structured annually with quarterly reviews."
+            }
+        ]
+    }
+}

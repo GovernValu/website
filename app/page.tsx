@@ -1,65 +1,351 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default function Home() {
+  // Scroll reveal effect
+  useEffect(() => {
+    const reveals = document.querySelectorAll(".reveal");
+
+    const revealOnScroll = () => {
+      reveals.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add("active");
+        }
+      });
+    };
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", revealOnScroll);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Header />
+
+      {/* Hero Section */}
+      <header className="relative h-screen min-h-[800px] flex items-center justify-center bg-hero-pattern">
+        {/* Vertical Line Decor */}
+        <div className="absolute left-10 md:left-24 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
+        <div className="absolute right-10 md:right-24 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
+
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <span className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 reveal">
+            Qatar-Based Advisory
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-8 leading-tight tracking-tight reveal" style={{ transitionDelay: "100ms" }}>
+            Precision in <br />
+            <span className="italic text-brand font-serif">Governance.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed reveal" style={{ transitionDelay: "200ms" }}>
+            We architect resilient strategies for sovereign wealth funds, regional corporations, and distinguished family offices across the GCC.
           </p>
+          <div className="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center reveal" style={{ transitionDelay: "300ms" }}>
+            <a href="/contact" className="group relative px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold overflow-hidden">
+              <span className="relative z-10 group-hover:text-white transition-colors">Partner With Us</span>
+              <div className="absolute inset-0 h-full w-full bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+            </a>
+            <a href="/about/expertise" className="flex items-center gap-2 text-white text-sm uppercase tracking-widest hover:text-brand transition-colors">
+              Explore Our Expertise
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
+          <span className="text-[10px] uppercase tracking-widest text-gray-400">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-brand to-transparent" />
         </div>
-      </main>
-    </div>
+      </header>
+
+      {/* Metrics Section */}
+      <section className="bg-onyx py-12 border-b border-gray-800">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="reveal border-r border-gray-800 last:border-r-0">
+            <p className="text-4xl font-serif text-white mb-1">$8B+</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500">Assets Advised</p>
+          </div>
+          <div className="reveal border-r border-gray-800 last:border-r-0" style={{ transitionDelay: "100ms" }}>
+            <p className="text-4xl font-serif text-white mb-1">50+</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500">Regional Entities</p>
+          </div>
+          <div className="reveal border-r border-gray-800 last:border-r-0" style={{ transitionDelay: "200ms" }}>
+            <p className="text-4xl font-serif text-white mb-1">GCC</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500">Market Coverage</p>
+          </div>
+          <div className="reveal" style={{ transitionDelay: "300ms" }}>
+            <p className="text-4xl font-serif text-white mb-1">100%</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500">Fiduciary Standard</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise Section */}
+      <section id="expertise" className="py-24 bg-white text-onyx relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-50 z-0" />
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="mb-20 max-w-3xl">
+            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Expertise</h2>
+            <h3 className="text-4xl md:text-5xl font-serif text-onyx mb-6 leading-tight">
+              Strategic counsel for the complexity of modern wealth.
+            </h3>
+            <div className="w-24 h-1 bg-brand" />
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Card 1 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal">
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Corporate Governance</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Implementing rigorous frameworks aligned with Qatar Vision 2030 to ensure accountability, fairness, and transparency.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+
+            {/* Card 2 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "100ms" }}>
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Investment Strategy</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Bespoke portfolio construction focusing on asymmetric risk-reward profiles and generational wealth preservation.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+
+            {/* Card 3 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "200ms" }}>
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Risk Mitigation</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Navigating regulatory landscapes and geopolitical shifts to safeguard assets in the evolving GCC landscape.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+
+            {/* Card 4 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal">
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Board Advisory</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Optimizing board composition and effectiveness to drive long-term strategic value and stakeholder confidence.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+
+            {/* Card 5 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "100ms" }}>
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Family Office Services</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Holistic management of family affairs, philanthropy, and intergenerational transfer of wealth and values.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+
+            {/* Card 6 */}
+            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "200ms" }}>
+              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h4 className="text-2xl font-serif mb-4">Cross-Border M&A</h4>
+              <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                Expert guidance on international mergers and acquisitions, ensuring seamless integration and value realization.
+              </p>
+              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section id="philosophy" className="py-24 bg-onyx-800 relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="reveal">
+              <img
+                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
+                alt="Executive Meeting"
+                className="grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl border-b-4 border-brand w-full object-cover h-[600px]"
+              />
+            </div>
+            <div className="reveal">
+              <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Philosophy</h2>
+              <h3 className="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
+                The Art of <br />Balanced Stewardship
+              </h3>
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
+                  <div>
+                    <h4 className="text-xl text-white font-serif mb-2">Unwavering Integrity</h4>
+                    <p className="text-gray-400 font-light leading-relaxed">
+                      We believe that true value is built on a foundation of trust. Our governance models prioritize ethical leadership.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
+                  <div>
+                    <h4 className="text-xl text-white font-serif mb-2">Long-Horizon Thinking</h4>
+                    <p className="text-gray-400 font-light leading-relaxed">
+                      In a market obsessed with quarterly results, we engineer strategies for decades, honoring Qatar Vision 2030.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-6">
+                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
+                  <div>
+                    <h4 className="text-xl text-white font-serif mb-2">Adaptive Intelligence</h4>
+                    <p className="text-gray-400 font-light leading-relaxed">
+                      We combine traditional financial wisdom with cutting-edge data analytics to anticipate market shifts.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <a href="/about/philosophy" className="inline-flex items-center gap-2 mt-10 text-brand text-sm uppercase tracking-widest hover:text-white transition-colors">
+                Learn More About Our Philosophy
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="py-32 bg-onyx-900 flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+        <div className="max-w-4xl mx-auto px-6 text-center relative z-10 reveal">
+          <svg className="w-12 h-12 text-brand mx-auto mb-8 opacity-50" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+          <blockquote className="text-3xl md:text-4xl font-serif text-white leading-relaxed italic mb-10">
+            &ldquo;GovernValu didn&apos;t just restructure our portfolio; they fundamentally redefined how our board approaches risk.&rdquo;
+          </blockquote>
+          <cite className="not-italic">
+            <div className="text-brand text-sm font-bold tracking-widest uppercase mb-1">Ahmad Al-Thani</div>
+            <div className="text-gray-500 text-sm">Chairman, Al-Thani Holdings</div>
+          </cite>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-white relative">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
+          <div className="reveal">
+            <h2 className="text-6xl font-serif text-onyx mb-6">
+              Let&apos;s discuss your <span className="text-brand">legacy.</span>
+            </h2>
+            <p className="text-xl text-gray-600 font-light mb-12 max-w-md">
+              Private consultations are by appointment only. Please enquire to schedule a briefing with a senior partner.
+            </p>
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full text-brand">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div className="text-gray-600">
+                  <p className="font-semibold text-onyx">Headquarters</p>
+                  <p>West Bay, Doha, Qatar</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full text-brand">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </div>
+                <div className="text-gray-600">
+                  <p className="font-semibold text-onyx">Direct Line</p>
+                  <p>+974 4444 5555</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-gray-50 flex items-center justify-center rounded-full text-brand">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div className="text-gray-600">
+                  <p className="font-semibold text-onyx">General Inquiries</p>
+                  <p>advisory@governvalu.qa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 p-10 md:p-12 border-t-4 border-brand shadow-xl reveal" style={{ transitionDelay: "200ms" }}>
+            <form className="space-y-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest font-bold text-gray-500">First Name</label>
+                  <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Ahmad" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-xs uppercase tracking-widest font-bold text-gray-500">Last Name</label>
+                  <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Al-Thani" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">Company / Organization</label>
+                <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Organization Name" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">Email Address</label>
+                <input type="email" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="ahmad@company.qa" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">Inquiry Details</label>
+                <textarea rows={4} className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx resize-none" placeholder="How may we assist you?" />
+              </div>
+              <button type="button" className="w-full bg-onyx text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-colors duration-300">
+                Request Consultation
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }
