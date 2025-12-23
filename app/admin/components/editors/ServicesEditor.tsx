@@ -117,7 +117,7 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                             <StringArrayEditor
                                 label="Features"
                                 items={item.features || []}
-                                onChange={(features) => updateItem({ features })}
+                                onChange={(features: string[]) => updateItem({ features } as any)}
                                 placeholder="Enter feature..."
                             />
                         </div>
