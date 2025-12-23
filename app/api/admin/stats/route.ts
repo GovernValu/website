@@ -10,6 +10,8 @@ export async function GET() {
             contacts,
             unreadContacts,
             mediaAssets,
+            heroSlides,
+            activeHeroSlides,
         ] = await Promise.all([
             prisma.blogPost.count(),
             prisma.blogPost.count({ where: { published: true } }),
@@ -17,6 +19,8 @@ export async function GET() {
             prisma.contactSubmission.count(),
             prisma.contactSubmission.count({ where: { isRead: false } }),
             prisma.mediaAsset.count(),
+            prisma.heroSlide.count(),
+            prisma.heroSlide.count({ where: { isActive: true } }),
         ]);
 
         return NextResponse.json({
@@ -26,6 +30,8 @@ export async function GET() {
             contacts,
             unreadContacts,
             mediaAssets,
+            heroSlides,
+            activeHeroSlides,
         });
     } catch (error) {
         return NextResponse.json({
@@ -35,6 +41,8 @@ export async function GET() {
             contacts: 0,
             unreadContacts: 0,
             mediaAssets: 0,
+            heroSlides: 0,
+            activeHeroSlides: 0,
         });
     }
 }

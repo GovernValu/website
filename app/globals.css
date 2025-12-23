@@ -8,7 +8,7 @@
   --color-onyx: #0f0f0f;
   --color-onyx-800: #1a1a1a;
   --color-onyx-900: #0a0a0a;
-  
+
   /* Fonts */
   --font-sans: 'Inter', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -80,7 +80,7 @@ body {
 /* ===== Hero Background ===== */
 .bg-hero-pattern {
   background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(26, 26, 26, 0.9) 50%, rgba(15, 15, 15, 0.95) 100%),
-              url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
+    url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -105,7 +105,8 @@ body {
 }
 
 /* ===== Form Focus States ===== */
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: #ed1c24;
   box-shadow: 0 0 0 1px #ed1c24;
@@ -113,10 +114,13 @@ input:focus, textarea:focus {
 
 /* ===== Animation Keyframes ===== */
 @keyframes bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(-25%) translateX(-50%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
+
   50% {
     transform: translateY(0) translateX(-50%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -133,4 +137,19 @@ input:focus, textarea:focus {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ===== Hero Slider Ken Burns Effect ===== */
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+.hero-ken-burns {
+  animation: kenBurns 8s ease-out forwards;
 }

@@ -70,3 +70,17 @@ model MediaAsset {
   resourceType String  @default("image")
   createdAt   DateTime @default(now())
 }
+
+model HeroSlide {
+  id          String   @id @default(cuid())
+  title       String
+  subtitle    String?
+  description String?  @db.Text
+  buttonText  String?
+  buttonLink  String?
+  image       String   // Cloudinary URL
+  order       Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

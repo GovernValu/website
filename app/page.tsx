@@ -1,10 +1,72 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import HeroSlider from "./components/HeroSlider";
+
+interface Slide {
+  id: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  buttonText?: string;
+  buttonLink?: string;
+  image: string;
+}
+
+// Default slides to use when no database slides are available
+const defaultSlides: Slide[] = [
+  {
+    id: "default-1",
+    title: "Precision in <br /><span class=\"italic text-brand font-serif\">Governance.</span>",
+    subtitle: "Qatar-Based Advisory",
+    description: "We architect resilient strategies for sovereign wealth funds, regional corporations, and distinguished family offices across the GCC.",
+    buttonText: "Partner With Us",
+    buttonLink: "/contact",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+  },
+  {
+    id: "default-2",
+    title: "Strategic <br /><span class=\"italic text-brand font-serif\">Excellence.</span>",
+    subtitle: "Trusted Advisors",
+    description: "Delivering world-class governance solutions aligned with Qatar Vision 2030 and regional excellence standards.",
+    buttonText: "Our Expertise",
+    buttonLink: "/about/expertise",
+    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2073&auto=format&fit=crop",
+  },
+  {
+    id: "default-3",
+    title: "Building <br /><span class=\"italic text-brand font-serif\">Legacy.</span>",
+    subtitle: "Generational Wealth",
+    description: "Expert guidance for family offices and institutions seeking sustainable growth and intergenerational prosperity.",
+    buttonText: "Contact Us",
+    buttonLink: "/contact",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
+  },
+];
 
 export default function Home() {
+  const [slides, setSlides] = useState<Slide[]>(defaultSlides);
+
+  // Fetch slides from API
+  useEffect(() => {
+    async function fetchSlides() {
+      try {
+        const res = await fetch("/api/slides");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.length > 0) {
+            setSlides(data);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to fetch slides:", error);
+      }
+    }
+    fetchSlides();
+  }, []);
+
   // Scroll reveal effect
   useEffect(() => {
     const reveals = document.querySelectorAll(".reveal");
@@ -31,43 +93,8 @@ export default function Home() {
     <>
       <Header />
 
-      {/* Hero Section */}
-      <header className="relative h-screen min-h-[800px] flex items-center justify-center bg-hero-pattern">
-        {/* Vertical Line Decor */}
-        <div className="absolute left-10 md:left-24 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
-        <div className="absolute right-10 md:right-24 top-0 bottom-0 w-px bg-white/10 hidden md:block" />
-
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <span className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 reveal">
-            Qatar-Based Advisory
-          </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-8 leading-tight tracking-tight reveal" style={{ transitionDelay: "100ms" }}>
-            Precision in <br />
-            <span className="italic text-brand font-serif">Governance.</span>
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed reveal" style={{ transitionDelay: "200ms" }}>
-            We architect resilient strategies for sovereign wealth funds, regional corporations, and distinguished family offices across the GCC.
-          </p>
-          <div className="mt-12 flex flex-col md:flex-row gap-6 justify-center items-center reveal" style={{ transitionDelay: "300ms" }}>
-            <a href="/contact" className="group relative px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold overflow-hidden">
-              <span className="relative z-10 group-hover:text-white transition-colors">Partner With Us</span>
-              <div className="absolute inset-0 h-full w-full bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
-            </a>
-            <a href="/about/expertise" className="flex items-center gap-2 text-white text-sm uppercase tracking-widest hover:text-brand transition-colors">
-              Explore Our Expertise
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
-          <span className="text-[10px] uppercase tracking-widest text-gray-400">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-brand to-transparent" />
-        </div>
-      </header>
+      {/* Hero Section with Slider */}
+      <HeroSlider slides={slides} />
 
       {/* Metrics Section */}
       <section className="bg-onyx py-12 border-b border-gray-800">
