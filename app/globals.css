@@ -153,3 +153,23 @@ textarea:focus {
 .hero-ken-burns {
   animation: kenBurns 8s ease-out forwards;
 }
+/* RTL Support */
+[dir="rtl"] {
+  font-family: var(--font-inter), sans-serif;
+  text-align: right;
+}
+
+[dir="rtl"] .hover-underline-animation:after {
+  left: auto;
+  right: 0;
+  transform-origin: left;
+}
+[dir="rtl"] .hover-underline-animation:hover:after {
+  transform-origin: right;
+}
+
+/* Flip specific icons in RTL if strictly directional */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
+}
+

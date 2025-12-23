@@ -1,8 +1,24 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useContent } from "../hooks/useContent";
+import { LABELS } from "@/lib/i18n";
 
 export default function Footer() {
+    const { language, direction } = useLanguage();
+    const { content } = useContent<any>('settings');
+    const t = LABELS[language];
+
+    // Fallback if content isn't loaded yet
+    const contact = content?.contact || {
+        phone: "+974 4412 3456",
+        email: "info@governvalu.com",
+        address: { line1: "West Bay, Doha, Qatar" }
+    };
+
     return (
-        <footer className="bg-onyx border-t border-gray-800 pt-20 pb-10 text-gray-400 text-sm">
+        <footer className="bg-onyx border-t border-gray-800 pt-20 pb-10 text-gray-400 text-sm" dir={direction}>
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid md:grid-cols-5 gap-12 mb-16">
                     {/* Logo & Description */}
@@ -12,7 +28,7 @@ export default function Footer() {
                             <span className="text-white font-serif text-xl tracking-wide">Govern<span className="text-brand">Valu</span></span>
                         </Link>
                         <p className="max-w-sm font-light leading-relaxed mb-6">
-                            Strategic Governance for Sustainable Investments. A governance-driven investment and consulting firm serving the MENA region and beyond.
+                            {content?.footerBlurb || "Strategic Governance for Sustainable Investments."}
                         </p>
                         <div className="flex items-center gap-4 text-gray-500 mb-3">
                             <svg className="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -25,7 +41,7 @@ export default function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">Contact</h5>
+                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">{t.contact}</h5>
                         <ul className="space-y-3 font-light">
                             <li className="flex items-start gap-2">
                                 <svg className="w-4 h-4 text-brand mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
@@ -33,7 +49,7 @@ export default function Footer() {
                                 </svg>
                                 <div>
                                     <span className="text-gray-500 text-xs">Worldwide</span><br />
-                                    <a href="https://wa.me/905537751648" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors">+90 553 775 16 48</a>
+                                    <a href="https://wa.me/905537751648" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors dir-ltr block text-left inline-block">+90 553 775 16 48</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
@@ -42,14 +58,14 @@ export default function Footer() {
                                 </svg>
                                 <div>
                                     <span className="text-gray-500 text-xs">Qatar & Gulf</span><br />
-                                    <a href="tel:+97433787934" className="hover:text-brand transition-colors">+974 3378 7934</a>
+                                    <a href={`tel:${contact.phone}`} className="hover:text-brand transition-colors dir-ltr block text-left inline-block">{contact.phone}</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
                                 <svg className="w-4 h-4 text-brand mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                 </svg>
-                                <a href="mailto:info@governvalu.com" className="hover:text-brand transition-colors">info@governvalu.com</a>
+                                <a href={`mailto:${contact.email}`} className="hover:text-brand transition-colors">{contact.email}</a>
                             </li>
                             <li className="flex items-start gap-2">
                                 <svg className="w-4 h-4 text-brand mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -65,32 +81,32 @@ export default function Footer() {
 
                     {/* About Links */}
                     <div>
-                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">About</h5>
+                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">{t.about}</h5>
                         <ul className="space-y-3 font-light">
-                            <li><Link href="/about/board" className="hover:text-brand transition-colors">Board & Directors</Link></li>
-                            <li><Link href="/about" className="hover:text-brand transition-colors">Who We Are</Link></li>
-                            <li><Link href="/about/philosophy" className="hover:text-brand transition-colors">Philosophy</Link></li>
-                            <li><Link href="/about/expertise" className="hover:text-brand transition-colors">Expertise</Link></li>
-                            <li><Link href="/about/teams" className="hover:text-brand transition-colors">Teams</Link></li>
+                            <li><Link href="/about/board" className="hover:text-brand transition-colors">{t.board}</Link></li>
+                            <li><Link href="/about" className="hover:text-brand transition-colors">{t.whoWeAre}</Link></li>
+                            <li><Link href="/about/philosophy" className="hover:text-brand transition-colors">{t.philosophy}</Link></li>
+                            <li><Link href="/about/expertise" className="hover:text-brand transition-colors">{t.expertise}</Link></li>
+                            <li><Link href="/about/teams" className="hover:text-brand transition-colors">{t.teams}</Link></li>
                         </ul>
                     </div>
 
                     {/* Services & Legal Links */}
                     <div>
-                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">Services</h5>
+                        <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">{t.services}</h5>
                         <ul className="space-y-3 font-light">
-                            <li><Link href="/services" className="hover:text-brand transition-colors">Corporate Governance</Link></li>
-                            <li><Link href="/services" className="hover:text-brand transition-colors">Investment Relations</Link></li>
-                            <li><Link href="/services" className="hover:text-brand transition-colors">Valuation Services</Link></li>
-                            <li><Link href="/services" className="hover:text-brand transition-colors">Risk Management</Link></li>
-                            <li><Link href="/contact" className="hover:text-brand transition-colors">Contact Us</Link></li>
+                            <li><Link href="/services" className="hover:text-brand transition-colors">{t.corpGov}</Link></li>
+                            <li><Link href="/services" className="hover:text-brand transition-colors">{t.invRel}</Link></li>
+                            <li><Link href="/services" className="hover:text-brand transition-colors">{t.valuation}</Link></li>
+                            <li><Link href="/services" className="hover:text-brand transition-colors">{t.riskMgmt}</Link></li>
+                            <li><Link href="/contact" className="hover:text-brand transition-colors">{t.contact}</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 {/* Bottom Bar */}
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-                    <p>© {new Date().getFullYear()} GovernValu Investment and Consulting. All rights reserved.</p>
+                    <p>© {new Date().getFullYear()} GovernValu. {t.copyright}</p>
                     <div className="flex gap-6 mt-4 md:mt-0">
                         <a href="#" className="hover:text-brand transition-colors" aria-label="LinkedIn">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

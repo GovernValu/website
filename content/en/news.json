@@ -1,0 +1,88 @@
+{
+    "hero": {
+        "badge": "Thought Leadership",
+        "title": "Insights &",
+        "titleHighlight": "Intelligence."
+    },
+    "featured": {
+        "badge": "Featured Report",
+        "title": "The Future of Board Governance in a Digital Age",
+        "description": "As artificial intelligence reshapes decision-making, boards must adapt their oversight mechanisms. Our latest whitepaper explores the frameworks necessary for effective digital governance.",
+        "linkText": "Read Full Report",
+        "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+    },
+    "updates": {
+        "title": "Latest Updates",
+        "filters": [
+            {
+                "label": "All",
+                "value": "all"
+            },
+            {
+                "label": "Research",
+                "value": "Research"
+            },
+            {
+                "label": "News",
+                "value": "Press Release"
+            }
+        ],
+        "loadMore": "Load More Articles"
+    },
+    "newsItems": [
+        {
+            "id": 1,
+            "category": "Market Commentary",
+            "date": "December 15, 2024",
+            "title": "The Shift in GCC Capital Allocation Strategies",
+            "excerpt": "As sovereign funds pivot towards domestic value creation, we analyze the implications for foreign direct investment.",
+            "image": "https://images.unsplash.com/photo-1611974765270-ca1258634369?q=80&w=2664&auto=format&fit=crop"
+        },
+        {
+            "id": 2,
+            "category": "Press Release",
+            "date": "November 28, 2024",
+            "title": "GovernValu Appoints New Head of Investment Advisory",
+            "excerpt": "We are pleased to welcome Sarah Al-Majed to lead our expanding private markets division in Riyadh.",
+            "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2669&auto=format&fit=crop"
+        },
+        {
+            "id": 3,
+            "category": "Research",
+            "date": "November 10, 2024",
+            "title": "2025 Governance Outlook: The ESG Integration Mandate",
+            "excerpt": "Our proprietary research indicates a 40% increase in board-level ESG committee formation across top-tier GCC firms.",
+            "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2672&auto=format&fit=crop"
+        },
+        {
+            "id": 4,
+            "category": "Market Commentary",
+            "date": "October 22, 2024",
+            "title": "Navigating Volatility: Family Office Resilience",
+            "excerpt": "How multi-generational family enterprises are restructuring their portfolios to withstand geoeconomic fragmentation.",
+            "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
+        },
+        {
+            "id": 5,
+            "category": "Press Release",
+            "date": "October 05, 2024",
+            "title": "GovernValu Partners with Global Risk Monitor",
+            "excerpt": "A strategic alliance to provide real-time geopolitical risk intelligence to our institutional clients.",
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop"
+        },
+        {
+            "id": 6,
+            "category": "Research",
+            "date": "September 18, 2024",
+            "title": "The Rise of Private Credit in the Middle East",
+            "excerpt": "An in-depth look at the regulatory changes fueling the explosion of non-bank lending in the region.",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2626&auto=format&fit=crop"
+        }
+    ],
+    "newsletter": {
+        "title": "Subscribe to Our Intelligence",
+        "description": "Receive our monthly market commentary and research directly to your inbox.",
+        "placeholder": "Email Address",
+        "buttonText": "Subscribe"
+    }
+}

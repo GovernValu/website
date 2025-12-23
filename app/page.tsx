@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
+import { useContent } from "./hooks/useContent";
 
 interface Slide {
   id: string;
@@ -15,7 +16,17 @@ interface Slide {
   image: string;
 }
 
-// Default slides to use when no database slides are available
+// Icon mapping
+const ICONS: Record<string, React.ReactNode> = {
+  building: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />,
+  chart: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />,
+  shield: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />,
+  users: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />,
+  bank: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />,
+  globe: <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />,
+};
+
+// Default slides (keep as fallback)
 const defaultSlides: Slide[] = [
   {
     id: "default-1",
@@ -25,29 +36,12 @@ const defaultSlides: Slide[] = [
     buttonText: "Partner With Us",
     buttonLink: "/contact",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: "default-2",
-    title: "Strategic <br /><span class=\"italic text-brand font-serif\">Excellence.</span>",
-    subtitle: "Trusted Advisors",
-    description: "Delivering world-class governance solutions aligned with Qatar Vision 2030 and regional excellence standards.",
-    buttonText: "Our Expertise",
-    buttonLink: "/about/expertise",
-    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2073&auto=format&fit=crop",
-  },
-  {
-    id: "default-3",
-    title: "Building <br /><span class=\"italic text-brand font-serif\">Legacy.</span>",
-    subtitle: "Generational Wealth",
-    description: "Expert guidance for family offices and institutions seeking sustainable growth and intergenerational prosperity.",
-    buttonText: "Contact Us",
-    buttonLink: "/contact",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
-  },
+  }
 ];
 
 export default function Home() {
   const [slides, setSlides] = useState<Slide[]>(defaultSlides);
+  const { content, loading: contentLoading } = useContent<any>('homepage');
 
   // Fetch slides from API
   useEffect(() => {
@@ -84,10 +78,19 @@ export default function Home() {
     };
 
     window.addEventListener("scroll", revealOnScroll);
-    revealOnScroll(); // Initial check
+    // Delay initial check slightly to allow content render
+    setTimeout(revealOnScroll, 100);
 
     return () => window.removeEventListener("scroll", revealOnScroll);
-  }, []);
+  }, [content]); // Re-run when content loads
+
+  if (contentLoading || !content) {
+    return (
+      <div className="flex bg-onyx h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand"></div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -99,22 +102,12 @@ export default function Home() {
       {/* Metrics Section */}
       <section className="bg-onyx py-12 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div className="reveal border-r border-gray-800 last:border-r-0">
-            <p className="text-4xl font-serif text-white mb-1">$8B+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500">Assets Advised</p>
-          </div>
-          <div className="reveal border-r border-gray-800 last:border-r-0" style={{ transitionDelay: "100ms" }}>
-            <p className="text-4xl font-serif text-white mb-1">50+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500">Regional Entities</p>
-          </div>
-          <div className="reveal border-r border-gray-800 last:border-r-0" style={{ transitionDelay: "200ms" }}>
-            <p className="text-4xl font-serif text-white mb-1">GCC</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500">Market Coverage</p>
-          </div>
-          <div className="reveal" style={{ transitionDelay: "300ms" }}>
-            <p className="text-4xl font-serif text-white mb-1">100%</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500">Fiduciary Standard</p>
-          </div>
+          {content.metrics?.map((metric: any, index: number) => (
+            <div key={index} className="reveal border-r border-gray-800 last:border-r-0" style={{ transitionDelay: `${index * 100}ms` }}>
+              <p className="text-4xl font-serif text-white mb-1">{metric.value}</p>
+              <p className="text-xs uppercase tracking-widest text-gray-500">{metric.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -124,97 +117,28 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-20 max-w-3xl">
-            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Expertise</h2>
+            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.expertise?.sectionTitle}</h2>
             <h3 className="text-4xl md:text-5xl font-serif text-onyx mb-6 leading-tight">
-              Strategic counsel for the complexity of modern wealth.
+              {content.expertise?.headline}
             </h3>
             <div className="w-24 h-1 bg-brand" />
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {/* Card 1 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal">
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
+            {content.expertise?.cards?.map((card: any, index: number) => (
+              <div key={index} className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: `${index * 100}ms` }}>
+                <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
+                  <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {ICONS[card.icon]}
+                  </svg>
+                </div>
+                <h4 className="text-2xl font-serif mb-4">{card.title}</h4>
+                <p className="text-gray-600 leading-relaxed mb-6 font-light">
+                  {card.description}
+                </p>
+                <a href={card.link} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
               </div>
-              <h4 className="text-2xl font-serif mb-4">Corporate Governance</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Implementing rigorous frameworks aligned with Qatar Vision 2030 to ensure accountability, fairness, and transparency.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
-
-            {/* Card 2 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "100ms" }}>
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-serif mb-4">Investment Strategy</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Bespoke portfolio construction focusing on asymmetric risk-reward profiles and generational wealth preservation.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
-
-            {/* Card 3 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "200ms" }}>
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-serif mb-4">Risk Mitigation</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Navigating regulatory landscapes and geopolitical shifts to safeguard assets in the evolving GCC landscape.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
-
-            {/* Card 4 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal">
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-serif mb-4">Board Advisory</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Optimizing board composition and effectiveness to drive long-term strategic value and stakeholder confidence.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
-
-            {/* Card 5 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "100ms" }}>
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-serif mb-4">Family Office Services</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Holistic management of family affairs, philanthropy, and intergenerational transfer of wealth and values.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
-
-            {/* Card 6 */}
-            <div className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: "200ms" }}>
-              <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h4 className="text-2xl font-serif mb-4">Cross-Border M&A</h4>
-              <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                Expert guidance on international mergers and acquisitions, ensuring seamless integration and value realization.
-              </p>
-              <a href="/about/expertise" className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">Learn More</a>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -225,47 +149,31 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div className="reveal">
               <img
-                src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop"
-                alt="Executive Meeting"
+                src={content.philosophy?.image}
+                alt={content.philosophy?.sectionTitle}
                 className="grayscale hover:grayscale-0 transition-all duration-1000 shadow-2xl border-b-4 border-brand w-full object-cover h-[600px]"
               />
             </div>
             <div className="reveal">
-              <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Philosophy</h2>
+              <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.philosophy?.sectionTitle}</h2>
               <h3 className="text-4xl md:text-5xl font-serif text-white mb-8 leading-tight">
-                The Art of <br />Balanced Stewardship
+                {content.philosophy?.headline}
               </h3>
               <div className="space-y-8">
-                <div className="flex gap-6">
-                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
-                  <div>
-                    <h4 className="text-xl text-white font-serif mb-2">Unwavering Integrity</h4>
-                    <p className="text-gray-400 font-light leading-relaxed">
-                      We believe that true value is built on a foundation of trust. Our governance models prioritize ethical leadership.
-                    </p>
+                {content.philosophy?.points?.map((point: any, index: number) => (
+                  <div key={index} className="flex gap-6">
+                    <div className="w-12 h-px bg-brand mt-4 shrink-0" />
+                    <div>
+                      <h4 className="text-xl text-white font-serif mb-2">{point.title}</h4>
+                      <p className="text-gray-400 font-light leading-relaxed">
+                        {point.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
-                  <div>
-                    <h4 className="text-xl text-white font-serif mb-2">Long-Horizon Thinking</h4>
-                    <p className="text-gray-400 font-light leading-relaxed">
-                      In a market obsessed with quarterly results, we engineer strategies for decades, honoring Qatar Vision 2030.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-6">
-                  <div className="w-12 h-px bg-brand mt-4 shrink-0" />
-                  <div>
-                    <h4 className="text-xl text-white font-serif mb-2">Adaptive Intelligence</h4>
-                    <p className="text-gray-400 font-light leading-relaxed">
-                      We combine traditional financial wisdom with cutting-edge data analytics to anticipate market shifts.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
-              <a href="/about/philosophy" className="inline-flex items-center gap-2 mt-10 text-brand text-sm uppercase tracking-widest hover:text-white transition-colors">
-                Learn More About Our Philosophy
+              <a href={content.philosophy?.link?.url} className="inline-flex items-center gap-2 mt-10 text-brand text-sm uppercase tracking-widest hover:text-white transition-colors">
+                {content.philosophy?.link?.text}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -283,11 +191,11 @@ export default function Home() {
             <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
           </svg>
           <blockquote className="text-3xl md:text-4xl font-serif text-white leading-relaxed italic mb-10">
-            &ldquo;GovernValu didn&apos;t just restructure our portfolio; they fundamentally redefined how our board approaches risk.&rdquo;
+            &ldquo;{content.testimonial?.quote}&rdquo;
           </blockquote>
           <cite className="not-italic">
-            <div className="text-brand text-sm font-bold tracking-widest uppercase mb-1">Ahmad Al-Thani</div>
-            <div className="text-gray-500 text-sm">Chairman, Al-Thani Holdings</div>
+            <div className="text-brand text-sm font-bold tracking-widest uppercase mb-1">{content.testimonial?.author}</div>
+            <div className="text-gray-500 text-sm">{content.testimonial?.position}</div>
           </cite>
         </div>
       </section>
@@ -297,10 +205,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20">
           <div className="reveal">
             <h2 className="text-6xl font-serif text-onyx mb-6">
-              Let&apos;s discuss your <span className="text-brand">legacy.</span>
+              {content.contact?.headline} <span className="text-brand">{content.contact?.headlineHighlight}</span>
             </h2>
             <p className="text-xl text-gray-600 font-light mb-12 max-w-md">
-              Private consultations are by appointment only. Please enquire to schedule a briefing with a senior partner.
+              {content.contact?.subtitle}
             </p>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
@@ -311,8 +219,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="text-gray-600">
-                  <p className="font-semibold text-onyx">Headquarters</p>
-                  <p>West Bay, Doha, Qatar</p>
+                  <p className="font-semibold text-onyx">{content.contact?.info?.address?.label}</p>
+                  <p>{content.contact?.info?.address?.value}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -322,8 +230,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="text-gray-600">
-                  <p className="font-semibold text-onyx">Direct Line</p>
-                  <p>+974 4444 5555</p>
+                  <p className="font-semibold text-onyx">{content.contact?.info?.phone?.label}</p>
+                  <p className="dir-ltr">{content.contact?.info?.phone?.value}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -333,8 +241,8 @@ export default function Home() {
                   </svg>
                 </div>
                 <div className="text-gray-600">
-                  <p className="font-semibold text-onyx">General Inquiries</p>
-                  <p>advisory@governvalu.qa</p>
+                  <p className="font-semibold text-onyx">{content.contact?.info?.email?.label}</p>
+                  <p>{content.contact?.info?.email?.value}</p>
                 </div>
               </div>
             </div>

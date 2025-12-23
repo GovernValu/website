@@ -1,0 +1,83 @@
+{
+    "hero": {
+        "badge": "Our Ecosystem",
+        "title": "Strategic",
+        "titleHighlight": "Alliances.",
+        "subtitle": "We collaborate with world-class institutions to deliver comprehensive governance and investment solutions."
+    },
+    "intro": {
+        "sectionTitle": "Collaboration",
+        "quote": "In a complex global landscape, no single entity possesses all the answers. Our power lies in our network."
+    },
+    "categories": [
+        {
+            "title": "Strategic Technology",
+            "partners": [
+                {
+                    "name": "TechNexus",
+                    "logo": "TN"
+                },
+                {
+                    "name": "CyberGuard",
+                    "logo": "CG"
+                },
+                {
+                    "name": "DataFlow Systems",
+                    "logo": "DS"
+                },
+                {
+                    "name": "CloudScale",
+                    "logo": "CS"
+                }
+            ]
+        },
+        {
+            "title": "Legal & Regulatory",
+            "partners": [
+                {
+                    "name": "LexCorp Global",
+                    "logo": "LG"
+                },
+                {
+                    "name": "Compliance First",
+                    "logo": "CF"
+                },
+                {
+                    "name": "Sovereign Legal",
+                    "logo": "SL"
+                },
+                {
+                    "name": "RegTech Solutions",
+                    "logo": "RS"
+                }
+            ]
+        },
+        {
+            "title": "Financial Institutions",
+            "partners": [
+                {
+                    "name": "Capital Worth",
+                    "logo": "CW"
+                },
+                {
+                    "name": "Asset Prime",
+                    "logo": "AP"
+                },
+                {
+                    "name": "Global Wealth",
+                    "logo": "GW"
+                },
+                {
+                    "name": "Venture Bridge",
+                    "logo": "VB"
+                }
+            ]
+        }
+    ],
+    "cta": {
+        "headline": "Join Our Network",
+        "subtitle": "Are you a leader in your field? Let's discuss how we can create value together for our mutual clients in the GCC.",
+        "buttonText": "Partnership Inquiry",
+        "buttonLink": "/contact"
+    }
+}

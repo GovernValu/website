@@ -21,7 +21,9 @@ interface PageEditorProps {
 
 export default function PageEditor({ params }: PageEditorProps) {
     const { page } = use(params);
-    const [content, setContent] = useState<Record<string, any> | null>(null);
+    const [contentEn, setContentEn] = useState<Record<string, any> | null>(null);
+    const [contentAr, setContentAr] = useState<Record<string, any> | null>(null);
+    const [editorLang, setEditorLang] = useState<"en" | "ar">("en");
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [viewMode, setViewMode] = useState<"visual" | "json">("visual");
@@ -30,11 +32,17 @@ export default function PageEditor({ params }: PageEditorProps) {
     useEffect(() => {
         async function fetchContent() {
             try {
-                const res = await fetch(`/api/content/${page}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    setContent(data);
-                    setJsonText(JSON.stringify(data, null, 2));
+                const [resEn, resAr] = await Promise.all([
+                    fetch(`/api/content/${page}?lang=en`),
+                    fetch(`/api/content/${page}?lang=ar`)
+                ]);
+
+                if (resEn.ok && resAr.ok) {
+                    const dataEn = await resEn.json();
+                    const dataAr = await resAr.json();
+                    setContentEn(dataEn);
+                    setContentAr(dataAr);
+                    setJsonText(JSON.stringify(dataEn, null, 2));
                 } else {
                     toast.error("Failed to load content");
                 }
@@ -47,19 +55,29 @@ export default function PageEditor({ params }: PageEditorProps) {
         fetchContent();
     }, [page]);
 
-    // Sync JSON text when content changes (from visual editor)
+    const activeContent = editorLang === "en" ? contentEn : contentAr;
+
+    // Sync JSON text when content changes (from visual editor) or lang switches
     useEffect(() => {
-        if (content && viewMode === "visual") {
-            setJsonText(JSON.stringify(content, null, 2));
+        if (activeContent && viewMode === "visual") {
+            setJsonText(JSON.stringify(activeContent, null, 2));
         }
-    }, [content, viewMode]);
+    }, [activeContent, viewMode]);
+
+    const handleContentChange = (newContent: any) => {
+        if (editorLang === "en") {
+            setContentEn(newContent);
+        } else {
+            setContentAr(newContent);
+        }
+    };
 
     // Sync content when switching from JSON to visual
     const handleModeSwitch = (mode: "visual" | "json") => {
         if (mode === "visual" && viewMode === "json") {
             try {
                 const parsed = JSON.parse(jsonText);
-                setContent(parsed);
+                handleContentChange(parsed);
             } catch (error) {
                 toast.error("Invalid JSON - fix before switching to visual mode");
                 return;
@@ -70,12 +88,12 @@ export default function PageEditor({ params }: PageEditorProps) {
 
     const handleSave = async () => {
         try {
-            let dataToSave = content;
+            let dataToSave = activeContent;
 
             if (viewMode === "json") {
                 try {
                     dataToSave = JSON.parse(jsonText);
-                    setContent(dataToSave);
+                    handleContentChange(dataToSave);
                 } catch (error) {
                     toast.error("Invalid JSON format");
                     return;
@@ -84,14 +102,14 @@ export default function PageEditor({ params }: PageEditorProps) {
 
             setSaving(true);
 
-            const res = await fetch(`/api/content/${page}`, {
+            const res = await fetch(`/api/content/${page}?lang=${editorLang}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(dataToSave),
             });
 
             if (res.ok) {
-                toast.success("Content saved successfully!");
+                toast.success(`${editorLang === "en" ? "English" : "Arabic"} content saved successfully!`);
             } else {
                 toast.error("Failed to save content");
             }
@@ -122,70 +140,25 @@ export default function PageEditor({ params }: PageEditorProps) {
         settings: "Site Settings",
     };
 
-    const pageDescriptions: Record<string, string> = {
-        homepage: "Edit hero, metrics, expertise, philosophy, and contact sections",
-        services: "Manage service offerings and engagement model",
-        industries: "Configure industry sectors and statistics",
-        partners: "Update partner categories and alliances",
-        about: "Edit company info, vision, mission, and values",
-        contact: "Manage contact form, FAQ, and office information",
-        settings: "Global settings, SEO, footer, and social links",
-    };
-
     // Render the appropriate editor based on page
     const renderEditor = () => {
-        if (!content) return null;
+        if (!activeContent) return null;
 
         switch (page) {
             case "homepage":
-                return (
-                    <HomepageEditor
-                        content={content as any}
-                        onChange={setContent}
-                    />
-                );
+                return <HomepageEditor content={activeContent as any} onChange={handleContentChange} />;
             case "about":
-                return (
-                    <AboutEditor
-                        content={content as any}
-                        onChange={setContent}
-                    />
-                );
+                return <AboutEditor content={activeContent as any} onChange={handleContentChange} />;
             case "settings":
-                return (
-                    <SettingsEditor
-                        content={content as any}
-                        onChange={setContent}
-                    />
-                );
+                return <SettingsEditor content={activeContent as any} onChange={handleContentChange} />;
             case "services":
-                return (
-                    <ServicesEditor
-                        content={content}
-                        onChange={setContent}
-                    />
-                );
+                return <ServicesEditor content={activeContent as any} onChange={handleContentChange} />;
             case "contact":
-                return (
-                    <ContactEditor
-                        content={content}
-                        onChange={setContent}
-                    />
-                );
+                return <ContactEditor content={activeContent as any} onChange={handleContentChange} />;
             case "industries":
-                return (
-                    <IndustriesEditor
-                        content={content}
-                        onChange={setContent}
-                    />
-                );
+                return <IndustriesEditor content={activeContent as any} onChange={handleContentChange} />;
             case "partners":
-                return (
-                    <PartnersEditor
-                        content={content}
-                        onChange={setContent}
-                    />
-                );
+                return <PartnersEditor content={activeContent as any} onChange={handleContentChange} />;
             default:
                 return (
                     <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
@@ -220,7 +193,7 @@ export default function PageEditor({ params }: PageEditorProps) {
                     </Link>
                     <div>
                         <h1 className="text-3xl font-serif text-white">{pageNames[page] || page}</h1>
-                        <p className="text-gray-400 mt-1">{pageDescriptions[page] || "Edit page content"}</p>
+                        <p className="text-gray-400 mt-1">Edit content for both languages</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -229,30 +202,20 @@ export default function PageEditor({ params }: PageEditorProps) {
                         <button
                             onClick={() => handleModeSwitch("visual")}
                             className={`px-4 py-1.5 text-sm rounded-md transition-colors ${viewMode === "visual"
-                                    ? "bg-gray-700 text-white"
-                                    : "text-gray-400 hover:text-white"
+                                ? "bg-gray-700 text-white"
+                                : "text-gray-400 hover:text-white"
                                 }`}
                         >
-                            <span className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
-                                </svg>
-                                Visual
-                            </span>
+                            Visual
                         </button>
                         <button
                             onClick={() => handleModeSwitch("json")}
                             className={`px-4 py-1.5 text-sm rounded-md transition-colors ${viewMode === "json"
-                                    ? "bg-gray-700 text-white"
-                                    : "text-gray-400 hover:text-white"
+                                ? "bg-gray-700 text-white"
+                                : "text-gray-400 hover:text-white"
                                 }`}
                         >
-                            <span className="flex items-center gap-2">
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                                </svg>
-                                JSON
-                            </span>
+                            JSON
                         </button>
                     </div>
 
@@ -261,7 +224,7 @@ export default function PageEditor({ params }: PageEditorProps) {
                             onClick={formatJson}
                             className="px-4 py-2 bg-gray-800 text-gray-300 rounded-lg hover:bg-gray-700 transition-colors text-sm"
                         >
-                            Format JSON
+                            Format
                         </button>
                     )}
                     <button
@@ -269,73 +232,52 @@ export default function PageEditor({ params }: PageEditorProps) {
                         disabled={saving}
                         className="px-6 py-2 bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors disabled:opacity-50 flex items-center gap-2"
                     >
-                        {saving ? (
-                            <>
-                                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                                Saving...
-                            </>
-                        ) : (
-                            <>
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                </svg>
-                                Save Changes
-                            </>
-                        )}
+                        {saving ? "Saving..." : "Save Changes"}
                     </button>
                 </div>
             </div>
 
-            {/* Content Editor */}
-            {viewMode === "visual" ? (
-                renderEditor()
-            ) : (
-                <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-                    <div className="p-4 border-b border-gray-700 flex items-center justify-between">
-                        <span className="text-sm text-gray-400">content/{page}.json</span>
-                        <span className="text-xs text-gray-500">JSON Editor (Advanced)</span>
-                    </div>
-                    <textarea
-                        value={jsonText}
-                        onChange={(e) => setJsonText(e.target.value)}
-                        className="w-full h-[600px] bg-gray-900 text-gray-200 p-6 font-mono text-sm focus:outline-none resize-none"
-                        spellCheck={false}
-                    />
-                </div>
-            )}
+            {/* Language Tabs */}
+            <div className="border-b border-gray-700 flex gap-6">
+                <button
+                    onClick={() => setEditorLang("en")}
+                    className={`pb-3 text-sm font-medium transition-colors border-b-2 ${editorLang === "en"
+                        ? "border-brand text-white"
+                        : "border-transparent text-gray-400 hover:text-gray-300"
+                        }`}
+                >
+                    English (EN)
+                </button>
+                <button
+                    onClick={() => setEditorLang("ar")}
+                    className={`pb-3 text-sm font-medium transition-colors border-b-2 ${editorLang === "ar"
+                        ? "border-brand text-white"
+                        : "border-transparent text-gray-400 hover:text-gray-300"
+                        }`}
+                >
+                    Arabic (AR)
+                </button>
+            </div>
 
-            {/* Help */}
-            <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                <h3 className="text-white font-medium mb-3">Tips</h3>
-                <ul className="space-y-2 text-sm text-gray-400">
-                    <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Click section headers to expand/collapse for easier navigation
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Use the arrows to reorder list items (metrics, cards, etc.)
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Switch to JSON mode for advanced edits or bulk changes
-                    </li>
-                    <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-brand shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Changes are saved immediately and reflected on the live site
-                    </li>
-                </ul>
+            {/* Content Editor */}
+            <div dir={editorLang === 'ar' ? 'rtl' : 'ltr'}>
+                {viewMode === "visual" ? (
+                    renderEditor()
+                ) : (
+                    <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                        <div className="p-4 border-b border-gray-700 flex items-center justify-between">
+                            <span className="text-sm text-gray-400">content/{editorLang}/{page}.json</span>
+                            <span className="text-xs text-gray-500">JSON Editor</span>
+                        </div>
+                        <textarea
+                            value={jsonText}
+                            onChange={(e) => setJsonText(e.target.value)}
+                            className="w-full h-[600px] bg-gray-900 text-gray-200 p-6 font-mono text-sm focus:outline-none resize-none"
+                            spellCheck={false}
+                            dir="ltr"
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

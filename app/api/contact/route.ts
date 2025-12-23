@@ -13,7 +13,7 @@ export async function POST(request: Request) {
                 email: data.email,
                 phone: data.phone || null,
                 company: data.company || null,
-                inquiry: data.inquiry,
+                inquiry: data.inquiry || data.inquiryType,
                 message: data.message || null,
             },
         });

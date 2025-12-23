@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
-import { getContent, saveContent, getAllContentPages } from "@/lib/content";
+import { getContent, saveContent } from "@/lib/content";
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ page: string }> }
 ) {
     const { page } = await params;
+    const { searchParams } = new URL(request.url);
+    const lang = searchParams.get('lang') || 'en';
 
     try {
-        const content = getContent(page);
+        const content = getContent(page, lang);
 
         if (!content) {
             return NextResponse.json(
@@ -31,10 +33,12 @@ export async function PUT(
     { params }: { params: Promise<{ page: string }> }
 ) {
     const { page } = await params;
+    const { searchParams } = new URL(request.url);
+    const lang = searchParams.get('lang') || 'en';
 
     try {
         const content = await request.json();
-        saveContent(page, content);
+        saveContent(page, content, lang);
 
         return NextResponse.json({ success: true });
     } catch (error) {

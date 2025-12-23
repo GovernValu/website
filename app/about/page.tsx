@@ -3,8 +3,11 @@
 import { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useContent } from "../hooks/useContent";
 
 export default function AboutPage() {
+    const { content, loading: contentLoading } = useContent<any>('about');
+
     useEffect(() => {
         const reveals = document.querySelectorAll(".reveal");
         const revealOnScroll = () => {
@@ -17,35 +20,18 @@ export default function AboutPage() {
             });
         };
         window.addEventListener("scroll", revealOnScroll);
-        revealOnScroll();
+        // Delay payload
+        setTimeout(revealOnScroll, 100);
         return () => window.removeEventListener("scroll", revealOnScroll);
-    }, []);
+    }, [content]);
 
-    const coreValues = [
-        { title: "Integrity", description: "We uphold independence, transparency, and ethical conduct." },
-        { title: "Governance Excellence", description: "Governance is the backbone of all our advisory work." },
-        { title: "Professional Rigor", description: "Evidence-based analysis and disciplined methodologies." },
-        { title: "Client Partnership", description: "Long-term value over short-term gains." },
-        { title: "Accountability", description: "Measurable impact and responsibility." },
-        { title: "Continuous Innovation", description: "Adaptive thinking in a changing global environment." }
-    ];
-
-    const strategicObjectives = [
-        "Enable institutions to design, implement, and institutionalize governance frameworks.",
-        "Enhance investment readiness and investor confidence.",
-        "Deliver independent corporate and brand valuation services.",
-        "Support cost optimization and operational efficiency.",
-        "Strengthen risk management, compliance, and internal control systems.",
-        "Build leadership and institutional capabilities through training and change management.",
-        "Support digital transformation and quality accreditation initiatives."
-    ];
-
-    const strategyItems = [
-        "International governance frameworks (OECD, ISO, COSO, IFC)",
-        "Data-driven advisory and valuation methodologies",
-        "Long-term partnership with clients rather than transactional consulting",
-        "Regional leadership with global standards"
-    ];
+    if (contentLoading || !content) {
+        return (
+            <div className="flex bg-onyx h-screen items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand"></div>
+            </div>
+        );
+    }
 
     return (
         <>
@@ -56,14 +42,14 @@ export default function AboutPage() {
                 <div className="absolute inset-0 bg-gradient-to-b from-onyx/80 to-onyx/60" />
                 <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
                     <span className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 reveal">
-                        Est. 2016
+                        {content.hero?.badge}
                     </span>
                     <h1 className="text-5xl md:text-7xl font-serif font-medium text-white mb-6 leading-tight tracking-tight reveal" style={{ transitionDelay: "100ms" }}>
-                        Strategic Governance for <br />
-                        <span className="italic text-brand font-serif">Sustainable Investments.</span>
+                        {content.hero?.title} <br />
+                        <span className="italic text-brand font-serif">{content.hero?.titleHighlight}</span>
                     </h1>
                     <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300 font-light leading-relaxed reveal" style={{ transitionDelay: "200ms" }}>
-                        A Türkiye-based governance-driven consulting and investment advisory firm with a regional and global outlook, serving the MENA region.
+                        {content.hero?.subtitle}
                     </p>
                 </div>
                 {/* Scroll Indicator */}
@@ -77,30 +63,22 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-20">
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Who We Are</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.introduction?.sectionTitle}</h2>
                             <h3 className="text-4xl md:text-5xl font-serif text-onyx mb-8 leading-tight">
-                                GovernValu Investment and Consulting Company Limited
+                                {content.introduction?.headline}
                             </h3>
                             <div className="space-y-6 text-gray-600 font-light leading-relaxed text-lg">
-                                <p>
-                                    GovernValu Investment and Consulting Company Limited is established in 2016 as a Türkiye-based consulting firm with a regional and global outlook.
-                                </p>
-                                <p>
-                                    We provide integrated advisory services across governance, investment relations, valuation, risk management, compliance, cost optimization, and institutional development.
-                                </p>
-                                <p>
-                                    Our services are delivered in alignment with international standards and tailored to the regulatory, cultural, and economic context of each market we serve.
-                                </p>
+                                {content.introduction?.paragraphs?.map((p: string, i: number) => (
+                                    <p key={i}>{p}</p>
+                                ))}
                             </div>
                             <div className="mt-12 grid grid-cols-2 gap-8 border-t border-gray-100 pt-8">
-                                <div>
-                                    <span className="block text-3xl font-serif text-brand mb-1">2016</span>
-                                    <span className="text-xs uppercase tracking-widest text-gray-500">Founded</span>
-                                </div>
-                                <div>
-                                    <span className="block text-3xl font-serif text-brand mb-1">MENA</span>
-                                    <span className="text-xs uppercase tracking-widest text-gray-500">Regional Focus</span>
-                                </div>
+                                {content.introduction?.stats?.map((stat: any, i: number) => (
+                                    <div key={i}>
+                                        <span className="block text-3xl font-serif text-brand mb-1">{stat.value}</span>
+                                        <span className="text-xs uppercase tracking-widest text-gray-500">{stat.label}</span>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                         <div className="relative reveal" style={{ transitionDelay: "200ms" }}>
@@ -120,23 +98,20 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Company Concept & Strategy</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.concept?.sectionTitle}</h2>
                             <h3 className="text-4xl font-serif text-onyx mb-8 leading-tight">
-                                Governance-Driven Advisory
+                                {content.concept?.headline}
                             </h3>
                             <div className="space-y-6 text-gray-600 font-light leading-relaxed">
-                                <p>
-                                    GovernValu Investment and Consulting Company Limited is a governance-driven advisory firm built on the conviction that sustainable value creation is achieved through sound governance, disciplined strategy, and intelligent capital deployment.
-                                </p>
-                                <p>
-                                    Our concept integrates governance, risk, compliance, valuation, investment relations, and performance optimization into one coherent advisory model serving governments, corporates, financial institutions, NGOs, and international organizations.
-                                </p>
+                                {content.concept?.paragraphs?.map((p: string, i: number) => (
+                                    <p key={i}>{p}</p>
+                                ))}
                             </div>
                         </div>
                         <div className="reveal" style={{ transitionDelay: "100ms" }}>
                             <h4 className="text-xl font-serif text-onyx mb-6">Our Strategy is Anchored In:</h4>
                             <ul className="space-y-4">
-                                {strategyItems.map((item, index) => (
+                                {content.concept?.strategyItems?.map((item: string, index: number) => (
                                     <li key={index} className="flex items-start gap-4">
                                         <svg className="w-6 h-6 text-brand shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -147,7 +122,7 @@ export default function AboutPage() {
                             </ul>
                             <div className="mt-8 p-6 bg-brand/5 border-l-4 border-brand">
                                 <p className="text-gray-700 italic">
-                                    By 2030, GovernValu aims to be among the most trusted consulting houses in the MENA region, delivering advisory solutions that enhance institutional resilience, investor confidence, and sustainable growth.
+                                    {content.concept?.vision2030}
                                 </p>
                             </div>
                         </div>
@@ -167,10 +142,10 @@ export default function AboutPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                 </svg>
                             </div>
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Vision</h2>
-                            <h3 className="text-3xl font-serif text-white mb-6">Our Vision</h3>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.vision?.sectionTitle}</h2>
+                            <h3 className="text-3xl font-serif text-white mb-6">{content.vision?.headline}</h3>
                             <p className="text-gray-400 font-light leading-relaxed text-lg">
-                                To be a leading governance-driven consulting and investment advisory firm in the MENA region, recognized for creating sustainable value, strengthening institutions, and shaping resilient economies by 2030.
+                                {content.vision?.content}
                             </p>
                         </div>
 
@@ -181,10 +156,10 @@ export default function AboutPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
                             </div>
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Mission</h2>
-                            <h3 className="text-3xl font-serif text-white mb-6">Our Mission</h3>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.mission?.sectionTitle}</h2>
+                            <h3 className="text-3xl font-serif text-white mb-6">{content.mission?.headline}</h3>
                             <p className="text-gray-400 font-light leading-relaxed text-lg">
-                                Our mission is to support institutions in achieving governance excellence, strategic clarity, financial resilience, and investment readiness through integrated advisory services grounded in international standards and professional integrity.
+                                {content.mission?.content}
                             </p>
                         </div>
                     </div>
@@ -195,12 +170,12 @@ export default function AboutPage() {
             <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Core Values</h2>
-                        <h3 className="text-4xl font-serif text-onyx">What We Stand For</h3>
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.values?.sectionTitle}</h2>
+                        <h3 className="text-4xl font-serif text-onyx">{content.values?.headline}</h3>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {coreValues.map((value, index) => (
+                        {content.values?.items?.map((value: any, index: number) => (
                             <div key={index} className="bg-gray-50 p-8 border-t-4 border-brand reveal" style={{ transitionDelay: `${index * 50}ms` }}>
                                 <div className="w-12 h-12 bg-brand/10 rounded-full flex items-center justify-center mb-6">
                                     <svg className="w-6 h-6 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,12 +195,12 @@ export default function AboutPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Strategic Objectives</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.objectives?.sectionTitle}</h2>
                             <h3 className="text-4xl font-serif text-white mb-8 leading-tight">
-                                Our Strategic Focus
+                                {content.objectives?.headline}
                             </h3>
                             <ul className="space-y-4">
-                                {strategicObjectives.map((objective, index) => (
+                                {content.objectives?.items?.map((objective: string, index: number) => (
                                     <li key={index} className="flex items-start gap-4">
                                         <div className="w-8 h-8 bg-brand/20 rounded-full flex items-center justify-center shrink-0 mt-0.5">
                                             <span className="text-brand font-bold text-sm">{index + 1}</span>
@@ -250,13 +225,13 @@ export default function AboutPage() {
             <section className="py-24 bg-white">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
                     <h2 className="text-4xl md:text-5xl font-serif text-onyx mb-6">
-                        Ready to achieve governance <span className="text-brand">excellence</span>?
+                        {content.cta?.headline} <span className="text-brand">{content.cta?.headlineHighlight}</span>
                     </h2>
                     <p className="text-xl text-gray-600 font-light mb-10">
-                        Schedule a consultation with our expert advisors.
+                        {content.cta?.subtitle}
                     </p>
-                    <a href="/contact" className="inline-block px-10 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold hover:bg-brand-dark transition-colors">
-                        Contact Us
+                    <a href={content.cta?.buttonLink} className="inline-block px-10 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold hover:bg-brand-dark transition-colors">
+                        {content.cta?.buttonText}
                     </a>
                 </div>
             </section>
