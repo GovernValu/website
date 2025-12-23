@@ -153,9 +153,10 @@ textarea:focus {
 .hero-ken-burns {
   animation: kenBurns 8s ease-out forwards;
 }
+
 /* RTL Support */
 [dir="rtl"] {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
   text-align: right;
 }
 
@@ -164,6 +165,7 @@ textarea:focus {
   right: 0;
   transform-origin: left;
 }
+
 [dir="rtl"] .hover-underline-animation:hover:after {
   transform-origin: right;
 }
@@ -172,4 +174,3 @@ textarea:focus {
 [dir="rtl"] .rtl-flip {
   transform: scaleX(-1);
 }
-
