@@ -117,7 +117,7 @@ export default function IndustriesEditor({ content, onChange }: IndustriesEditor
                             <StringArrayEditor
                                 label="Services"
                                 items={item.services || []}
-                                onChange={(services) => updateItem({ services })}
+                                onChange={(services: string[]) => updateItem({ services } as any)}
                                 placeholder="Enter service..."
                             />
                         </div>
