@@ -61,11 +61,106 @@ interface ImageFieldProps {
 
 export function ImageField({ label, value, onChange, helpText }: ImageFieldProps) {
     const [error, setError] = useState(false);
+    const [uploading, setUploading] = useState(false);
+    const [uploadProgress, setUploadProgress] = useState(0);
+
+    const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            alert('Please select an image file');
+            return;
+        }
+
+        // Validate file size (max 10MB)
+        if (file.size > 10 * 1024 * 1024) {
+            alert('File size must be less than 10MB');
+            return;
+        }
+
+        setUploading(true);
+        setUploadProgress(0);
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            // Simulate progress
+            const progressInterval = setInterval(() => {
+                setUploadProgress(prev => Math.min(prev + 10, 90));
+            }, 200);
+
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            clearInterval(progressInterval);
+            setUploadProgress(100);
+
+            if (!response.ok) {
+                throw new Error('Upload failed');
+            }
+
+            const data = await response.json();
+            onChange(data.secure_url);
+            setError(false);
+        } catch (err) {
+            console.error('Upload error:', err);
+            alert('Failed to upload image. Please try again.');
+        } finally {
+            setUploading(false);
+            setUploadProgress(0);
+        }
+    };
 
     return (
         <div className="space-y-2">
             <label className="block text-sm font-medium text-gray-300">{label}</label>
-            <div className="flex gap-3">
+
+            {/* Image Preview */}
+            {value && (
+                <div className="relative w-full h-40 bg-gray-700 rounded-lg overflow-hidden mb-2">
+                    {!error ? (
+                        <Image
+                            src={value}
+                            alt="Preview"
+                            fill
+                            className="object-cover"
+                            onError={() => setError(true)}
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm">
+                            Failed to load image
+                        </div>
+                    )}
+                    {/* Remove button */}
+                    <button
+                        onClick={() => onChange('')}
+                        className="absolute top-2 right-2 p-1.5 bg-red-500/80 hover:bg-red-500 rounded-lg text-white transition-colors"
+                        title="Remove image"
+                    >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            )}
+
+            {/* Upload Progress */}
+            {uploading && (
+                <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
+                    <div
+                        className="bg-brand h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${uploadProgress}%` }}
+                    />
+                </div>
+            )}
+
+            {/* Input and Upload Button */}
+            <div className="flex gap-2">
                 <input
                     type="text"
                     value={value || ""}
@@ -74,25 +169,37 @@ export function ImageField({ label, value, onChange, helpText }: ImageFieldProps
                         setError(false);
                     }}
                     placeholder="https://example.com/image.jpg"
-                    className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent"
+                    className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent text-sm"
+                    disabled={uploading}
                 />
-                {value && (
-                    <div className="w-16 h-10 bg-gray-700 rounded-lg overflow-hidden flex-shrink-0 relative">
-                        {!error ? (
-                            <Image
-                                src={value}
-                                alt="Preview"
-                                fill
-                                className="object-cover"
-                                onError={() => setError(true)}
-                            />
-                        ) : (
-                            <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
-                                Error
-                            </div>
-                        )}
-                    </div>
-                )}
+                <label className={`px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2 text-sm transition-colors ${uploading
+                        ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                        : 'bg-brand text-white hover:bg-brand-dark'
+                    }`}>
+                    {uploading ? (
+                        <>
+                            <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                            Uploading...
+                        </>
+                    ) : (
+                        <>
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            Upload
+                        </>
+                    )}
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="hidden"
+                        disabled={uploading}
+                    />
+                </label>
             </div>
             {helpText && <p className="text-xs text-gray-500">{helpText}</p>}
         </div>
