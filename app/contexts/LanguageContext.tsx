@@ -40,10 +40,6 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         setLanguage(language === 'en' ? 'ar' : 'en');
     };
 
-    if (!mounted) {
-        return <>{children}</>;
-    }
-
     return (
         <LanguageContext.Provider
             value={{
