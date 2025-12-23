@@ -80,7 +80,7 @@ export default function PartnersEditor({ content, onChange }: PartnersEditorProp
                             <ArrayEditor
                                 label="Partners"
                                 items={item.partners || []}
-                                onChange={(partners) => updateItem({ partners })}
+                                onChange={(partners: any[]) => updateItem({ partners } as any)}
                                 createNew={() => ({ name: "", logo: "" })}
                                 itemLabel={(p) => p.name || "New Partner"}
                                 renderItem={(partner, __, updatePartner) => (
