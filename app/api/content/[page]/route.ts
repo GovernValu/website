@@ -21,8 +21,9 @@ export async function GET(
 
         return NextResponse.json(content);
     } catch (error) {
+        console.error(`[Content API Error] Page: ${page}, Lang: ${lang}`, error);
         return NextResponse.json(
-            { error: "Failed to fetch content" },
+            { error: "Failed to fetch content", details: error instanceof Error ? error.message : String(error) },
             { status: 500 }
         );
     }
