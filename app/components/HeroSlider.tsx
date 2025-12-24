@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 interface Slide {
     id: string;
@@ -20,6 +22,8 @@ interface HeroSliderProps {
 export default function HeroSlider({ slides }: HeroSliderProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const { language } = useLanguage();
+    const t = LABELS[language];
 
     const goToSlide = useCallback((index: number) => {
         if (isTransitioning || index === currentSlide) return;
@@ -91,8 +95,8 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                             {slide.subtitle && (
                                 <span
                                     className={`inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 transition-all duration-700 delay-100 ${index === currentSlide
-                                            ? "opacity-100 translate-y-0"
-                                            : "opacity-0 translate-y-4"
+                                        ? "opacity-100 translate-y-0"
+                                        : "opacity-0 translate-y-4"
                                         }`}
                                 >
                                     {slide.subtitle}
@@ -100,16 +104,16 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                             )}
                             <h1
                                 className={`text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-8 leading-tight tracking-tight transition-all duration-700 delay-200 ${index === currentSlide
-                                        ? "opacity-100 translate-y-0"
-                                        : "opacity-0 translate-y-4"
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-4"
                                     }`}
                                 dangerouslySetInnerHTML={{ __html: slide.title }}
                             />
                             {slide.description && (
                                 <p
                                     className={`mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed transition-all duration-700 delay-300 ${index === currentSlide
-                                            ? "opacity-100 translate-y-0"
-                                            : "opacity-0 translate-y-4"
+                                        ? "opacity-100 translate-y-0"
+                                        : "opacity-0 translate-y-4"
                                         }`}
                                 >
                                     {slide.description}
@@ -118,8 +122,8 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                             {slide.buttonText && slide.buttonLink && (
                                 <div
                                     className={`mt-12 flex flex-col md:flex-row gap-6 justify-center items-center transition-all duration-700 delay-[400ms] ${index === currentSlide
-                                            ? "opacity-100 translate-y-0"
-                                            : "opacity-0 translate-y-4"
+                                        ? "opacity-100 translate-y-0"
+                                        : "opacity-0 translate-y-4"
                                         }`}
                                 >
                                     <a
@@ -135,7 +139,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                                         href="/about/expertise"
                                         className="flex items-center gap-2 text-white text-sm uppercase tracking-widest hover:text-brand transition-colors"
                                     >
-                                        Explore Our Expertise
+                                        {t.exploreExpertise}
                                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
@@ -184,8 +188,8 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         >
                             <span
                                 className={`absolute inset-0 rounded-full transition-all duration-300 ${index === currentSlide
-                                        ? "bg-brand"
-                                        : "bg-white/30 group-hover:bg-white/60"
+                                    ? "bg-brand"
+                                    : "bg-white/30 group-hover:bg-white/60"
                                     }`}
                             />
                         </button>

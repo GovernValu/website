@@ -3,8 +3,12 @@
 import { useEffect } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 export default function TeamsPage() {
+    const { language } = useLanguage();
+    const t = LABELS[language];
     useEffect(() => {
         const reveals = document.querySelectorAll(".reveal");
         const revealOnScroll = () => {
@@ -47,7 +51,7 @@ export default function TeamsPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-onyx via-onyx-800 to-onyx" />
                 <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
                     <span className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 reveal">
-                        Our Team
+                        {t.ourTeam}
                     </span>
                     <h1 className="text-5xl md:text-7xl font-serif font-medium text-white mb-6 leading-tight tracking-tight reveal" style={{ transitionDelay: "100ms" }}>
                         Expert<br />
@@ -64,9 +68,9 @@ export default function TeamsPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-20 items-center">
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Culture</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.ourCulture}</h2>
                             <h3 className="text-4xl md:text-5xl font-serif text-onyx mb-8 leading-tight">
-                                Built on Excellence.<br />Driven by Purpose.
+                                {t.cultureHeadline}
                             </h3>
                             <div className="space-y-6 text-gray-600 font-light leading-relaxed text-lg">
                                 <p>
@@ -96,8 +100,8 @@ export default function TeamsPage() {
             <section className="py-24 bg-onyx-800">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Values</h2>
-                        <h3 className="text-4xl font-serif text-white">What Guides Us</h3>
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.ourValues}</h2>
+                        <h3 className="text-4xl font-serif text-white">{t.whatGuidesUs}</h3>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -120,8 +124,8 @@ export default function TeamsPage() {
             <section className="py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Expertise Areas</h2>
-                        <h3 className="text-4xl font-serif text-onyx">Our Team Capabilities</h3>
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.expertiseAreas}</h2>
+                        <h3 className="text-4xl font-serif text-onyx">{t.teamCapabilities}</h3>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
@@ -168,9 +172,9 @@ export default function TeamsPage() {
                             />
                         </div>
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Regional Leadership</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.regionalLeadership}</h2>
                             <h3 className="text-4xl font-serif text-onyx mb-8 leading-tight">
-                                Global Standards,<br />Regional Expertise
+                                {t.globalStandards}
                             </h3>
                             <div className="space-y-6 text-gray-600 font-light leading-relaxed">
                                 <p>
@@ -200,19 +204,19 @@ export default function TeamsPage() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Careers</h2>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.careers}</h2>
                             <h3 className="text-4xl font-serif text-white mb-6 leading-tight">
-                                Join Our Team
+                                {t.joinOurTeam}
                             </h3>
                             <p className="text-gray-400 font-light leading-relaxed mb-8">
                                 We are always looking for exceptional individuals who share our commitment to governance excellence and professional integrity. If you are passionate about making a meaningful impact on institutional development, we would love to hear from you.
                             </p>
                             <a href="/contact" className="inline-block px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold hover:bg-brand-dark transition-colors">
-                                Explore Opportunities
+                                {t.exploreOpportunities}
                             </a>
                         </div>
                         <div className="bg-onyx-800 p-10 border-l-4 border-brand reveal">
-                            <h4 className="text-xl font-serif text-white mb-6">What We Look For</h4>
+                            <h4 className="text-xl font-serif text-white mb-6">{t.whatWeLookFor}</h4>
                             <ul className="space-y-4">
                                 {qualifications.map((qual, index) => (
                                     <li key={index} className="flex items-start gap-3">

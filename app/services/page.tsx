@@ -5,6 +5,8 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useContent } from "../hooks/useContent";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 const ICONS: Record<string, React.ReactNode> = {
     building: (
@@ -41,6 +43,8 @@ const ICONS: Record<string, React.ReactNode> = {
 
 export default function ServicesPage() {
     const { content, loading } = useContent<any>('services');
+    const { language } = useLanguage();
+    const t = LABELS[language];
 
     useEffect(() => {
         if (loading || !content) return;
@@ -98,8 +102,8 @@ export default function ServicesPage() {
             <section className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Services</h2>
-                        <h3 className="text-4xl font-serif text-onyx">What We Offer</h3>
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.ourServices}</h2>
+                        <h3 className="text-4xl font-serif text-onyx">{t.whatWeOffer}</h3>
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -116,8 +120,8 @@ export default function ServicesPage() {
                                 <h4 className="text-xl font-serif mb-3 text-onyx">{service.title}</h4>
                                 <p className="text-gray-600 text-sm font-light leading-relaxed mb-4">{service.shortDescription}</p>
                                 <span className="inline-flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-widest group-hover:underline">
-                                    Explore Service
-                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.exploreService}
+                                    <svg className="w-3 h-3 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </span>
@@ -176,8 +180,8 @@ export default function ServicesPage() {
                                     ))}
                                 </ul>
                                 <Link href={`/services/${content.services[0].slug}`} className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
-                                    Learn More
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.learnMore}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>
@@ -213,8 +217,8 @@ export default function ServicesPage() {
                                     ))}
                                 </ul>
                                 <Link href={`/services/${content.services[1].slug}`} className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:text-white transition-colors">
-                                    Learn More
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.learnMore}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>
@@ -268,8 +272,8 @@ export default function ServicesPage() {
                                     ))}
                                 </div>
                                 <Link href={`/services/${content.services[2].slug}`} className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
-                                    Learn More
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.learnMore}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>

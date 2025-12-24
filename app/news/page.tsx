@@ -5,9 +5,13 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useContent } from "../hooks/useContent";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 export default function NewsPage() {
     const { content, loading } = useContent<any>('news');
+    const { language } = useLanguage();
+    const t = LABELS[language];
 
     useEffect(() => {
         if (loading || !content) return;
@@ -133,8 +137,8 @@ export default function NewsPage() {
                                     </p>
                                     <div className="mt-auto">
                                         <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">
-                                            Read More
-                                            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            {t.readMore}
+                                            <svg className="w-3 h-3 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                             </svg>
                                         </span>

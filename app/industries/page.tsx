@@ -5,9 +5,13 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useContent } from "../hooks/useContent";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 export default function IndustriesPage() {
     const { content, loading } = useContent<any>('industries');
+    const { language } = useLanguage();
+    const t = LABELS[language];
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
@@ -105,17 +109,17 @@ export default function IndustriesPage() {
                                     <div className="flex gap-6 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <div>
                                             <span className="block text-brand font-serif text-lg">{industry.stats.clients}</span>
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Clients</span>
+                                            <span className="text-[10px] uppercase tracking-widest text-gray-500">{t.clients}</span>
                                         </div>
                                         <div>
                                             <span className="block text-brand font-serif text-lg">{industry.stats.assets}</span>
-                                            <span className="text-[10px] uppercase tracking-widest text-gray-500">Assets Advised</span>
+                                            <span className="text-[10px] uppercase tracking-widest text-gray-500">{t.assetsAdvised}</span>
                                         </div>
                                     </div>
 
                                     <Link href={`/contact?industry=${industry.slug}`} className="inline-flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        Inquire
-                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        {t.inquire}
+                                        <svg className="w-3 h-3 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                         </svg>
                                     </Link>
@@ -142,7 +146,7 @@ export default function IndustriesPage() {
                                 </div>
                             </div>
                             <div className="reveal" style={{ transitionDelay: "100ms" }}>
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">Featured Sector</span>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">{t.featuredSector}</span>
                                 <h2 className="text-4xl font-serif text-onyx mb-6">{banking.title}</h2>
                                 <p className="text-gray-600 font-light leading-relaxed mb-8">
                                     {banking.fullDescription || banking.description}
@@ -156,8 +160,8 @@ export default function IndustriesPage() {
                                     ))}
                                 </div>
                                 <Link href="/contact?industry=banking-finance" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
-                                    Discuss Your Needs
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.discussYourNeeds}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>
@@ -173,7 +177,7 @@ export default function IndustriesPage() {
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="reveal">
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">Premier Advisory</span>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">{t.premierAdvisory}</span>
                                 <h2 className="text-4xl font-serif text-white mb-6">{sovereign.title}</h2>
                                 <p className="text-gray-400 font-light leading-relaxed mb-8">
                                     {sovereign.fullDescription || sovereign.description}
@@ -186,8 +190,8 @@ export default function IndustriesPage() {
                                     ))}
                                 </ul>
                                 <Link href="/contact?industry=sovereign-wealth" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:text-white transition-colors">
-                                    Request Consultation
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.requestConsultation}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>
@@ -223,7 +227,7 @@ export default function IndustriesPage() {
                                 </div>
                             </div>
                             <div className="order-1 lg:order-2 reveal" style={{ transitionDelay: "100ms" }}>
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">Legacy & Continuity</span>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4 block">{t.legacyContinuity}</span>
                                 <h2 className="text-4xl font-serif text-onyx mb-6">{family.title}</h2>
                                 <p className="text-gray-600 font-light leading-relaxed mb-8">
                                     {family.fullDescription || family.description}
@@ -242,8 +246,8 @@ export default function IndustriesPage() {
                                     ))}
                                 </div>
                                 <Link href="/contact?industry=family-enterprises" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest font-bold hover:underline">
-                                    Learn More
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    {t.learnMore}
+                                    <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>

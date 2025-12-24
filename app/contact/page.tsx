@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useContent } from "../hooks/useContent";
+import { useLanguage } from "../contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 export default function ContactPage() {
     const { content: contactContent, loading: contactLoading } = useContent<any>('contact');
     const { content: settingsContent, loading: settingsLoading } = useContent<any>('settings');
+    const { language } = useLanguage();
+    const t = LABELS[language];
 
     const [formData, setFormData] = useState({
         firstName: "",
@@ -123,16 +127,16 @@ export default function ContactPage() {
                         {/* Quick Contacts */}
                         <div className="grid sm:grid-cols-2 gap-8 reveal" style={{ transitionDelay: "100ms" }}>
                             <div className="p-6 bg-gray-50 border-l-4 border-brand">
-                                <h4 className="font-bold text-onyx mb-1">Direct Line</h4>
+                                <h4 className="font-bold text-onyx mb-1">{t.directLine}</h4>
                                 <p className="text-gray-600 font-mono text-sm mb-4 dir-ltr">{contactContent.quickContact?.phone}</p>
-                                <h4 className="font-bold text-onyx mb-1">Email Inquiry</h4>
+                                <h4 className="font-bold text-onyx mb-1">{t.emailInquiry}</h4>
                                 <p className="text-gray-600 font-mono text-sm break-all">{contactContent.quickContact?.email}</p>
                             </div>
                             <div className="p-6 bg-gray-50 border-l-4 border-gray-300">
-                                <h4 className="font-bold text-onyx mb-1">Office Hours</h4>
+                                <h4 className="font-bold text-onyx mb-1">{t.officeHours}</h4>
                                 <p className="text-gray-600 text-sm mb-4">{contactContent.quickContact?.officeHours}</p>
-                                <h4 className="font-bold text-onyx mb-1">Response Time</h4>
-                                <p className="text-gray-600 text-sm">Within 24 Hours</p>
+                                <h4 className="font-bold text-onyx mb-1">{t.responseTime}</h4>
+                                <p className="text-gray-600 text-sm">{t.within24Hours}</p>
                             </div>
                         </div>
 
@@ -166,20 +170,20 @@ export default function ContactPage() {
                                 <svg className="w-12 h-12 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                 </svg>
-                                <h4 className="text-lg font-bold mb-2">Message Sent Successfully</h4>
-                                <p className="text-sm">Thank you for contacting GovernValu. A senior partner will review your inquiry and respond shortly.</p>
+                                <h4 className="text-lg font-bold mb-2">{t.successTitle}</h4>
+                                <p className="text-sm">{t.successMessage}</p>
                                 <button
                                     onClick={() => setStatus("idle")}
                                     className="mt-6 text-green-700 font-semibold hover:underline text-sm"
                                 >
-                                    Send another message
+                                    {t.sendAnother}
                                 </button>
                             </div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">First Name</label>
+                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.firstName}</label>
                                         <input
                                             type="text"
                                             name="firstName"
@@ -191,7 +195,7 @@ export default function ContactPage() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Last Name</label>
+                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.lastName}</label>
                                         <input
                                             type="text"
                                             name="lastName"
@@ -205,7 +209,7 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Company / Organization</label>
+                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.companyName}</label>
                                     <input
                                         type="text"
                                         name="company"
@@ -218,7 +222,7 @@ export default function ContactPage() {
 
                                 <div className="grid md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Email Address</label>
+                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.emailAddress}</label>
                                         <input
                                             type="email"
                                             name="email"
@@ -230,7 +234,7 @@ export default function ContactPage() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Phone Number</label>
+                                        <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.phoneNumber}</label>
                                         <input
                                             type="tel"
                                             name="phone"
@@ -243,14 +247,14 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Nature of Inquiry</label>
+                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.natureOfInquiry}</label>
                                     <select
                                         name="inquiryType"
                                         value={formData.inquiryType}
                                         onChange={handleChange}
                                         className="w-full border-b border-gray-300 py-2 focus:border-brand focus:outline-none transition-colors bg-transparent"
                                     >
-                                        <option value="" disabled>Select a Topic</option>
+                                        <option value="" disabled>{t.selectTopic}</option>
                                         {contactContent.form?.inquiryOptions?.map((option: string, i: number) => (
                                             <option key={i} value={option}>{option}</option>
                                         ))}
@@ -258,7 +262,7 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">Message Details</label>
+                                    <label className="text-xs font-bold uppercase tracking-wide text-gray-500">{t.messageDetails}</label>
                                     <textarea
                                         name="message"
                                         rows={4}
@@ -275,11 +279,11 @@ export default function ContactPage() {
                                     disabled={status === "submitting"}
                                     className="w-full bg-onyx text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-colors duration-300 disabled:opacity-50"
                                 >
-                                    {status === "submitting" ? "Sending..." : "Submit Inquiry"}
+                                    {status === "submitting" ? t.sending : t.submitInquiry}
                                 </button>
 
                                 {status === "error" && (
-                                    <p className="text-red-500 text-sm text-center">Something went wrong. Please try again.</p>
+                                    <p className="text-red-500 text-sm text-center">{t.errorMessage}</p>
                                 )}
                             </form>
                         )}
@@ -363,7 +367,7 @@ export default function ContactPage() {
                         rel="noreferrer"
                         className="text-brand text-xs font-bold uppercase tracking-widest hover:underline"
                     >
-                        Get Directions
+                        {t.getDirections}
                     </a>
                 </div>
             </section>

@@ -6,10 +6,14 @@ import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { useContent } from "../../hooks/useContent";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { LABELS } from "@/lib/i18n";
 
 export default function ServiceDetailPage() {
     const params = useParams();
     const slug = params.slug as string;
+    const { language } = useLanguage();
+    const t = LABELS[language];
 
     // Fetch 'services' page content which contains the list of all services
     const { content, loading } = useContent<any>('services');
@@ -86,10 +90,10 @@ export default function ServiceDetailPage() {
                 </div>
                 <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
                     <Link href="/services" className="inline-flex items-center gap-2 text-brand text-sm uppercase tracking-widest mb-6 hover:text-white transition-colors reveal">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
-                        Back to Services
+                        {t.backToServices}
                     </Link>
                     <h1 className="text-5xl md:text-7xl font-serif font-medium text-white mb-6 leading-tight tracking-tight reveal" style={{ transitionDelay: "100ms" }}>
                         {service.title}
@@ -104,7 +108,7 @@ export default function ServiceDetailPage() {
             <section className="py-24 bg-white text-onyx">
                 <div className="max-w-4xl mx-auto px-6">
                     <div className="reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-6">Overview</h2>
+                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-6">{t.overview}</h2>
                         <p className="text-2xl font-serif leading-relaxed text-gray-800 mb-8">{service.description || service.fullDescription}</p>
                         <div className="space-y-6 text-gray-600 font-light leading-relaxed">
                             {longDescription.map((paragraph: string, index: number) => (
@@ -120,8 +124,8 @@ export default function ServiceDetailPage() {
                 <section className="py-24 bg-gray-50">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center mb-16 reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">What We Deliver</h2>
-                            <h3 className="text-4xl font-serif text-onyx">Our Capabilities</h3>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.whatWeDeliver}</h2>
+                            <h3 className="text-4xl font-serif text-onyx">{t.ourCapabilities}</h3>
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {capabilities.map((capability: any, index: number) => (
@@ -141,8 +145,8 @@ export default function ServiceDetailPage() {
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="grid lg:grid-cols-2 gap-16 items-center">
                             <div className="reveal">
-                                <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">The Value</h2>
-                                <h3 className="text-4xl font-serif mb-8">Benefits to Your Organization</h3>
+                                <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.theValue}</h2>
+                                <h3 className="text-4xl font-serif mb-8">{t.benefitsToOrg}</h3>
                                 <ul className="space-y-4">
                                     {benefits.map((benefit: any, index: number) => (
                                         <li key={index} className="flex items-center gap-4">
@@ -176,8 +180,8 @@ export default function ServiceDetailPage() {
                 <section className="py-24 bg-white">
                     <div className="max-w-7xl mx-auto px-6">
                         <div className="text-center mb-16 reveal">
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">Our Approach</h2>
-                            <h3 className="text-4xl font-serif text-onyx">How We Work</h3>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.ourApproach}</h2>
+                            <h3 className="text-4xl font-serif text-onyx">{t.howWeWork}</h3>
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                             {process.map((step: any, index: number) => (
@@ -196,17 +200,17 @@ export default function ServiceDetailPage() {
             <section className="py-24 bg-onyx-800">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
                     <h2 className="text-4xl md:text-5xl font-serif text-white mb-6">
-                        Ready to discuss <span className="text-brand">{service.title.toLowerCase()}</span>?
+                        {t.readyToDiscuss} <span className="text-brand">{service.title.toLowerCase()}</span>?
                     </h2>
                     <p className="text-xl text-gray-400 font-light mb-10">
-                        Schedule a confidential consultation with our senior partners.
+                        {t.scheduleConsultation}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link href="/contact" className="inline-block px-10 py-4 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-colors">
-                            Contact Us
+                            {t.contactUs}
                         </Link>
                         <Link href="/services" className="inline-block px-10 py-4 border border-white/20 text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors">
-                            Explore All Services
+                            {t.exploreAllServices}
                         </Link>
                     </div>
                 </div>
