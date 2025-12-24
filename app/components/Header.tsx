@@ -29,13 +29,10 @@ export default function Header() {
                 <div className="flex items-center justify-between h-24">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-3 cursor-pointer">
-                        <Image
+                        <img
                             src="/logogov.png"
                             alt="GovernValu"
-                            width={200}
-                            height={60}
                             className="h-10 w-auto object-contain"
-                            priority
                         />
                     </Link>
 
