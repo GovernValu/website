@@ -36,6 +36,50 @@ async function main() {
         console.log('Created category:', cat.name);
     }
 
+    // Seed Page Content
+    const fs = require('fs');
+    const path = require('path');
+    const contentDir = path.join(process.cwd(), 'content');
+    const languages = ['en', 'ar'];
+
+    console.log('Seeding page content...');
+
+    // Need to cast prisma to any because Typescript might not pick up the new model immediately
+    const prismaClient = prisma as any;
+
+    for (const lang of languages) {
+        const langDir = path.join(contentDir, lang);
+
+        if (fs.existsSync(langDir)) {
+            const files = fs.readdirSync(langDir).filter((file: string) => file.endsWith('.json'));
+
+            for (const file of files) {
+                const pageName = file.replace('.json', '');
+                const filePath = path.join(langDir, file);
+                const rawContent = fs.readFileSync(filePath, 'utf-8');
+                const content = JSON.parse(rawContent);
+
+                await prismaClient.pageContent.upsert({
+                    where: {
+                        page_lang: {
+                            page: pageName,
+                            lang: lang
+                        }
+                    },
+                    update: {
+                        content: content
+                    },
+                    create: {
+                        page: pageName,
+                        lang: lang,
+                        content: content
+                    }
+                });
+                console.log(`Seeded content for ${pageName} (${lang})`);
+            }
+        }
+    }
+
     console.log('Seeding complete!');
 }
 

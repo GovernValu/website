@@ -84,3 +84,14 @@ model HeroSlide {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+model PageContent {
+  id        String   @id @default(cuid())
+  page      String   // e.g., "homepage", "about"
+  lang      String   // "en" or "ar"
+  content   Json     // flexible JSON content
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([page, lang]) // Composite unique constraint
+}

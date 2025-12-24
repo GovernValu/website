@@ -10,7 +10,7 @@ export async function GET(
     const lang = searchParams.get('lang') || 'en';
 
     try {
-        const content = getContent(page, lang);
+        const content = await getContent(page, lang);
 
         if (!content) {
             return NextResponse.json(
@@ -39,7 +39,7 @@ export async function PUT(
 
     try {
         const content = await request.json();
-        saveContent(page, content, lang);
+        await saveContent(page, content, lang);
 
         return NextResponse.json({ success: true });
     } catch (error) {
