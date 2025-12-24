@@ -12,6 +12,10 @@ import ServicesEditor from "../../components/editors/ServicesEditor";
 import ContactEditor from "../../components/editors/ContactEditor";
 import IndustriesEditor from "../../components/editors/IndustriesEditor";
 import PartnersEditor from "../../components/editors/PartnersEditor";
+import PhilosophyEditor from "../../components/editors/PhilosophyEditor";
+import ExpertiseEditor from "../../components/editors/ExpertiseEditor";
+import TeamsEditor from "../../components/editors/TeamsEditor";
+import BoardEditor from "../../components/editors/BoardEditor";
 
 interface PageEditorProps {
     params: Promise<{ page: string }>;
@@ -135,7 +139,11 @@ export default function PageEditor({ params }: PageEditorProps) {
         services: "Services",
         industries: "Industries",
         partners: "Partners",
-        about: "About",
+        about: "About - Who We Are",
+        board: "About - Board",
+        philosophy: "About - Philosophy",
+        expertise: "About - Expertise",
+        teams: "About - Teams",
         contact: "Contact",
         settings: "Site Settings",
     };
@@ -159,6 +167,14 @@ export default function PageEditor({ params }: PageEditorProps) {
                 return <IndustriesEditor content={activeContent as any} onChange={handleContentChange} />;
             case "partners":
                 return <PartnersEditor content={activeContent as any} onChange={handleContentChange} />;
+            case "board":
+                return <BoardEditor content={activeContent as any} onChange={handleContentChange} />;
+            case "philosophy":
+                return <PhilosophyEditor content={activeContent as any} onChange={handleContentChange} />;
+            case "expertise":
+                return <ExpertiseEditor content={activeContent as any} onChange={handleContentChange} />;
+            case "teams":
+                return <TeamsEditor content={activeContent as any} onChange={handleContentChange} />;
             default:
                 return (
                     <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
