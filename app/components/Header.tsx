@@ -94,8 +94,10 @@ export default function Header() {
                                 {t.contact}
                             </Link>
 
-                            {/* Language Switcher */}
-                            <LanguageSwitcher />
+                            {/* Language Switcher - with explicit RTL spacing */}
+                            <div className="ms-2">
+                                <LanguageSwitcher />
+                            </div>
                         </div>
                     </div>
 

@@ -210,3 +210,17 @@ textarea:focus {
 [dir="rtl"] .rtl-flip {
   transform: scaleX(-1);
 }
+
+/* Auto-flip arrow SVGs inside buttons and links in RTL mode */
+[dir="rtl"] a>svg,
+[dir="rtl"] button>svg,
+[dir="rtl"] .btn>svg,
+[dir="rtl"] a svg.arrow-icon,
+[dir="rtl"] .inline-flex svg:last-child {
+  transform: scaleX(-1);
+}
+
+/* Ensure dropdown chevrons don't flip (they point up/down) */
+[dir="rtl"] .rotate-180 {
+  transform: rotate(180deg) !important;
+}
