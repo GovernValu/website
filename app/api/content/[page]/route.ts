@@ -43,8 +43,9 @@ export async function PUT(
 
         return NextResponse.json({ success: true });
     } catch (error) {
+        console.error(`[Content API PUT Error] Page: ${page}, Lang: ${lang}`, error);
         return NextResponse.json(
-            { error: "Failed to save content" },
+            { error: "Failed to save content", details: error instanceof Error ? error.message : String(error) },
             { status: 500 }
         );
     }
