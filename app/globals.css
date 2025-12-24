@@ -156,7 +156,9 @@ textarea:focus {
 
 /* RTL Support */
 [dir="rtl"] {
-  font-family: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
+  --font-sans: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
+  --font-serif: var(--font-arabic), 'Noto Kufi Arabic', serif;
+  font-family: var(--font-sans);
   text-align: right;
 }
 
