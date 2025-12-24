@@ -1,0 +1,73 @@
+{
+  "hero": {
+    "badge": "Leadership",
+    "title": "Board of Directors",
+    "subtitle": "Guiding our strategic vision with integrity and expertise."
+  },
+  "chairmanMessage": {
+    "badge": "Chairman's Message",
+    "title": "A Message from our Chairman",
+    "intro": "Welcome to GovernValu. We are committed to setting the highest standards of governance.",
+    "quote": "True leadership is about serving the institution and ensuring its long-term sustainability.",
+    "body": [
+      "Our board is dedicated to overseeing the strategic direction of the company.",
+      "We believe in transparency, accountability, and ethical conduct in all our operations."
+    ],
+    "signature": {
+      "name": "Dr. Ahmed Al-Farsi",
+      "role": "Chairman of the Board"
+    }
+  },
+  "quoteSection": {
+    "text": "Governance is not just a set of rules; it is a culture of integrity.",
+    "author": "Board Vision"
+  },
+  "boardMembers": {
+    "badge": "Our Board",
+    "title": "Meet the Directors",
+    "list": [
+      {
+        "name": "Dr. Ahmed Al-Farsi",
+        "role": "Chairman",
+        "specialty": "Corporate Governance & Strategy",
+        "image": "/board/chairman.jpg"
+      },
+      {
+        "name": "Sarah Johnson",
+        "role": "Independent Director",
+        "specialty": "Risk Management & Finance",
+        "image": "/board/member1.jpg"
+      },
+      {
+        "name": "Michael Chen",
+        "role": "Non-Executive Director",
+        "specialty": "International Markets",
+        "image": "/board/member2.jpg"
+      }
+    ]
+  },
+  "principles": {
+    "badge": "Principles",
+    "title": "Our Guiding Principles",
+    "items": [
+      {
+        "title": "Integrity",
+        "description": "Acting with honesty and strong moral principles."
+      },
+      {
+        "title": "Accountability",
+        "description": "Taking responsibility for our actions and decisions."
+      },
+      {
+        "title": "Transparency",
+        "description": "Being open and clear about our operations."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Join us in our journey",
+    "subtitle": "Learn more about our governance practices.",
+    "buttonText": "Contact Us",
+    "buttonLink": "/contact"
+  }
+}

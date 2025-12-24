@@ -1,0 +1,108 @@
+{
+  "hero": {
+    "badge": "Our Philosophy",
+    "title": "Strategic Governance for",
+    "titleHighlight": "Sustainable Value.",
+    "subtitle": "Our principles guide every decision, every recommendation, every relationship we build."
+  },
+  "coreBeliefs": {
+    "sectionTitle": "Core Beliefs",
+    "headline": "Sustainable value creation through sound governance, disciplined strategy, and intelligent capital deployment.",
+    "items": [
+      {
+        "title": "Sound Governance",
+        "description": "We believe that sustainable value creation is achieved through sound governance. Governance is not a constraint—it is the foundation of institutional freedom and long-term success."
+      },
+      {
+        "title": "Disciplined Strategy",
+        "description": "Our strategies are built on rigorous analysis and disciplined methodologies. We combine international frameworks (OECD, ISO, COSO, IFC) with data-driven insights to deliver measurable outcomes."
+      },
+      {
+        "title": "Intelligent Capital Deployment",
+        "description": "We guide institutions toward intelligent capital deployment, balancing growth objectives with risk management and ensuring investment readiness that attracts investor confidence."
+      }
+    ]
+  },
+  "quote": {
+    "text": "Governance is the backbone of all our advisory work—the foundation upon which institutional resilience and sustainable growth are built.",
+    "source": "GovernValu Core Principle"
+  },
+  "approach": {
+    "sectionTitle": "Our Approach",
+    "headline": "Integrated Advisory Model",
+    "paragraphs": [
+      "Our concept integrates governance, risk, compliance, valuation, investment relations, and performance optimization into one coherent advisory model.",
+      "We serve governments, corporates, financial institutions, NGOs, and international organizations with services delivered in alignment with international standards.",
+      "Our methodologies are tailored to the regulatory, cultural, and economic context of each market we serve, ensuring relevant and actionable recommendations."
+    ],
+    "standards": [
+      "OECD Governance Standards",
+      "ISO Management Systems",
+      "COSO Internal Control Framework",
+      "IFC Corporate Governance Methodology"
+    ]
+  },
+  "commitments": {
+    "sectionTitle": "Our Commitments",
+    "headline": "What We Promise",
+    "items": [
+      {
+        "number": "01",
+        "title": "Independence",
+        "description": "Our advice is free from conflicts of interest. We provide objective counsel aligned solely with your institutional success."
+      },
+      {
+        "number": "02",
+        "title": "Transparency",
+        "description": "We uphold ethical conduct in all our advisory work. Our clients know exactly how we arrive at our recommendations."
+      },
+      {
+        "number": "03",
+        "title": "Accountability",
+        "description": "Measurable impact and responsibility. We stand behind our recommendations with clear outcomes and ongoing partnership."
+      },
+      {
+        "number": "04",
+        "title": "Excellence",
+        "description": "We pursue the highest standards of professional rigor in every analysis, every recommendation, every interaction."
+      }
+    ]
+  },
+  "partnership": {
+    "sectionTitle": "Client Partnership",
+    "headline": "Long-term Value Over Short-term Gains",
+    "paragraphs": [
+      "We believe in long-term partnership with clients rather than transactional consulting. Our success is measured by the lasting impact we create for the institutions we serve.",
+      "We are committed to regional leadership with global standards, combining deep understanding of the MENA market with international best practices.",
+      "By 2030, we aim to be among the most trusted consulting houses in the MENA region, delivering advisory solutions that enhance institutional resilience, investor confidence, and sustainable growth."
+    ],
+    "coreValues": [
+      {
+        "title": "Integrity",
+        "description": "Independence, transparency, ethical conduct"
+      },
+      {
+        "title": "Governance Excellence",
+        "description": "The backbone of all advisory work"
+      },
+      {
+        "title": "Professional Rigor",
+        "description": "Evidence-based, disciplined methodologies"
+      },
+      {
+        "title": "Accountability",
+        "description": "Measurable impact and responsibility"
+      },
+      {
+        "title": "Continuous Innovation",
+        "description": "Adaptive thinking in a changing world"
+      }
+    ]
+  },
+  "cta": {
+    "headline": "Experience our philosophy",
+    "headlineHighlight": "firsthand.",
+    "subtitle": "Schedule a consultation to discuss how our principles can guide your success.",
+    "buttonText": "Get in Touch"
+  }
+}

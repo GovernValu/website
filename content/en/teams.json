@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "badge": "Our Team",
+    "title": "Expert",
+    "titleHighlight": "Advisors.",
+    "subtitle": "Our team combines deep expertise in governance, investment, and institutional development with a commitment to professional integrity."
+  },
+  "culture": {
+    "sectionTitle": "Our Culture",
+    "headline": "Built on Excellence. Driven by Purpose.",
+    "paragraphs": [
+      "At GovernValu, we believe that exceptional outcomes require exceptional people.",
+      "We foster an environment where diverse perspectives are valued, continuous learning is encouraged, and collaboration is the norm.",
+      "Our advisors combine international expertise with deep understanding of the MENA region."
+    ]
+  },
+  "coreValues": {
+    "sectionTitle": "Our Values",
+    "headline": "What Guides Us",
+    "items": [
+      {
+        "title": "Integrity",
+        "description": "We uphold independence, transparency, and ethical conduct."
+      },
+      {
+        "title": "Governance Excellence",
+        "description": "Governance is the backbone of all our advisory work."
+      },
+      {
+        "title": "Professional Rigor",
+        "description": "Evidence-based analysis and disciplined methodologies."
+      },
+      {
+        "title": "Client Partnership",
+        "description": "Long-term value over short-term gains."
+      },
+      {
+        "title": "Accountability",
+        "description": "Measurable impact and responsibility."
+      },
+      {
+        "title": "Continuous Innovation",
+        "description": "Adaptive thinking in a changing global environment."
+      }
+    ]
+  },
+  "capabilities": {
+    "sectionTitle": "Expertise Areas",
+    "headline": "Our Team Capabilities",
+    "items": [
+      {
+        "title": "Governance & Compliance",
+        "description": "Experts in corporate governance, risk management, and regulatory compliance frameworks."
+      },
+      {
+        "title": "Investment & Valuation",
+        "description": "Specialists in investment relations, corporate valuation, and capital markets advisory."
+      },
+      {
+        "title": "Institutional Development",
+        "description": "Professionals in leadership development, change management, and organizational transformation."
+      }
+    ]
+  },
+  "regionalFocus": {
+    "sectionTitle": "Regional Leadership",
+    "headline": "Global Standards, Regional Expertise",
+    "paragraphs": [
+      "Our team combines international best practices with deep understanding of the MENA region.",
+      "We serve governments, corporates, financial institutions, NGOs, and international organizations."
+    ],
+    "stats": [
+      {
+        "value": "2016",
+        "label": "Founded in Türkiye"
+      },
+      {
+        "value": "MENA",
+        "label": "Regional Focus"
+      }
+    ]
+  },
+  "careers": {
+    "sectionTitle": "Careers",
+    "headline": "Join Our Team",
+    "description": "We are always looking for exceptional individuals who share our commitment to governance excellence and professional integrity.",
+    "buttonText": "Explore Opportunities",
+    "qualificationsTitle": "What We Look For",
+    "qualifications": [
+      "Expertise in governance, compliance, risk management, or valuation",
+      "Understanding of international standards (OECD, ISO, COSO, IFC)",
+      "Experience in the MENA region regulatory and business environment",
+      "Commitment to professional integrity and ethical conduct",
+      "Data-driven and analytical mindset"
+    ]
+  }
+}

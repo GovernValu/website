@@ -1,0 +1,153 @@
+{
+  "hero": {
+    "badge": "Our Expertise",
+    "title": "Integrated Advisory",
+    "titleHighlight": "Services.",
+    "subtitle": "Comprehensive advisory services across governance, investment relations, valuation, risk management, compliance, cost optimization, and institutional development."
+  },
+  "clientTypes": {
+    "label": "We Serve:",
+    "items": [
+      {
+        "name": "Governments",
+        "icon": "🏛️"
+      },
+      {
+        "name": "Corporates",
+        "icon": "🏢"
+      },
+      {
+        "name": "Financial Institutions",
+        "icon": "🏦"
+      },
+      {
+        "name": "NGOs",
+        "icon": "🤝"
+      },
+      {
+        "name": "International Organizations",
+        "icon": "🌍"
+      }
+    ]
+  },
+  "expertiseAreas": {
+    "sectionTitle": "Areas of Focus",
+    "headline": "Our Service Areas",
+    "items": [
+      {
+        "title": "Corporate Governance",
+        "description": "Enable institutions to design, implement, and institutionalize governance frameworks.",
+        "features": [
+          "Governance Framework Design",
+          "Board Structure & Effectiveness",
+          "Policy Development",
+          "Regulatory Compliance"
+        ]
+      },
+      {
+        "title": "Investment Relations",
+        "description": "Enhance investment readiness and investor confidence through strategic investor communication.",
+        "features": [
+          "Investor Relations Strategy",
+          "ESG Integration",
+          "Capital Markets Advisory",
+          "Stakeholder Engagement"
+        ]
+      },
+      {
+        "title": "Valuation Services",
+        "description": "Deliver independent corporate and brand valuation services using data-driven methodologies.",
+        "features": [
+          "Corporate Valuation",
+          "Brand Valuation",
+          "Transaction Support",
+          "Fair Value Assessment"
+        ]
+      },
+      {
+        "title": "Risk Management & Compliance",
+        "description": "Strengthen risk management, compliance, and internal control systems.",
+        "features": [
+          "Enterprise Risk Management",
+          "Compliance Programs",
+          "Internal Control Systems",
+          "Regulatory Advisory"
+        ]
+      },
+      {
+        "title": "Cost Optimization",
+        "description": "Support cost optimization and operational efficiency through systematic analysis.",
+        "features": [
+          "Cost Structure Analysis",
+          "Operational Efficiency",
+          "Process Optimization",
+          "Performance Management"
+        ]
+      },
+      {
+        "title": "Institutional Development",
+        "description": "Build leadership and institutional capabilities through training and change management.",
+        "features": [
+          "Leadership Development",
+          "Change Management",
+          "Digital Transformation",
+          "Quality Accreditation"
+        ]
+      }
+    ]
+  },
+  "standards": {
+    "sectionTitle": "International Standards",
+    "headline": "Our Framework Alignment",
+    "items": [
+      {
+        "name": "OECD",
+        "description": "Corporate Governance Principles"
+      },
+      {
+        "name": "ISO",
+        "description": "Management System Standards"
+      },
+      {
+        "name": "COSO",
+        "description": "Internal Control Framework"
+      },
+      {
+        "name": "IFC",
+        "description": "Corporate Governance Methodology"
+      }
+    ]
+  },
+  "process": {
+    "sectionTitle": "Our Process",
+    "headline": "How We Work",
+    "steps": [
+      {
+        "number": "1",
+        "title": "Discovery",
+        "description": "Deep understanding of your objectives, regulatory context, and institutional challenges."
+      },
+      {
+        "number": "2",
+        "title": "Analysis",
+        "description": "Rigorous assessment using data-driven methodologies and international benchmarks."
+      },
+      {
+        "number": "3",
+        "title": "Strategy",
+        "description": "Development of tailored recommendations aligned with international standards."
+      },
+      {
+        "number": "4",
+        "title": "Partnership",
+        "description": "Long-term partnership through implementation, monitoring, and continuous improvement."
+      }
+    ]
+  },
+  "cta": {
+    "headline": "Ready to leverage our",
+    "headlineHighlight": "expertise",
+    "subtitle": "Let us demonstrate how our capabilities can address your specific institutional challenges.",
+    "buttonText": "Start a Conversation"
+  }
+}

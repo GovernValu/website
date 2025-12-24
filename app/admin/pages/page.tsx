@@ -29,8 +29,32 @@ const pages = [
     },
     {
         id: "about",
-        name: "About",
+        name: "About - Who We Are",
         description: "Company narrative, timeline, and values",
+        lastEdited: "Just now",
+    },
+    {
+        id: "board",
+        name: "About - Board",
+        description: "Board of Directors, Message, and Principles",
+        lastEdited: "Just now",
+    },
+    {
+        id: "philosophy",
+        name: "About - Philosophy",
+        description: "Our core beliefs, approach, and commitments",
+        lastEdited: "Just now",
+    },
+    {
+        id: "expertise",
+        name: "About - Expertise",
+        description: "Expertise areas, client types, and standards",
+        lastEdited: "Just now",
+    },
+    {
+        id: "teams",
+        name: "About - Teams",
+        description: "Leadership, culture, and capabilities",
         lastEdited: "Just now",
     },
     {
