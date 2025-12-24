@@ -13,7 +13,7 @@ export function useContent<T>(pageName: string) {
         async function fetchContent() {
             try {
                 setLoading(true);
-                const res = await fetch(`/api/content/${pageName}?lang=${language}`);
+                const res = await fetch(`/api/content/${pageName}?lang=${language}`, { cache: 'no-store' });
                 if (res.ok) {
                     const data = await res.json();
                     setContent(data);
