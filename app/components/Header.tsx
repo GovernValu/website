@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -28,12 +29,14 @@ export default function Header() {
                 <div className="flex items-center justify-between h-24">
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-3 cursor-pointer">
-                        <div className="w-10 h-10 bg-brand flex items-center justify-center text-white font-serif text-xl font-bold rounded-sm">
-                            G
-                        </div>
-                        <span className="text-white font-serif text-xl tracking-wide font-semibold">
-                            Govern<span className="text-brand">Valu</span>
-                        </span>
+                        <Image
+                            src="/logogov.png"
+                            alt="GovernValu"
+                            width={200}
+                            height={60}
+                            className="h-10 w-auto object-contain"
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Menu */}
