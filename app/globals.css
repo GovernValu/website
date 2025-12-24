@@ -155,11 +155,21 @@ textarea:focus {
 }
 
 /* RTL Support */
+/* RTL Support */
 [dir="rtl"] {
   --font-sans: var(--font-arabic), 'Noto Kufi Arabic', sans-serif;
   --font-serif: var(--font-arabic), 'Noto Kufi Arabic', serif;
   font-family: var(--font-sans);
   text-align: right;
+}
+
+/* Explicitly force Arabic font on Tailwind font utilities in RTL to override specific class styles */
+[dir="rtl"] .font-sans {
+  font-family: var(--font-arabic), 'Noto Kufi Arabic', sans-serif !important;
+}
+
+[dir="rtl"] .font-serif {
+  font-family: var(--font-arabic), 'Noto Kufi Arabic', serif !important;
 }
 
 [dir="rtl"] .hover-underline-animation:after {
