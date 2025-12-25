@@ -78,6 +78,12 @@ model HeroSlide {
   description String?  @db.Text
   buttonText  String?
   buttonLink  String?
+  
+  // Arabic Content
+  titleAr       String?
+  subtitleAr    String?
+  descriptionAr String?  @db.Text
+  buttonTextAr  String?
   image       String   // Cloudinary URL
   order       Int      @default(0)
   isActive    Boolean  @default(true)

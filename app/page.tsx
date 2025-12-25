@@ -16,6 +16,11 @@ interface Slide {
   buttonText?: string;
   buttonLink?: string;
   image: string;
+  // Arabic fields
+  titleAr?: string;
+  subtitleAr?: string;
+  descriptionAr?: string;
+  buttonTextAr?: string;
 }
 
 // Icon mapping

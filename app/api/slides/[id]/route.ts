@@ -37,7 +37,11 @@ export async function PUT(
     try {
         const { id } = await params;
         const body = await request.json();
-        const { title, subtitle, description, buttonText, buttonLink, image, order, isActive } = body;
+        const {
+            title, subtitle, description, buttonText, buttonLink,
+            titleAr, subtitleAr, descriptionAr, buttonTextAr,
+            image, order, isActive
+        } = body;
 
         const slide = await prisma.heroSlide.update({
             where: { id },
@@ -47,6 +51,12 @@ export async function PUT(
                 description,
                 buttonText,
                 buttonLink,
+                // Arabic Content
+                titleAr,
+                subtitleAr,
+                descriptionAr,
+                buttonTextAr,
+
                 image,
                 order,
                 isActive,

@@ -26,7 +26,11 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { title, subtitle, description, buttonText, buttonLink, image, order, isActive } = body;
+        const {
+            title, subtitle, description, buttonText, buttonLink,
+            titleAr, subtitleAr, descriptionAr, buttonTextAr,
+            image, order, isActive
+        } = body;
 
         if (!title || !image) {
             return NextResponse.json(
@@ -51,6 +55,12 @@ export async function POST(request: NextRequest) {
                 description: description || null,
                 buttonText: buttonText || null,
                 buttonLink: buttonLink || null,
+                // Arabic Content
+                titleAr: titleAr || null,
+                subtitleAr: subtitleAr || null,
+                descriptionAr: descriptionAr || null,
+                buttonTextAr: buttonTextAr || null,
+
                 image,
                 order: slideOrder,
                 isActive: isActive !== undefined ? isActive : true,

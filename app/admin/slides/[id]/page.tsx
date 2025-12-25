@@ -15,6 +15,11 @@ interface Slide {
     image: string;
     order: number;
     isActive: boolean;
+    // Arabic Content
+    titleAr?: string;
+    subtitleAr?: string;
+    descriptionAr?: string;
+    buttonTextAr?: string;
 }
 
 export default function EditSlidePage({ params }: { params: Promise<{ id: string }> }) {
@@ -182,9 +187,9 @@ export default function EditSlidePage({ params }: { params: Promise<{ id: string
                     )}
                 </div>
 
-                {/* Content Fields */}
+                {/* English Content Fields */}
                 <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 space-y-6">
-                    <h2 className="text-lg font-medium text-white mb-4">Content</h2>
+                    <h2 className="text-lg font-medium text-white mb-4">English Content</h2>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-300 mb-2">
@@ -251,6 +256,63 @@ export default function EditSlidePage({ params }: { params: Promise<{ id: string
                                 className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                             />
                         </div>
+                    </div>
+                </div>
+
+                {/* Arabic Content Fields */}
+                <div className="bg-gray-800 rounded-xl p-6 border border-gray-700 space-y-6">
+                    <h2 className="text-lg font-medium text-white mb-4">Arabic Content</h2>
+
+                    <div dir="rtl">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            العنوان (Title) <span className="text-gray-500">(HTML supported)</span>
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.titleAr || ""}
+                            onChange={(e) => setFormData({ ...formData, titleAr: e.target.value })}
+                            placeholder='دقة في <br /><span class="text-brand">الحوكمة.</span>'
+                            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand"
+                        />
+                    </div>
+
+                    <div dir="rtl">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            العنوان الفرعي (Subtitle)
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.subtitleAr || ""}
+                            onChange={(e) => setFormData({ ...formData, subtitleAr: e.target.value })}
+                            placeholder="استشارات مقرها قطر"
+                            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand"
+                        />
+                    </div>
+
+                    <div dir="rtl">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            الوصف (Description)
+                        </label>
+                        <textarea
+                            value={formData.descriptionAr || ""}
+                            onChange={(e) => setFormData({ ...formData, descriptionAr: e.target.value })}
+                            placeholder="نحن نصمم استراتيجيات مرنة..."
+                            rows={3}
+                            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none"
+                        />
+                    </div>
+
+                    <div dir="rtl">
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                            نص الزر (Button Text)
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.buttonTextAr || ""}
+                            onChange={(e) => setFormData({ ...formData, buttonTextAr: e.target.value })}
+                            placeholder="شاركنا النجاح"
+                            className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand"
+                        />
                     </div>
                 </div>
 

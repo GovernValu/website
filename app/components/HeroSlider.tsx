@@ -13,6 +13,11 @@ interface Slide {
     buttonText?: string;
     buttonLink?: string;
     image: string;
+    // Arabic fields
+    titleAr?: string;
+    subtitleAr?: string;
+    descriptionAr?: string;
+    buttonTextAr?: string;
 }
 
 interface HeroSliderProps {
@@ -24,6 +29,24 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const { language } = useLanguage();
     const t = LABELS[language];
+    const isRtl = language === 'ar';
+
+    const getLocalizedContent = useCallback((slide: Slide) => {
+        if (isRtl) {
+            return {
+                title: slide.titleAr || slide.title,
+                subtitle: slide.subtitleAr || slide.subtitle,
+                description: slide.descriptionAr || slide.description,
+                buttonText: slide.buttonTextAr || slide.buttonText,
+            };
+        }
+        return {
+            title: slide.title,
+            subtitle: slide.subtitle,
+            description: slide.description,
+            buttonText: slide.buttonText,
+        };
+    }, [isRtl]);
 
     const goToSlide = useCallback((index: number) => {
         if (isTransitioning || index === currentSlide) return;
@@ -67,89 +90,93 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
             <div className="absolute right-10 md:right-24 top-0 bottom-0 w-px bg-white/10 hidden md:block z-20" />
 
             {/* Slides */}
-            {slides.map((slide, index) => (
-                <div
-                    key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-                        }`}
-                >
-                    {/* Background Image with Ken Burns Effect */}
+            {slides.map((slide, index) => {
+                const content = getLocalizedContent(slide);
+
+                return (
                     <div
-                        className={`absolute inset-0 ${index === currentSlide ? "hero-ken-burns" : ""
+                        key={slide.id}
+                        className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
                             }`}
                     >
-                        <Image
-                            src={slide.image}
-                            alt={slide.title}
-                            fill
-                            className="object-cover"
-                            priority={index === 0}
-                        />
-                        {/* Dark Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-b from-onyx/80 via-onyx/60 to-onyx/90" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="relative z-10 h-full flex items-center justify-center">
-                        <div className="max-w-5xl mx-auto px-6 text-center">
-                            {slide.subtitle && (
-                                <span
-                                    className={`inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 transition-all duration-700 delay-100 ${index === currentSlide
-                                        ? "opacity-100 translate-y-0"
-                                        : "opacity-0 translate-y-4"
-                                        }`}
-                                >
-                                    {slide.subtitle}
-                                </span>
-                            )}
-                            <h1
-                                className={`text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-8 leading-tight tracking-tight transition-all duration-700 delay-200 ${index === currentSlide
-                                    ? "opacity-100 translate-y-0"
-                                    : "opacity-0 translate-y-4"
-                                    }`}
-                                dangerouslySetInnerHTML={{ __html: slide.title }}
+                        {/* Background Image with Ken Burns Effect */}
+                        <div
+                            className={`absolute inset-0 ${index === currentSlide ? "hero-ken-burns" : ""
+                                }`}
+                        >
+                            <Image
+                                src={slide.image}
+                                alt={content.title}
+                                fill
+                                className="object-cover"
+                                priority={index === 0}
                             />
-                            {slide.description && (
-                                <p
-                                    className={`mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed transition-all duration-700 delay-300 ${index === currentSlide
+                            {/* Dark Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-onyx/80 via-onyx/60 to-onyx/90" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="relative z-10 h-full flex items-center justify-center">
+                            <div className="max-w-5xl mx-auto px-6 text-center">
+                                {content.subtitle && (
+                                    <span
+                                        className={`inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-6 transition-all duration-700 delay-100 ${index === currentSlide
+                                            ? "opacity-100 translate-y-0"
+                                            : "opacity-0 translate-y-4"
+                                            }`}
+                                    >
+                                        {content.subtitle}
+                                    </span>
+                                )}
+                                <h1
+                                    className={`text-5xl md:text-7xl lg:text-8xl font-serif font-medium text-white mb-8 leading-tight tracking-tight transition-all duration-700 delay-200 ${index === currentSlide
                                         ? "opacity-100 translate-y-0"
                                         : "opacity-0 translate-y-4"
                                         }`}
-                                >
-                                    {slide.description}
-                                </p>
-                            )}
-                            {slide.buttonText && slide.buttonLink && (
-                                <div
-                                    className={`mt-12 flex flex-col md:flex-row gap-6 justify-center items-center transition-all duration-700 delay-[400ms] ${index === currentSlide
-                                        ? "opacity-100 translate-y-0"
-                                        : "opacity-0 translate-y-4"
-                                        }`}
-                                >
-                                    <a
-                                        href={slide.buttonLink}
-                                        className="group relative px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold overflow-hidden"
+                                    dangerouslySetInnerHTML={{ __html: content.title }}
+                                />
+                                {content.description && (
+                                    <p
+                                        className={`mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-300 font-light leading-relaxed transition-all duration-700 delay-300 ${index === currentSlide
+                                            ? "opacity-100 translate-y-0"
+                                            : "opacity-0 translate-y-4"
+                                            }`}
                                     >
-                                        <span className="relative z-10 group-hover:text-white transition-colors">
-                                            {slide.buttonText}
-                                        </span>
-                                        <div className="absolute inset-0 h-full w-full bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
-                                    </a>
-                                    <a
-                                        href="/about/expertise"
-                                        className="flex items-center gap-2 text-white text-sm uppercase tracking-widest hover:text-brand transition-colors"
+                                        {content.description}
+                                    </p>
+                                )}
+                                {content.buttonText && slide.buttonLink && (
+                                    <div
+                                        className={`mt-12 flex flex-col md:flex-row gap-6 justify-center items-center transition-all duration-700 delay-[400ms] ${index === currentSlide
+                                            ? "opacity-100 translate-y-0"
+                                            : "opacity-0 translate-y-4"
+                                            }`}
                                     >
-                                        {t.exploreExpertise}
-                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            )}
+                                        <a
+                                            href={slide.buttonLink}
+                                            className="group relative px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-semibold overflow-hidden"
+                                        >
+                                            <span className="relative z-10 group-hover:text-white transition-colors">
+                                                {content.buttonText}
+                                            </span>
+                                            <div className="absolute inset-0 h-full w-full bg-brand-dark transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
+                                        </a>
+                                        <a
+                                            href="/about/expertise"
+                                            className="flex items-center gap-2 text-white text-sm uppercase tracking-widest hover:text-brand transition-colors"
+                                        >
+                                            {t.exploreExpertise}
+                                            <svg className="w-4 h-4 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
 
             {/* Navigation Arrows */}
             {slides.length > 1 && (
@@ -159,7 +186,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-brand/80 text-white transition-all duration-300 backdrop-blur-sm group"
                         aria-label="Previous slide"
                     >
-                        <svg className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
@@ -168,7 +195,7 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-brand/80 text-white transition-all duration-300 backdrop-blur-sm group"
                         aria-label="Next slide"
                     >
-                        <svg className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                     </button>
@@ -182,26 +209,13 @@ export default function HeroSlider({ slides }: HeroSliderProps) {
                         <button
                             key={index}
                             onClick={() => goToSlide(index)}
-                            className={`group relative h-3 transition-all duration-300 ${index === currentSlide ? "w-10" : "w-3 hover:w-6"
+                            className={`h-1 transition-all duration-500 rounded-full ${index === currentSlide ? "w-16 bg-brand" : "w-8 bg-gray-600 hover:bg-gray-400"
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
-                        >
-                            <span
-                                className={`absolute inset-0 rounded-full transition-all duration-300 ${index === currentSlide
-                                    ? "bg-brand"
-                                    : "bg-white/30 group-hover:bg-white/60"
-                                    }`}
-                            />
-                        </button>
+                        />
                     ))}
                 </div>
             )}
-
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce z-20">
-                <span className="text-[10px] uppercase tracking-widest text-gray-400">Scroll</span>
-                <div className="w-px h-12 bg-gradient-to-b from-brand to-transparent" />
-            </div>
         </header>
     );
 }
