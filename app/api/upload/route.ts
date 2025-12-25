@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
 
+// Route segment config for App Router - use dynamic runtime
+export const dynamic = 'force-dynamic';
+// Note: For body size limits in Vercel, use vercel.json
+// Next.js App Router doesn't have built-in bodyParser config like Pages Router
+
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();

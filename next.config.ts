@@ -12,6 +12,14 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
+    // Increase image optimization timeout and use unoptimized for problematic external images
+    minimumCacheTTL: 60,
+  },
+  // Increase body size limit for file uploads (10MB)
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb',
+    },
   },
 };
 
