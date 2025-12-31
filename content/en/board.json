@@ -14,8 +14,8 @@
       "We believe in transparency, accountability, and ethical conduct in all our operations."
     ],
     "signature": {
-      "name": "Dr. Ahmed Al-Farsi",
-      "role": "Chairman of the Board"
+      "name": "Prof. Dr. Samir Abdelaziz, PhD",
+      "role": "Board Chairman"
     }
   },
   "quoteSection": {
@@ -27,22 +27,46 @@
     "title": "Meet the Directors",
     "list": [
       {
-        "name": "Dr. Ahmed Al-Farsi",
-        "role": "Chairman",
-        "specialty": "Corporate Governance & Strategy",
+        "name": "Prof. Dr. Samir Abdelaziz, PhD",
+        "role": "Board Chairman",
+        "specialty": "Governance & Investment",
         "image": "/board/chairman.jpg"
       },
       {
-        "name": "Sarah Johnson",
-        "role": "Independent Director",
-        "specialty": "Risk Management & Finance",
-        "image": "/board/member1.jpg"
+        "name": "Prof. Dr. Ehab El Shamy, PhD",
+        "role": "Board Member",
+        "specialty": "Banking & Finance",
+        "image": "/board/ehab-el-shamy.jpeg"
       },
       {
-        "name": "Michael Chen",
-        "role": "Non-Executive Director",
-        "specialty": "International Markets",
-        "image": "/board/member2.jpg"
+        "name": "Mr. Ahmed Al Bana",
+        "role": "Board Member",
+        "specialty": "Investment & Valuation",
+        "image": "/board/ahmed-al-bana.jpeg"
+      },
+      {
+        "name": "Dr. Saad Azm, PhD",
+        "role": "Board Member",
+        "specialty": "Accreditation & Quality",
+        "image": "/board/saad-azm.jpg"
+      },
+      {
+        "name": "Prof. Dr. Habib Hamam, PhD",
+        "role": "Board Member",
+        "specialty": "Digital Transformation",
+        "image": "/board/habib-hamam.jpg"
+      },
+      {
+        "name": "Dr. Yasser Fathy, PhD",
+        "role": "Board Member",
+        "specialty": "Analysis, Reputation Management, and Development",
+        "image": "/board/yasser-fathy.jpg"
+      },
+      {
+        "name": "Mr. Saleh Ghalayeni",
+        "role": "Board Member",
+        "specialty": "Business Development",
+        "image": "/board/saleh-ghalayeni.jpg"
       }
     ]
   },

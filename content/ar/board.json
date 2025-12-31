@@ -14,7 +14,7 @@
       "نؤمن بالشفافية والمساءلة والسلوك الأخلاقي في جميع عملياتنا."
     ],
     "signature": {
-      "name": "د. أحمد الفارسي",
+      "name": "أ.د. سمير عبد العزيز",
       "role": "رئيس مجلس الإدارة"
     }
   },
@@ -27,22 +27,46 @@
     "title": "تعرف على الأعضاء",
     "list": [
       {
-        "name": "د. أحمد الفارسي",
+        "name": "أ.د. سمير عبد العزيز",
         "role": "رئيس مجلس الإدارة",
-        "specialty": "حوكمة الشركات والاستراتيجية",
+        "specialty": "الحوكمة والاستثمار",
         "image": "/board/chairman.jpg"
       },
       {
-        "name": "سارة جونسون",
-        "role": "عضو مستقل",
-        "specialty": "إدارة المخاطر والمالية",
-        "image": "/board/member1.jpg"
+        "name": "أ.د. إيهاب الشامي",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "المصرفية والتمويل",
+        "image": "/board/ehab-el-shamy.jpeg"
       },
       {
-        "name": "مايكل تشن",
-        "role": "عضو غير تنفيذي",
-        "specialty": "الأسواق الدولية",
-        "image": "/board/member2.jpg"
+        "name": "أ. أحمد البنا",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "الاستثمار والتقييم",
+        "image": "/board/ahmed-al-bana.jpeg"
+      },
+      {
+        "name": "د. سعد عزم",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "الاعتماد والجودة",
+        "image": "/board/saad-azm.jpg"
+      },
+      {
+        "name": "أ.د. حبيب حمام",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "التحول الرقمي",
+        "image": "/board/habib-hamam.jpg"
+      },
+      {
+        "name": "د. ياسر فتحي",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "التحليل وإدارة السمعة والتطوير",
+        "image": "/board/yasser-fathy.jpg"
+      },
+      {
+        "name": "أ. صالح غلاييني",
+        "role": "عضو مجلس الإدارة",
+        "specialty": "تطوير الأعمال",
+        "image": "/board/saleh-ghalayeni.jpg"
       }
     ]
   },
