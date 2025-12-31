@@ -79,7 +79,7 @@ export default function Header() {
                                 {t.services}
                             </Link>
                             <Link href="/partners" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
-                                {t.partners}
+                                {t.partnerships}
                             </Link>
                             <Link href="/clients" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.ourClients}
@@ -151,7 +151,7 @@ export default function Header() {
                     </div>
 
                     <Link href="/services" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.services}</Link>
-                    <Link href="/partners" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.partners}</Link>
+                    <Link href="/partners" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.partnerships}</Link>
                     <Link href="/clients" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.ourClients}</Link>
                     <Link href="/news" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.news}</Link>
                     <Link href="/contact" className="block px-3 py-4 text-base font-medium text-brand font-bold">{t.contact}</Link>
