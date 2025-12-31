@@ -1,0 +1,80 @@
+{
+    "hero": {
+        "badge": "Our Clients",
+        "title": "Trusted by Leading",
+        "titleHighlight": "Organizations",
+        "subtitle": "We serve governments, corporates, financial institutions, NGOs, and international organizations across the MENA region."
+    },
+    "intro": {
+        "sectionTitle": "Who We Serve",
+        "headline": "Diverse Clientele, Unified Excellence",
+        "paragraphs": [
+            "GovernValu serves a diverse range of clients across the MENA region, delivering governance-driven advisory solutions tailored to each organization's unique needs.",
+            "Our client portfolio spans governments, corporates, financial institutions, non-profit organizations, and international bodies, all united by a commitment to governance excellence and sustainable growth."
+        ]
+    },
+    "clientTypes": {
+        "sectionTitle": "Client Sectors",
+        "headline": "From Government to International Organizations",
+        "items": [
+            {
+                "title": "Government Entities",
+                "description": "Public sector organizations seeking governance frameworks, policy development, and institutional strengthening.",
+                "icon": "government"
+            },
+            {
+                "title": "Corporates",
+                "description": "Private companies pursuing governance excellence, investment readiness, and sustainable value creation.",
+                "icon": "corporate"
+            },
+            {
+                "title": "Financial Institutions",
+                "description": "Banks, investment firms, and insurance companies requiring risk management, compliance, and valuation services.",
+                "icon": "finance"
+            },
+            {
+                "title": "Non-Profit Organizations",
+                "description": "NGOs and foundations strengthening governance, transparency, and operational effectiveness.",
+                "icon": "nonprofit"
+            },
+            {
+                "title": "International Organizations",
+                "description": "Multilateral bodies and development agencies implementing governance standards and capacity building.",
+                "icon": "international"
+            },
+            {
+                "title": "Family Offices",
+                "description": "High-net-worth families establishing governance structures for wealth preservation and succession planning.",
+                "icon": "family"
+            }
+        ]
+    },
+    "testimonials": {
+        "sectionTitle": "Client Testimonials",
+        "headline": "What Our Clients Say",
+        "items": [
+            {
+                "quote": "GovernValu's governance advisory transformed our organization. Their expertise and professionalism exceeded our expectations.",
+                "author": "CEO",
+                "company": "Regional Financial Institution"
+            },
+            {
+                "quote": "The valuation services provided by GovernValu were comprehensive and aligned with international standards. Highly recommended.",
+                "author": "CFO",
+                "company": "Leading Corporate Group"
+            },
+            {
+                "quote": "Their deep understanding of governance frameworks helped us achieve compliance and build investor confidence.",
+                "author": "Board Member",
+                "company": "Government Entity"
+            }
+        ]
+    },
+    "cta": {
+        "headline": "Ready to join our client",
+        "headlineHighlight": "portfolio",
+        "subtitle": "Schedule a consultation to discuss your governance needs.",
+        "buttonText": "Contact Us",
+        "buttonLink": "/contact"
+    }
+}

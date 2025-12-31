@@ -83,11 +83,10 @@ export default function Footer() {
                     <div>
                         <h5 className="text-white font-bold uppercase tracking-widest mb-6 text-xs">{t.about}</h5>
                         <ul className="space-y-3 font-light">
-                            <li><Link href="/about/board" className="hover:text-brand transition-colors">{t.board}</Link></li>
+                            <li><Link href="/about/chairman" className="hover:text-brand transition-colors">{t.chairmanMessage}</Link></li>
                             <li><Link href="/about" className="hover:text-brand transition-colors">{t.whoWeAre}</Link></li>
-                            <li><Link href="/about/philosophy" className="hover:text-brand transition-colors">{t.philosophy}</Link></li>
-                            <li><Link href="/about/expertise" className="hover:text-brand transition-colors">{t.expertise}</Link></li>
-                            <li><Link href="/about/teams" className="hover:text-brand transition-colors">{t.teams}</Link></li>
+                            <li><Link href="/about/strategic-concept" className="hover:text-brand transition-colors">{t.strategicConcept}</Link></li>
+                            <li><Link href="/about/board" className="hover:text-brand transition-colors">{t.board}</Link></li>
                         </ul>
                     </div>
 

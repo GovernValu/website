@@ -1,0 +1,86 @@
+{
+    "hero": {
+        "badge": "Strategic Concept",
+        "title": "Company Concept & Strategy",
+        "subtitle": "Governance-driven advisory built on the conviction that sustainable value creation is achieved through sound governance."
+    },
+    "concept": {
+        "sectionTitle": "Our Concept",
+        "headline": "Governance-Driven Advisory",
+        "paragraphs": [
+            "GovernValu Investment and Consulting Company Limited is a governance-driven advisory firm built on the conviction that sustainable value creation is achieved through sound governance, disciplined strategy, and intelligent capital deployment.",
+            "Our concept integrates governance, risk, compliance, valuation, investment relations, and performance optimization into one coherent advisory model serving governments, corporates, financial institutions, NGOs, and international organizations."
+        ]
+    },
+    "strategy": {
+        "sectionTitle": "Our Strategy",
+        "headline": "Strategic Anchors",
+        "items": [
+            "International governance frameworks (OECD, ISO, COSO, IFC)",
+            "Data-driven advisory and valuation methodologies",
+            "Long-term partnership with clients rather than transactional consulting",
+            "Regional leadership with global standards"
+        ],
+        "vision2030": "By 2030, GovernValu aims to be among the most trusted consulting houses in the MENA region, delivering advisory solutions that enhance institutional resilience, investor confidence, and sustainable growth."
+    },
+    "vision": {
+        "sectionTitle": "Vision",
+        "headline": "Our Vision",
+        "content": "To be a leading governance-driven consulting and investment advisory firm in the MENA region, recognized for creating sustainable value, strengthening institutions, and shaping resilient economies by 2030."
+    },
+    "mission": {
+        "sectionTitle": "Mission",
+        "headline": "Our Mission",
+        "content": "Our mission is to support institutions in achieving governance excellence, strategic clarity, financial resilience, and investment readiness through integrated advisory services grounded in international standards and professional integrity."
+    },
+    "values": {
+        "sectionTitle": "Core Values",
+        "headline": "What We Stand For",
+        "items": [
+            {
+                "title": "Integrity",
+                "description": "We uphold independence, transparency, and ethical conduct."
+            },
+            {
+                "title": "Governance Excellence",
+                "description": "Governance is the backbone of all our advisory work."
+            },
+            {
+                "title": "Professional Rigor",
+                "description": "Evidence-based analysis and disciplined methodologies."
+            },
+            {
+                "title": "Client Partnership",
+                "description": "Long-term value over short-term gains."
+            },
+            {
+                "title": "Accountability",
+                "description": "Measurable impact and responsibility."
+            },
+            {
+                "title": "Continuous Innovation",
+                "description": "Adaptive thinking in a changing global environment."
+            }
+        ]
+    },
+    "objectives": {
+        "sectionTitle": "Strategic Objectives",
+        "headline": "Our Strategic Focus",
+        "items": [
+            "Enable institutions to design, implement, and institutionalize governance frameworks.",
+            "Enhance investment readiness and investor confidence.",
+            "Deliver independent corporate and brand valuation services.",
+            "Support cost optimization and operational efficiency.",
+            "Strengthen risk management, compliance, and internal control systems.",
+            "Build leadership and institutional capabilities through training and change management.",
+            "Support digital transformation and quality accreditation initiatives."
+        ]
+    },
+    "cta": {
+        "headline": "Ready to achieve governance",
+        "headlineHighlight": "excellence",
+        "subtitle": "Schedule a consultation with our expert advisors.",
+        "buttonText": "Contact Us",
+        "buttonLink": "/contact"
+    }
+}

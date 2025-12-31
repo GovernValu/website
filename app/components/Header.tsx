@@ -59,20 +59,17 @@ export default function Header() {
                                 {/* Dropdown Menu */}
                                 <div className={`absolute top-full ${direction === 'rtl' ? 'right-0' : 'left-0'} mt-0 w-56 bg-onyx-800 border border-gray-800 shadow-2xl transition-all duration-200 opacity-0 invisible -translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0`}>
                                     <div className="py-2">
-                                        <Link href="/about/board" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
-                                            {t.board}
+                                        <Link href="/about/chairman" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
+                                            {t.chairmanMessage}
                                         </Link>
                                         <Link href="/about" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
                                             {t.whoWeAre}
                                         </Link>
-                                        <Link href="/about/philosophy" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
-                                            {t.philosophy}
+                                        <Link href="/about/strategic-concept" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
+                                            {t.strategicConcept}
                                         </Link>
-                                        <Link href="/about/expertise" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
-                                            {t.expertise}
-                                        </Link>
-                                        <Link href="/about/teams" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
-                                            {t.teams}
+                                        <Link href="/about/board" className={`block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-brand/10 transition-colors ${direction === 'rtl' ? 'border-r-2 text-right' : 'border-l-2 text-left'} border-transparent hover:border-brand`}>
+                                            {t.board}
                                         </Link>
                                     </div>
                                 </div>
@@ -81,11 +78,11 @@ export default function Header() {
                             <Link href="/services" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.services}
                             </Link>
-                            <Link href="/industries" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
-                                {t.industries}
-                            </Link>
                             <Link href="/partners" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.partners}
+                            </Link>
+                            <Link href="/clients" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
+                                {t.ourClients}
                             </Link>
                             <Link href="/news" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.news}
@@ -138,27 +135,24 @@ export default function Header() {
                             </svg>
                         </button>
                         <div className={`overflow-hidden transition-all duration-300 ${aboutDropdownOpen ? 'max-h-80' : 'max-h-0'}`}>
-                            <Link href="/about/board" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
-                                {t.board}
+                            <Link href="/about/chairman" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
+                                {t.chairmanMessage}
                             </Link>
                             <Link href="/about" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
                                 {t.whoWeAre}
                             </Link>
-                            <Link href="/about/philosophy" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
-                                {t.philosophy}
+                            <Link href="/about/strategic-concept" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
+                                {t.strategicConcept}
                             </Link>
-                            <Link href="/about/expertise" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
-                                {t.expertise}
-                            </Link>
-                            <Link href="/about/teams" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
-                                {t.teams}
+                            <Link href="/about/board" className="block px-6 py-3 text-sm text-gray-400 hover:text-brand">
+                                {t.board}
                             </Link>
                         </div>
                     </div>
 
                     <Link href="/services" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.services}</Link>
-                    <Link href="/industries" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.industries}</Link>
                     <Link href="/partners" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.partners}</Link>
+                    <Link href="/clients" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.ourClients}</Link>
                     <Link href="/news" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.news}</Link>
                     <Link href="/contact" className="block px-3 py-4 text-base font-medium text-brand font-bold">{t.contact}</Link>
                 </div>

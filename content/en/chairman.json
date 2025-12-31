@@ -1,0 +1,32 @@
+{
+    "hero": {
+        "badge": "Chairman's Message",
+        "title": "A Message from our Chairman",
+        "subtitle": "Welcome to GovernValu. Our commitment to governance excellence guides everything we do."
+    },
+    "message": {
+        "intro": "Welcome to GovernValu Investment and Consulting Company Limited. Since our establishment in 2016, we have been dedicated to helping organizations achieve excellence in governance, strategic clarity, and sustainable value creation.",
+        "quote": "True leadership is about serving the institution and ensuring its long-term sustainability through sound governance and disciplined strategy.",
+        "body": [
+            "At GovernValu, we believe that sustainable value creation is achieved through sound governance, disciplined strategy, and intelligent capital deployment. Our commitment to these principles has enabled us to serve governments, corporates, financial institutions, NGOs, and international organizations across the MENA region.",
+            "We are proud to deliver advisory solutions that enhance institutional resilience, investor confidence, and sustainable growth. Our team brings together deep expertise in governance, risk management, compliance, valuation, and investment relations.",
+            "Looking ahead to 2030, we aim to be among the most trusted consulting houses in the MENA region, recognized for creating sustainable value, strengthening institutions, and shaping resilient economies.",
+            "I invite you to explore how GovernValu can support your organization's journey toward governance excellence and sustainable success."
+        ],
+        "signature": {
+            "name": "Dr. Ahmed Al-Farsi",
+            "role": "Chairman of the Board"
+        }
+    },
+    "quoteSection": {
+        "text": "Strategic Governance for Sustainable Investments",
+        "author": "GovernValu Slogan"
+    },
+    "cta": {
+        "headline": "Ready to discuss your governance",
+        "headlineHighlight": "needs",
+        "subtitle": "Schedule a consultation with our senior partners.",
+        "buttonText": "Contact Us",
+        "buttonLink": "/contact"
+    }
+}
