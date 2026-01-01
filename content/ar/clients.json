@@ -36,49 +36,49 @@
             "country": "المغرب",
             "field": "العقارات",
             "services": "الاستثمار",
-            "logo": "/clients/image4.jpg"
+            "logo": "/clients/image5.jpg"
         },
         {
             "name": "شريك الجودة الأمريكي",
             "country": "أمريكا وتركيا وقطر",
             "field": "الجودة وتقييم المطابقة",
             "services": "تطوير الأعمال والاستثمار",
-            "logo": "/clients/image5.jpg"
+            "logo": "/clients/image4.jpg"
         },
         {
             "name": "AAA للاعتماد",
             "country": "أمريكا وبريطانيا",
             "field": "هيئة اعتماد",
             "services": "الحوكمة والاستثمار والتقييم وتطوير الأعمال",
-            "logo": "/clients/image6.png"
+            "logo": "/clients/image7.png"
         },
         {
             "name": "شريك التعليم السعودي",
             "country": "المملكة العربية السعودية",
             "field": "الخدمات التعليمية",
             "services": "تطوير الأعمال والتدريب",
-            "logo": "/clients/image7.png"
+            "logo": "/clients/image6.png"
         },
         {
             "name": "كودز آند كولورز",
             "country": "تركيا وقطر",
             "field": "تكنولوجيا المعلومات والتحول الرقمي (شريك Odoo الذهبي)",
             "services": "الحوكمة والاستثمار",
-            "logo": "/clients/image8.png"
+            "logo": "/clients/image10.png"
         },
         {
             "name": "شريك التقنية التعليمية البريطاني",
             "country": "بريطانيا",
             "field": "التقنية التعليمية",
             "services": "الاستثمار وتطوير الأعمال",
-            "logo": "/clients/image9.png"
+            "logo": "/clients/image8.png"
         },
         {
             "name": "شريك التعليم الصومالي",
             "country": "الصومال",
             "field": "التعليم",
             "services": "الاستثمار وتطوير الأعمال",
-            "logo": "/clients/image10.png"
+            "logo": "/clients/image15.jpg"
         },
         {
             "name": "شريك التقنية التعليمية القطري",
@@ -92,91 +92,91 @@
             "country": "بريطانيا وأفريقيا",
             "field": "منظمة غير حكومية",
             "services": "الاستثمار",
-            "logo": "/clients/image12.jpg"
+            "logo": "/clients/image13.jpg"
         },
         {
             "name": "هايبر ماركت قطر",
             "country": "دولة قطر",
             "field": "التجزئة (هايبر ماركت)",
             "services": "الاستثمار وحل مشكلات الأعمال",
-            "logo": "/clients/image13.jpg"
+            "logo": "/clients/image16.png"
         },
         {
             "name": "مصنع الوجبة للألبان والعصائر",
             "country": "دولة قطر",
             "field": "تصنيع الحليب والألبان والعصائر",
             "services": "الحوكمة والاستثمار",
-            "logo": "/clients/image14.png"
+            "logo": "/clients/image18.png"
         },
         {
             "name": "سوبر ماركت قطر",
             "country": "دولة قطر",
             "field": "التجزئة (سوبر ماركت)",
             "services": "الحوكمة والاستثمار وحل مشكلات الأعمال",
-            "logo": "/clients/image15.jpg"
+            "logo": "/clients/image19.png"
         },
         {
             "name": "فندق قطر 5 نجوم",
             "country": "دولة قطر",
             "field": "الفنادق والضيافة (5 نجوم)",
             "services": "الاستثمار والتقييم",
-            "logo": "/clients/image16.png"
+            "logo": "/clients/image20.png"
         },
         {
             "name": "التجارة الإلكترونية القطرية",
             "country": "دولة قطر",
             "field": "التجارة الإلكترونية",
             "services": "الاستثمار والتقييم",
-            "logo": "/clients/image17.png"
+            "logo": "/clients/image21.png"
         },
         {
             "name": "جامعة فلوريدا",
             "country": "أمريكا (فلوريدا)",
             "field": "جامعة التعليم العالي",
             "services": "الحوكمة والاستثمار",
-            "logo": "/clients/image18.png"
+            "logo": "/clients/image22.png"
         },
         {
             "name": "جامعة كاليفورنيا",
             "country": "أمريكا (كاليفورنيا)",
             "field": "جامعة التعليم العالي",
             "services": "الحوكمة والاستثمار",
-            "logo": "/clients/image19.png"
+            "logo": "/clients/image23.png"
         },
         {
             "name": "جامعة الصومال",
             "country": "الصومال",
             "field": "جامعة التعليم العالي",
             "services": "الحوكمة والاستثمار",
-            "logo": "/clients/image20.png"
+            "logo": "/clients/image24.jpg"
         },
         {
             "name": "دار الاستشارات فيرجينيا",
             "country": "أمريكا (فيرجينيا)",
             "field": "دار استشارات",
             "services": "الحوكمة وتطوير الأعمال والاستثمار",
-            "logo": "/clients/image21.png"
+            "logo": "/clients/image9.png"
         },
         {
             "name": "تارجت إعلانات مصر",
             "country": "مصر",
             "field": "وكالة إعلانات",
             "services": "الاستثمار وتطوير الأعمال",
-            "logo": "/clients/image22.png"
+            "logo": "/clients/image12.jpg"
         },
         {
             "name": "إعلانات ألمانيا",
             "country": "أوروبا (ألمانيا)",
             "field": "وكالة إعلانات",
             "services": "تطوير الأعمال",
-            "logo": "/clients/image23.png"
+            "logo": "/clients/image14.png"
         },
         {
             "name": "فلل تركيا",
             "country": "تركيا (إزميت)",
             "field": "العقارات (مفهوم الفلل)",
             "services": "تطوير الأعمال والاستثمار",
-            "logo": "/clients/image24.jpg"
+            "logo": "/clients/image17.png"
         }
     ],
     "cta": {

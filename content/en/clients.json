@@ -36,49 +36,49 @@
             "country": "Morocco",
             "field": "Real Estate",
             "services": "Investment",
-            "logo": "/clients/image4.jpg"
+            "logo": "/clients/image5.jpg"
         },
         {
             "name": "USA Quality Partner",
             "country": "USA, Türkiye, and Qatar",
             "field": "Quality & Conformity Assessment",
             "services": "Business Development & Investment",
-            "logo": "/clients/image5.jpg"
+            "logo": "/clients/image4.jpg"
         },
         {
             "name": "AAA Accreditation",
             "country": "USA & UK",
             "field": "Accreditation Body",
             "services": "Governance, Investment, Valuation, and Business Development",
-            "logo": "/clients/image6.png"
+            "logo": "/clients/image7.png"
         },
         {
             "name": "Saudi Education Partner",
             "country": "Kingdom of Saudi Arabia",
             "field": "Educational Services",
             "services": "Business Development & Training",
-            "logo": "/clients/image7.png"
+            "logo": "/clients/image6.png"
         },
         {
             "name": "Codes and Colors",
             "country": "Turkiye & Qatar",
             "field": "IT and Digital Transformation (Odoo Golden Partner)",
             "services": "Governance & Investment",
-            "logo": "/clients/image8.png"
+            "logo": "/clients/image10.png"
         },
         {
             "name": "UK EdTech Partner",
             "country": "UK",
             "field": "EdTech",
             "services": "Investment & Business Development",
-            "logo": "/clients/image9.png"
+            "logo": "/clients/image8.png"
         },
         {
             "name": "Somalia Education Partner",
             "country": "Somalia",
             "field": "Education",
             "services": "Investment & Business Development",
-            "logo": "/clients/image10.png"
+            "logo": "/clients/image15.jpg"
         },
         {
             "name": "Qatar EdTech Partner",
@@ -92,91 +92,91 @@
             "country": "UK & Africa",
             "field": "NGO",
             "services": "Investment",
-            "logo": "/clients/image12.jpg"
+            "logo": "/clients/image13.jpg"
         },
         {
             "name": "Qatar Hypermarket",
             "country": "The State of Qatar",
             "field": "Retail (Hypermarkets)",
             "services": "Investment & Business Problems Solving",
-            "logo": "/clients/image13.jpg"
+            "logo": "/clients/image16.png"
         },
         {
             "name": "Alwajba Dairy & Juices Factory",
             "country": "The State of Qatar",
             "field": "Milk, Dairy, Juices Manufacturing",
             "services": "Governance & Investment",
-            "logo": "/clients/image14.png"
+            "logo": "/clients/image18.png"
         },
         {
             "name": "Qatar Supermarket",
             "country": "The State of Qatar",
             "field": "Retail (Supermarkets)",
             "services": "Governance, Investment & Business Problems Solving",
-            "logo": "/clients/image15.jpg"
+            "logo": "/clients/image19.png"
         },
         {
             "name": "Qatar 5-Star Hotel",
             "country": "The State of Qatar",
             "field": "Hotels & Hospitality (5 Stars)",
             "services": "Investment & Valuation",
-            "logo": "/clients/image16.png"
+            "logo": "/clients/image20.png"
         },
         {
             "name": "Qatar E-Commerce",
             "country": "The State of Qatar",
             "field": "E-Commerce",
             "services": "Investment & Valuation",
-            "logo": "/clients/image17.png"
+            "logo": "/clients/image21.png"
         },
         {
             "name": "Florida University",
             "country": "USA (Florida)",
             "field": "Higher Education University",
             "services": "Governance & Investment",
-            "logo": "/clients/image18.png"
+            "logo": "/clients/image22.png"
         },
         {
             "name": "California University",
             "country": "USA (California)",
             "field": "Higher Education University",
             "services": "Governance & Investment",
-            "logo": "/clients/image19.png"
+            "logo": "/clients/image23.png"
         },
         {
             "name": "Somalia University",
             "country": "Somalia",
             "field": "Higher Education University",
             "services": "Governance & Investment",
-            "logo": "/clients/image20.png"
+            "logo": "/clients/image24.jpg"
         },
         {
             "name": "Virginia Consulting House",
             "country": "USA (Virginia)",
             "field": "Consulting House",
             "services": "Governance, Business Development, & Investment",
-            "logo": "/clients/image21.png"
+            "logo": "/clients/image9.png"
         },
         {
             "name": "TargetAD Egypt",
             "country": "Egypt",
             "field": "Advertising Agency",
             "services": "Investment & Business Development",
-            "logo": "/clients/image22.png"
+            "logo": "/clients/image12.jpg"
         },
         {
             "name": "Germany Advertising",
             "country": "Europe (Germany)",
             "field": "Advertising Agency",
             "services": "Business Development",
-            "logo": "/clients/image23.png"
+            "logo": "/clients/image14.png"
         },
         {
             "name": "Turkiye Villas",
             "country": "Türkiye (Izmit)",
             "field": "Real Estate (Villas Concept)",
             "services": "Business Development & Investment",
-            "logo": "/clients/image24.jpg"
+            "logo": "/clients/image17.png"
         }
     ],
     "cta": {
