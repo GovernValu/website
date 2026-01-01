@@ -2,7 +2,7 @@
     "hero": {
         "badge": "Our Services",
         "title": "Comprehensive Advisory",
-        "subtitle": "The company provides its services globally to various bodies, companies, institutions, and organizations. Our services include:"
+        "subtitle": "The company provides its services globally to various bodies, companies, institutions, and organizations, whether governmental, private, non-governmental, non-profit, international organizations, and others."
     },
     "intro": {
         "title": "Holistic Solutions",
@@ -43,17 +43,17 @@
             "slug": "governance-systems",
             "title": "Governance Systems & Frameworks",
             "shortDescription": "Building and installing world-class governance systems compliant with international standards.",
-            "fullDescription": "We empower organizations by building and establishing governance systems in accordance with international and local standards. Our services include qualifying institutions, training on sound implementation, and promoting a culture of good governance through professional application and periodic reporting.",
+            "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
             "icon": "building",
             "image": "/services/governance.jpg",
             "details": {
                 "featureCard1": {
-                    "title": "Regulatory Compliance",
-                    "description": "Ensure full adherence to local and international corporate governance codes and standards."
+                    "title": "System Implementation",
+                    "description": "Building and establishing governance systems in accordance with international and local standards."
                 },
                 "featureCard2": {
-                    "title": "Board Efficiency",
-                    "description": "Enhance board performance through structured charters, committees, and evaluation frameworks."
+                    "title": "Empowerment & Culture",
+                    "description": "Qualifying institutions and promoting a culture of good governance through professional application."
                 },
                 "sidebar": {
                     "title": "Improve Governance?",
@@ -71,17 +71,17 @@
             "slug": "investment-networks",
             "title": "Investment Networks & Portfolios",
             "shortDescription": "Establishing investment relationships and managing portfolios for maximum growth.",
-            "fullDescription": "We help clients establish robust investment relationships, develop and implement investment plans, and evaluate opportunities. Our expertise extends to planning and managing investment portfolios and funds to ensure long-term value creation.",
+            "fullDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
             "icon": "chart",
             "image": "/services/investment.jpg",
             "details": {
                 "featureCard1": {
-                    "title": "Global Access",
-                    "description": "Unlock exclusive investment opportunities through our extensive global partner network."
+                    "title": "Investment Planning",
+                    "description": "Developing and implementing comprehensive investment plans tailored to your goals."
                 },
                 "featureCard2": {
-                    "title": "Strategic Growth",
-                    "description": "Maximize returns with data-driven portfolio management and asset allocation strategies."
+                    "title": "Portfolio Management",
+                    "description": "Planning and managing investment portfolios and funds for sustainable growth."
                 },
                 "sidebar": {
                     "title": "Seeking Capital?",
@@ -99,17 +99,17 @@
             "slug": "valuation",
             "title": "Company & Brand Valuation",
             "shortDescription": "Precise valuation services for companies, projects, and intangible assets.",
-            "fullDescription": "Our valuation services cover companies, specific projects, and brands. We use internationally recognized methodologies to provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
+            "fullDescription": "Company and Project Valuation. Brand Valuation. We use internationally recognized methodologies to provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
             "icon": "chart",
             "image": "/services/valuation.jpg",
             "details": {
                 "featureCard1": {
-                    "title": "Precision Analytics",
-                    "description": "Valuation methodologies fully compliant with IVS and IFRS standards."
+                    "title": "Business Valuation",
+                    "description": "Accurate valuation of companies and specific projects using recognized methodologies."
                 },
                 "featureCard2": {
-                    "title": "Market Insight",
-                    "description": "Deep understanding of regional market dynamics to assess true asset value."
+                    "title": "Brand Valuation",
+                    "description": "Assessing the true market value of your brand and intangible assets."
                 },
                 "sidebar": {
                     "title": "Valuation Needs?",
@@ -127,16 +127,16 @@
             "slug": "trademarks",
             "title": "Global Trademark Protection",
             "shortDescription": "Registering and protecting intellectual property and trademarks globally.",
-            "fullDescription": "We provide comprehensive services for registering and protecting trademarks globally. Secure your brand identity and intellectual property rights across different jurisdictions with our expert legal and regulatory guidance.",
+            "fullDescription": "Registering and protecting trademarks globally. We provide comprehensive services to secure your brand identity and intellectual property rights across different jurisdictions with our expert legal and regulatory guidance.",
             "icon": "shield",
             "details": {
                 "featureCard1": {
-                    "title": "Brand Security",
-                    "description": "Protect your brand identity from infringement in global markets."
+                    "title": "Global Registration",
+                    "description": "Comprehensive services for registering trademarks in international jurisdictions."
                 },
                 "featureCard2": {
-                    "title": "Global Reach",
-                    "description": "Registration services covering multiple jurisdictions and legal frameworks."
+                    "title": "IP Protection",
+                    "description": "Protecting your intellectual property rights and brand identity globally."
                 },
                 "sidebar": {
                     "title": "Protect Your IP",
@@ -154,16 +154,16 @@
             "slug": "business-problems",
             "title": "Business Crisis Solutions",
             "shortDescription": "Expert resolution for governance, financial, and operational challenges.",
-            "fullDescription": "We address complex challenges including lack of governance, inefficient implementation, financing and banking issues, operational bottlenecks, reputation management, and toxic corporate cultures. We turn crises into opportunities for reform.",
+            "fullDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
             "icon": "users",
             "details": {
                 "featureCard1": {
-                    "title": "Root Cause Analysis",
-                    "description": "Deep diagnostic of operational, financial, and cultural bottlenecks."
+                    "title": "Crisis Resolution",
+                    "description": "Solving critical financing, banking, and operational production problems."
                 },
                 "featureCard2": {
-                    "title": "Turnaround Strategy",
-                    "description": "Actionable plans to resolve crises and restore organizational health."
+                    "title": "Organizational Reform",
+                    "description": "Addressing toxic culture, weak HR, and reputation management issues."
                 },
                 "sidebar": {
                     "title": "Facing Challenges?",
@@ -181,16 +181,16 @@
             "slug": "cost-reduction",
             "title": "Cost Reduction & ROI",
             "shortDescription": "Maximizing returns through strategic cost optimization and efficiency.",
-            "fullDescription": "Our services focus on cost reduction and return maximization without compromising quality. We analyze your value chain to identify inefficiencies and implement lean strategies that boost your bottom line.",
+            "fullDescription": "Cost reduction and return maximization services. Our services focus on optimizing expenses without compromising quality. We analyze your value chain to identify inefficiencies and implement lean strategies that boost your bottom line.",
             "icon": "chart",
             "details": {
                 "featureCard1": {
-                    "title": "Lean Operations",
-                    "description": "Identify and eliminate waste to streamline processes and reduce overhead."
+                    "title": "Cost Optimization",
+                    "description": "Strategic services focused on reducing operational costs and overheads."
                 },
                 "featureCard2": {
-                    "title": "Profit Maximization",
-                    "description": "Strategies focused on improving margins and increasing shareholder value."
+                    "title": "Return Maximization",
+                    "description": "Implementing strategies to maximize ROI and financial performance."
                 },
                 "sidebar": {
                     "title": "Cut Costs Now",
@@ -208,16 +208,16 @@
             "slug": "strategy",
             "title": "Strategic Management",
             "shortDescription": "Building, planning, and executing winning corporate strategies.",
-            "fullDescription": "We assist in strategy building, planning, and strategic management. From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
+            "fullDescription": "Strategy building, planning, and strategic management. From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
             "icon": "globe",
             "details": {
                 "featureCard1": {
-                    "title": "Visionary Planning",
-                    "description": "Translate long-term goals into actionable strategic roadmaps."
+                    "title": "Strategy Building",
+                    "description": "Comprehensive development and planning of corporate strategies."
                 },
                 "featureCard2": {
-                    "title": "Execution Excellence",
-                    "description": "Align organizational resources to ensure successful strategy implementation."
+                    "title": "Strategic Management",
+                    "description": "Ongoing management and execution of strategic initiatives."
                 },
                 "sidebar": {
                     "title": "Need Direction?",
@@ -235,16 +235,16 @@
             "slug": "risk-management",
             "title": "Enterprise Risk Management",
             "shortDescription": "Identifying and mitigating risks to ensure business continuity.",
-            "fullDescription": "Our Risk Management services help you identify, assess, and mitigate risks. We build resilient frameworks that protect your assets and ensure business continuity in an unpredictable market.",
+            "fullDescription": "Risk Management. Our services help you identify, assess, and mitigate risks. We build resilient frameworks that protect your assets and ensure business continuity in an unpredictable market.",
             "icon": "shield",
             "details": {
                 "featureCard1": {
-                    "title": "Risk Assessment",
-                    "description": "Comprehensive identification of financial, operational, and strategic risks."
+                    "title": "Risk Identification",
+                    "description": "Proactive identification and assessment of potential business risks."
                 },
                 "featureCard2": {
-                    "title": "Resilience Building",
-                    "description": "Develop systems to anticipate and withstand market shocks."
+                    "title": "Mitigation Strategies",
+                    "description": "Developing frameworks to mitigate risks and ensure continuity."
                 },
                 "sidebar": {
                     "title": "Are You Protected?",
@@ -262,16 +262,16 @@
             "slug": "change-management",
             "title": "Change Management",
             "shortDescription": "Guiding organizations through structural and cultural transformation.",
-            "fullDescription": "We guide organizations through structural and cultural shifts. Our Change Management services ensure smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
+            "fullDescription": "Change Management. We guide organizations through structural and cultural shifts. Our services ensure smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
             "icon": "users",
             "details": {
                 "featureCard1": {
-                    "title": "Cultural Alignment",
-                    "description": "Ensure your team owns the change and drives the transformation."
+                    "title": "Transitional Guidance",
+                    "description": "Guiding organizations through complex structural and cultural changes."
                 },
                 "featureCard2": {
-                    "title": "Transition Support",
-                    "description": "Structured methodologies to manage the people side of change."
+                    "title": "Adoption Success",
+                    "description": "Ensuring high adoption rates and minimal disruption during transitions."
                 },
                 "sidebar": {
                     "title": "Leading Change?",
@@ -289,16 +289,16 @@
             "slug": "compliance",
             "title": "Compliance Systems",
             "shortDescription": "Ensuring adherence to laws, regulations, and ethical standards.",
-            "fullDescription": "We design and implement robust Compliance Systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards, protecting you from legal and reputational risks.",
+            "fullDescription": "Compliance Systems. We design and implement robust systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards, protecting you from legal and reputational risks.",
             "icon": "shield",
             "details": {
                 "featureCard1": {
-                    "title": "Regulatory Audit",
-                    "description": "Ongoing verification of adherence to legal and industry standards."
+                    "title": "System Design",
+                    "description": "Designing robust compliance systems tailored to your industry."
                 },
                 "featureCard2": {
-                    "title": "Ethics Frameworks",
-                    "description": "Building a culture of integrity and accountability."
+                    "title": "Adherence Monitoring",
+                    "description": "Ensuring ongoing adherence to laws, regulations, and standards."
                 },
                 "sidebar": {
                     "title": "Stay Compliant",
@@ -316,16 +316,16 @@
             "slug": "business-development",
             "title": "Business Development",
             "shortDescription": "Strategic consulting to expand markets and revenue streams.",
-            "fullDescription": "Our Business Development Consulting helps you identify new market opportunities, build strategic partnerships, and accelerate revenue growth through innovative business models.",
+            "fullDescription": "Business Development Consulting. helping you identify new market opportunities, build strategic partnerships, and accelerate revenue growth through innovative business models.",
             "icon": "chart",
             "details": {
                 "featureCard1": {
-                    "title": "Market Expansion",
-                    "description": "Identify and enter new high-growth markets effectively."
+                    "title": "Opportunity Identification",
+                    "description": "Identifying new market opportunities and revenue streams."
                 },
                 "featureCard2": {
-                    "title": "Revenue Growth",
-                    "description": "Innovative strategies to diversify and boost income streams."
+                    "title": "Strategic Partnerships",
+                    "description": "Building partnerships to accelerate business growth."
                 },
                 "sidebar": {
                     "title": "Ready to Grow?",
@@ -343,16 +343,16 @@
             "slug": "training",
             "title": "Training & Development",
             "shortDescription": "Empowering teams through work system development and training.",
-            "fullDescription": "We believe in empowering people. Our services include training and development of work systems, upskilling your workforce to meet modern challenges and drive organizational excellence.",
+            "fullDescription": "Training and development of work systems. We believe in empowering people. Our services include upskilling your workforce to meet modern challenges and drive organizational excellence.",
             "icon": "users",
             "details": {
                 "featureCard1": {
-                    "title": "Skill Enhancement",
-                    "description": "Tailored training programs to bridge capability gaps."
+                    "title": "Work Systems",
+                    "description": "Development and optimization of organizational work systems."
                 },
                 "featureCard2": {
-                    "title": "System Organization",
-                    "description": "Structuring work flows for maximum team productivity."
+                    "title": "Workforce Training",
+                    "description": "Comprehensive training programs to empower your team."
                 },
                 "sidebar": {
                     "title": "Upskill Your Team",
@@ -370,16 +370,16 @@
             "slug": "digital-transformation",
             "title": "Digital Transformation",
             "shortDescription": "Leveraging technology to revolutionize business operations.",
-            "fullDescription": "Our Digital Transformation consulting helps you leverage technology to revolutionize your business model, optimize operations, and deliver superior customer experiences in the digital age.",
+            "fullDescription": "Digital transformation consulting. We help you leverage technology to revolutionize your business model, optimize operations, and deliver superior customer experiences in the digital age.",
             "icon": "globe",
             "details": {
                 "featureCard1": {
-                    "title": "Tech Integration",
-                    "description": "Seamlessly adopt modern technologies like AI and Cloud."
+                    "title": "Consulting Strategy",
+                    "description": "Strategic consulting for comprehensive digital transformation."
                 },
                 "featureCard2": {
-                    "title": "Process Digitization",
-                    "description": "Automate workflows to improve speed and accuracy."
+                    "title": "Tech Leverage",
+                    "description": "Leveraging technology to revolutionize business models."
                 },
                 "sidebar": {
                     "title": "Go Digital",
@@ -397,16 +397,16 @@
             "slug": "quality-accreditation",
             "title": "Quality & Accreditation",
             "shortDescription": "Qualifying organizations for international quality certificates.",
-            "fullDescription": "We offer consulting services to qualify organizations for quality and accreditation certificates according to international standards. tailored for governmental, private, health, and educational institutions.",
+            "fullDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
             "icon": "shield",
             "details": {
                 "featureCard1": {
-                    "title": "Accreditation Readiness",
-                    "description": "Prepare your organization for ISO and other international standards."
+                    "title": "International Accreditation",
+                    "description": "Qualifying organizations for internationally recognized accreditation."
                 },
                 "featureCard2": {
-                    "title": "Quality Management",
-                    "description": "Implement TQM systems for continuous improvement."
+                    "title": "Quality Systems",
+                    "description": "Implementation of quality systems for government and private sectors."
                 },
                 "sidebar": {
                     "title": "Get Certified",
