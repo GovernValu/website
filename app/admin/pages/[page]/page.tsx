@@ -16,6 +16,7 @@ import PhilosophyEditor from "../../components/editors/PhilosophyEditor";
 import ExpertiseEditor from "../../components/editors/ExpertiseEditor";
 import TeamsEditor from "../../components/editors/TeamsEditor";
 import BoardEditor from "../../components/editors/BoardEditor";
+import ClientsEditor from "../../components/editors/ClientsEditor";
 
 interface PageEditorProps {
     params: Promise<{ page: string }>;
@@ -139,6 +140,7 @@ export default function PageEditor({ params }: PageEditorProps) {
         services: "Services",
         industries: "Industries",
         partners: "Partners",
+        clients: "Clients",
         about: "About - Who We Are",
         board: "About - Board",
         philosophy: "About - Philosophy",
@@ -169,6 +171,8 @@ export default function PageEditor({ params }: PageEditorProps) {
                 return <PartnersEditor content={activeContent as any} onChange={handleContentChange} />;
             case "board":
                 return <BoardEditor content={activeContent as any} onChange={handleContentChange} />;
+            case "clients":
+                return <ClientsEditor content={activeContent as any} onChange={handleContentChange} />;
             case "philosophy":
                 return <PhilosophyEditor content={activeContent as any} onChange={handleContentChange} />;
             case "expertise":

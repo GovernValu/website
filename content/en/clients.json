@@ -1,75 +1,184 @@
 {
     "hero": {
         "badge": "Our Clients",
-        "title": "Trusted by Leading",
-        "titleHighlight": "Organizations",
-        "subtitle": "We serve governments, corporates, financial institutions, NGOs, and international organizations across the MENA region."
+        "title": "Some of our",
+        "titleHighlight": "Honorable Clients",
+        "subtitle": "GovernValu is trusted by leading organizations across the globe, delivering governance-driven advisory solutions tailored to each client's unique needs."
     },
     "intro": {
         "sectionTitle": "Who We Serve",
-        "headline": "Diverse Clientele, Unified Excellence",
-        "paragraphs": [
-            "GovernValu serves a diverse range of clients across the MENA region, delivering governance-driven advisory solutions tailored to each organization's unique needs.",
-            "Our client portfolio spans governments, corporates, financial institutions, non-profit organizations, and international bodies, all united by a commitment to governance excellence and sustainable growth."
-        ]
+        "headline": "Diverse Clientele, Unified Excellence"
     },
-    "clientTypes": {
-        "sectionTitle": "Client Sectors",
-        "headline": "From Government to International Organizations",
-        "items": [
-            {
-                "title": "Government Entities",
-                "description": "Public sector organizations seeking governance frameworks, policy development, and institutional strengthening.",
-                "icon": "government"
-            },
-            {
-                "title": "Corporates",
-                "description": "Private companies pursuing governance excellence, investment readiness, and sustainable value creation.",
-                "icon": "corporate"
-            },
-            {
-                "title": "Financial Institutions",
-                "description": "Banks, investment firms, and insurance companies requiring risk management, compliance, and valuation services.",
-                "icon": "finance"
-            },
-            {
-                "title": "Non-Profit Organizations",
-                "description": "NGOs and foundations strengthening governance, transparency, and operational effectiveness.",
-                "icon": "nonprofit"
-            },
-            {
-                "title": "International Organizations",
-                "description": "Multilateral bodies and development agencies implementing governance standards and capacity building.",
-                "icon": "international"
-            },
-            {
-                "title": "Family Offices",
-                "description": "High-net-worth families establishing governance structures for wealth preservation and succession planning.",
-                "icon": "family"
-            }
-        ]
-    },
-    "testimonials": {
-        "sectionTitle": "Client Testimonials",
-        "headline": "What Our Clients Say",
-        "items": [
-            {
-                "quote": "GovernValu's governance advisory transformed our organization. Their expertise and professionalism exceeded our expectations.",
-                "author": "CEO",
-                "company": "Regional Financial Institution"
-            },
-            {
-                "quote": "The valuation services provided by GovernValu were comprehensive and aligned with international standards. Highly recommended.",
-                "author": "CFO",
-                "company": "Leading Corporate Group"
-            },
-            {
-                "quote": "Their deep understanding of governance frameworks helped us achieve compliance and build investor confidence.",
-                "author": "Board Member",
-                "company": "Government Entity"
-            }
-        ]
-    },
+    "clients": [
+        {
+            "name": "Al Baladi Holding",
+            "country": "The State of Qatar",
+            "field": "Wholesale & Retail",
+            "services": "Governance & Investment",
+            "logo": "/clients/albaladiholding.jpg"
+        },
+        {
+            "name": "Georgian Partner",
+            "country": "Georgia",
+            "field": "Real Estate",
+            "services": "Business Development",
+            "logo": "/clients/image3.jpg"
+        },
+        {
+            "name": "Ocean B Holding",
+            "country": "Africa & MENA Regions",
+            "field": "Real Estate & Mega Projects",
+            "services": "Investment",
+            "logo": "/clients/oceanbholding.png"
+        },
+        {
+            "name": "Morocco Partner",
+            "country": "Morocco",
+            "field": "Real Estate",
+            "services": "Investment",
+            "logo": "/clients/image4.jpg"
+        },
+        {
+            "name": "USA Quality Partner",
+            "country": "USA, Türkiye, and Qatar",
+            "field": "Quality & Conformity Assessment",
+            "services": "Business Development & Investment",
+            "logo": "/clients/image5.jpg"
+        },
+        {
+            "name": "AAA Accreditation",
+            "country": "USA & UK",
+            "field": "Accreditation Body",
+            "services": "Governance, Investment, Valuation, and Business Development",
+            "logo": "/clients/image6.png"
+        },
+        {
+            "name": "Saudi Education Partner",
+            "country": "Kingdom of Saudi Arabia",
+            "field": "Educational Services",
+            "services": "Business Development & Training",
+            "logo": "/clients/image7.png"
+        },
+        {
+            "name": "Codes and Colors",
+            "country": "Turkiye & Qatar",
+            "field": "IT and Digital Transformation (Odoo Golden Partner)",
+            "services": "Governance & Investment",
+            "logo": "/clients/image8.png"
+        },
+        {
+            "name": "UK EdTech Partner",
+            "country": "UK",
+            "field": "EdTech",
+            "services": "Investment & Business Development",
+            "logo": "/clients/image9.png"
+        },
+        {
+            "name": "Somalia Education Partner",
+            "country": "Somalia",
+            "field": "Education",
+            "services": "Investment & Business Development",
+            "logo": "/clients/image10.png"
+        },
+        {
+            "name": "Qatar EdTech Partner",
+            "country": "The State of Qatar",
+            "field": "EdTech & IT Consulting",
+            "services": "Governance & Business Development",
+            "logo": "/clients/image11.png"
+        },
+        {
+            "name": "UK Africa NGO",
+            "country": "UK & Africa",
+            "field": "NGO",
+            "services": "Investment",
+            "logo": "/clients/image12.jpg"
+        },
+        {
+            "name": "Qatar Hypermarket",
+            "country": "The State of Qatar",
+            "field": "Retail (Hypermarkets)",
+            "services": "Investment & Business Problems Solving",
+            "logo": "/clients/image13.jpg"
+        },
+        {
+            "name": "Alwajba Dairy & Juices Factory",
+            "country": "The State of Qatar",
+            "field": "Milk, Dairy, Juices Manufacturing",
+            "services": "Governance & Investment",
+            "logo": "/clients/image14.png"
+        },
+        {
+            "name": "Qatar Supermarket",
+            "country": "The State of Qatar",
+            "field": "Retail (Supermarkets)",
+            "services": "Governance, Investment & Business Problems Solving",
+            "logo": "/clients/image15.jpg"
+        },
+        {
+            "name": "Qatar 5-Star Hotel",
+            "country": "The State of Qatar",
+            "field": "Hotels & Hospitality (5 Stars)",
+            "services": "Investment & Valuation",
+            "logo": "/clients/image16.png"
+        },
+        {
+            "name": "Qatar E-Commerce",
+            "country": "The State of Qatar",
+            "field": "E-Commerce",
+            "services": "Investment & Valuation",
+            "logo": "/clients/image17.png"
+        },
+        {
+            "name": "Florida University",
+            "country": "USA (Florida)",
+            "field": "Higher Education University",
+            "services": "Governance & Investment",
+            "logo": "/clients/image18.png"
+        },
+        {
+            "name": "California University",
+            "country": "USA (California)",
+            "field": "Higher Education University",
+            "services": "Governance & Investment",
+            "logo": "/clients/image19.png"
+        },
+        {
+            "name": "Somalia University",
+            "country": "Somalia",
+            "field": "Higher Education University",
+            "services": "Governance & Investment",
+            "logo": "/clients/image20.png"
+        },
+        {
+            "name": "Virginia Consulting House",
+            "country": "USA (Virginia)",
+            "field": "Consulting House",
+            "services": "Governance, Business Development, & Investment",
+            "logo": "/clients/image21.png"
+        },
+        {
+            "name": "TargetAD Egypt",
+            "country": "Egypt",
+            "field": "Advertising Agency",
+            "services": "Investment & Business Development",
+            "logo": "/clients/image22.png"
+        },
+        {
+            "name": "Germany Advertising",
+            "country": "Europe (Germany)",
+            "field": "Advertising Agency",
+            "services": "Business Development",
+            "logo": "/clients/image23.png"
+        },
+        {
+            "name": "Turkiye Villas",
+            "country": "Türkiye (Izmit)",
+            "field": "Real Estate (Villas Concept)",
+            "services": "Business Development & Investment",
+            "logo": "/clients/image24.jpg"
+        }
+    ],
     "cta": {
         "headline": "Ready to join our client",
         "headlineHighlight": "portfolio",
