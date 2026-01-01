@@ -59,6 +59,115 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                 />
             </SectionCard>
 
+            {/* Service Detail Page Settings */}
+            <SectionCard title="Service Detail Page" defaultOpen={false}>
+                <p className="text-sm text-gray-500 mb-4">These settings apply to all individual service detail pages.</p>
+
+                <div className="space-y-4">
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                        <h4 className="font-medium text-sm mb-3">Feature Card 1</h4>
+                        <TextField
+                            label="Title"
+                            value={content.detailPage?.featureCard1?.title || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                featureCard1: { ...content.detailPage?.featureCard1, title: v }
+                            })}
+                        />
+                        <TextArea
+                            label="Description"
+                            value={content.detailPage?.featureCard1?.description || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                featureCard1: { ...content.detailPage?.featureCard1, description: v }
+                            })}
+                            rows={2}
+                        />
+                    </div>
+
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                        <h4 className="font-medium text-sm mb-3">Feature Card 2</h4>
+                        <TextField
+                            label="Title"
+                            value={content.detailPage?.featureCard2?.title || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                featureCard2: { ...content.detailPage?.featureCard2, title: v }
+                            })}
+                        />
+                        <TextArea
+                            label="Description"
+                            value={content.detailPage?.featureCard2?.description || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                featureCard2: { ...content.detailPage?.featureCard2, description: v }
+                            })}
+                            rows={2}
+                        />
+                    </div>
+
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                        <h4 className="font-medium text-sm mb-3">Sidebar</h4>
+                        <TextField
+                            label="Title"
+                            value={content.detailPage?.sidebar?.title || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                sidebar: { ...content.detailPage?.sidebar, title: v }
+                            })}
+                        />
+                        <TextArea
+                            label="Description"
+                            value={content.detailPage?.sidebar?.description || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                sidebar: { ...content.detailPage?.sidebar, description: v }
+                            })}
+                            rows={2}
+                        />
+                    </div>
+
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                        <h4 className="font-medium text-sm mb-3">CTA Banner</h4>
+                        <TextField
+                            label="Headline"
+                            value={content.detailPage?.ctaBanner?.headline || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                ctaBanner: { ...content.detailPage?.ctaBanner, headline: v }
+                            })}
+                        />
+                        <TextField
+                            label="Subtext"
+                            value={content.detailPage?.ctaBanner?.subtext || ""}
+                            onChange={(v) => updateField("detailPage", {
+                                ...content.detailPage,
+                                ctaBanner: { ...content.detailPage?.ctaBanner, subtext: v }
+                            })}
+                            helpText="Text before the service name"
+                        />
+                        <div className="grid grid-cols-2 gap-3">
+                            <TextField
+                                label="Button 1 Text"
+                                value={content.detailPage?.ctaBanner?.button1Text || ""}
+                                onChange={(v) => updateField("detailPage", {
+                                    ...content.detailPage,
+                                    ctaBanner: { ...content.detailPage?.ctaBanner, button1Text: v }
+                                })}
+                            />
+                            <TextField
+                                label="Button 2 Text"
+                                value={content.detailPage?.ctaBanner?.button2Text || ""}
+                                onChange={(v) => updateField("detailPage", {
+                                    ...content.detailPage,
+                                    ctaBanner: { ...content.detailPage?.ctaBanner, button2Text: v }
+                                })}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </SectionCard>
+
             {/* Services */}
             <SectionCard title="Services" defaultOpen={false}>
                 <ArrayEditor

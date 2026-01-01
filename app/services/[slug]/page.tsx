@@ -86,6 +86,7 @@ export default function ServiceDetailPage() {
     if (!service) return notFound();
 
     const description = service.fullDescription || service.shortDescription || "";
+    const detailPage = content.detailPage || {};
 
     return (
         <>
@@ -179,8 +180,8 @@ export default function ServiceDetailPage() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">Professional Expertise</h3>
-                                    <p className="text-gray-600 text-sm">Delivered by industry-leading professionals with deep domain knowledge.</p>
+                                    <h3 className="font-bold text-onyx mb-2">{detailPage.featureCard1?.title || "Professional Expertise"}</h3>
+                                    <p className="text-gray-600 text-sm">{detailPage.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
                                 </div>
                                 <div className="p-6 bg-gray-50 border-l-4 border-brand">
                                     <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
@@ -188,8 +189,8 @@ export default function ServiceDetailPage() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">Tailored Solutions</h3>
-                                    <p className="text-gray-600 text-sm">Customized approaches designed to fit your unique organizational needs.</p>
+                                    <h3 className="font-bold text-onyx mb-2">{detailPage.featureCard2?.title || "Tailored Solutions"}</h3>
+                                    <p className="text-gray-600 text-sm">{detailPage.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
                                 </div>
                             </div>
                         </div>
@@ -198,8 +199,8 @@ export default function ServiceDetailPage() {
                         <div className="reveal" style={{ transitionDelay: "100ms" }}>
                             {/* Quick Contact Card */}
                             <div className="bg-onyx text-white p-8 rounded-xl sticky top-24">
-                                <h3 className="text-xl font-serif mb-4">Need Help?</h3>
-                                <p className="text-gray-400 text-sm mb-6">Contact us to learn more about how we can help your organization.</p>
+                                <h3 className="text-xl font-serif mb-4">{detailPage.sidebar?.title || "Need Help?"}</h3>
+                                <p className="text-gray-400 text-sm mb-6">{detailPage.sidebar?.description || "Contact us to learn more about how we can help your organization."}</p>
 
                                 <Link
                                     href="/contact"
@@ -224,23 +225,23 @@ export default function ServiceDetailPage() {
             <section className="py-20 bg-brand">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
                     <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">
-                        Ready to Transform Your Organization?
+                        {detailPage.ctaBanner?.headline || "Ready to Transform Your Organization?"}
                     </h2>
                     <p className="text-xl text-white/80 font-light mb-8">
-                        Let us help you achieve excellence in {service.title.toLowerCase()}.
+                        {detailPage.ctaBanner?.subtext || "Let us help you achieve excellence in"} {service.title.toLowerCase()}.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/contact"
                             className="inline-block px-10 py-4 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-colors"
                         >
-                            Schedule a Call
+                            {detailPage.ctaBanner?.button1Text || "Schedule a Call"}
                         </Link>
                         <Link
                             href="/about/expertise"
                             className="inline-block px-10 py-4 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
                         >
-                            Learn About Us
+                            {detailPage.ctaBanner?.button2Text || "Learn About Us"}
                         </Link>
                     </div>
                 </div>
