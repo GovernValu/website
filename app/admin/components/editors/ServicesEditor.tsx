@@ -31,9 +31,9 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                         onChange={(v) => updateField("hero", { ...content.hero, title: v })}
                     />
                     <TextField
-                        label="Highlighted Text"
-                        value={content.hero?.titleHighlight || ""}
-                        onChange={(v) => updateField("hero", { ...content.hero, titleHighlight: v })}
+                        label="Badge Text"
+                        value={content.hero?.badge || ""}
+                        onChange={(v) => updateField("hero", { ...content.hero, badge: v })}
                     />
                 </div>
                 <TextArea
@@ -44,132 +44,23 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                 />
             </SectionCard>
 
-            {/* Methodology */}
-            <SectionCard title="Methodology" defaultOpen={false}>
+            {/* Intro */}
+            <SectionCard title="Introduction" defaultOpen={false}>
                 <TextField
-                    label="Section Title"
-                    value={content.methodology?.sectionTitle || ""}
-                    onChange={(v) => updateField("methodology", { ...content.methodology, sectionTitle: v })}
+                    label="Title"
+                    value={content.intro?.title || ""}
+                    onChange={(v) => updateField("intro", { ...content.intro, title: v })}
                 />
                 <TextArea
-                    label="Quote"
-                    value={content.methodology?.quote || ""}
-                    onChange={(v) => updateField("methodology", { ...content.methodology, quote: v })}
-                    rows={3}
+                    label="Text"
+                    value={content.intro?.text || ""}
+                    onChange={(v) => updateField("intro", { ...content.intro, text: v })}
+                    rows={2}
                 />
-            </SectionCard>
-
-            {/* Service Detail Page Settings */}
-            <SectionCard title="Service Detail Page" defaultOpen={false}>
-                <p className="text-sm text-gray-500 mb-4">These settings apply to all individual service detail pages.</p>
-
-                <div className="space-y-4">
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                        <h4 className="font-medium text-sm mb-3">Feature Card 1</h4>
-                        <TextField
-                            label="Title"
-                            value={content.detailPage?.featureCard1?.title || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                featureCard1: { ...content.detailPage?.featureCard1, title: v }
-                            })}
-                        />
-                        <TextArea
-                            label="Description"
-                            value={content.detailPage?.featureCard1?.description || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                featureCard1: { ...content.detailPage?.featureCard1, description: v }
-                            })}
-                            rows={2}
-                        />
-                    </div>
-
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                        <h4 className="font-medium text-sm mb-3">Feature Card 2</h4>
-                        <TextField
-                            label="Title"
-                            value={content.detailPage?.featureCard2?.title || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                featureCard2: { ...content.detailPage?.featureCard2, title: v }
-                            })}
-                        />
-                        <TextArea
-                            label="Description"
-                            value={content.detailPage?.featureCard2?.description || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                featureCard2: { ...content.detailPage?.featureCard2, description: v }
-                            })}
-                            rows={2}
-                        />
-                    </div>
-
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                        <h4 className="font-medium text-sm mb-3">Sidebar</h4>
-                        <TextField
-                            label="Title"
-                            value={content.detailPage?.sidebar?.title || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                sidebar: { ...content.detailPage?.sidebar, title: v }
-                            })}
-                        />
-                        <TextArea
-                            label="Description"
-                            value={content.detailPage?.sidebar?.description || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                sidebar: { ...content.detailPage?.sidebar, description: v }
-                            })}
-                            rows={2}
-                        />
-                    </div>
-
-                    <div className="p-4 bg-gray-50 rounded-lg">
-                        <h4 className="font-medium text-sm mb-3">CTA Banner</h4>
-                        <TextField
-                            label="Headline"
-                            value={content.detailPage?.ctaBanner?.headline || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                ctaBanner: { ...content.detailPage?.ctaBanner, headline: v }
-                            })}
-                        />
-                        <TextField
-                            label="Subtext"
-                            value={content.detailPage?.ctaBanner?.subtext || ""}
-                            onChange={(v) => updateField("detailPage", {
-                                ...content.detailPage,
-                                ctaBanner: { ...content.detailPage?.ctaBanner, subtext: v }
-                            })}
-                            helpText="Text before the service name"
-                        />
-                        <div className="grid grid-cols-2 gap-3">
-                            <TextField
-                                label="Button 1 Text"
-                                value={content.detailPage?.ctaBanner?.button1Text || ""}
-                                onChange={(v) => updateField("detailPage", {
-                                    ...content.detailPage,
-                                    ctaBanner: { ...content.detailPage?.ctaBanner, button1Text: v }
-                                })}
-                            />
-                            <TextField
-                                label="Button 2 Text"
-                                value={content.detailPage?.ctaBanner?.button2Text || ""}
-                                onChange={(v) => updateField("detailPage", {
-                                    ...content.detailPage,
-                                    ctaBanner: { ...content.detailPage?.ctaBanner, button2Text: v }
-                                })}
-                            />
-                        </div>
-                    </div>
-                </div>
             </SectionCard>
 
             {/* Services */}
-            <SectionCard title="Services" defaultOpen={false}>
+            <SectionCard title="Services List" defaultOpen={false}>
                 <ArrayEditor
                     label="Service Items"
                     items={content.services || []}
@@ -182,53 +73,160 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                         features: [],
                         fullDescription: "",
                         image: "",
-                        benefits: [],
+                        details: {
+                            featureCard1: { title: "", description: "" },
+                            featureCard2: { title: "", description: "" },
+                            sidebar: { title: "", description: "" },
+                            ctaBanner: { headline: "", subtext: "", button1Text: "", button2Text: "" }
+                        }
                     })}
                     itemLabel={(item) => item.title || "New Service"}
                     renderItem={(item, _, updateItem) => (
-                        <div className="space-y-3">
-                            <div className="grid grid-cols-2 gap-3">
+                        <div className="space-y-6">
+                            {/* Basic Info */}
+                            <div className="space-y-3 p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <h4 className="font-semibold text-gray-700">Basic Information</h4>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <TextField
+                                        label="Slug"
+                                        value={item.slug}
+                                        onChange={(v) => updateItem({ slug: v })}
+                                        helpText="URL-friendly name"
+                                    />
+                                    <TextField
+                                        label="Icon"
+                                        value={item.icon}
+                                        onChange={(v) => updateItem({ icon: v })}
+                                        helpText="building, chart, shield, bank, globe, users"
+                                    />
+                                </div>
                                 <TextField
-                                    label="Slug"
-                                    value={item.slug}
-                                    onChange={(v) => updateItem({ slug: v })}
-                                    helpText="URL-friendly name"
+                                    label="Title"
+                                    value={item.title}
+                                    onChange={(v) => updateItem({ title: v })}
                                 />
-                                <TextField
-                                    label="Icon"
-                                    value={item.icon}
-                                    onChange={(v) => updateItem({ icon: v })}
-                                    helpText="building, chart, shield, bank, globe, users"
+                                <TextArea
+                                    label="Short Description"
+                                    value={item.shortDescription}
+                                    onChange={(v) => updateItem({ shortDescription: v })}
+                                    rows={2}
+                                />
+                                <TextArea
+                                    label="Full Description"
+                                    value={item.fullDescription || ""}
+                                    onChange={(v) => updateItem({ fullDescription: v })}
+                                    rows={3}
+                                />
+                                <ImageField
+                                    label="Main Image"
+                                    value={item.image || ""}
+                                    onChange={(v) => updateItem({ image: v })}
                                 />
                             </div>
-                            <TextField
-                                label="Title"
-                                value={item.title}
-                                onChange={(v) => updateItem({ title: v })}
-                            />
-                            <TextArea
-                                label="Short Description"
-                                value={item.shortDescription}
-                                onChange={(v) => updateItem({ shortDescription: v })}
-                                rows={2}
-                            />
-                            <TextArea
-                                label="Full Description"
-                                value={item.fullDescription || ""}
-                                onChange={(v) => updateItem({ fullDescription: v })}
-                                rows={3}
-                            />
-                            <ImageField
-                                label="Image"
-                                value={item.image || ""}
-                                onChange={(v) => updateItem({ image: v })}
-                            />
-                            <StringArrayEditor
-                                label="Features"
-                                items={item.features || []}
-                                onChange={(features: string[]) => updateItem({ features } as any)}
-                                placeholder="Enter feature..."
-                            />
+
+                            {/* Detail Page Content */}
+                            <div className="space-y-4 p-4 bg-blue-50 rounded-lg border border-blue-100">
+                                <h4 className="font-semibold text-blue-800">Landing Page Details</h4>
+                                <p className="text-xs text-blue-600 mb-2">Content specific to the detail page of this service.</p>
+
+                                {/* Feature Cards */}
+                                <div className="grid md:grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <h5 className="text-sm font-medium">Feature Card 1</h5>
+                                        <TextField
+                                            label="Title"
+                                            value={item.details?.featureCard1?.title || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, featureCard1: { ...item.details?.featureCard1, title: v } }
+                                            })}
+                                        />
+                                        <TextArea
+                                            label="Description"
+                                            value={item.details?.featureCard1?.description || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, featureCard1: { ...item.details?.featureCard1, description: v } }
+                                            })}
+                                            rows={2}
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <h5 className="text-sm font-medium">Feature Card 2</h5>
+                                        <TextField
+                                            label="Title"
+                                            value={item.details?.featureCard2?.title || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, featureCard2: { ...item.details?.featureCard2, title: v } }
+                                            })}
+                                        />
+                                        <TextArea
+                                            label="Description"
+                                            value={item.details?.featureCard2?.description || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, featureCard2: { ...item.details?.featureCard2, description: v } }
+                                            })}
+                                            rows={2}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Sidebar */}
+                                <div className="space-y-2">
+                                    <h5 className="text-sm font-medium">Sidebar Contact</h5>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Title"
+                                            value={item.details?.sidebar?.title || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, sidebar: { ...item.details?.sidebar, title: v } }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Description"
+                                            value={item.details?.sidebar?.description || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, sidebar: { ...item.details?.sidebar, description: v } }
+                                            })}
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* CTA Banner */}
+                                <div className="space-y-2">
+                                    <h5 className="text-sm font-medium">Bottom CTA Banner</h5>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Headline"
+                                            value={item.details?.ctaBanner?.headline || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, ctaBanner: { ...item.details?.ctaBanner, headline: v } }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Subtext"
+                                            value={item.details?.ctaBanner?.subtext || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, ctaBanner: { ...item.details?.ctaBanner, subtext: v } }
+                                            })}
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Button 1 Text"
+                                            value={item.details?.ctaBanner?.button1Text || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, ctaBanner: { ...item.details?.ctaBanner, button1Text: v } }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Button 2 Text"
+                                            value={item.details?.ctaBanner?.button2Text || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, ctaBanner: { ...item.details?.ctaBanner, button2Text: v } }
+                                            })}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     )}
                 />
@@ -279,38 +277,19 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                 />
             </SectionCard>
 
-            {/* CTA */}
-            <SectionCard title="Call to Action" defaultOpen={false}>
-                <div className="grid grid-cols-2 gap-4">
-                    <TextField
-                        label="Headline"
-                        value={content.cta?.headline || ""}
-                        onChange={(v) => updateField("cta", { ...content.cta, headline: v })}
-                    />
-                    <TextField
-                        label="Highlighted Text"
-                        value={content.cta?.headlineHighlight || ""}
-                        onChange={(v) => updateField("cta", { ...content.cta, headlineHighlight: v })}
-                    />
-                </div>
-                <TextArea
-                    label="Subtitle"
-                    value={content.cta?.subtitle || ""}
-                    onChange={(v) => updateField("cta", { ...content.cta, subtitle: v })}
-                    rows={2}
+            {/* Methodology */}
+            <SectionCard title="Methodology" defaultOpen={false}>
+                <TextField
+                    label="Section Title"
+                    value={content.methodology?.sectionTitle || ""}
+                    onChange={(v) => updateField("methodology", { ...content.methodology, sectionTitle: v })}
                 />
-                <div className="grid grid-cols-2 gap-4">
-                    <TextField
-                        label="Button Text"
-                        value={content.cta?.buttonText || ""}
-                        onChange={(v) => updateField("cta", { ...content.cta, buttonText: v })}
-                    />
-                    <TextField
-                        label="Button Link"
-                        value={content.cta?.buttonLink || ""}
-                        onChange={(v) => updateField("cta", { ...content.cta, buttonLink: v })}
-                    />
-                </div>
+                <TextArea
+                    label="Quote"
+                    value={content.methodology?.quote || ""}
+                    onChange={(v) => updateField("methodology", { ...content.methodology, quote: v })}
+                    rows={3}
+                />
             </SectionCard>
         </div>
     );

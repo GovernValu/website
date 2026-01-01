@@ -86,7 +86,7 @@ export default function ServiceDetailPage() {
     if (!service) return notFound();
 
     const description = service.fullDescription || service.shortDescription || "";
-    const detailPage = content.detailPage || {};
+    const detailPage = service.details || {};
 
     return (
         <>

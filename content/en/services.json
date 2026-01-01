@@ -2,31 +2,11 @@
     "hero": {
         "badge": "Our Services",
         "title": "Comprehensive Advisory",
-        "subtitle": "The company provides its services globally to various bodies, companies, institutions, and organizations, whether governmental, private, non-governmental, non-profit, international organizations, and others. The services are as follows:"
+        "subtitle": "The company provides its services globally to various bodies, companies, institutions, and organizations. Our services include:"
     },
     "intro": {
         "title": "Holistic Solutions",
         "text": "We offer a range of specialized services designed to enhance governance, strategy, and value creation."
-    },
-    "detailPage": {
-        "featureCard1": {
-            "title": "Professional Expertise",
-            "description": "Delivered by industry-leading professionals with deep domain knowledge."
-        },
-        "featureCard2": {
-            "title": "Tailored Solutions",
-            "description": "Customized approaches designed to fit your unique organizational needs."
-        },
-        "sidebar": {
-            "title": "Need Help?",
-            "description": "Contact us to learn more about how we can help your organization."
-        },
-        "ctaBanner": {
-            "headline": "Ready to Transform Your Organization?",
-            "subtext": "Let us help you achieve excellence in",
-            "button1Text": "Schedule a Call",
-            "button2Text": "Learn About Us"
-        }
     },
     "engagement": {
         "sectionTitle": "Engagement Process",
@@ -61,134 +41,384 @@
     "services": [
         {
             "slug": "governance-systems",
-            "title": "Building, Implementing, and Empowering Governance Systems",
-            "shortDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
-            "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
+            "title": "Governance Systems & Frameworks",
+            "shortDescription": "Building and installing world-class governance systems compliant with international standards.",
+            "fullDescription": "We empower organizations by building and establishing governance systems in accordance with international and local standards. Our services include qualifying institutions, training on sound implementation, and promoting a culture of good governance through professional application and periodic reporting.",
             "icon": "building",
             "image": "/services/governance.jpg",
-            "benefits": [
-                {
-                    "title": "Compliance",
-                    "description": "Ensure adherence to local and international regulations."
+            "details": {
+                "featureCard1": {
+                    "title": "Regulatory Compliance",
+                    "description": "Ensure full adherence to local and international corporate governance codes and standards."
                 },
-                {
-                    "title": "Efficiency",
-                    "description": "Streamline decision-making processes."
+                "featureCard2": {
+                    "title": "Board Efficiency",
+                    "description": "Enhance board performance through structured charters, committees, and evaluation frameworks."
+                },
+                "sidebar": {
+                    "title": "Improve Governance?",
+                    "description": "Speak with our experts to assess your current governance maturity."
+                },
+                "ctaBanner": {
+                    "headline": "Build a Fortress of Trust",
+                    "subtext": "Empower your organization with world-class governance systems.",
+                    "button1Text": "Get Assessed",
+                    "button2Text": "Our Framework"
                 }
-            ]
+            }
         },
         {
             "slug": "investment-networks",
-            "title": "Building investment networks and relationships",
-            "shortDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
-            "fullDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
+            "title": "Investment Networks & Portfolios",
+            "shortDescription": "Establishing investment relationships and managing portfolios for maximum growth.",
+            "fullDescription": "We help clients establish robust investment relationships, develop and implement investment plans, and evaluate opportunities. Our expertise extends to planning and managing investment portfolios and funds to ensure long-term value creation.",
             "icon": "chart",
             "image": "/services/investment.jpg",
-            "benefits": [
-                {
-                    "title": "Growth",
-                    "description": "Expand your investment horizon."
+            "details": {
+                "featureCard1": {
+                    "title": "Global Access",
+                    "description": "Unlock exclusive investment opportunities through our extensive global partner network."
                 },
-                {
-                    "title": "Network",
-                    "description": "Access to exclusive investment opportunities."
+                "featureCard2": {
+                    "title": "Strategic Growth",
+                    "description": "Maximize returns with data-driven portfolio management and asset allocation strategies."
+                },
+                "sidebar": {
+                    "title": "Seeking Capital?",
+                    "description": "Let us connect you with the right investment partners."
+                },
+                "ctaBanner": {
+                    "headline": "Expand Your Horizons",
+                    "subtext": "Connect with the right partners for sustainable growth.",
+                    "button1Text": "Explore Networks",
+                    "button2Text": "View Portfolio"
                 }
-            ]
+            }
         },
         {
             "slug": "valuation",
-            "title": "Company and Brand Valuation",
-            "shortDescription": "Company and Project Valuation. Brand Valuation.",
-            "fullDescription": "Company and Project Valuation. Brand Valuation.",
+            "title": "Company & Brand Valuation",
+            "shortDescription": "Precise valuation services for companies, projects, and intangible assets.",
+            "fullDescription": "Our valuation services cover companies, specific projects, and brands. We use internationally recognized methodologies to provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
             "icon": "chart",
             "image": "/services/valuation.jpg",
-            "benefits": [
-                {
-                    "title": "Accuracy",
-                    "description": "Precise valuation methodologies."
+            "details": {
+                "featureCard1": {
+                    "title": "Precision Analytics",
+                    "description": "Valuation methodologies fully compliant with IVS and IFRS standards."
                 },
-                {
-                    "title": "Insight",
-                    "description": "Understand the true value of your assets."
+                "featureCard2": {
+                    "title": "Market Insight",
+                    "description": "Deep understanding of regional market dynamics to assess true asset value."
+                },
+                "sidebar": {
+                    "title": "Valuation Needs?",
+                    "description": "Get a precise estimate of your business worth today."
+                },
+                "ctaBanner": {
+                    "headline": "Know Your True Value",
+                    "subtext": "Make informed decisions with accurate business valuation.",
+                    "button1Text": "Request Valuation",
+                    "button2Text": "Learn More"
                 }
-            ]
+            }
         },
         {
             "slug": "trademarks",
-            "title": "Registering and protecting trademarks globally",
-            "shortDescription": "Registering and protecting trademarks globally.",
-            "fullDescription": "Registering and protecting trademarks globally.",
-            "icon": "shield"
+            "title": "Global Trademark Protection",
+            "shortDescription": "Registering and protecting intellectual property and trademarks globally.",
+            "fullDescription": "We provide comprehensive services for registering and protecting trademarks globally. Secure your brand identity and intellectual property rights across different jurisdictions with our expert legal and regulatory guidance.",
+            "icon": "shield",
+            "details": {
+                "featureCard1": {
+                    "title": "Brand Security",
+                    "description": "Protect your brand identity from infringement in global markets."
+                },
+                "featureCard2": {
+                    "title": "Global Reach",
+                    "description": "Registration services covering multiple jurisdictions and legal frameworks."
+                },
+                "sidebar": {
+                    "title": "Protect Your IP",
+                    "description": "Don't leave your brand vulnerable. Secure it now."
+                },
+                "ctaBanner": {
+                    "headline": "Secure Your Legacy",
+                    "subtext": "Protect your most valuable asset: your brand.",
+                    "button1Text": "Start Registration",
+                    "button2Text": "IP Services"
+                }
+            }
         },
         {
             "slug": "business-problems",
-            "title": "Business Problems Solutions",
-            "shortDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
-            "fullDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
-            "icon": "users"
+            "title": "Business Crisis Solutions",
+            "shortDescription": "Expert resolution for governance, financial, and operational challenges.",
+            "fullDescription": "We address complex challenges including lack of governance, inefficient implementation, financing and banking issues, operational bottlenecks, reputation management, and toxic corporate cultures. We turn crises into opportunities for reform.",
+            "icon": "users",
+            "details": {
+                "featureCard1": {
+                    "title": "Root Cause Analysis",
+                    "description": "Deep diagnostic of operational, financial, and cultural bottlenecks."
+                },
+                "featureCard2": {
+                    "title": "Turnaround Strategy",
+                    "description": "Actionable plans to resolve crises and restore organizational health."
+                },
+                "sidebar": {
+                    "title": "Facing Challenges?",
+                    "description": "Discreet, professional assistance for critical business issues."
+                },
+                "ctaBanner": {
+                    "headline": "Navigate the Storm",
+                    "subtext": "Turn business challenges into restructuring opportunities.",
+                    "button1Text": "Get Help",
+                    "button2Text": "Case Studies"
+                }
+            }
         },
         {
             "slug": "cost-reduction",
-            "title": "Cost reduction and return maximization services",
-            "shortDescription": "Cost reduction and return maximization services.",
-            "fullDescription": "Cost reduction and return maximization services.",
-            "icon": "chart"
+            "title": "Cost Reduction & ROI",
+            "shortDescription": "Maximizing returns through strategic cost optimization and efficiency.",
+            "fullDescription": "Our services focus on cost reduction and return maximization without compromising quality. We analyze your value chain to identify inefficiencies and implement lean strategies that boost your bottom line.",
+            "icon": "chart",
+            "details": {
+                "featureCard1": {
+                    "title": "Lean Operations",
+                    "description": "Identify and eliminate waste to streamline processes and reduce overhead."
+                },
+                "featureCard2": {
+                    "title": "Profit Maximization",
+                    "description": "Strategies focused on improving margins and increasing shareholder value."
+                },
+                "sidebar": {
+                    "title": "Cut Costs Now",
+                    "description": "Find out where you can save without sacrificing quality."
+                },
+                "ctaBanner": {
+                    "headline": "Optimize for Profit",
+                    "subtext": "Achieve more with less through strategic efficiency.",
+                    "button1Text": "Audit Costs",
+                    "button2Text": "ROI Strategies"
+                }
+            }
         },
         {
             "slug": "strategy",
-            "title": "Strategy building, planning, and strategic management",
-            "shortDescription": "Strategy building, planning, and strategic management.",
-            "fullDescription": "Strategy building, planning, and strategic management.",
-            "icon": "globe"
+            "title": "Strategic Management",
+            "shortDescription": "Building, planning, and executing winning corporate strategies.",
+            "fullDescription": "We assist in strategy building, planning, and strategic management. From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
+            "icon": "globe",
+            "details": {
+                "featureCard1": {
+                    "title": "Visionary Planning",
+                    "description": "Translate long-term goals into actionable strategic roadmaps."
+                },
+                "featureCard2": {
+                    "title": "Execution Excellence",
+                    "description": "Align organizational resources to ensure successful strategy implementation."
+                },
+                "sidebar": {
+                    "title": "Need Direction?",
+                    "description": "Chart a clear path to your organization's future."
+                },
+                "ctaBanner": {
+                    "headline": "Define Your Future",
+                    "subtext": "Turn your vision into a reality with strategic clarity.",
+                    "button1Text": "Start Planning",
+                    "button2Text": "Our Approach"
+                }
+            }
         },
         {
             "slug": "risk-management",
-            "title": "Risk Management",
-            "shortDescription": "Risk Management.",
-            "fullDescription": "Risk Management.",
-            "icon": "shield"
+            "title": "Enterprise Risk Management",
+            "shortDescription": "Identifying and mitigating risks to ensure business continuity.",
+            "fullDescription": "Our Risk Management services help you identify, assess, and mitigate risks. We build resilient frameworks that protect your assets and ensure business continuity in an unpredictable market.",
+            "icon": "shield",
+            "details": {
+                "featureCard1": {
+                    "title": "Risk Assessment",
+                    "description": "Comprehensive identification of financial, operational, and strategic risks."
+                },
+                "featureCard2": {
+                    "title": "Resilience Building",
+                    "description": "Develop systems to anticipate and withstand market shocks."
+                },
+                "sidebar": {
+                    "title": "Are You Protected?",
+                    "description": "Don't wait for a crisis to test your resilience."
+                },
+                "ctaBanner": {
+                    "headline": "Secure Your Future",
+                    "subtext": "Proactive risk management for sustainable success.",
+                    "button1Text": "Assess Risks",
+                    "button2Text": "Learn More"
+                }
+            }
         },
         {
             "slug": "change-management",
             "title": "Change Management",
-            "shortDescription": "Change Management.",
-            "fullDescription": "Change Management.",
-            "icon": "users"
+            "shortDescription": "Guiding organizations through structural and cultural transformation.",
+            "fullDescription": "We guide organizations through structural and cultural shifts. Our Change Management services ensure smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
+            "icon": "users",
+            "details": {
+                "featureCard1": {
+                    "title": "Cultural Alignment",
+                    "description": "Ensure your team owns the change and drives the transformation."
+                },
+                "featureCard2": {
+                    "title": "Transition Support",
+                    "description": "Structured methodologies to manage the people side of change."
+                },
+                "sidebar": {
+                    "title": "Leading Change?",
+                    "description": "Make your next transformation a success story."
+                },
+                "ctaBanner": {
+                    "headline": "Lead the Change",
+                    "subtext": "Transform your organization with confidence and clarity.",
+                    "button1Text": "Plan Change",
+                    "button2Text": "Methodology"
+                }
+            }
         },
         {
             "slug": "compliance",
             "title": "Compliance Systems",
-            "shortDescription": "Compliance Systems.",
-            "fullDescription": "Compliance Systems.",
-            "icon": "shield"
+            "shortDescription": "Ensuring adherence to laws, regulations, and ethical standards.",
+            "fullDescription": "We design and implement robust Compliance Systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards, protecting you from legal and reputational risks.",
+            "icon": "shield",
+            "details": {
+                "featureCard1": {
+                    "title": "Regulatory Audit",
+                    "description": "Ongoing verification of adherence to legal and industry standards."
+                },
+                "featureCard2": {
+                    "title": "Ethics Frameworks",
+                    "description": "Building a culture of integrity and accountability."
+                },
+                "sidebar": {
+                    "title": "Stay Compliant",
+                    "description": "Avoid penalties and build trust with robust compliance."
+                },
+                "ctaBanner": {
+                    "headline": "Operate with Integrity",
+                    "subtext": "Safeguard your reputation with rock-solid compliance.",
+                    "button1Text": "Compliance Check",
+                    "button2Text": "Services"
+                }
+            }
         },
         {
             "slug": "business-development",
-            "title": "Business Development Consulting",
-            "shortDescription": "Business Development Consulting.",
-            "fullDescription": "Business Development Consulting.",
-            "icon": "chart"
+            "title": "Business Development",
+            "shortDescription": "Strategic consulting to expand markets and revenue streams.",
+            "fullDescription": "Our Business Development Consulting helps you identify new market opportunities, build strategic partnerships, and accelerate revenue growth through innovative business models.",
+            "icon": "chart",
+            "details": {
+                "featureCard1": {
+                    "title": "Market Expansion",
+                    "description": "Identify and enter new high-growth markets effectively."
+                },
+                "featureCard2": {
+                    "title": "Revenue Growth",
+                    "description": "Innovative strategies to diversify and boost income streams."
+                },
+                "sidebar": {
+                    "title": "Ready to Grow?",
+                    "description": "Unlock your business's full potential."
+                },
+                "ctaBanner": {
+                    "headline": "Accelerate Growth",
+                    "subtext": "Take your business to the next level of performance.",
+                    "button1Text": "Grow Now",
+                    "button2Text": "Strategies"
+                }
+            }
         },
         {
             "slug": "training",
-            "title": "Training and development of work systems",
-            "shortDescription": "Training and development of work systems.",
-            "fullDescription": "Training and development of work systems.",
-            "icon": "users"
+            "title": "Training & Development",
+            "shortDescription": "Empowering teams through work system development and training.",
+            "fullDescription": "We believe in empowering people. Our services include training and development of work systems, upskilling your workforce to meet modern challenges and drive organizational excellence.",
+            "icon": "users",
+            "details": {
+                "featureCard1": {
+                    "title": "Skill Enhancement",
+                    "description": "Tailored training programs to bridge capability gaps."
+                },
+                "featureCard2": {
+                    "title": "System Organization",
+                    "description": "Structuring work flows for maximum team productivity."
+                },
+                "sidebar": {
+                    "title": "Upskill Your Team",
+                    "description": "Invest in your most valuable asset: your people."
+                },
+                "ctaBanner": {
+                    "headline": "Empower Your Workforce",
+                    "subtext": "Build a high-performance culture through learning.",
+                    "button1Text": "Start Training",
+                    "button2Text": "Programs"
+                }
+            }
         },
         {
             "slug": "digital-transformation",
-            "title": "Digital transformation consulting",
-            "shortDescription": "Digital transformation consulting.",
-            "fullDescription": "Digital transformation consulting.",
-            "icon": "globe"
+            "title": "Digital Transformation",
+            "shortDescription": "Leveraging technology to revolutionize business operations.",
+            "fullDescription": "Our Digital Transformation consulting helps you leverage technology to revolutionize your business model, optimize operations, and deliver superior customer experiences in the digital age.",
+            "icon": "globe",
+            "details": {
+                "featureCard1": {
+                    "title": "Tech Integration",
+                    "description": "Seamlessly adopt modern technologies like AI and Cloud."
+                },
+                "featureCard2": {
+                    "title": "Process Digitization",
+                    "description": "Automate workflows to improve speed and accuracy."
+                },
+                "sidebar": {
+                    "title": "Go Digital",
+                    "description": "Future-proof your business with digital innovation."
+                },
+                "ctaBanner": {
+                    "headline": "Embrace the Future",
+                    "subtext": "Transform your business with cutting-edge digital solutions.",
+                    "button1Text": "Transform Now",
+                    "button2Text": "Solutions"
+                }
+            }
         },
         {
             "slug": "quality-accreditation",
-            "title": "Quality and Accreditation Consulting",
-            "shortDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
-            "fullDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
-            "icon": "shield"
+            "title": "Quality & Accreditation",
+            "shortDescription": "Qualifying organizations for international quality certificates.",
+            "fullDescription": "We offer consulting services to qualify organizations for quality and accreditation certificates according to international standards. tailored for governmental, private, health, and educational institutions.",
+            "icon": "shield",
+            "details": {
+                "featureCard1": {
+                    "title": "Accreditation Readiness",
+                    "description": "Prepare your organization for ISO and other international standards."
+                },
+                "featureCard2": {
+                    "title": "Quality Management",
+                    "description": "Implement TQM systems for continuous improvement."
+                },
+                "sidebar": {
+                    "title": "Get Certified",
+                    "description": "Prove your excellence with international accreditation."
+                },
+                "ctaBanner": {
+                    "headline": "Commit to Excellence",
+                    "subtext": "Achieve international recognition for quality.",
+                    "button1Text": "Get Certified",
+                    "button2Text": "Standards"
+                }
+            }
         }
     ],
     "cta": {
