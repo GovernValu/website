@@ -1,83 +1,40 @@
 {
     "hero": {
-        "badge": "Our Ecosystem",
-        "title": "Strategic",
-        "titleHighlight": "Alliances.",
-        "subtitle": "We collaborate with world-class institutions to deliver comprehensive governance and investment solutions."
+        "badge": "شراكاتنا",
+        "title": "شراكات",
+        "titleHighlight": "استراتيجية.",
+        "subtitle": "تسعى GovernValu دائماً إلى تقديم أفضل خدمة وفق أفضل الممارسات والمنهجيات العلمية والمهنية الراسخة، وفي سبيل ذلك تقوم بعقد اتفاقات مع مؤسسات عالمية وفي مناطق مختلفة من العالم لتطويع تلك الشراكات لصالح العملاء في العديد من تخصصات الشركة."
     },
     "intro": {
-        "sectionTitle": "Collaboration",
-        "quote": "In a complex global landscape, no single entity possesses all the answers. Our power lies in our network."
+        "sectionTitle": "بعض الشراكات",
+        "quote": "في مشهد عالمي معقد، لا كيان واحد يمتلك كل الإجابات. قوتنا تكمن في شبكتنا."
     },
-    "categories": [
+    "partnerships": [
         {
-            "title": "Strategic Technology",
-            "partners": [
-                {
-                    "name": "TechNexus",
-                    "logo": "TN"
-                },
-                {
-                    "name": "CyberGuard",
-                    "logo": "CG"
-                },
-                {
-                    "name": "DataFlow Systems",
-                    "logo": "DS"
-                },
-                {
-                    "name": "CloudScale",
-                    "logo": "CS"
-                }
-            ]
+            "country": "دولة قطر",
+            "description": "خدمات التدقيق والضرائب والخدمات المالية",
+            "logo": "/partnerships/sfai.png"
         },
         {
-            "title": "Legal & Regulatory",
-            "partners": [
-                {
-                    "name": "LexCorp Global",
-                    "logo": "LG"
-                },
-                {
-                    "name": "Compliance First",
-                    "logo": "CF"
-                },
-                {
-                    "name": "Sovereign Legal",
-                    "logo": "SL"
-                },
-                {
-                    "name": "RegTech Solutions",
-                    "logo": "RS"
-                }
-            ]
+            "country": "الولايات المتحدة الأمريكية",
+            "description": "الحوكمة والخدمات المصرفية والمالية والاستثمار",
+            "logo": "/partnerships/americanfinancialsgroup.png"
         },
         {
-            "title": "Financial Institutions",
-            "partners": [
-                {
-                    "name": "Capital Worth",
-                    "logo": "CW"
-                },
-                {
-                    "name": "Asset Prime",
-                    "logo": "AP"
-                },
-                {
-                    "name": "Global Wealth",
-                    "logo": "GW"
-                },
-                {
-                    "name": "Venture Bridge",
-                    "logo": "VB"
-                }
-            ]
+            "country": "الولايات المتحدة وبريطانيا",
+            "description": "الاعتماد في الرعاية الصحية والتعليم والمختبرات وغيرها",
+            "logo": "/partnerships/aaa.webp"
+        },
+        {
+            "country": "تركيا وقطر",
+            "description": "التحول الرقمي وحلول تخطيط موارد المؤسسات",
+            "logo": "/partnerships/codesandcolors.png"
         }
     ],
     "cta": {
-        "headline": "Join Our Network",
-        "subtitle": "Are you a leader in your field? Let's discuss how we can create value together for our mutual clients in the GCC.",
-        "buttonText": "Partnership Inquiry",
+        "headline": "انضم إلى شبكتنا",
+        "subtitle": "هل أنت رائد في مجالك؟ دعنا نناقش كيف يمكننا خلق قيمة معاً لعملائنا المشتركين.",
+        "buttonText": "استفسار الشراكة",
         "buttonLink": "/contact"
     }
 }
