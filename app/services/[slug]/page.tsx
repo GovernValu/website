@@ -132,7 +132,7 @@ export default function ServiceDetailPage() {
                                 href="/contact"
                                 className="inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-all duration-300 group"
                             >
-                                {t.getStarted || "Get Started"}
+                                {t.contactUs}
                                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
@@ -162,7 +162,7 @@ export default function ServiceDetailPage() {
                         <div className="lg:col-span-2 reveal">
                             <div className="flex items-center gap-3 mb-8">
                                 <div className="w-12 h-1 bg-brand"></div>
-                                <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{t.aboutThisService || "About This Service"}</h2>
+                                <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{t.overview}</h2>
                             </div>
 
                             <div className="prose prose-lg max-w-none">
@@ -179,8 +179,8 @@ export default function ServiceDetailPage() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">{t.professionalExpertise || "Professional Expertise"}</h3>
-                                    <p className="text-gray-600 text-sm">{t.professionalExpertiseDesc || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
+                                    <h3 className="font-bold text-onyx mb-2">Professional Expertise</h3>
+                                    <p className="text-gray-600 text-sm">Delivered by industry-leading professionals with deep domain knowledge.</p>
                                 </div>
                                 <div className="p-6 bg-gray-50 border-l-4 border-brand">
                                     <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
@@ -188,8 +188,8 @@ export default function ServiceDetailPage() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">{t.tailoredSolutions || "Tailored Solutions"}</h3>
-                                    <p className="text-gray-600 text-sm">{t.tailoredSolutionsDesc || "Customized approaches designed to fit your unique organizational needs."}</p>
+                                    <h3 className="font-bold text-onyx mb-2">Tailored Solutions</h3>
+                                    <p className="text-gray-600 text-sm">Customized approaches designed to fit your unique organizational needs.</p>
                                 </div>
                             </div>
                         </div>
@@ -198,8 +198,8 @@ export default function ServiceDetailPage() {
                         <div className="reveal" style={{ transitionDelay: "100ms" }}>
                             {/* Quick Contact Card */}
                             <div className="bg-onyx text-white p-8 rounded-xl sticky top-24">
-                                <h3 className="text-xl font-serif mb-4">{t.needHelp || "Need Help?"}</h3>
-                                <p className="text-gray-400 text-sm mb-6">{t.contactUsForMore || "Contact us to learn more about how we can help your organization."}</p>
+                                <h3 className="text-xl font-serif mb-4">Need Help?</h3>
+                                <p className="text-gray-400 text-sm mb-6">Contact us to learn more about how we can help your organization.</p>
 
                                 <Link
                                     href="/contact"
@@ -212,7 +212,7 @@ export default function ServiceDetailPage() {
                                     href="/services"
                                     className="block w-full py-3 border border-white/20 text-center text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
                                 >
-                                    {t.viewAllServices || "View All Services"}
+                                    {t.exploreAllServices}
                                 </Link>
                             </div>
                         </div>
@@ -224,23 +224,23 @@ export default function ServiceDetailPage() {
             <section className="py-20 bg-brand">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
                     <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">
-                        {t.readyToTransform || "Ready to Transform Your Organization?"}
+                        Ready to Transform Your Organization?
                     </h2>
                     <p className="text-xl text-white/80 font-light mb-8">
-                        {t.letUsHelp || "Let us help you achieve excellence in"} {service.title.toLowerCase()}.
+                        Let us help you achieve excellence in {service.title.toLowerCase()}.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/contact"
                             className="inline-block px-10 py-4 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-colors"
                         >
-                            {t.scheduleCall || "Schedule a Call"}
+                            Schedule a Call
                         </Link>
                         <Link
                             href="/about/expertise"
                             className="inline-block px-10 py-4 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
                         >
-                            {t.learnAboutUs || "Learn About Us"}
+                            Learn About Us
                         </Link>
                     </div>
                 </div>
