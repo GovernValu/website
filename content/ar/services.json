@@ -1,176 +1,181 @@
 {
     "hero": {
-        "title": "Strategic",
-        "titleHighlight": "Architecture.",
-        "subtitle": "We deploy multidisciplinary teams to solve the most intricate governance and capital challenges across the GCC."
+        "badge": "خدماتنا",
+        "title": "استشارات شاملة",
+        "subtitle": "تقدم الشركة خدماتها عالمياً للهيئات والشركات والمؤسسات والمنظمات المختلفة، سواء كانت: حكومية، أو خاصة، أو غير حكومية، أو غير هادفة للربح، أو منظمات دولية، وغيرهم. والخدمات على النحو التالي:"
     },
-    "methodology": {
-        "sectionTitle": "Our Methodology",
-        "quote": "We do not offer pre-packaged solutions. Every engagement begins with a forensic analysis of the status quo, followed by the bespoke engineering of a strategy designed to endure."
+    "intro": {
+        "title": "حلول متكاملة",
+        "text": "نقدم مجموعة من الخدمات المتخصصة المصممة لتعزيز الحوكمة والاستراتيجية وخلق القيمة."
     },
-    "services": [
-        {
-            "slug": "corporate-governance",
-            "title": "Corporate Governance",
-            "shortDescription": "Architecting governance structures that go beyond compliance to become competitive advantages.",
-            "icon": "building",
-            "features": [
-                "Board Effectiveness Audits",
-                "Shareholder Activism Defense",
-                "ESG Integration",
-                "Policy Development"
-            ],
-            "fullDescription": "In an era of heightened scrutiny, the boardroom is the first line of defense. We architect governance structures that go beyond compliance to become competitive advantages, aligned with Qatar Vision 2030.",
-            "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Board Effectiveness Audits",
-                    "description": "Rigorous evaluation of board composition, skill gaps, and decision-making dynamics."
-                },
-                {
-                    "title": "Shareholder Activism Defense",
-                    "description": "Proactive strategies to engage stakeholders and neutralize hostile narratives."
-                },
-                {
-                    "title": "ESG Integration",
-                    "description": "Moving beyond greenwashing to integrate sustainability into the core operational DNA."
-                }
-            ]
-        },
-        {
-            "slug": "investment-advisory",
-            "title": "Investment Advisory",
-            "shortDescription": "Conflict-free counsel for institutional allocators focusing on asymmetric risk profiles.",
-            "icon": "chart",
-            "features": [
-                "Strategic Asset Allocation",
-                "Private Markets Access",
-                "Risk Overlay",
-                "Portfolio Construction"
-            ],
-            "fullDescription": "We provide conflict-free, macroeconomic counsel to institutional allocators and family offices. Our focus is on asymmetric risk profiles and long-horizon compounding across regional and global markets.",
-            "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Strategic Asset Allocation",
-                    "description": "Dynamic portfolio modeling that adjusts to inflation regimes and monetary policy shifts."
-                },
-                {
-                    "title": "Private Markets Access",
-                    "description": "Proprietary deal flow in private equity, real assets, and venture capital unavailable to the broader market."
-                },
-                {
-                    "title": "Risk Overlay",
-                    "description": "Hedging strategies utilizing derivatives to protect capital during market volatility."
-                }
-            ]
-        },
-        {
-            "slug": "risk-intelligence",
-            "title": "Risk & Intelligence",
-            "shortDescription": "Equipping leaders with intelligence to anticipate shifts in power and policy.",
-            "icon": "shield",
-            "features": [
-                "Crisis Management",
-                "Geopolitical Risk Analysis",
-                "Cyber Governance",
-                "Regulatory Mapping"
-            ],
-            "fullDescription": "Capital does not exist in a vacuum. It operates within a volatile geopolitical framework. We equip leaders with the intelligence to anticipate shifts in power and policy across the GCC and global markets.",
-            "image": "https://images.unsplash.com/photo-1526304640152-d4619684e484?q=80&w=2670&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Crisis Management",
-                    "description": "Rapid response protocols for regulatory investigations and reputational threats."
-                },
-                {
-                    "title": "Geopolitical Risk",
-                    "description": "Analysis of sanctions, trade dynamics, and regime stability in regional markets."
-                },
-                {
-                    "title": "Cyber Governance",
-                    "description": "Bridging the gap between technical cybersecurity teams and board-level oversight."
-                },
-                {
-                    "title": "Regulatory Mapping",
-                    "description": "Forward-looking analysis of legislative changes across GCC and global jurisdictions."
-                }
-            ]
-        },
-        {
-            "slug": "family-office",
-            "title": "Family Office Services",
-            "shortDescription": "Holistic management of family affairs and intergenerational wealth transfer.",
-            "icon": "bank",
-            "features": [
-                "Wealth Structuring",
-                "Next-Gen Education",
-                "Philanthropic Strategy",
-                "Family Governance"
-            ],
-            "fullDescription": "We manage the complexity of multi-generational wealth with discretion, ensuring your family's values and assets are preserved across generations.",
-            "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
-        },
-        {
-            "slug": "mergers-acquisitions",
-            "title": "Cross-Border M&A",
-            "shortDescription": "Expert guidance on international mergers ensuring seamless integration and value realization.",
-            "icon": "globe",
-            "features": [
-                "Due Diligence",
-                "Deal Structuring",
-                "Integration Planning",
-                "Value Optimization"
-            ],
-            "fullDescription": "Navigating the complexities of cross-border transactions requires deep regional expertise and global connectivity. We provide end-to-end advisory for seamless M&A execution.",
-            "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
-        },
-        {
-            "slug": "board-advisory",
-            "title": "Board Advisory",
-            "shortDescription": "Optimizing board composition and effectiveness to drive long-term strategic value.",
-            "icon": "users",
-            "features": [
-                "Board Evaluation",
-                "Succession Planning",
-                "Director Recruitment",
-                "Governance Training"
-            ],
-            "fullDescription": "Effective boards drive sustainable value creation. We help optimize board composition, succession, and governance practices to meet evolving stakeholder expectations.",
-            "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2669&auto=format&fit=crop"
-        }
-    ],
     "engagement": {
-        "sectionTitle": "Engagement Model",
-        "headline": "The Path to Clarity",
+        "sectionTitle": "عملية المشاركة",
+        "headline": "كيف نعمل معاً",
         "steps": [
             {
                 "number": "01",
-                "title": "Discovery",
-                "description": "Deep-dive audit of current structures, assets, and liabilities. We interview key stakeholders to identify misalignment."
+                "title": "الاستكشاف",
+                "description": "نبدأ بفهم تحدياتك وأهدافك الفريدة من خلال استشارة متعمقة."
             },
             {
                 "number": "02",
-                "title": "Design",
-                "description": "Development of the strategic roadmap. This includes legal structuring, policy drafting, and asset reallocation models."
+                "title": "الاستراتيجية",
+                "description": "يطور خبراؤنا خارطة طريق وخطط استراتيجية مخصصة لتلبية احتياجاتك المحددة."
             },
             {
                 "number": "03",
-                "title": "Implementation",
-                "description": "Execution of the strategy. We work alongside your legal and tax teams to ensure seamless integration."
+                "title": "التنفيذ",
+                "description": "نعمل جنباً إلى جنب مع فريقك لتنفيذ الاستراتيجية وضمان التبني الناجح."
             },
             {
                 "number": "04",
-                "title": "Oversight",
-                "description": "Ongoing monitoring and adjustment. Quarterly reviews ensure the strategy evolves with market conditions."
+                "title": "المراجعة",
+                "description": "المراقبة والتقييم المستمر لضمان نتائج مستدامة وتحسين مستمر."
             }
         ]
     },
+    "methodology": {
+        "sectionTitle": "فلسفتنا",
+        "quote": "نؤمن بنهج شامل يدمج الحوكمة والاستراتيجية والثقافة لدفع الأداء المستدام."
+    },
+    "services": [
+        {
+            "slug": "governance-systems",
+            "title": "بناء وتطبيق وتمكين نظم الحوكمة",
+            "shortDescription": "بناء وتأسيس نظم الحوكمة وفق المعايير والمبادئ الدولية، والمحلية بكل بلد، ووفق أفضل الممارسات. تأهيل المؤسسات لاستقبال نظم الحوكمة مع التدريب على التطبيق الرشيد ونشر ثقافة الحوكمة الرشيدة. تمكين وتمتين نظم الحوكمة في التطبيق الاحترافي. إعداد التقارير الدورية وغير الدورية للحوكمة.",
+            "fullDescription": "بناء وتأسيس نظم الحوكمة وفق المعايير والمبادئ الدولية، والمحلية بكل بلد، ووفق أفضل الممارسات. تأهيل المؤسسات لاستقبال نظم الحوكمة مع التدريب على التطبيق الرشيد ونشر ثقافة الحوكمة الرشيدة. تمكين وتمتين نظم الحوكمة في التطبيق الاحترافي. إعداد التقارير الدورية وغير الدورية للحوكمة.",
+            "icon": "building",
+            "image": "/services/governance.jpg",
+            "benefits": [
+                {
+                    "title": "الامتثال",
+                    "description": "ضمان الامتثال للوائح المحلية والدولية."
+                },
+                {
+                    "title": "الكفاءة",
+                    "description": "تبسيط عمليات اتخاذ القرار."
+                }
+            ]
+        },
+        {
+            "slug": "investment-networks",
+            "title": "بناء شبكات وعلاقات الاستثمار",
+            "shortDescription": "فتح علاقات استثمارية. بناء وتطوير خطط الاستثمار. دراسة وتقييم وتقديم الفرص الاستثمارية. تخطيط محافظ وصناديق الاستثمار وتصورات إدارتها.",
+            "fullDescription": "فتح علاقات استثمارية. بناء وتطوير خطط الاستثمار. دراسة وتقييم وتقديم الفرص الاستثمارية. تخطيط محافظ وصناديق الاستثمار وتصورات إدارتها.",
+            "icon": "chart",
+            "image": "/services/investment.jpg",
+            "benefits": [
+                {
+                    "title": "النمو",
+                    "description": "توسيع أفق استثمارك."
+                },
+                {
+                    "title": "الشبكة",
+                    "description": "الوصول إلى فرص استثمارية حصرية."
+                }
+            ]
+        },
+        {
+            "slug": "valuation",
+            "title": "تقييم الشركات والعلامات التجارية",
+            "shortDescription": "تقييم الشركات والمشروعات. تقييم العلامات التجارية.",
+            "fullDescription": "تقييم الشركات والمشروعات. تقييم العلامات التجارية.",
+            "icon": "chart",
+            "image": "/services/valuation.jpg",
+            "benefits": [
+                {
+                    "title": "الدقة",
+                    "description": "منهجيات تقييم دقيقة."
+                },
+                {
+                    "title": "الرؤية",
+                    "description": "فهم القيمة الحقيقية لأصولك."
+                }
+            ]
+        },
+        {
+            "slug": "trademarks",
+            "title": "تسجيل وحماية العلامات التجارية عالمياً",
+            "shortDescription": "تسجيل وحماية العلامات التجارية عالمياً.",
+            "fullDescription": "تسجيل وحماية العلامات التجارية عالمياً.",
+            "icon": "shield"
+        },
+        {
+            "slug": "business-problems",
+            "title": "حلول مشكلات الأعمال",
+            "shortDescription": "مشكلات غياب الحوكمة أو التطبيق غير الرشيد للحوكمة. مشكلات التمويل والبنوك. مشكلات التشغيل والإنتاج. مشكلات السمعة والصورة الذهنية. المشكلات القانونية. مشكلات ضعف الموارد البشرية. مشكلات تفشي ثقافة مؤسسية سامة بسبب سوء النمط الإداري.",
+            "fullDescription": "مشكلات غياب الحوكمة أو التطبيق غير الرشيد للحوكمة. مشكلات التمويل والبنوك. مشكلات التشغيل والإنتاج. مشكلات السمعة والصورة الذهنية. المشكلات القانونية. مشكلات ضعف الموارد البشرية. مشكلات تفشي ثقافة مؤسسية سامة بسبب سوء النمط الإداري.",
+            "icon": "users"
+        },
+        {
+            "slug": "cost-reduction",
+            "title": "خدمات تخفيض التكلفة وتعظيم العوائد",
+            "shortDescription": "خدمات تخفيض التكلفة وتعظيم العوائد.",
+            "fullDescription": "خدمات تخفيض التكلفة وتعظيم العوائد.",
+            "icon": "chart"
+        },
+        {
+            "slug": "strategy",
+            "title": "بناء الاستراتيجية والتخطيط والإدارة الاستراتيجية",
+            "shortDescription": "بناء الاستراتيجية والتخطيط والإدارة الاستراتيجية.",
+            "fullDescription": "بناء الاستراتيجية والتخطيط والإدارة الاستراتيجية.",
+            "icon": "globe"
+        },
+        {
+            "slug": "risk-management",
+            "title": "إدارة المخاطر",
+            "shortDescription": "إدارة المخاطر.",
+            "fullDescription": "إدارة المخاطر.",
+            "icon": "shield"
+        },
+        {
+            "slug": "change-management",
+            "title": "إدارة التغيير",
+            "shortDescription": "إدارة التغيير.",
+            "fullDescription": "إدارة التغيير.",
+            "icon": "users"
+        },
+        {
+            "slug": "compliance",
+            "title": "نظم الامتثال",
+            "shortDescription": "نظم الامتثال.",
+            "fullDescription": "نظم الامتثال.",
+            "icon": "shield"
+        },
+        {
+            "slug": "business-development",
+            "title": "استشارات تطوير الأعمال",
+            "shortDescription": "استشارات تطوير الأعمال.",
+            "fullDescription": "استشارات تطوير الأعمال.",
+            "icon": "chart"
+        },
+        {
+            "slug": "training",
+            "title": "التدريب وتطوير نظم العمل",
+            "shortDescription": "التدريب وتطوير نظم العمل.",
+            "fullDescription": "التدريب وتطوير نظم العمل.",
+            "icon": "users"
+        },
+        {
+            "slug": "digital-transformation",
+            "title": "استشارات التحول الرقمي",
+            "shortDescription": "استشارات التحول الرقمي.",
+            "fullDescription": "استشارات التحول الرقمي.",
+            "icon": "globe"
+        },
+        {
+            "slug": "quality-accreditation",
+            "title": "استشارات الجودة والاعتماد",
+            "shortDescription": "تقدم الشركة خدمات الاستشارات التي تتضمن تأهيل المؤسسات المختلفة للحصول على شهادات الجودة والاعتماد وفق نظم الاعتراف والاعتماد والجودة المعمول بها عالمياً، بما في ذلك المؤسسات الحكومية والخاصة وغيرهم، والمؤسسات الصحية والتعليمية وغيرهم.",
+            "fullDescription": "تقدم الشركة خدمات الاستشارات التي تتضمن تأهيل المؤسسات المختلفة للحصول على شهادات الجودة والاعتماد وفق نظم الاعتراف والاعتماد والجودة المعمول بها عالمياً، بما في ذلك المؤسسات الحكومية والخاصة وغيرهم، والمؤسسات الصحية والتعليمية وغيرهم.",
+            "icon": "shield"
+        }
+    ],
     "cta": {
-        "headline": "Ready to elevate your",
-        "headlineHighlight": "standard?",
-        "subtitle": "Schedule a confidential briefing with our senior partners to discuss your specific governance needs.",
-        "buttonText": "Initiate Consultation",
+        "headline": "هل أنت مستعد لتطوير مؤسستك؟",
+        "headlineHighlight": "تواصل معنا",
+        "subtitle": "تواصل معنا اليوم للحصول على استشارة مصممة خصيصاً لاحتياجاتك.",
+        "buttonText": "تواصل معنا",
         "buttonLink": "/contact"
     }
 }

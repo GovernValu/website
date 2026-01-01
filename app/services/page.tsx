@@ -118,7 +118,7 @@ export default function ServicesPage() {
                                     {ICONS[service.icon] || ICONS['building']}
                                 </div>
                                 <h4 className="text-xl font-serif mb-3 text-onyx">{service.title}</h4>
-                                <p className="text-gray-600 text-sm font-light leading-relaxed mb-4">{service.shortDescription}</p>
+                                <p className="text-gray-600 text-sm font-light leading-relaxed mb-4 line-clamp-3">{service.shortDescription}</p>
                                 <span className="inline-flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-widest group-hover:underline">
                                     {t.exploreService}
                                     <svg className="w-3 h-3 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">

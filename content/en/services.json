@@ -1,176 +1,181 @@
 {
     "hero": {
-        "title": "Strategic",
-        "titleHighlight": "Architecture.",
-        "subtitle": "We deploy multidisciplinary teams to solve the most intricate governance and capital challenges across the GCC."
+        "badge": "Our Services",
+        "title": "Comprehensive Advisory",
+        "subtitle": "The company provides its services globally to various bodies, companies, institutions, and organizations, whether governmental, private, non-governmental, non-profit, international organizations, and others. The services are as follows:"
     },
-    "methodology": {
-        "sectionTitle": "Our Methodology",
-        "quote": "We do not offer pre-packaged solutions. Every engagement begins with a forensic analysis of the status quo, followed by the bespoke engineering of a strategy designed to endure."
+    "intro": {
+        "title": "Holistic Solutions",
+        "text": "We offer a range of specialized services designed to enhance governance, strategy, and value creation."
     },
-    "services": [
-        {
-            "slug": "corporate-governance",
-            "title": "Corporate Governance",
-            "shortDescription": "Architecting governance structures that go beyond compliance to become competitive advantages.",
-            "icon": "building",
-            "features": [
-                "Board Effectiveness Audits",
-                "Shareholder Activism Defense",
-                "ESG Integration",
-                "Policy Development"
-            ],
-            "fullDescription": "In an era of heightened scrutiny, the boardroom is the first line of defense. We architect governance structures that go beyond compliance to become competitive advantages, aligned with Qatar Vision 2030.",
-            "image": "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2574&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Board Effectiveness Audits",
-                    "description": "Rigorous evaluation of board composition, skill gaps, and decision-making dynamics."
-                },
-                {
-                    "title": "Shareholder Activism Defense",
-                    "description": "Proactive strategies to engage stakeholders and neutralize hostile narratives."
-                },
-                {
-                    "title": "ESG Integration",
-                    "description": "Moving beyond greenwashing to integrate sustainability into the core operational DNA."
-                }
-            ]
-        },
-        {
-            "slug": "investment-advisory",
-            "title": "Investment Advisory",
-            "shortDescription": "Conflict-free counsel for institutional allocators focusing on asymmetric risk profiles.",
-            "icon": "chart",
-            "features": [
-                "Strategic Asset Allocation",
-                "Private Markets Access",
-                "Risk Overlay",
-                "Portfolio Construction"
-            ],
-            "fullDescription": "We provide conflict-free, macroeconomic counsel to institutional allocators and family offices. Our focus is on asymmetric risk profiles and long-horizon compounding across regional and global markets.",
-            "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Strategic Asset Allocation",
-                    "description": "Dynamic portfolio modeling that adjusts to inflation regimes and monetary policy shifts."
-                },
-                {
-                    "title": "Private Markets Access",
-                    "description": "Proprietary deal flow in private equity, real assets, and venture capital unavailable to the broader market."
-                },
-                {
-                    "title": "Risk Overlay",
-                    "description": "Hedging strategies utilizing derivatives to protect capital during market volatility."
-                }
-            ]
-        },
-        {
-            "slug": "risk-intelligence",
-            "title": "Risk & Intelligence",
-            "shortDescription": "Equipping leaders with intelligence to anticipate shifts in power and policy.",
-            "icon": "shield",
-            "features": [
-                "Crisis Management",
-                "Geopolitical Risk Analysis",
-                "Cyber Governance",
-                "Regulatory Mapping"
-            ],
-            "fullDescription": "Capital does not exist in a vacuum. It operates within a volatile geopolitical framework. We equip leaders with the intelligence to anticipate shifts in power and policy across the GCC and global markets.",
-            "image": "https://images.unsplash.com/photo-1526304640152-d4619684e484?q=80&w=2670&auto=format&fit=crop",
-            "benefits": [
-                {
-                    "title": "Crisis Management",
-                    "description": "Rapid response protocols for regulatory investigations and reputational threats."
-                },
-                {
-                    "title": "Geopolitical Risk",
-                    "description": "Analysis of sanctions, trade dynamics, and regime stability in regional markets."
-                },
-                {
-                    "title": "Cyber Governance",
-                    "description": "Bridging the gap between technical cybersecurity teams and board-level oversight."
-                },
-                {
-                    "title": "Regulatory Mapping",
-                    "description": "Forward-looking analysis of legislative changes across GCC and global jurisdictions."
-                }
-            ]
-        },
-        {
-            "slug": "family-office",
-            "title": "Family Office Services",
-            "shortDescription": "Holistic management of family affairs and intergenerational wealth transfer.",
-            "icon": "bank",
-            "features": [
-                "Wealth Structuring",
-                "Next-Gen Education",
-                "Philanthropic Strategy",
-                "Family Governance"
-            ],
-            "fullDescription": "We manage the complexity of multi-generational wealth with discretion, ensuring your family's values and assets are preserved across generations.",
-            "image": "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2670&auto=format&fit=crop"
-        },
-        {
-            "slug": "mergers-acquisitions",
-            "title": "Cross-Border M&A",
-            "shortDescription": "Expert guidance on international mergers ensuring seamless integration and value realization.",
-            "icon": "globe",
-            "features": [
-                "Due Diligence",
-                "Deal Structuring",
-                "Integration Planning",
-                "Value Optimization"
-            ],
-            "fullDescription": "Navigating the complexities of cross-border transactions requires deep regional expertise and global connectivity. We provide end-to-end advisory for seamless M&A execution.",
-            "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
-        },
-        {
-            "slug": "board-advisory",
-            "title": "Board Advisory",
-            "shortDescription": "Optimizing board composition and effectiveness to drive long-term strategic value.",
-            "icon": "users",
-            "features": [
-                "Board Evaluation",
-                "Succession Planning",
-                "Director Recruitment",
-                "Governance Training"
-            ],
-            "fullDescription": "Effective boards drive sustainable value creation. We help optimize board composition, succession, and governance practices to meet evolving stakeholder expectations.",
-            "image": "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2669&auto=format&fit=crop"
-        }
-    ],
     "engagement": {
-        "sectionTitle": "Engagement Model",
-        "headline": "The Path to Clarity",
+        "sectionTitle": "Engagement Process",
+        "headline": "How We Work Together",
         "steps": [
             {
                 "number": "01",
                 "title": "Discovery",
-                "description": "Deep-dive audit of current structures, assets, and liabilities. We interview key stakeholders to identify misalignment."
+                "description": "We start by understanding your unique challenges and goals through in-depth consultation."
             },
             {
                 "number": "02",
-                "title": "Design",
-                "description": "Development of the strategic roadmap. This includes legal structuring, policy drafting, and asset reallocation models."
+                "title": "Strategy",
+                "description": "Our experts develop a tailored roadmap and strategic plan to address your specific needs."
             },
             {
                 "number": "03",
                 "title": "Implementation",
-                "description": "Execution of the strategy. We work alongside your legal and tax teams to ensure seamless integration."
+                "description": "We work alongside your team to execute the strategy and ensure successful adoption."
             },
             {
                 "number": "04",
-                "title": "Oversight",
-                "description": "Ongoing monitoring and adjustment. Quarterly reviews ensure the strategy evolves with market conditions."
+                "title": "Review",
+                "description": "Continuous monitoring and evaluation to ensure sustainable results and improvement."
             }
         ]
     },
+    "methodology": {
+        "sectionTitle": "Our Philosophy",
+        "quote": "We believe in a holistic approach that integrates governance, strategy, and culture to drive sustainable performance."
+    },
+    "services": [
+        {
+            "slug": "governance-systems",
+            "title": "Building, Implementing, and Empowering Governance Systems",
+            "shortDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
+            "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
+            "icon": "building",
+            "image": "/services/governance.jpg",
+            "benefits": [
+                {
+                    "title": "Compliance",
+                    "description": "Ensure adherence to local and international regulations."
+                },
+                {
+                    "title": "Efficiency",
+                    "description": "Streamline decision-making processes."
+                }
+            ]
+        },
+        {
+            "slug": "investment-networks",
+            "title": "Building investment networks and relationships",
+            "shortDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
+            "fullDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
+            "icon": "chart",
+            "image": "/services/investment.jpg",
+            "benefits": [
+                {
+                    "title": "Growth",
+                    "description": "Expand your investment horizon."
+                },
+                {
+                    "title": "Network",
+                    "description": "Access to exclusive investment opportunities."
+                }
+            ]
+        },
+        {
+            "slug": "valuation",
+            "title": "Company and Brand Valuation",
+            "shortDescription": "Company and Project Valuation. Brand Valuation.",
+            "fullDescription": "Company and Project Valuation. Brand Valuation.",
+            "icon": "chart",
+            "image": "/services/valuation.jpg",
+            "benefits": [
+                {
+                    "title": "Accuracy",
+                    "description": "Precise valuation methodologies."
+                },
+                {
+                    "title": "Insight",
+                    "description": "Understand the true value of your assets."
+                }
+            ]
+        },
+        {
+            "slug": "trademarks",
+            "title": "Registering and protecting trademarks globally",
+            "shortDescription": "Registering and protecting trademarks globally.",
+            "fullDescription": "Registering and protecting trademarks globally.",
+            "icon": "shield"
+        },
+        {
+            "slug": "business-problems",
+            "title": "Business Problems Solutions",
+            "shortDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
+            "fullDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
+            "icon": "users"
+        },
+        {
+            "slug": "cost-reduction",
+            "title": "Cost reduction and return maximization services",
+            "shortDescription": "Cost reduction and return maximization services.",
+            "fullDescription": "Cost reduction and return maximization services.",
+            "icon": "chart"
+        },
+        {
+            "slug": "strategy",
+            "title": "Strategy building, planning, and strategic management",
+            "shortDescription": "Strategy building, planning, and strategic management.",
+            "fullDescription": "Strategy building, planning, and strategic management.",
+            "icon": "globe"
+        },
+        {
+            "slug": "risk-management",
+            "title": "Risk Management",
+            "shortDescription": "Risk Management.",
+            "fullDescription": "Risk Management.",
+            "icon": "shield"
+        },
+        {
+            "slug": "change-management",
+            "title": "Change Management",
+            "shortDescription": "Change Management.",
+            "fullDescription": "Change Management.",
+            "icon": "users"
+        },
+        {
+            "slug": "compliance",
+            "title": "Compliance Systems",
+            "shortDescription": "Compliance Systems.",
+            "fullDescription": "Compliance Systems.",
+            "icon": "shield"
+        },
+        {
+            "slug": "business-development",
+            "title": "Business Development Consulting",
+            "shortDescription": "Business Development Consulting.",
+            "fullDescription": "Business Development Consulting.",
+            "icon": "chart"
+        },
+        {
+            "slug": "training",
+            "title": "Training and development of work systems",
+            "shortDescription": "Training and development of work systems.",
+            "fullDescription": "Training and development of work systems.",
+            "icon": "users"
+        },
+        {
+            "slug": "digital-transformation",
+            "title": "Digital transformation consulting",
+            "shortDescription": "Digital transformation consulting.",
+            "fullDescription": "Digital transformation consulting.",
+            "icon": "globe"
+        },
+        {
+            "slug": "quality-accreditation",
+            "title": "Quality and Accreditation Consulting",
+            "shortDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
+            "fullDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
+            "icon": "shield"
+        }
+    ],
     "cta": {
-        "headline": "Ready to elevate your",
-        "headlineHighlight": "standard?",
-        "subtitle": "Schedule a confidential briefing with our senior partners to discuss your specific governance needs.",
-        "buttonText": "Initiate Consultation",
+        "headline": "Ready to Transform Your Organization?",
+        "headlineHighlight": "Contact Us",
+        "subtitle": "Contact us today for a consultation tailored to your needs.",
+        "buttonText": "Contact Us",
         "buttonLink": "/contact"
     }
 }
