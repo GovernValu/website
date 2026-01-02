@@ -4,12 +4,17 @@ import { useState, useEffect } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
 export function useContent<T>(pageName: string) {
-    const { language } = useLanguage();
+    const { language, isReady } = useLanguage();
     const [content, setContent] = useState<T | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
 
     useEffect(() => {
+        // Don't fetch until language context is ready (initialized from cookies)
+        if (!isReady) {
+            return;
+        }
+
         async function fetchContent() {
             try {
                 setLoading(true);
@@ -29,7 +34,7 @@ export function useContent<T>(pageName: string) {
         }
 
         fetchContent();
-    }, [pageName, language]);
+    }, [pageName, language, isReady]);
 
     return { content, loading, error };
 }

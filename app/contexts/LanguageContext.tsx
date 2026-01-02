@@ -7,6 +7,7 @@ import { Language, Direction, DEFAULT_LANGUAGE, LANGUAGE_COOKIE_NAME, getDirecti
 interface LanguageContextType {
     language: Language;
     direction: Direction;
+    isReady: boolean;
     setLanguage: (lang: Language) => void;
     toggleLanguage: () => void;
 }
@@ -45,6 +46,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
             value={{
                 language,
                 direction: getDirection(language),
+                isReady: mounted,
                 setLanguage,
                 toggleLanguage,
             }}
