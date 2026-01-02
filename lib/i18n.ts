@@ -38,11 +38,13 @@ export const LABELS = {
         valuation: 'Valuation Services',
         riskMgmt: 'Risk Management',
         // Common Actions
+        getStarted: 'Get Started',
         learnMore: 'Learn More',
         exploreService: 'Explore Service',
         backToServices: 'Back to Services',
         contactUs: 'Contact Us',
         exploreAllServices: 'Explore All Services',
+        step: 'Step',
         // Section Headers
         ourServices: 'Our Services',
         whatWeOffer: 'What We Offer',
@@ -128,11 +130,13 @@ export const LABELS = {
         valuation: 'خدمات التقييم',
         riskMgmt: 'إدارة المخاطر',
         // Common Actions
+        getStarted: 'ابدأ الآن',
         learnMore: 'اقرأ المزيد',
         exploreService: 'استكشف الخدمة',
         backToServices: 'العودة للخدمات',
         contactUs: 'اتصل بنا',
         exploreAllServices: 'استكشف جميع الخدمات',
+        step: 'المرحلة',
         // Section Headers
         ourServices: 'خدماتنا',
         whatWeOffer: 'ما نقدمه',
