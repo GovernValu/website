@@ -75,11 +75,27 @@ export default function ContactPage() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    if (contactLoading || settingsLoading || !contactContent || !settingsContent) {
+    if ((contactLoading && !contactContent) || (settingsLoading && !settingsContent)) {
         return (
-            <div className="flex bg-onyx h-screen items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand"></div>
-            </div>
+            <>
+                <Header />
+                <div className="flex bg-white h-screen items-center justify-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand"></div>
+                </div>
+            </>
+        );
+    }
+
+    if (!contactContent || !settingsContent) {
+        return (
+            <>
+                <Header />
+                <div className="flex bg-white h-screen items-center justify-center">
+                    <div className="text-center">
+                        <p className="text-gray-600">Unable to load content. Please refresh the page.</p>
+                    </div>
+                </div>
+            </>
         );
     }
 
