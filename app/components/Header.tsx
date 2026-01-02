@@ -84,7 +84,7 @@ export default function Header() {
                             <Link href="/clients" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.ourClients}
                             </Link>
-                            <Link href="/news" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
+                            <Link href="/blog" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.news}
                             </Link>
                             <Link href="/contact" className="px-6 py-2.5 border border-brand text-brand hover:bg-brand hover:text-white transition-all duration-300 text-sm font-medium uppercase tracking-wider">
@@ -153,7 +153,7 @@ export default function Header() {
                     <Link href="/services" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.services}</Link>
                     <Link href="/partners" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.partnerships}</Link>
                     <Link href="/clients" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.ourClients}</Link>
-                    <Link href="/news" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.news}</Link>
+                    <Link href="/blog" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.news}</Link>
                     <Link href="/contact" className="block px-3 py-4 text-base font-medium text-brand font-bold">{t.contact}</Link>
                 </div>
             </div>
