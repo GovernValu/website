@@ -95,57 +95,62 @@ export default function ServiceDetailPage() {
         <>
             <Header />
 
-            {/* Hero Section - Clean Landing Style */}
-            <header className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-onyx via-onyx to-onyx-800">
-                {/* Decorative Elements */}
-                <div className="absolute inset-0 overflow-hidden">
-                    <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 transform skew-x-12"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+            {/* Hero Section - Premium Landing Style */}
+            <header className="relative min-h-[85vh] flex items-center bg-gradient-to-br from-onyx via-gray-900 to-onyx overflow-hidden">
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0">
+                    <div className="absolute top-0 right-0 w-2/3 h-full bg-brand/5 transform skew-x-12"></div>
+                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl animate-pulse"></div>
                     <div className="absolute top-20 right-20 w-64 h-64 bg-brand/5 rounded-full blur-3xl"></div>
+                    <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
                 </div>
 
-                <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 w-full">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
                         {/* Left: Content */}
-                        <div className="reveal">
+                        <div className="reveal space-y-8">
                             {/* Breadcrumb */}
-                            <div className="flex items-center gap-2 text-gray-400 text-sm mb-6">
+                            <nav className="flex items-center gap-2 text-gray-400 text-sm">
+                                <Link href="/" className="hover:text-brand transition-colors">Home</Link>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
                                 <Link href="/services" className="hover:text-brand transition-colors">{t.ourServices}</Link>
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
-                                <span className="text-brand">{service.title}</span>
-                            </div>
+                                <span className="text-brand font-medium">{service.title}</span>
+                            </nav>
 
                             {/* Icon Badge */}
-                            <div className="w-20 h-20 bg-brand/20 rounded-2xl flex items-center justify-center mb-8 text-brand">
+                            <div className="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-brand/20 to-brand/5 rounded-3xl border border-brand/20 text-brand shadow-xl">
                                 {ICONS[service.icon] || ICONS['building']}
                             </div>
 
                             {/* Title */}
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-white mb-6 leading-tight">
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
                                 {service.title}
                             </h1>
 
                             {/* Short Description */}
-                            <p className="text-xl text-gray-300 font-light leading-relaxed mb-8 max-w-xl">
+                            <p className="text-2xl text-gray-300 font-light leading-relaxed max-w-2xl">
                                 {service.shortDescription}
                             </p>
 
                             {/* CTA Buttons */}
-                            <div className="flex flex-wrap gap-4">
+                            <div className="flex flex-wrap gap-6 pt-4">
                                 <Link
                                     href="/contact"
-                                    className="inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-all duration-300 group"
+                                    className="group inline-flex items-center gap-3 px-10 py-5 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-all duration-300 shadow-2xl hover:shadow-brand/50"
                                 >
                                     {t.getStarted || "Get Started"}
-                                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-5 h-5 group-hover:translate-x-2 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                     </svg>
                                 </Link>
                                 <Link
-                                    href="#overview"
-                                    className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all duration-300"
+                                    href="#details"
+                                    className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white/30 backdrop-blur-sm text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 hover:border-white transition-all duration-300"
                                 >
                                     {t.learnMore || "Learn More"}
                                 </Link>
@@ -155,111 +160,206 @@ export default function ServiceDetailPage() {
                         {/* Right: Image */}
                         <div className="reveal hidden lg:block" style={{ transitionDelay: "200ms" }}>
                             <div className="relative">
-                                <div className="absolute -inset-4 bg-brand/20 rounded-2xl transform rotate-3"></div>
+                                <div className="absolute -inset-6 bg-gradient-to-r from-brand/30 to-brand/10 rounded-3xl transform rotate-3 blur-xl"></div>
+                                <div className="absolute -inset-4 bg-brand/20 rounded-3xl transform -rotate-2"></div>
                                 <img
                                     src={service.image || "/services/default.jpg"}
                                     alt={service.title}
-                                    className="relative w-full h-[450px] object-cover rounded-xl shadow-2xl"
+                                    className="relative w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10"
                                 />
+                                {/* Floating Badge */}
+                                <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-2xl">
+                                    <div className="text-center">
+                                        <div className="text-4xl font-bold text-brand">15+</div>
+                                        <div className="text-sm text-gray-600 font-medium">{language === 'ar' ? 'سنة خبرة' : 'Years Experience'}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
 
-            {/* Overview Section */}
-            <section id="overview" className="py-24 bg-white">
+            {/* Trust Bar */}
+            <section className="py-12 bg-gray-50 border-y border-gray-200">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                        <div className="reveal">
+                            <div className="text-4xl font-bold text-brand mb-2">200+</div>
+                            <div className="text-sm text-gray-600 uppercase tracking-wide">{language === 'ar' ? 'عميل راضٍ' : 'Happy Clients'}</div>
+                        </div>
+                        <div className="reveal" style={{ transitionDelay: "100ms" }}>
+                            <div className="text-4xl font-bold text-brand mb-2">500+</div>
+                            <div className="text-sm text-gray-600 uppercase tracking-wide">{language === 'ar' ? 'مشروع مُنجز' : 'Projects Completed'}</div>
+                        </div>
+                        <div className="reveal" style={{ transitionDelay: "200ms" }}>
+                            <div className="text-4xl font-bold text-brand mb-2">15+</div>
+                            <div className="text-sm text-gray-600 uppercase tracking-wide">{language === 'ar' ? 'سنة خبرة' : 'Years Experience'}</div>
+                        </div>
+                        <div className="reveal" style={{ transitionDelay: "300ms" }}>
+                            <div className="text-4xl font-bold text-brand mb-2">98%</div>
+                            <div className="text-sm text-gray-600 uppercase tracking-wide">{language === 'ar' ? 'معدل النجاح' : 'Success Rate'}</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Overview Section with Sidebar */}
+            <section id="details" className="py-32 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-3 gap-16">
-                        {/* Left Column - Main Content */}
-                        <div className="lg:col-span-2 reveal">
-                            <div className="flex items-center gap-3 mb-8">
-                                <div className="w-12 h-1 bg-brand"></div>
-                                <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{t.overview}</h2>
-                            </div>
-
-                            <div className="prose prose-lg max-w-none">
-                                <p className="text-2xl font-serif text-onyx leading-relaxed mb-8">
-                                    {description}
-                                </p>
-                            </div>
-
-                            {/* Feature Cards */}
-                            <div className="grid md:grid-cols-2 gap-6 mt-12">
-                                <div className="p-6 bg-gray-50 border-l-4 border-brand hover:shadow-lg transition-shadow">
-                                    <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                    </div>
-                                    <h3 className="font-bold text-onyx text-lg mb-2">{details.featureCard1?.title || "Professional Expertise"}</h3>
-                                    <p className="text-gray-600">{details.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
+                        {/* Main Content - 2/3 */}
+                        <div className="lg:col-span-2 space-y-16">
+                            {/* Section Header */}
+                            <div className="reveal space-y-6">
+                                <div className="flex items-center gap-4">
+                                    <div className="w-16 h-1 bg-brand"></div>
+                                    <span className="text-brand text-sm font-bold tracking-[0.3em] uppercase">{t.overview}</span>
                                 </div>
-                                <div className="p-6 bg-gray-50 border-l-4 border-brand hover:shadow-lg transition-shadow">
-                                    <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                        </svg>
+                                <h2 className="text-5xl font-serif font-bold text-onyx leading-tight">
+                                    {language === 'ar' ? 'خدمات متكاملة ومتخصصة' : 'Comprehensive & Specialized Services'}
+                                </h2>
+                                <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6">
+                                    <p className="text-2xl font-light text-gray-800 leading-relaxed">
+                                        {description}
+                                    </p>
+                                    <p className="text-lg text-gray-600">
+                                        {language === 'ar'
+                                            ? 'نقدم حلولاً شاملة تجمع بين الخبرة العميقة والمنهجيات المثبتة لتحقيق نتائج استثنائية. فريقنا من الخبراء يعمل معك جنباً إلى جنب لضمان تحقيق أهدافك الاستراتيجية.'
+                                            : 'We deliver comprehensive solutions that combine deep expertise with proven methodologies to achieve exceptional results. Our team of experts works alongside you to ensure your strategic objectives are met.'}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Highlight Cards */}
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="reveal group p-8 bg-gradient-to-br from-gray-50 to-white border-l-4 border-brand rounded-r-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex-shrink-0 w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors">
+                                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl font-bold text-onyx mb-3">{details.featureCard1?.title || "Professional Expertise"}</h3>
+                                            <p className="text-gray-600 leading-relaxed">{details.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
+                                        </div>
                                     </div>
-                                    <h3 className="font-bold text-onyx text-lg mb-2">{details.featureCard2?.title || "Tailored Solutions"}</h3>
-                                    <p className="text-gray-600">{details.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
+                                </div>
+                                <div className="reveal group p-8 bg-gradient-to-br from-gray-50 to-white border-l-4 border-brand rounded-r-2xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300" style={{ transitionDelay: "100ms" }}>
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex-shrink-0 w-16 h-16 bg-brand/10 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-colors">
+                                            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                            </svg>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl font-bold text-onyx mb-3">{details.featureCard2?.title || "Tailored Solutions"}</h3>
+                                            <p className="text-gray-600 leading-relaxed">{details.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Right Column - Sidebar */}
-                        <div className="reveal" style={{ transitionDelay: "100ms" }}>
-                            {/* Quick Contact Card */}
-                            <div className="bg-onyx text-white p-8 rounded-xl sticky top-24">
-                                <h3 className="text-xl font-serif mb-4">{details.sidebar?.title || "Need Help?"}</h3>
-                                <p className="text-gray-400 text-sm mb-6">{details.sidebar?.description || "Contact us to learn more about how we can help your organization."}</p>
+                        {/* Sidebar - 1/3 */}
+                        <div className="reveal space-y-8" style={{ transitionDelay: "200ms" }}>
+                            {/* Contact Card */}
+                            <div className="sticky top-24 space-y-8">
+                                <div className="bg-onyx text-white p-10 rounded-2xl shadow-2xl">
+                                    <h3 className="text-2xl font-serif font-bold mb-4">{details.sidebar?.title || "Need Expert Guidance?"}</h3>
+                                    <p className="text-gray-300 mb-8 leading-relaxed">{details.sidebar?.description || "Contact us to learn more about how we can help your organization achieve excellence."}</p>
 
-                                <Link
-                                    href="/contact"
-                                    className="block w-full py-3 bg-brand text-center text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-colors mb-4"
-                                >
-                                    {t.contactUs}
-                                </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="block w-full py-4 bg-brand text-center text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-colors mb-4 shadow-lg"
+                                    >
+                                        {t.contactUs}
+                                    </Link>
 
-                                <Link
-                                    href="/services"
-                                    className="block w-full py-3 border border-white/20 text-center text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
-                                >
-                                    {t.exploreAllServices}
-                                </Link>
+                                    <Link
+                                        href="/services"
+                                        className="block w-full py-4 border-2 border-white/20 text-center text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 hover:border-white transition-colors"
+                                    >
+                                        {t.exploreAllServices}
+                                    </Link>
+                                </div>
+
+                                {/* Quick Info */}
+                                <div className="bg-gray-50 p-8 rounded-2xl border border-gray-200">
+                                    <h4 className="font-bold text-onyx mb-6 text-lg">{language === 'ar' ? 'معلومات سريعة' : 'Quick Info'}</h4>
+                                    <div className="space-y-4">
+                                        <div className="flex items-start gap-3">
+                                            <svg className="w-6 h-6 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                            <div>
+                                                <div className="font-semibold text-gray-900">{language === 'ar' ? 'وقت التسليم' : 'Delivery Time'}</div>
+                                                <div className="text-sm text-gray-600">{language === 'ar' ? '2-4 أسابيع' : '2-4 weeks'}</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <svg className="w-6 h-6 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                            </svg>
+                                            <div>
+                                                <div className="font-semibold text-gray-900">{language === 'ar' ? 'فريق الخبراء' : 'Expert Team'}</div>
+                                                <div className="text-sm text-gray-600">{language === 'ar' ? 'متخصصون معتمدون' : 'Certified Specialists'}</div>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-start gap-3">
+                                            <svg className="w-6 h-6 text-brand flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" />
+                                            </svg>
+                                            <div>
+                                                <div className="font-semibold text-gray-900">{language === 'ar' ? 'الدعم' : 'Support'}</div>
+                                                <div className="text-sm text-gray-600">{language === 'ar' ? 'دعم مستمر' : 'Ongoing Support'}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Key Points Section */}
+            {/* Key Services/Points Section */}
             {keyPoints.length > 0 && (
-                <section className="py-24 bg-gray-50">
+                <section className="py-32 bg-gradient-to-br from-gray-50 to-white">
                     <div className="max-w-7xl mx-auto px-6">
-                        <div className="text-center mb-16 reveal">
-                            <div className="flex items-center justify-center gap-3 mb-4">
-                                <div className="w-12 h-1 bg-brand"></div>
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.keyPointsTitle || "What We Offer"}</span>
-                                <div className="w-12 h-1 bg-brand"></div>
+                        <div className="text-center mb-20 reveal">
+                            <div className="flex items-center justify-center gap-4 mb-6">
+                                <div className="w-16 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.3em] uppercase">{details.keyPointsTitle || "What We Offer"}</span>
+                                <div className="w-16 h-1 bg-brand"></div>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-serif text-onyx">
+                            <h2 className="text-5xl md:text-6xl font-serif font-bold text-onyx mb-6">
                                 {details.keyPointsHeadline || "Key Services"}
                             </h2>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                                {language === 'ar'
+                                    ? 'نقدم مجموعة شاملة من الخدمات المتخصصة المصممة لتلبية احتياجاتك الفريدة'
+                                    : 'We offer a comprehensive suite of specialized services designed to meet your unique needs'}
+                            </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                             {keyPoints.map((point: any, index: number) => (
                                 <div
                                     key={index}
-                                    className="reveal bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+                                    className="reveal group bg-white p-10 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-brand/20 hover:-translate-y-2"
                                     style={{ transitionDelay: `${index * 100}ms` }}
                                 >
-                                    <div className="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 text-brand group-hover:bg-brand group-hover:text-white transition-colors">
-                                        <span className="text-2xl font-bold">{String(index + 1).padStart(2, '0')}</span>
+                                    <div className="flex items-start gap-6">
+                                        <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-br from-brand/20 to-brand/5 rounded-2xl flex items-center justify-center text-brand group-hover:from-brand group-hover:to-brand-dark group-hover:text-white transition-all duration-300 shadow-lg">
+                                            <span className="text-2xl font-bold">{String(index + 1).padStart(2, '0')}</span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl font-bold text-onyx mb-4 group-hover:text-brand transition-colors">{point.title}</h3>
+                                            <p className="text-gray-600 leading-relaxed">{point.description}</p>
+                                        </div>
                                     </div>
-                                    <h3 className="text-xl font-bold text-onyx mb-3">{point.title}</h3>
-                                    <p className="text-gray-600 leading-relaxed">{point.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -267,42 +367,51 @@ export default function ServiceDetailPage() {
                 </section>
             )}
 
-            {/* Process Section */}
+            {/* Process/Methodology Section */}
             {process.length > 0 && (
-                <section className="py-24 bg-white">
+                <section className="py-32 bg-white">
                     <div className="max-w-7xl mx-auto px-6">
-                        <div className="text-center mb-16 reveal">
-                            <div className="flex items-center justify-center gap-3 mb-4">
-                                <div className="w-12 h-1 bg-brand"></div>
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.processTitle || "Our Approach"}</span>
-                                <div className="w-12 h-1 bg-brand"></div>
+                        <div className="text-center mb-20 reveal">
+                            <div className="flex items-center justify-center gap-4 mb-6">
+                                <div className="w-16 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.3em] uppercase">{details.processTitle || "Our Approach"}</span>
+                                <div className="w-16 h-1 bg-brand"></div>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-serif text-onyx">
+                            <h2 className="text-5xl md:text-6xl font-serif font-bold text-onyx mb-6">
                                 {details.processHeadline || "How We Deliver Results"}
                             </h2>
+                            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                                {language === 'ar'
+                                    ? 'منهجية مُجرّبة ومثبتة لضمان نجاح مشروعك'
+                                    : 'A proven, systematic methodology to ensure your project success'}
+                            </p>
                         </div>
 
                         <div className="relative">
                             {/* Timeline Line */}
-                            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-brand/20"></div>
+                            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-brand/30 via-brand/50 to-brand/30"></div>
 
-                            <div className="space-y-12">
+                            <div className="space-y-20">
                                 {process.map((step: any, index: number) => (
                                     <div
                                         key={index}
-                                        className={`reveal flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+                                        className={`reveal flex flex-col lg:flex-row items-center gap-12 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
                                         style={{ transitionDelay: `${index * 150}ms` }}
                                     >
                                         <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-left' : 'lg:text-right'}`}>
-                                            <div className={`bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow ${index % 2 === 1 ? '' : 'lg:ml-auto'} max-w-lg`}>
-                                                <span className="text-brand font-bold text-sm tracking-widest">{t.step} {index + 1}</span>
-                                                <h3 className="text-2xl font-bold text-onyx mt-2 mb-4">{step.title}</h3>
-                                                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                                            <div className={`bg-gradient-to-br from-gray-50 to-white p-10 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 border-l-4 border-brand ${index % 2 === 1 ? '' : 'lg:ml-auto'} max-w-xl group hover:-translate-y-2`}>
+                                                <div className={`flex items-center gap-3 mb-4 ${index % 2 === 1 ? '' : 'lg:flex-row-reverse'}`}>
+                                                    <div className="px-5 py-2 bg-brand/10 rounded-full">
+                                                        <span className="text-brand font-bold text-sm tracking-widest uppercase">{t.step} {index + 1}</span>
+                                                    </div>
+                                                </div>
+                                                <h3 className="text-3xl font-bold text-onyx mb-5 group-hover:text-brand transition-colors">{step.title}</h3>
+                                                <p className="text-gray-600 text-lg leading-relaxed">{step.description}</p>
                                             </div>
                                         </div>
 
                                         {/* Center Circle */}
-                                        <div className="hidden lg:flex items-center justify-center w-16 h-16 bg-brand text-white rounded-full font-bold text-lg shadow-lg z-10">
+                                        <div className="hidden lg:flex items-center justify-center w-24 h-24 bg-gradient-to-br from-brand to-brand-dark text-white rounded-full font-bold text-2xl shadow-2xl z-10 border-4 border-white">
                                             {String(index + 1).padStart(2, '0')}
                                         </div>
 
@@ -317,33 +426,45 @@ export default function ServiceDetailPage() {
 
             {/* Why Choose Us Section */}
             {whyChooseUs.length > 0 && (
-                <section className="py-24 bg-onyx text-white">
-                    <div className="max-w-7xl mx-auto px-6">
-                        <div className="text-center mb-16 reveal">
-                            <div className="flex items-center justify-center gap-3 mb-4">
-                                <div className="w-12 h-1 bg-brand"></div>
-                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.whyChooseUsTitle || "Why GovernValu"}</span>
-                                <div className="w-12 h-1 bg-brand"></div>
+                <section className="py-32 bg-gradient-to-br from-onyx via-gray-900 to-onyx text-white overflow-hidden relative">
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-5">
+                        <div className="absolute inset-0 bg-[url('/grid.svg')]"></div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-6 relative z-10">
+                        <div className="text-center mb-20 reveal">
+                            <div className="flex items-center justify-center gap-4 mb-6">
+                                <div className="w-16 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.3em] uppercase">{details.whyChooseUsTitle || "Why GovernValu"}</span>
+                                <div className="w-16 h-1 bg-brand"></div>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-serif">
+                            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-6">
                                 {details.whyChooseUsHeadline || "Why Choose Us"}
                             </h2>
+                            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                                {language === 'ar'
+                                    ? 'نتميز بخبرتنا العميقة والتزامنا بتحقيق التميز في كل مشروع'
+                                    : 'We stand out through our deep expertise and commitment to excellence in every project'}
+                            </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
                             {whyChooseUs.map((item: any, index: number) => (
                                 <div
                                     key={index}
                                     className="reveal text-center group"
                                     style={{ transitionDelay: `${index * 100}ms` }}
                                 >
-                                    <div className="w-20 h-20 bg-brand/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand transition-colors">
-                                        <svg className="w-10 h-10 text-brand group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
+                                    <div className="bg-white/5 backdrop-blur-sm p-10 rounded-2xl border border-white/10 hover:border-brand hover:bg-brand/10 transition-all duration-500 h-full hover:-translate-y-2">
+                                        <div className="w-24 h-24 bg-gradient-to-br from-brand/30 to-brand/10 rounded-3xl flex items-center justify-center mx-auto mb-8 group-hover:from-brand group-hover:to-brand-dark transition-all duration-500 shadow-2xl">
+                                            <svg className="w-12 h-12 text-brand group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                        <h3 className="text-2xl font-bold mb-4 group-hover:text-brand transition-colors">{item.title}</h3>
+                                        <p className="text-gray-300 leading-relaxed text-lg">{item.description}</p>
                                     </div>
-                                    <h3 className="text-xl font-bold mb-3">{item.title}</h3>
-                                    <p className="text-gray-400 leading-relaxed">{item.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -352,24 +473,29 @@ export default function ServiceDetailPage() {
             )}
 
             {/* CTA Banner */}
-            <section className="py-24 bg-brand">
-                <div className="max-w-4xl mx-auto px-6 text-center reveal">
-                    <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">
+            <section className="py-32 bg-gradient-to-r from-brand via-brand-dark to-brand relative overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0 bg-[url('/grid.svg')]"></div>
+                </div>
+
+                <div className="max-w-5xl mx-auto px-6 text-center relative z-10 reveal">
+                    <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8 leading-tight">
                         {details.ctaBanner?.headline || "Ready to Transform Your Organization?"}
                     </h2>
-                    <p className="text-xl text-white/80 font-light mb-10 max-w-2xl mx-auto">
+                    <p className="text-2xl text-white/90 font-light mb-12 max-w-3xl mx-auto leading-relaxed">
                         {details.ctaBanner?.subtext || `Let us help you achieve excellence in ${service.title.toLowerCase()}.`}
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link
                             href="/contact"
-                            className="inline-block px-12 py-5 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-colors shadow-lg"
+                            className="inline-block px-14 py-6 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-all duration-300 shadow-2xl hover:shadow-white/20 hover:-translate-y-1"
                         >
                             {details.ctaBanner?.button1Text || "Schedule a Call"}
                         </Link>
                         <Link
                             href="/about/expertise"
-                            className="inline-block px-12 py-5 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+                            className="inline-block px-14 py-6 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
                         >
                             {details.ctaBanner?.button2Text || "Learn About Us"}
                         </Link>
