@@ -30,11 +30,11 @@ export default function Header() {
                     {/* Logo */}
                     <Link href="/" className="flex-shrink-0 flex items-center gap-3 cursor-pointer">
                         <Image
-                            src="/logogov.png"
+                            src="/logonew.png"
                             alt="GovernValu"
-                            width={200}
-                            height={60}
-                            className="h-10 w-auto object-contain"
+                            width={240}
+                            height={72}
+                            className="h-12 w-auto object-contain"
                             priority
                             unoptimized
                         />
