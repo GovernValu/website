@@ -86,18 +86,22 @@ export default function ServiceDetailPage() {
     if (!service) return notFound();
 
     const description = service.fullDescription || service.shortDescription || "";
-    const detailPage = service.details || {};
+    const details = service.details || {};
+    const keyPoints = details.keyPoints || [];
+    const process = details.process || [];
+    const whyChooseUs = details.whyChooseUs || [];
 
     return (
         <>
             <Header />
 
             {/* Hero Section - Clean Landing Style */}
-            <header className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-onyx via-onyx to-onyx-800">
+            <header className="relative min-h-[70vh] flex items-center bg-gradient-to-br from-onyx via-onyx to-onyx-800">
                 {/* Decorative Elements */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-0 right-0 w-1/2 h-full bg-brand/5 transform skew-x-12"></div>
                     <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                    <div className="absolute top-20 right-20 w-64 h-64 bg-brand/5 rounded-full blur-3xl"></div>
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
@@ -114,7 +118,7 @@ export default function ServiceDetailPage() {
                             </div>
 
                             {/* Icon Badge */}
-                            <div className="w-16 h-16 bg-brand/20 rounded-2xl flex items-center justify-center mb-6 text-brand">
+                            <div className="w-20 h-20 bg-brand/20 rounded-2xl flex items-center justify-center mb-8 text-brand">
                                 {ICONS[service.icon] || ICONS['building']}
                             </div>
 
@@ -128,16 +132,24 @@ export default function ServiceDetailPage() {
                                 {service.shortDescription}
                             </p>
 
-                            {/* CTA Button */}
-                            <Link
-                                href="/contact"
-                                className="inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-all duration-300 group"
-                            >
-                                {t.contactUs}
-                                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </Link>
+                            {/* CTA Buttons */}
+                            <div className="flex flex-wrap gap-4">
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-3 px-8 py-4 bg-brand text-white text-sm uppercase tracking-widest font-bold hover:bg-brand-dark transition-all duration-300 group"
+                                >
+                                    {t.getStarted || "Get Started"}
+                                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </Link>
+                                <Link
+                                    href="#overview"
+                                    className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all duration-300"
+                                >
+                                    {t.learnMore || "Learn More"}
+                                </Link>
+                            </div>
                         </div>
 
                         {/* Right: Image */}
@@ -147,7 +159,7 @@ export default function ServiceDetailPage() {
                                 <img
                                     src={service.image || "/services/default.jpg"}
                                     alt={service.title}
-                                    className="relative w-full h-[400px] object-cover rounded-xl shadow-2xl"
+                                    className="relative w-full h-[450px] object-cover rounded-xl shadow-2xl"
                                 />
                             </div>
                         </div>
@@ -155,8 +167,8 @@ export default function ServiceDetailPage() {
                 </div>
             </header>
 
-            {/* Main Content Section */}
-            <section className="py-24 bg-white">
+            {/* Overview Section */}
+            <section id="overview" className="py-24 bg-white">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid lg:grid-cols-3 gap-16">
                         {/* Left Column - Main Content */}
@@ -174,23 +186,23 @@ export default function ServiceDetailPage() {
 
                             {/* Feature Cards */}
                             <div className="grid md:grid-cols-2 gap-6 mt-12">
-                                <div className="p-6 bg-gray-50 border-l-4 border-brand">
-                                    <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="p-6 bg-gray-50 border-l-4 border-brand hover:shadow-lg transition-shadow">
+                                    <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">{detailPage.featureCard1?.title || "Professional Expertise"}</h3>
-                                    <p className="text-gray-600 text-sm">{detailPage.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
+                                    <h3 className="font-bold text-onyx text-lg mb-2">{details.featureCard1?.title || "Professional Expertise"}</h3>
+                                    <p className="text-gray-600">{details.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
                                 </div>
-                                <div className="p-6 bg-gray-50 border-l-4 border-brand">
-                                    <div className="w-10 h-10 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
-                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div className="p-6 bg-gray-50 border-l-4 border-brand hover:shadow-lg transition-shadow">
+                                    <div className="w-12 h-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4 text-brand">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="font-bold text-onyx mb-2">{detailPage.featureCard2?.title || "Tailored Solutions"}</h3>
-                                    <p className="text-gray-600 text-sm">{detailPage.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
+                                    <h3 className="font-bold text-onyx text-lg mb-2">{details.featureCard2?.title || "Tailored Solutions"}</h3>
+                                    <p className="text-gray-600">{details.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
                                 </div>
                             </div>
                         </div>
@@ -199,8 +211,8 @@ export default function ServiceDetailPage() {
                         <div className="reveal" style={{ transitionDelay: "100ms" }}>
                             {/* Quick Contact Card */}
                             <div className="bg-onyx text-white p-8 rounded-xl sticky top-24">
-                                <h3 className="text-xl font-serif mb-4">{detailPage.sidebar?.title || "Need Help?"}</h3>
-                                <p className="text-gray-400 text-sm mb-6">{detailPage.sidebar?.description || "Contact us to learn more about how we can help your organization."}</p>
+                                <h3 className="text-xl font-serif mb-4">{details.sidebar?.title || "Need Help?"}</h3>
+                                <p className="text-gray-400 text-sm mb-6">{details.sidebar?.description || "Contact us to learn more about how we can help your organization."}</p>
 
                                 <Link
                                     href="/contact"
@@ -221,27 +233,145 @@ export default function ServiceDetailPage() {
                 </div>
             </section>
 
+            {/* Key Points Section */}
+            {keyPoints.length > 0 && (
+                <section className="py-24 bg-gray-50">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="text-center mb-16 reveal">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-12 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.keyPointsTitle || "What We Offer"}</span>
+                                <div className="w-12 h-1 bg-brand"></div>
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-serif text-onyx">
+                                {details.keyPointsHeadline || "Key Services"}
+                            </h2>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {keyPoints.map((point: any, index: number) => (
+                                <div
+                                    key={index}
+                                    className="reveal bg-white p-8 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 group"
+                                    style={{ transitionDelay: `${index * 100}ms` }}
+                                >
+                                    <div className="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 text-brand group-hover:bg-brand group-hover:text-white transition-colors">
+                                        <span className="text-2xl font-bold">{String(index + 1).padStart(2, '0')}</span>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-onyx mb-3">{point.title}</h3>
+                                    <p className="text-gray-600 leading-relaxed">{point.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Process Section */}
+            {process.length > 0 && (
+                <section className="py-24 bg-white">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="text-center mb-16 reveal">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-12 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.processTitle || "Our Approach"}</span>
+                                <div className="w-12 h-1 bg-brand"></div>
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-serif text-onyx">
+                                {details.processHeadline || "How We Deliver Results"}
+                            </h2>
+                        </div>
+
+                        <div className="relative">
+                            {/* Timeline Line */}
+                            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-brand/20"></div>
+
+                            <div className="space-y-12">
+                                {process.map((step: any, index: number) => (
+                                    <div
+                                        key={index}
+                                        className={`reveal flex flex-col lg:flex-row items-center gap-8 ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}
+                                        style={{ transitionDelay: `${index * 150}ms` }}
+                                    >
+                                        <div className={`flex-1 ${index % 2 === 1 ? 'lg:text-left' : 'lg:text-right'}`}>
+                                            <div className={`bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-lg transition-shadow ${index % 2 === 1 ? '' : 'lg:ml-auto'} max-w-lg`}>
+                                                <span className="text-brand font-bold text-sm tracking-widest">{t.step} {index + 1}</span>
+                                                <h3 className="text-2xl font-bold text-onyx mt-2 mb-4">{step.title}</h3>
+                                                <p className="text-gray-600 leading-relaxed">{step.description}</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Center Circle */}
+                                        <div className="hidden lg:flex items-center justify-center w-16 h-16 bg-brand text-white rounded-full font-bold text-lg shadow-lg z-10">
+                                            {String(index + 1).padStart(2, '0')}
+                                        </div>
+
+                                        <div className="flex-1 hidden lg:block"></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* Why Choose Us Section */}
+            {whyChooseUs.length > 0 && (
+                <section className="py-24 bg-onyx text-white">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="text-center mb-16 reveal">
+                            <div className="flex items-center justify-center gap-3 mb-4">
+                                <div className="w-12 h-1 bg-brand"></div>
+                                <span className="text-brand text-sm font-bold tracking-[0.2em] uppercase">{details.whyChooseUsTitle || "Why GovernValu"}</span>
+                                <div className="w-12 h-1 bg-brand"></div>
+                            </div>
+                            <h2 className="text-3xl md:text-4xl font-serif">
+                                {details.whyChooseUsHeadline || "Why Choose Us"}
+                            </h2>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {whyChooseUs.map((item: any, index: number) => (
+                                <div
+                                    key={index}
+                                    className="reveal text-center group"
+                                    style={{ transitionDelay: `${index * 100}ms` }}
+                                >
+                                    <div className="w-20 h-20 bg-brand/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-brand transition-colors">
+                                        <svg className="w-10 h-10 text-brand group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                                    <p className="text-gray-400 leading-relaxed">{item.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
             {/* CTA Banner */}
-            <section className="py-20 bg-brand">
+            <section className="py-24 bg-brand">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
-                    <h2 className="text-3xl md:text-4xl font-serif text-white mb-6">
-                        {detailPage.ctaBanner?.headline || "Ready to Transform Your Organization?"}
+                    <h2 className="text-3xl md:text-5xl font-serif text-white mb-6">
+                        {details.ctaBanner?.headline || "Ready to Transform Your Organization?"}
                     </h2>
-                    <p className="text-xl text-white/80 font-light mb-8">
-                        {detailPage.ctaBanner?.subtext || "Let us help you achieve excellence in"} {service.title.toLowerCase()}.
+                    <p className="text-xl text-white/80 font-light mb-10 max-w-2xl mx-auto">
+                        {details.ctaBanner?.subtext || `Let us help you achieve excellence in ${service.title.toLowerCase()}.`}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link
                             href="/contact"
-                            className="inline-block px-10 py-4 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-colors"
+                            className="inline-block px-12 py-5 bg-white text-brand text-sm uppercase tracking-widest font-bold hover:bg-gray-100 transition-colors shadow-lg"
                         >
-                            {detailPage.ctaBanner?.button1Text || "Schedule a Call"}
+                            {details.ctaBanner?.button1Text || "Schedule a Call"}
                         </Link>
                         <Link
                             href="/about/expertise"
-                            className="inline-block px-10 py-4 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
+                            className="inline-block px-12 py-5 border-2 border-white text-white text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-colors"
                         >
-                            {detailPage.ctaBanner?.button2Text || "Learn About Us"}
+                            {details.ctaBanner?.button2Text || "Learn About Us"}
                         </Link>
                     </div>
                 </div>

@@ -41,19 +41,79 @@
     "services": [
         {
             "slug": "governance-systems",
-            "title": "Governance Systems & Frameworks",
-            "shortDescription": "Building and installing world-class governance systems compliant with international standards.",
-            "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices. Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance. Empowering and strengthening governance systems through professional application. Preparing periodic and ad hoc governance reports.",
+            "title": "Building, Implementing, and Empowering Governance Systems",
+            "shortDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices.",
+            "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices.",
             "icon": "building",
             "image": "/services/governance.jpg",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Comprehensive Governance Services",
+                "keyPoints": [
+                    {
+                        "title": "System Building & Establishment",
+                        "description": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices."
+                    },
+                    {
+                        "title": "Institutional Qualification",
+                        "description": "Qualifying institutions to adopt governance systems, providing training on sound implementation, and promoting a culture of good governance."
+                    },
+                    {
+                        "title": "Empowerment & Strengthening",
+                        "description": "Empowering and strengthening governance systems through professional application."
+                    },
+                    {
+                        "title": "Governance Reporting",
+                        "description": "Preparing periodic and ad hoc governance reports."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Implement Governance",
+                "process": [
+                    {
+                        "title": "Assessment & Gap Analysis",
+                        "description": "Comprehensive evaluation of your current governance maturity against international standards and best practices."
+                    },
+                    {
+                        "title": "Framework Design",
+                        "description": "Development of customized governance frameworks aligned with local regulations and international principles."
+                    },
+                    {
+                        "title": "Training & Culture Building",
+                        "description": "Intensive training programs to build internal capabilities and promote a culture of good governance."
+                    },
+                    {
+                        "title": "Implementation Support",
+                        "description": "Hands-on guidance during the implementation phase to ensure professional application."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Governance",
+                "whyChooseUs": [
+                    {
+                        "title": "Global Standards",
+                        "description": "Expertise in international and local governance frameworks."
+                    },
+                    {
+                        "title": "Proven Track Record",
+                        "description": "Successfully implemented governance in diverse organizations."
+                    },
+                    {
+                        "title": "Culture Focus",
+                        "description": "We build sustainable governance cultures, not just systems."
+                    },
+                    {
+                        "title": "Ongoing Support",
+                        "description": "Continuous reporting and improvement services."
+                    }
+                ],
                 "featureCard1": {
-                    "title": "System Implementation",
-                    "description": "Building and establishing governance systems in accordance with international and local standards."
+                    "title": "International Standards",
+                    "description": "Building governance systems aligned with global best practices and local regulations."
                 },
                 "featureCard2": {
-                    "title": "Empowerment & Culture",
-                    "description": "Qualifying institutions and promoting a culture of good governance through professional application."
+                    "title": "Professional Implementation",
+                    "description": "Empowering and strengthening systems through expert application and training."
                 },
                 "sidebar": {
                     "title": "Improve Governance?",
@@ -69,12 +129,72 @@
         },
         {
             "slug": "investment-networks",
-            "title": "Investment Networks & Portfolios",
-            "shortDescription": "Establishing investment relationships and managing portfolios for maximum growth.",
-            "fullDescription": "Establishing investment relationships. Developing and implementing investment plans. Studying, evaluating, and presenting investment opportunities. Planning and managing investment portfolios and funds.",
+            "title": "Building Investment Networks and Relationships",
+            "shortDescription": "Establishing investment relationships and developing investment plans for sustainable growth.",
+            "fullDescription": "We help organizations establish robust investment relationships, develop comprehensive investment plans, and manage portfolios for maximum growth.",
             "icon": "chart",
             "image": "/services/investment.jpg",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Investment Services",
+                "keyPoints": [
+                    {
+                        "title": "Establishing Investment Relationships",
+                        "description": "Opening and nurturing strategic investment relationships with key stakeholders and partners."
+                    },
+                    {
+                        "title": "Developing Investment Plans",
+                        "description": "Building and developing comprehensive investment plans tailored to your objectives."
+                    },
+                    {
+                        "title": "Opportunity Evaluation",
+                        "description": "Studying, evaluating, and presenting investment opportunities with thorough due diligence."
+                    },
+                    {
+                        "title": "Portfolio & Fund Management",
+                        "description": "Planning and managing investment portfolios and funds with strategic oversight."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Build Investment Networks",
+                "process": [
+                    {
+                        "title": "Strategic Assessment",
+                        "description": "Understanding your investment goals, risk appetite, and growth targets."
+                    },
+                    {
+                        "title": "Network Development",
+                        "description": "Leveraging our global network to identify and connect you with strategic partners."
+                    },
+                    {
+                        "title": "Opportunity Analysis",
+                        "description": "Rigorous evaluation of investment opportunities with comprehensive due diligence."
+                    },
+                    {
+                        "title": "Portfolio Management",
+                        "description": "Ongoing oversight and strategic management of your investment portfolio."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Investments",
+                "whyChooseUs": [
+                    {
+                        "title": "Global Network",
+                        "description": "Access to exclusive investment partners worldwide."
+                    },
+                    {
+                        "title": "Strategic Expertise",
+                        "description": "Data-driven investment planning and analysis."
+                    },
+                    {
+                        "title": "Risk Management",
+                        "description": "Balanced approach to growth and risk mitigation."
+                    },
+                    {
+                        "title": "Long-term Value",
+                        "description": "Focus on sustainable, long-term returns."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Investment Planning",
                     "description": "Developing and implementing comprehensive investment plans tailored to your goals."
@@ -97,12 +217,64 @@
         },
         {
             "slug": "valuation",
-            "title": "Company & Brand Valuation",
-            "shortDescription": "Precise valuation services for companies, projects, and intangible assets.",
-            "fullDescription": "Company and Project Valuation. Brand Valuation. We use internationally recognized methodologies to provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
+            "title": "Company and Brand Valuation",
+            "shortDescription": "Precise valuation services for companies, projects, and brand assets.",
+            "fullDescription": "We provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
             "icon": "chart",
             "image": "/services/valuation.jpg",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Valuation Services",
+                "keyPoints": [
+                    {
+                        "title": "Company and Project Valuation",
+                        "description": "Comprehensive valuation of companies and projects using internationally recognized methodologies."
+                    },
+                    {
+                        "title": "Brand Valuation",
+                        "description": "Accurate assessment of brand equity and intangible asset value."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Conduct Valuations",
+                "process": [
+                    {
+                        "title": "Data Collection",
+                        "description": "Gathering comprehensive financial and operational data for analysis."
+                    },
+                    {
+                        "title": "Methodology Selection",
+                        "description": "Applying the most appropriate valuation methodology (DCF, Market, Asset-based)."
+                    },
+                    {
+                        "title": "Analysis & Modeling",
+                        "description": "Rigorous financial modeling and sensitivity analysis."
+                    },
+                    {
+                        "title": "Report Delivery",
+                        "description": "Comprehensive valuation report with supporting documentation."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Valuation",
+                "whyChooseUs": [
+                    {
+                        "title": "IVS Compliant",
+                        "description": "Valuations aligned with International Valuation Standards."
+                    },
+                    {
+                        "title": "Market Expertise",
+                        "description": "Deep understanding of regional market dynamics."
+                    },
+                    {
+                        "title": "Defensible Reports",
+                        "description": "Valuations that stand up to regulatory scrutiny."
+                    },
+                    {
+                        "title": "Confidentiality",
+                        "description": "Strict data protection and confidentiality protocols."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Business Valuation",
                     "description": "Accurate valuation of companies and specific projects using recognized methodologies."
@@ -125,11 +297,67 @@
         },
         {
             "slug": "trademarks",
-            "title": "Global Trademark Protection",
-            "shortDescription": "Registering and protecting intellectual property and trademarks globally.",
-            "fullDescription": "Registering and protecting trademarks globally. We provide comprehensive services to secure your brand identity and intellectual property rights across different jurisdictions with our expert legal and regulatory guidance.",
+            "title": "Registering and Protecting Trademarks Globally",
+            "shortDescription": "Comprehensive services for registering and protecting trademarks globally.",
+            "fullDescription": "We provide comprehensive services to secure your brand identity and intellectual property rights across different jurisdictions with expert legal and regulatory guidance.",
             "icon": "shield",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Trademark Services",
+                "keyPoints": [
+                    {
+                        "title": "Global Trademark Registration",
+                        "description": "Registration of trademarks across multiple international jurisdictions."
+                    },
+                    {
+                        "title": "Trademark Protection",
+                        "description": "Ongoing monitoring and protection of your intellectual property rights."
+                    },
+                    {
+                        "title": "Legal Guidance",
+                        "description": "Expert legal and regulatory guidance for IP protection."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Protect Your Brand",
+                "process": [
+                    {
+                        "title": "Trademark Search",
+                        "description": "Comprehensive search to ensure availability and avoid conflicts."
+                    },
+                    {
+                        "title": "Application Filing",
+                        "description": "Expert preparation and filing of trademark applications."
+                    },
+                    {
+                        "title": "Registration Management",
+                        "description": "Managing the registration process across jurisdictions."
+                    },
+                    {
+                        "title": "Ongoing Protection",
+                        "description": "Monitoring and enforcement of your trademark rights."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for IP Protection",
+                "whyChooseUs": [
+                    {
+                        "title": "Global Coverage",
+                        "description": "Protection across multiple jurisdictions worldwide."
+                    },
+                    {
+                        "title": "Legal Expertise",
+                        "description": "Experienced IP legal professionals."
+                    },
+                    {
+                        "title": "Proactive Monitoring",
+                        "description": "Continuous monitoring for infringement."
+                    },
+                    {
+                        "title": "Fast Processing",
+                        "description": "Efficient application and registration process."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Global Registration",
                     "description": "Comprehensive services for registering trademarks in international jurisdictions."
@@ -152,11 +380,83 @@
         },
         {
             "slug": "business-problems",
-            "title": "Business Crisis Solutions",
-            "shortDescription": "Expert resolution for governance, financial, and operational challenges.",
-            "fullDescription": "Addressing problems of lack of governance or inefficient (bad) implementation. Solving financing and banking problems. Resolving operational and production issues. Managing reputation and image problems. Handling legal and weak human resources problems. Addressing toxic corporate culture due to poor management style.",
+            "title": "Business Problems Solutions",
+            "shortDescription": "Expert resolution for governance, financial, operational, and organizational challenges.",
+            "fullDescription": "We address complex organizational challenges and turn crises into opportunities for reform and growth.",
             "icon": "users",
             "details": {
+                "keyPointsTitle": "What We Solve",
+                "keyPointsHeadline": "Business Challenges We Address",
+                "keyPoints": [
+                    {
+                        "title": "Governance Issues",
+                        "description": "Problems of lack of governance or inefficient (bad) implementation of governance."
+                    },
+                    {
+                        "title": "Financing and Banking Problems",
+                        "description": "Resolving complex financing, banking, and capital structure challenges."
+                    },
+                    {
+                        "title": "Operational and Production Problems",
+                        "description": "Addressing operational bottlenecks and production inefficiencies."
+                    },
+                    {
+                        "title": "Reputation and Image Problems",
+                        "description": "Managing and restoring organizational reputation and brand image."
+                    },
+                    {
+                        "title": "Legal Problems",
+                        "description": "Navigating complex legal challenges and regulatory issues."
+                    },
+                    {
+                        "title": "Weak Human Resources",
+                        "description": "Addressing weak human resources and talent management issues."
+                    },
+                    {
+                        "title": "Toxic Corporate Culture",
+                        "description": "Solving problems of toxic corporate culture due to poor management style."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Solve Business Problems",
+                "process": [
+                    {
+                        "title": "Diagnostic Assessment",
+                        "description": "Comprehensive analysis to identify root causes of business challenges."
+                    },
+                    {
+                        "title": "Solution Design",
+                        "description": "Developing tailored solutions and turnaround strategies."
+                    },
+                    {
+                        "title": "Implementation",
+                        "description": "Hands-on support during the resolution and reform process."
+                    },
+                    {
+                        "title": "Sustainability",
+                        "description": "Building systems to prevent recurrence and ensure long-term health."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Crisis Resolution",
+                "whyChooseUs": [
+                    {
+                        "title": "Holistic Approach",
+                        "description": "We address root causes, not just symptoms."
+                    },
+                    {
+                        "title": "Discretion",
+                        "description": "Complete confidentiality in sensitive situations."
+                    },
+                    {
+                        "title": "Turnaround Expertise",
+                        "description": "Proven track record in organizational reform."
+                    },
+                    {
+                        "title": "Sustainable Solutions",
+                        "description": "Long-term solutions that prevent recurrence."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Crisis Resolution",
                     "description": "Solving critical financing, banking, and operational production problems."
@@ -179,11 +479,67 @@
         },
         {
             "slug": "cost-reduction",
-            "title": "Cost Reduction & ROI",
-            "shortDescription": "Maximizing returns through strategic cost optimization and efficiency.",
-            "fullDescription": "Cost reduction and return maximization services. Our services focus on optimizing expenses without compromising quality. We analyze your value chain to identify inefficiencies and implement lean strategies that boost your bottom line.",
+            "title": "Cost Reduction and Return Maximization Services",
+            "shortDescription": "Strategic services for reducing costs and maximizing returns.",
+            "fullDescription": "Our cost reduction and return maximization services help organizations optimize their operations without compromising quality.",
             "icon": "chart",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Efficiency Services",
+                "keyPoints": [
+                    {
+                        "title": "Cost Optimization",
+                        "description": "Identifying and eliminating unnecessary costs across your organization."
+                    },
+                    {
+                        "title": "Return Maximization",
+                        "description": "Strategic initiatives to maximize returns on your investments."
+                    },
+                    {
+                        "title": "Operational Efficiency",
+                        "description": "Streamlining processes for improved productivity and reduced waste."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Optimize Performance",
+                "process": [
+                    {
+                        "title": "Cost Analysis",
+                        "description": "Comprehensive analysis of your cost structure and value chain."
+                    },
+                    {
+                        "title": "Opportunity Identification",
+                        "description": "Identifying areas for cost reduction without quality impact."
+                    },
+                    {
+                        "title": "Strategy Implementation",
+                        "description": "Implementing lean strategies and efficiency improvements."
+                    },
+                    {
+                        "title": "Performance Monitoring",
+                        "description": "Tracking results and continuous improvement."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Optimization",
+                "whyChooseUs": [
+                    {
+                        "title": "Data-Driven",
+                        "description": "Decisions based on comprehensive analysis."
+                    },
+                    {
+                        "title": "Quality Focus",
+                        "description": "Cost reduction without compromising quality."
+                    },
+                    {
+                        "title": "Quick Wins",
+                        "description": "Immediate impact alongside long-term gains."
+                    },
+                    {
+                        "title": "Sustainable Results",
+                        "description": "Changes that stick for lasting improvement."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Cost Optimization",
                     "description": "Strategic services focused on reducing operational costs and overheads."
@@ -206,11 +562,67 @@
         },
         {
             "slug": "strategy",
-            "title": "Strategic Management",
-            "shortDescription": "Building, planning, and executing winning corporate strategies.",
-            "fullDescription": "Strategy building, planning, and strategic management. From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
+            "title": "Strategy Building, Planning, and Strategic Management",
+            "shortDescription": "Comprehensive strategy building, planning, and strategic management services.",
+            "fullDescription": "From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
             "icon": "globe",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Strategic Services",
+                "keyPoints": [
+                    {
+                        "title": "Strategy Building",
+                        "description": "Developing comprehensive corporate and business strategies."
+                    },
+                    {
+                        "title": "Strategic Planning",
+                        "description": "Creating actionable strategic plans with clear objectives and milestones."
+                    },
+                    {
+                        "title": "Strategic Management",
+                        "description": "Ongoing strategic management and execution support."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Build Strategy",
+                "process": [
+                    {
+                        "title": "Vision & Mission",
+                        "description": "Clarifying your organization's purpose and long-term vision."
+                    },
+                    {
+                        "title": "Strategic Analysis",
+                        "description": "Comprehensive analysis of internal capabilities and external environment."
+                    },
+                    {
+                        "title": "Strategy Formulation",
+                        "description": "Developing strategic options and selecting the optimal path."
+                    },
+                    {
+                        "title": "Execution Roadmap",
+                        "description": "Creating detailed implementation plans with accountability."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Strategy",
+                "whyChooseUs": [
+                    {
+                        "title": "Holistic View",
+                        "description": "Strategy that integrates all aspects of your organization."
+                    },
+                    {
+                        "title": "Execution Focus",
+                        "description": "Strategies designed for successful implementation."
+                    },
+                    {
+                        "title": "Long-term Thinking",
+                        "description": "Building sustainable competitive advantage."
+                    },
+                    {
+                        "title": "Alignment",
+                        "description": "Ensuring organizational alignment behind the strategy."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Strategy Building",
                     "description": "Comprehensive development and planning of corporate strategies."
@@ -233,11 +645,71 @@
         },
         {
             "slug": "risk-management",
-            "title": "Enterprise Risk Management",
-            "shortDescription": "Identifying and mitigating risks to ensure business continuity.",
-            "fullDescription": "Risk Management. Our services help you identify, assess, and mitigate risks. We build resilient frameworks that protect your assets and ensure business continuity in an unpredictable market.",
+            "title": "Risk Management",
+            "shortDescription": "Comprehensive risk management services to protect your organization.",
+            "fullDescription": "Our risk management services help you identify, assess, and mitigate risks, building resilient frameworks that protect your assets and ensure business continuity.",
             "icon": "shield",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Risk Management Services",
+                "keyPoints": [
+                    {
+                        "title": "Risk Identification",
+                        "description": "Systematic identification of potential risks across your organization."
+                    },
+                    {
+                        "title": "Risk Assessment",
+                        "description": "Evaluation of risk likelihood and potential impact."
+                    },
+                    {
+                        "title": "Risk Mitigation",
+                        "description": "Development of strategies to mitigate and manage risks."
+                    },
+                    {
+                        "title": "Business Continuity",
+                        "description": "Building frameworks to ensure operational continuity."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Manage Risk",
+                "process": [
+                    {
+                        "title": "Risk Assessment",
+                        "description": "Comprehensive identification and evaluation of organizational risks."
+                    },
+                    {
+                        "title": "Framework Design",
+                        "description": "Developing risk management frameworks and policies."
+                    },
+                    {
+                        "title": "Mitigation Planning",
+                        "description": "Creating strategies to mitigate identified risks."
+                    },
+                    {
+                        "title": "Monitoring & Review",
+                        "description": "Ongoing monitoring and periodic review of risk landscape."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Risk Management",
+                "whyChooseUs": [
+                    {
+                        "title": "Proactive Approach",
+                        "description": "Anticipating risks before they materialize."
+                    },
+                    {
+                        "title": "Comprehensive Coverage",
+                        "description": "Addressing financial, operational, and strategic risks."
+                    },
+                    {
+                        "title": "Resilience Building",
+                        "description": "Creating organizations that thrive in uncertainty."
+                    },
+                    {
+                        "title": "Best Practices",
+                        "description": "Aligned with international risk management standards."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Risk Identification",
                     "description": "Proactive identification and assessment of potential business risks."
@@ -262,9 +734,69 @@
             "slug": "change-management",
             "title": "Change Management",
             "shortDescription": "Guiding organizations through structural and cultural transformation.",
-            "fullDescription": "Change Management. We guide organizations through structural and cultural shifts. Our services ensure smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
+            "fullDescription": "We guide organizations through structural and cultural shifts, ensuring smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
             "icon": "users",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Change Management Services",
+                "keyPoints": [
+                    {
+                        "title": "Change Strategy",
+                        "description": "Developing comprehensive change management strategies."
+                    },
+                    {
+                        "title": "Stakeholder Engagement",
+                        "description": "Engaging and aligning stakeholders throughout the change process."
+                    },
+                    {
+                        "title": "Communication Planning",
+                        "description": "Effective communication to drive understanding and adoption."
+                    },
+                    {
+                        "title": "Cultural Transformation",
+                        "description": "Driving lasting cultural change within your organization."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Manage Change",
+                "process": [
+                    {
+                        "title": "Change Readiness",
+                        "description": "Assessing organizational readiness and potential resistance."
+                    },
+                    {
+                        "title": "Strategy Development",
+                        "description": "Creating a comprehensive change management strategy."
+                    },
+                    {
+                        "title": "Implementation Support",
+                        "description": "Guiding your team through the transition process."
+                    },
+                    {
+                        "title": "Sustainability",
+                        "description": "Ensuring changes are embedded and sustained long-term."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Change",
+                "whyChooseUs": [
+                    {
+                        "title": "People Focus",
+                        "description": "Managing the human side of change."
+                    },
+                    {
+                        "title": "High Adoption",
+                        "description": "Strategies that drive high adoption rates."
+                    },
+                    {
+                        "title": "Minimal Disruption",
+                        "description": "Smooth transitions with minimal business disruption."
+                    },
+                    {
+                        "title": "Lasting Change",
+                        "description": "Changes that stick and drive lasting improvement."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Transitional Guidance",
                     "description": "Guiding organizations through complex structural and cultural changes."
@@ -288,10 +820,70 @@
         {
             "slug": "compliance",
             "title": "Compliance Systems",
-            "shortDescription": "Ensuring adherence to laws, regulations, and ethical standards.",
-            "fullDescription": "Compliance Systems. We design and implement robust systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards, protecting you from legal and reputational risks.",
+            "shortDescription": "Designing and implementing robust compliance systems.",
+            "fullDescription": "We design and implement robust compliance systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards.",
             "icon": "shield",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Compliance Services",
+                "keyPoints": [
+                    {
+                        "title": "Compliance Framework Design",
+                        "description": "Designing comprehensive compliance frameworks tailored to your industry."
+                    },
+                    {
+                        "title": "Regulatory Compliance",
+                        "description": "Ensuring adherence to all applicable laws and regulations."
+                    },
+                    {
+                        "title": "Ethics Programs",
+                        "description": "Developing ethics programs and codes of conduct."
+                    },
+                    {
+                        "title": "Compliance Monitoring",
+                        "description": "Ongoing monitoring and reporting on compliance status."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Build Compliance",
+                "process": [
+                    {
+                        "title": "Regulatory Analysis",
+                        "description": "Comprehensive analysis of applicable laws and regulations."
+                    },
+                    {
+                        "title": "Gap Assessment",
+                        "description": "Identifying gaps between current state and compliance requirements."
+                    },
+                    {
+                        "title": "System Implementation",
+                        "description": "Implementing policies, procedures, and controls."
+                    },
+                    {
+                        "title": "Ongoing Monitoring",
+                        "description": "Continuous monitoring and improvement of compliance systems."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Compliance",
+                "whyChooseUs": [
+                    {
+                        "title": "Industry Knowledge",
+                        "description": "Deep understanding of industry-specific regulations."
+                    },
+                    {
+                        "title": "Risk Reduction",
+                        "description": "Protecting you from legal and reputational risks."
+                    },
+                    {
+                        "title": "Culture of Integrity",
+                        "description": "Building ethical organizational cultures."
+                    },
+                    {
+                        "title": "Proactive Monitoring",
+                        "description": "Staying ahead of regulatory changes."
+                    }
+                ],
                 "featureCard1": {
                     "title": "System Design",
                     "description": "Designing robust compliance systems tailored to your industry."
@@ -314,11 +906,71 @@
         },
         {
             "slug": "business-development",
-            "title": "Business Development",
-            "shortDescription": "Strategic consulting to expand markets and revenue streams.",
-            "fullDescription": "Business Development Consulting. helping you identify new market opportunities, build strategic partnerships, and accelerate revenue growth through innovative business models.",
+            "title": "Business Development Consulting",
+            "shortDescription": "Strategic consulting for business growth and market expansion.",
+            "fullDescription": "Our business development consulting helps you identify new market opportunities, build strategic partnerships, and accelerate revenue growth.",
             "icon": "chart",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Business Development Services",
+                "keyPoints": [
+                    {
+                        "title": "Market Expansion",
+                        "description": "Identifying and entering new high-growth markets."
+                    },
+                    {
+                        "title": "Partnership Development",
+                        "description": "Building strategic alliances and partnerships."
+                    },
+                    {
+                        "title": "Revenue Growth",
+                        "description": "Strategies to diversify and boost income streams."
+                    },
+                    {
+                        "title": "Business Model Innovation",
+                        "description": "Developing innovative business models for competitive advantage."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Drive Growth",
+                "process": [
+                    {
+                        "title": "Opportunity Analysis",
+                        "description": "Identifying market opportunities and growth potential."
+                    },
+                    {
+                        "title": "Strategy Development",
+                        "description": "Developing go-to-market and growth strategies."
+                    },
+                    {
+                        "title": "Partnership Building",
+                        "description": "Connecting you with strategic partners and allies."
+                    },
+                    {
+                        "title": "Execution Support",
+                        "description": "Supporting the execution of growth initiatives."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Growth",
+                "whyChooseUs": [
+                    {
+                        "title": "Market Insight",
+                        "description": "Deep understanding of market dynamics."
+                    },
+                    {
+                        "title": "Global Network",
+                        "description": "Access to our global network of partners."
+                    },
+                    {
+                        "title": "Proven Strategies",
+                        "description": "Strategies that have driven real growth."
+                    },
+                    {
+                        "title": "Sustainable Growth",
+                        "description": "Focus on long-term, sustainable growth."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Opportunity Identification",
                     "description": "Identifying new market opportunities and revenue streams."
@@ -341,11 +993,71 @@
         },
         {
             "slug": "training",
-            "title": "Training & Development",
-            "shortDescription": "Empowering teams through work system development and training.",
-            "fullDescription": "Training and development of work systems. We believe in empowering people. Our services include upskilling your workforce to meet modern challenges and drive organizational excellence.",
+            "title": "Training and Development of Work Systems",
+            "shortDescription": "Empowering teams through comprehensive training and work system development.",
+            "fullDescription": "We believe in empowering people. Our services include training and development of work systems, upskilling your workforce to meet modern challenges.",
             "icon": "users",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Training Services",
+                "keyPoints": [
+                    {
+                        "title": "Work Systems Development",
+                        "description": "Designing and optimizing organizational work systems and processes."
+                    },
+                    {
+                        "title": "Professional Training",
+                        "description": "Comprehensive training programs for skill development."
+                    },
+                    {
+                        "title": "Leadership Development",
+                        "description": "Building leadership capabilities at all levels."
+                    },
+                    {
+                        "title": "Performance Improvement",
+                        "description": "Driving individual and team performance improvement."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Develop Your Team",
+                "process": [
+                    {
+                        "title": "Needs Assessment",
+                        "description": "Identifying training needs and capability gaps."
+                    },
+                    {
+                        "title": "Program Design",
+                        "description": "Developing customized training programs."
+                    },
+                    {
+                        "title": "Delivery",
+                        "description": "Delivering engaging, practical training sessions."
+                    },
+                    {
+                        "title": "Application Support",
+                        "description": "Supporting the application of new skills on the job."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Training",
+                "whyChooseUs": [
+                    {
+                        "title": "Practical Focus",
+                        "description": "Training designed for real-world application."
+                    },
+                    {
+                        "title": "Expert Trainers",
+                        "description": "Experienced professionals delivering quality training."
+                    },
+                    {
+                        "title": "Customized Programs",
+                        "description": "Programs tailored to your specific needs."
+                    },
+                    {
+                        "title": "Measurable Results",
+                        "description": "Training that drives measurable improvement."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Work Systems",
                     "description": "Development and optimization of organizational work systems."
@@ -368,11 +1080,71 @@
         },
         {
             "slug": "digital-transformation",
-            "title": "Digital Transformation",
+            "title": "Digital Transformation Consulting",
             "shortDescription": "Leveraging technology to revolutionize business operations.",
-            "fullDescription": "Digital transformation consulting. We help you leverage technology to revolutionize your business model, optimize operations, and deliver superior customer experiences in the digital age.",
+            "fullDescription": "Our digital transformation consulting helps you leverage technology to revolutionize your business model, optimize operations, and deliver superior customer experiences.",
             "icon": "globe",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Digital Services",
+                "keyPoints": [
+                    {
+                        "title": "Digital Strategy",
+                        "description": "Developing comprehensive digital transformation strategies."
+                    },
+                    {
+                        "title": "Technology Integration",
+                        "description": "Integrating modern technologies like AI, Cloud, and automation."
+                    },
+                    {
+                        "title": "Process Digitization",
+                        "description": "Automating and digitizing business processes."
+                    },
+                    {
+                        "title": "Digital Culture",
+                        "description": "Building a digital-first culture and mindset."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Drive Transformation",
+                "process": [
+                    {
+                        "title": "Digital Assessment",
+                        "description": "Evaluating your current digital maturity and opportunities."
+                    },
+                    {
+                        "title": "Strategy Development",
+                        "description": "Creating a comprehensive digital transformation roadmap."
+                    },
+                    {
+                        "title": "Technology Implementation",
+                        "description": "Implementing digital solutions and technologies."
+                    },
+                    {
+                        "title": "Change Enablement",
+                        "description": "Driving adoption and building digital capabilities."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Digital",
+                "whyChooseUs": [
+                    {
+                        "title": "Strategic Approach",
+                        "description": "Technology aligned with business strategy."
+                    },
+                    {
+                        "title": "Modern Solutions",
+                        "description": "Cutting-edge technology implementation."
+                    },
+                    {
+                        "title": "Change Focus",
+                        "description": "Managing the people side of digital change."
+                    },
+                    {
+                        "title": "Measurable Impact",
+                        "description": "Digital transformation that drives results."
+                    }
+                ],
                 "featureCard1": {
                     "title": "Consulting Strategy",
                     "description": "Strategic consulting for comprehensive digital transformation."
@@ -395,11 +1167,71 @@
         },
         {
             "slug": "quality-accreditation",
-            "title": "Quality & Accreditation",
-            "shortDescription": "Qualifying organizations for international quality certificates.",
+            "title": "Quality and Accreditation Consulting",
+            "shortDescription": "Qualifying organizations to obtain quality and accreditation certificates.",
             "fullDescription": "The company offers consulting services that include qualifying various organizations to obtain quality and accreditation certificates according to internationally recognized recognition, accreditation, and quality systems, including governmental and private institutions, health and educational institutions, and others.",
             "icon": "shield",
             "details": {
+                "keyPointsTitle": "What We Offer",
+                "keyPointsHeadline": "Quality & Accreditation Services",
+                "keyPoints": [
+                    {
+                        "title": "International Accreditation",
+                        "description": "Qualifying organizations for internationally recognized accreditation certificates."
+                    },
+                    {
+                        "title": "Quality Systems Implementation",
+                        "description": "Implementing quality management systems (ISO and others)."
+                    },
+                    {
+                        "title": "Sector-Specific Standards",
+                        "description": "Healthcare, education, government, and private sector accreditation."
+                    },
+                    {
+                        "title": "Continuous Improvement",
+                        "description": "Building systems for ongoing quality improvement."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Achieve Accreditation",
+                "process": [
+                    {
+                        "title": "Gap Analysis",
+                        "description": "Assessing current state against accreditation requirements."
+                    },
+                    {
+                        "title": "System Development",
+                        "description": "Developing required policies, procedures, and systems."
+                    },
+                    {
+                        "title": "Implementation Support",
+                        "description": "Supporting implementation of quality systems."
+                    },
+                    {
+                        "title": "Audit Preparation",
+                        "description": "Preparing for and supporting the accreditation audit."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Quality",
+                "whyChooseUs": [
+                    {
+                        "title": "Multi-Sector Experience",
+                        "description": "Experience across government, healthcare, education, and private sectors."
+                    },
+                    {
+                        "title": "International Standards",
+                        "description": "Expertise in globally recognized quality standards."
+                    },
+                    {
+                        "title": "High Success Rate",
+                        "description": "Proven track record in achieving accreditation."
+                    },
+                    {
+                        "title": "Sustainable Quality",
+                        "description": "Building lasting quality cultures, not just certifications."
+                    }
+                ],
                 "featureCard1": {
                     "title": "International Accreditation",
                     "description": "Qualifying organizations for internationally recognized accreditation."
