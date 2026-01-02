@@ -21,25 +21,18 @@
     },
     "regionalOffices": [
         {
-            "city": "Dubai",
-            "country": "United Arab Emirates",
+            "city": "الدوحة",
+            "country": "قطر",
             "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop",
-            "address": "DIFC Gate Village, Building 5",
-            "email": "dubai@governvalu.com"
+            "address": "مركز قطر المالي، البرج 1، الطابق 25، الخليج الغربي",
+            "email": "doha@governvalu.com"
         },
         {
-            "city": "Riyadh",
-            "country": "Saudi Arabia",
-            "image": "https://images.unsplash.com/photo-1586724237569-f3d0c1dee8c6?q=80&w=2070&auto=format&fit=crop",
-            "address": "King Abdullah Financial District",
-            "email": "riyadh@governvalu.com"
-        },
-        {
-            "city": "London",
-            "country": "United Kingdom",
-            "image": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop",
-            "address": "14 Curzon Street, Mayfair",
-            "email": "london@governvalu.com"
+            "city": "إسطنبول",
+            "country": "تركيا",
+            "image": "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=2071&auto=format&fit=crop",
+            "address": "مركز ليفنت للأعمال، شارع بويوكديري",
+            "email": "istanbul@governvalu.com"
         }
     ],
     "footer": {
