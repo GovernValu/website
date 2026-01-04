@@ -99,7 +99,7 @@ export default function ChairmanClient({ content }: { content: any }) {
                                     <div className="w-16 h-1 bg-brand"></div>
                                     <div>
                                         <p className="font-serif text-onyx text-lg">{message?.signature?.name}</p>
-                                        <p className="text-gray-500 text-sm">{message?.signature?.role}, GovernValu</p>
+                                        <p className="text-gray-500 text-sm">{message?.signature?.role}</p>
                                     </div>
                                 </div>
                             </div>
