@@ -32,12 +32,10 @@ export default function BoardClient({ content }: { content: any }) {
         );
     }
 
-    const { hero, chairmanMessage, quoteSection, boardMembers, principles, cta } = content;
-    const chairman = boardMembers?.list?.find((m: any) => m.role.includes("Chairman") || m.role.includes("رئيس"));
-    const otherMembers = boardMembers?.list?.filter((m: any) => m !== chairman) || [];
+    const { hero, boardMembers, principles, cta } = content;
 
-    // Fallback for chairman if not found in list logic (safety)
-    const effectiveChairman = chairman || chairmanMessage?.signature;
+    // Use all board members including chairman
+    const allMembers = boardMembers?.list || [];
 
     return (
         <>
@@ -59,78 +57,6 @@ export default function BoardClient({ content }: { content: any }) {
                 </div>
             </header>
 
-            {/* Chairman's Message Section */}
-            <section className="py-24 bg-white text-onyx">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid lg:grid-cols-5 gap-16 items-start">
-                        {/* Chairman Image */}
-                        <div className="lg:col-span-2 reveal">
-                            <div className="relative">
-                                <div className="absolute top-4 -left-4 w-full h-full border border-brand/20 z-0" />
-                                <div className="relative z-10 bg-gray-100 shadow-2xl overflow-hidden">
-                                    <Image
-                                        src="/board/chairman.jpg"
-                                        alt={effectiveChairman?.name || "Chairman"}
-                                        width={500}
-                                        height={600}
-                                        className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                                    />
-                                </div>
-                                <div className="mt-6 text-center">
-                                    <h3 className="text-2xl font-serif text-onyx">{chairmanMessage?.signature?.name}</h3>
-                                    <p className="text-brand text-sm font-bold tracking-widest uppercase mt-2">{chairmanMessage?.signature?.role}</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Chairman's Message */}
-                        <div className="lg:col-span-3 reveal" style={{ transitionDelay: "100ms" }}>
-                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{chairmanMessage?.badge}</h2>
-                            <h3 className="text-4xl font-serif text-onyx mb-8 leading-tight">
-                                {chairmanMessage?.title}
-                            </h3>
-
-                            <div className="space-y-6 text-gray-600 font-light leading-relaxed text-lg">
-                                <p>{chairmanMessage?.intro}</p>
-
-                                <blockquote className="border-l-4 border-brand pl-6 py-2 my-8 bg-gray-50">
-                                    <p className="text-xl font-serif text-onyx italic">
-                                        &ldquo;{chairmanMessage?.quote}&rdquo;
-                                    </p>
-                                </blockquote>
-
-                                {chairmanMessage?.body?.map((paragraph: string, idx: number) => (
-                                    <p key={idx}>{paragraph}</p>
-                                ))}
-                            </div>
-
-                            <div className="mt-12 pt-8 border-t border-gray-200">
-                                <div className="flex items-center gap-6">
-                                    <div className="w-16 h-1 bg-brand"></div>
-                                    <div>
-                                        <p className="font-serif text-onyx text-lg">{chairmanMessage?.signature?.name}</p>
-                                        <p className="text-gray-500 text-sm">{chairmanMessage?.signature?.role}, GovernValu</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Quote Section */}
-            <section className="py-20 bg-onyx-800">
-                <div className="max-w-4xl mx-auto px-6 text-center reveal">
-                    <svg className="w-10 h-10 text-brand mx-auto mb-6 opacity-50" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                    </svg>
-                    <blockquote className="text-2xl md:text-3xl font-serif text-white leading-relaxed italic mb-6">
-                        &ldquo;{quoteSection?.text}&rdquo;
-                    </blockquote>
-                    <div className="text-brand text-sm font-bold tracking-widest uppercase">{quoteSection?.author}</div>
-                </div>
-            </section>
-
             {/* Board Members Section */}
             <section className="py-24 bg-white text-onyx">
                 <div className="max-w-7xl mx-auto px-6">
@@ -141,7 +67,7 @@ export default function BoardClient({ content }: { content: any }) {
                     </div>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-                        {otherMembers.map((member: any, index: number) => (
+                        {allMembers.map((member: any, index: number) => (
                             <div key={index} className="group reveal text-center" style={{ transitionDelay: `${index * 100}ms` }}>
                                 {/* Member Image */}
                                 <div className="relative mx-auto w-48 h-48 mb-8">
