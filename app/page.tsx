@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
+import ServicesCarousel from "./components/ServicesCarousel";
 import { useContent } from "./hooks/useContent";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
@@ -120,37 +121,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Expertise Section */}
-      <section id="expertise" className="py-24 bg-white text-onyx relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gray-50 z-0" />
-
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="mb-20 max-w-3xl">
-            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{content.expertise?.sectionTitle}</h2>
-            <h3 className="text-4xl md:text-5xl font-serif text-onyx mb-6 leading-tight">
-              {content.expertise?.headline}
-            </h3>
-            <div className="w-24 h-1 bg-brand" />
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {content.expertise?.cards?.map((card: any, index: number) => (
-              <div key={index} className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal" style={{ transitionDelay: `${index * 100}ms` }}>
-                <div className="w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center mb-6 group-hover:bg-brand transition-colors duration-300">
-                  <svg className="text-brand w-6 h-6 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    {ICONS[card.icon]}
-                  </svg>
-                </div>
-                <h4 className="text-2xl font-serif mb-4">{card.title}</h4>
-                <p className="text-gray-600 leading-relaxed mb-6 font-light">
-                  {card.description}
-                </p>
-                <a href={card.link} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-brand group-hover:underline">{t.learnMore}</a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Services Carousel Section */}
+      <ServicesCarousel
+        sectionTitle={content.expertise?.sectionTitle}
+        headline={content.expertise?.headline}
+      />
 
       {/* Philosophy Section */}
       <section id="philosophy" className="py-24 bg-onyx-800 relative">

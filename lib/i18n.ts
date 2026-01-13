@@ -106,6 +106,9 @@ export const LABELS = {
         careers: 'Careers',
         joinOurTeam: 'Join Our Team',
         whatWeLookFor: 'What We Look For',
+        ourExpertise: 'Our Expertise',
+        expertiseHeadline: 'Strategic counsel for the complexity of modern wealth.',
+        viewAllServices: 'View All Services',
     },
     ar: {
         dir: 'rtl',
@@ -198,5 +201,8 @@ export const LABELS = {
         careers: 'الوظائف',
         joinOurTeam: 'انضم لفريقنا',
         whatWeLookFor: 'ما نبحث عنه',
+        ourExpertise: 'خبراتنا',
+        expertiseHeadline: 'استشارات استراتيجية لتعقيدات الثروات الحديثة.',
+        viewAllServices: 'عرض جميع الخدمات',
     }
 } as const;
