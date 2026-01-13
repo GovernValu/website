@@ -4,8 +4,14 @@ import { getContent } from "@/lib/content";
 import ContactPageClient from "./ContactPageClient";
 
 export const metadata: Metadata = {
-    title: "Contact | GovernValu",
-    description: "Get in touch with GovernValu for governance and investment consultation services in Qatar and the GCC region.",
+    title: "Contact Us",
+    description: "Contact GovernValu for governance and investment consultation services. Offices in Qatar and Turkey. Get in touch with our expert advisors today.",
+    keywords: ["contact GovernValu", "governance consultation Qatar", "investment advisory contact", "Doha office", "Turkey office", "business consulting contact"],
+    openGraph: {
+        title: "Contact Us | GovernValu",
+        description: "Get in touch with GovernValu for governance and investment consultation services in Qatar and Turkey.",
+        type: "website",
+    },
 };
 
 export const dynamic = "force-dynamic";

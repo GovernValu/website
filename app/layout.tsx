@@ -23,14 +23,62 @@ const notoKufiArabic = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "GovernValu | Governance & Investment Advisory - Qatar",
-  description: "Premier governance and investment consultation firm in Qatar. Strategic counsel for corporate governance, investment strategy, risk mitigation, and family office services across the GCC region.",
-  keywords: "governance, investment, Qatar, GCC, corporate governance, investment strategy, risk mitigation, family office, advisory, Doha",
+  title: {
+    default: "GovernValu | Governance & Investment Advisory - Qatar",
+    template: "%s | GovernValu"
+  },
+  description: "Premier governance and investment consultation firm in Qatar. Strategic counsel for corporate governance, investment strategy, risk mitigation, valuation services, and family office services across the GCC region.",
+  keywords: ["governance", "investment", "Qatar", "GCC", "corporate governance", "investment strategy", "risk management", "valuation", "family office", "advisory", "Doha", "consulting", "board advisory", "strategic planning", "business solutions", "trademark registration"],
+  authors: [{ name: "GovernValu" }],
+  creator: "GovernValu",
+  publisher: "GovernValu",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/govico.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/govico.png', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: "GovernValu | Governance & Investment Advisory",
-    description: "Strategic counsel for the complexity of modern wealth. Based in Qatar, serving the GCC region.",
+    description: "Strategic counsel for the complexity of modern wealth. Premier governance and investment advisory based in Qatar, serving the GCC region.",
     locale: "en_QA",
     type: "website",
+    siteName: "GovernValu",
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'GovernValu - Governance & Investment Advisory',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "GovernValu | Governance & Investment Advisory",
+    description: "Strategic counsel for the complexity of modern wealth. Premier advisory based in Qatar.",
+    images: ['/og-image.jpg'],
+  },
+  metadataBase: new URL('https://governvalu.qa'),
+  alternates: {
+    canonical: '/',
+    languages: {
+      'en': '/en',
+      'ar': '/ar',
+    },
   },
 };
 

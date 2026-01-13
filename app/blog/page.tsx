@@ -5,8 +5,14 @@ import Footer from "@/app/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Blog | GovernValu",
-    description: "Latest insights, news, and updates from GovernValu on governance, investment, and advisory services in the GCC.",
+    title: "Blog & Insights",
+    description: "Latest insights, articles, and industry updates from GovernValu on governance, investment strategies, risk management, and business advisory in Qatar and the GCC.",
+    keywords: ["governance blog", "investment insights", "GCC business news", "Qatar advisory articles", "corporate governance updates", "business strategy blog"],
+    openGraph: {
+        title: "Blog & Insights | GovernValu",
+        description: "Latest insights and industry updates on governance and investment from GovernValu.",
+        type: "website",
+    },
 };
 
 export const dynamic = "force-dynamic";
@@ -97,8 +103,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                 <Link
                                     href="/blog"
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${!selectedCategory
-                                            ? "bg-brand text-white"
-                                            : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white border border-gray-700"
+                                        ? "bg-brand text-white"
+                                        : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white border border-gray-700"
                                         }`}
                                 >
                                     All Posts
@@ -108,8 +114,8 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                         key={cat.id}
                                         href={`/blog?category=${cat.slug}`}
                                         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === cat.slug
-                                                ? "bg-brand text-white"
-                                                : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white border border-gray-700"
+                                            ? "bg-brand text-white"
+                                            : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white border border-gray-700"
                                             }`}
                                     >
                                         {cat.name}

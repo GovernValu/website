@@ -17,9 +17,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         return { title: "Post Not Found" };
     }
 
+    const title = post.metaTitle || post.title;
+    const description = post.metaDesc || post.excerpt || `Read ${post.title} on GovernValu's blog - insights on governance and investment.`;
+
     return {
-        title: post.metaTitle || `${post.title} | GovernValu`,
-        description: post.metaDesc || post.excerpt || undefined,
+        title: title,
+        description: description,
+        keywords: [post.category?.name || "governance", "GovernValu blog", "investment insights", "Qatar advisory", "GCC business"],
+        openGraph: {
+            title: `${title} | GovernValu`,
+            description: description,
+            type: "article",
+            publishedTime: post.createdAt?.toISOString(),
+            images: post.image ? [{ url: post.image, alt: post.title }] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: title,
+            description: description,
+            images: post.image ? [post.image] : undefined,
+        },
     };
 }
 
