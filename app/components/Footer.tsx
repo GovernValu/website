@@ -23,10 +23,11 @@ export default function Footer() {
                 <div className="grid md:grid-cols-5 gap-12 mb-16">
                     {/* Logo & Description */}
                     <div className="col-span-1 md:col-span-2">
-                        <Link href="/" className="flex items-center gap-3 mb-6">
+                        <Link href="/" className="flex items-center gap-3 mb-4">
                             <div className="w-8 h-8 bg-brand flex items-center justify-center text-white font-serif text-lg font-bold rounded-sm">G</div>
                             <span className="text-white font-serif text-xl tracking-wide">Govern<span className="text-brand">Valu</span></span>
                         </Link>
+                        <p className="text-xs text-gray-500 mb-4 uppercase tracking-wide">GOVERNVALU YÖNETİM DANIŞMANLIĞI TİCARET LİMİTED ŞİRKETİ</p>
                         <p className="max-w-sm font-light leading-relaxed mb-6">
                             {content?.footerBlurb || "Strategic Governance for Sustainable Investments."}
                         </p>
@@ -58,7 +59,7 @@ export default function Footer() {
                                 </svg>
                                 <div>
                                     <span className="text-gray-500 text-xs">Qatar & Gulf</span><br />
-                                    <a href={`tel:${contact.phone}`} className="hover:text-brand transition-colors dir-ltr block text-left inline-block">{contact.phone}</a>
+                                    <a href="tel:+97433787934" className="hover:text-brand transition-colors dir-ltr block text-left inline-block">+974 3378 7934</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
