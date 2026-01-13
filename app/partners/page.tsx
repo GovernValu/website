@@ -93,7 +93,7 @@ export default function PartnersPage() {
                                     <img
                                         src={partnership.logo}
                                         alt={partnership.country}
-                                        className="max-h-24 max-w-[200px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        className="max-h-36 max-w-[280px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
 

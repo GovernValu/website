@@ -81,11 +81,11 @@ export default function ClientsPageClient({ content }: { content: any }) {
                                 style={{ transitionDelay: `${Math.min(index * 30, 300)}ms` }}
                             >
                                 {/* Logo Section */}
-                                <div className="bg-gray-50 p-6 flex items-center justify-center h-40 group-hover:bg-brand/5 transition-colors duration-500">
+                                <div className="bg-gray-50 p-6 flex items-center justify-center h-48 group-hover:bg-brand/5 transition-colors duration-500">
                                     <img
                                         src={client.logo}
                                         alt={client.name}
-                                        className="max-h-20 max-w-[140px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        className="max-h-28 max-w-[180px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
 
