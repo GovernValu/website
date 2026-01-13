@@ -89,11 +89,11 @@ export default function PartnersPage() {
                                 style={{ transitionDelay: `${index * 100}ms` }}
                             >
                                 {/* Logo Section */}
-                                <div className="bg-gray-50 p-8 flex items-center justify-center min-h-[200px] group-hover:bg-brand/5 transition-colors duration-500">
+                                <div className="bg-gray-50 p-10 flex items-center justify-center min-h-[280px] group-hover:bg-brand/5 transition-colors duration-500">
                                     <img
                                         src={partnership.logo}
                                         alt={partnership.country}
-                                        className="max-h-36 max-w-[280px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        className="max-h-48 max-w-[320px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
 
