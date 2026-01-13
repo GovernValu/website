@@ -3,21 +3,19 @@ import openai from "@/lib/openai";
 
 export async function POST(request: Request) {
     try {
-        const { title, category } = await request.json();
+        const { title, category, categoryName } = await request.json();
 
-        if (!title) {
-            return NextResponse.json(
-                { error: "Title is required" },
-                { status: 400 }
-            );
-        }
+        // If category is provided but no title, generate based on category
+        const topicForGeneration = title || `Latest insights in ${categoryName || category || 'governance'}`;
 
-        const categoryContext = category
-            ? `This article belongs to the "${category}" category.`
-            : "";
+        const categoryContext = categoryName
+            ? `This article belongs to the "${categoryName}" category. Focus on topics relevant to this category.`
+            : category
+                ? `This article belongs to the "${category}" category. Focus on topics relevant to this category.`
+                : "";
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
+            model: "gpt-5-nano-2025-08-07",
             messages: [
                 {
                     role: "system",
@@ -31,6 +29,17 @@ Write professional, insightful articles that demonstrate deep expertise in:
 - Family office services and wealth preservation
 - Sovereign wealth fund investments and institutional investing
 
+IMPORTANT FORMATTING RULES:
+- Do NOT use asterisks (**) for bold text
+- Do NOT use markdown formatting
+- Use proper HTML tags for formatting
+- Write in clean, well-structured paragraphs
+- Use <h2> and <h3> for headings
+- Use <p> tags for paragraphs
+- Use <ul> and <li> for lists when needed
+- Make the content SEO-optimized with relevant keywords naturally integrated
+- Structure content with clear sections and subheadings
+
 Your writing style should be:
 - Professional yet accessible
 - Data-informed and evidence-based where appropriate
@@ -39,18 +48,20 @@ Your writing style should be:
                 },
                 {
                     role: "user",
-                    content: `Write a comprehensive blog article with the title: "${title}"
+                    content: `Write a comprehensive blog article based on: "${topicForGeneration}"
 
 ${categoryContext}
 
 Generate the article in the following JSON format:
 {
-    "title": "The exact title or a slightly refined version",
-    "excerpt": "A compelling 2-3 sentence summary (150-200 characters)",
-    "content": "The full article content in HTML format with proper headings (h2, h3), paragraphs, lists where appropriate. The article should be 800-1200 words.",
-    "metaTitle": "SEO-optimized title (50-60 characters)",
-    "metaDesc": "SEO meta description (150-160 characters)"
-}`
+    "title": "A compelling, SEO-optimized article title (60-80 characters)",
+    "excerpt": "A compelling 2-3 sentence summary that hooks the reader (150-200 characters)",
+    "content": "The full article content in clean HTML format with proper headings (h2, h3), paragraphs (<p> tags), and lists where appropriate. NO asterisks or markdown. The article should be 800-1200 words, well-organized with clear sections.",
+    "metaTitle": "SEO-optimized title for search engines (50-60 characters)",
+    "metaDesc": "SEO meta description with call-to-action (150-160 characters)"
+}
+
+Remember: NO asterisks, NO markdown formatting. Use ONLY HTML tags.`
                 }
             ],
             temperature: 0.7,
@@ -64,6 +75,17 @@ Generate the article in the following JSON format:
         }
 
         const article = JSON.parse(content);
+
+        // Additional cleanup to remove any asterisks that might have slipped through
+        if (article.content) {
+            article.content = article.content
+                .replace(/\*\*/g, '')
+                .replace(/\*/g, '')
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/^(?!<)/, '<p>')
+                .replace(/(?!>)$/, '</p>');
+        }
+
         return NextResponse.json(article);
 
     } catch (error: any) {
