@@ -45,7 +45,7 @@
             "shortDescription": "بناء وتأسيس أنظمة حوكمة وفق المعايير الدولية.",
             "fullDescription": "بناء وتأسيس نظم الحوكمة وفق المعايير والمبادئ الدولية، والمحلية بكل بلد، ووفق أفضل الممارسات.",
             "icon": "building",
-            "image": "/services/governance.jpg",
+            "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات الحوكمة الشاملة",
@@ -133,7 +133,7 @@
             "shortDescription": "تأسيس علاقات استثمارية وتطوير المحافظ للنمو الأقصى.",
             "fullDescription": "نساعد المؤسسات على تأسيس علاقات استثمارية قوية، وتطوير خطط استثمارية شاملة، وإدارة المحافظ لتحقيق أقصى قدر من النمو.",
             "icon": "chart",
-            "image": "/services/investment.jpg",
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات الاستثمار",
@@ -221,7 +221,7 @@
             "shortDescription": "خدمات تقييم دقيقة للشركات والمشاريع والأصول غير الملموسة.",
             "fullDescription": "نقدم تقييمات دقيقة ومبررة تدعم القرارات التجارية الحاسمة والاندماجات والاستحواذات.",
             "icon": "chart",
-            "image": "/services/valuation.jpg",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2611&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات التقييم",
@@ -301,6 +301,7 @@
             "shortDescription": "تسجيل وحماية الملكية الفكرية والعلامات التجارية عالمياً.",
             "fullDescription": "نقدم خدمات شاملة لتأمين هوية علامتك التجارية وحقوق الملكية الفكرية عبر مختلف الولايات القضائية مع توجيه قانوني خبير.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات العلامات التجارية",
@@ -384,6 +385,7 @@
             "shortDescription": "حل خبير لتحديات الحوكمة والمالية والتشغيل.",
             "fullDescription": "نعالج التحديات التنظيمية المعقدة ونحول الأزمات إلى فرص للإصلاح والنمو.",
             "icon": "users",
+            "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نحلّه",
                 "keyPointsHeadline": "تحديات الأعمال التي نعالجها",
@@ -483,6 +485,7 @@
             "shortDescription": "خدمات خفض التكاليف وتعظيم العائد.",
             "fullDescription": "تساعد خدماتنا في خفض التكاليف وتعظيم العائد المنظمات على تحسين عملياتها دون المساس بالجودة.",
             "icon": "chart",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات الكفاءة",
@@ -566,6 +569,7 @@
             "shortDescription": "بناء الاستراتيجية والتخطيط والإدارة الاستراتيجية.",
             "fullDescription": "من وضع الرؤية إلى التنفيذ، نضمن أن مؤسستك متوافقة وتسير نحو أهدافها طويلة المدى بوضوح وهدف.",
             "icon": "globe",
+            "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2671&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "الخدمات الاستراتيجية",
@@ -649,6 +653,7 @@
             "shortDescription": "تحديد وتخفيف المخاطر لضمان استمرارية الأعمال.",
             "fullDescription": "نساعدك على تحديد وتقييم وتخفيف المخاطر، وبناء أطر مرنة تحمي أصولك وتضمن استمرارية الأعمال.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات إدارة المخاطر",
@@ -736,6 +741,7 @@
             "shortDescription": "توجيه المنظمات خلال التحول الهيكلي والثقافي.",
             "fullDescription": "نوجه المنظمات خلال التحولات الهيكلية والثقافية، وضمان انتقالات سلسة ومعدلات تبني عالية وتقليل الاضطراب.",
             "icon": "users",
+            "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات إدارة التغيير",
@@ -821,8 +827,9 @@
             "slug": "compliance",
             "title": "أنظمة الامتثال",
             "shortDescription": "ضمان الالتزام بالقوانين واللوائح والمعايير الأخلاقية.",
-            "fullDescription": "نصمم وننفذ أنظمة امتثال قوية تضمن التزام مؤسستك بجميع القوانين واللوائح والمعايير الأخلاقية ذات الصلة.",
+            "fullDescription": "نصمم ونطبق أنظمة امتثال قوية تضمن التزام مؤسستك بجميع القوانين واللوائح والمعايير الأخلاقية ذات الصلة.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "ما نقدمه",
                 "keyPointsHeadline": "خدمات الامتثال",

@@ -167,13 +167,6 @@ export default function ServiceDetailPage() {
                                     alt={service.title}
                                     className="relative w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10"
                                 />
-                                {/* Floating Badge */}
-                                <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-2xl">
-                                    <div className="text-center">
-                                        <div className="text-4xl font-bold text-brand">15+</div>
-                                        <div className="text-sm text-gray-600 font-medium">{language === 'ar' ? 'سنة خبرة' : 'Years Experience'}</div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

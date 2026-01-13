@@ -45,7 +45,7 @@
             "shortDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices.",
             "fullDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices.",
             "icon": "building",
-            "image": "/services/governance.jpg",
+            "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Comprehensive Governance Services",
@@ -133,7 +133,7 @@
             "shortDescription": "Establishing investment relationships and developing investment plans for sustainable growth.",
             "fullDescription": "We help organizations establish robust investment relationships, develop comprehensive investment plans, and manage portfolios for maximum growth.",
             "icon": "chart",
-            "image": "/services/investment.jpg",
+            "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Investment Services",
@@ -221,7 +221,7 @@
             "shortDescription": "Precise valuation services for companies, projects, and brand assets.",
             "fullDescription": "We provide accurate, defensible valuations that support critical business decisions, mergers, and acquisitions.",
             "icon": "chart",
-            "image": "/services/valuation.jpg",
+            "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2611&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Valuation Services",
@@ -301,6 +301,7 @@
             "shortDescription": "Comprehensive services for registering and protecting trademarks globally.",
             "fullDescription": "We provide comprehensive services to secure your brand identity and intellectual property rights across different jurisdictions with expert legal and regulatory guidance.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Trademark Services",
@@ -384,6 +385,7 @@
             "shortDescription": "Expert resolution for governance, financial, operational, and organizational challenges.",
             "fullDescription": "We address complex organizational challenges and turn crises into opportunities for reform and growth.",
             "icon": "users",
+            "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Solve",
                 "keyPointsHeadline": "Business Challenges We Address",
@@ -483,6 +485,7 @@
             "shortDescription": "Strategic services for reducing costs and maximizing returns.",
             "fullDescription": "Our cost reduction and return maximization services help organizations optimize their operations without compromising quality.",
             "icon": "chart",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Efficiency Services",
@@ -566,6 +569,7 @@
             "shortDescription": "Comprehensive strategy building, planning, and strategic management services.",
             "fullDescription": "From vision setting to execution, we ensure your organization is aligned and moving towards its long-term objectives with clarity and purpose.",
             "icon": "globe",
+            "image": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2671&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Strategic Services",
@@ -649,6 +653,7 @@
             "shortDescription": "Comprehensive risk management services to protect your organization.",
             "fullDescription": "Our risk management services help you identify, assess, and mitigate risks, building resilient frameworks that protect your assets and ensure business continuity.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Risk Management Services",
@@ -736,6 +741,7 @@
             "shortDescription": "Guiding organizations through structural and cultural transformation.",
             "fullDescription": "We guide organizations through structural and cultural shifts, ensuring smooth transitions, high adoption rates, and minimal disruption during times of transformation.",
             "icon": "users",
+            "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Change Management Services",
@@ -823,6 +829,7 @@
             "shortDescription": "Designing and implementing robust compliance systems.",
             "fullDescription": "We design and implement robust compliance systems ensuring your organization adheres to all relevant laws, regulations, and ethical standards.",
             "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1436450412740-6b988f486c6b?q=80&w=2670&auto=format&fit=crop",
             "details": {
                 "keyPointsTitle": "What We Offer",
                 "keyPointsHeadline": "Compliance Services",
