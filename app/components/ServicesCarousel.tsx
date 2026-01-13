@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
+import { useContent } from "@/app/hooks/useContent";
 
 interface Service {
     slug: string;
@@ -28,30 +29,15 @@ interface ServicesCarouselProps {
 }
 
 export default function ServicesCarousel({ sectionTitle, headline }: ServicesCarouselProps) {
-    const [services, setServices] = useState<Service[]>([]);
+    const { content, loading } = useContent<any>('services');
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const carouselRef = useRef<HTMLDivElement>(null);
     const { language } = useLanguage();
     const t = LABELS[language];
 
-    // Fetch services from API
-    useEffect(() => {
-        async function fetchServices() {
-            try {
-                const res = await fetch(`/api/content/services?lang=${language}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.services && data.services.length > 0) {
-                        setServices(data.services);
-                    }
-                }
-            } catch (error) {
-                console.error("Failed to fetch services:", error);
-            }
-        }
-        fetchServices();
-    }, [language]);
+    // Get services from content
+    const services: Service[] = content?.services || [];
 
     // Auto-scroll every 4 seconds
     useEffect(() => {
@@ -78,6 +64,16 @@ export default function ServicesCarousel({ sectionTitle, headline }: ServicesCar
         setCurrentIndex((prev) => (prev + 1) % services.length);
     };
 
+    if (loading) {
+        return (
+            <section id="expertise" className="py-24 bg-white text-onyx relative overflow-hidden">
+                <div className="max-w-7xl mx-auto px-6 flex items-center justify-center h-64">
+                    <div className="w-8 h-8 border-2 border-brand border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </section>
+        );
+    }
+
     if (services.length === 0) {
         return null;
     }
@@ -85,7 +81,8 @@ export default function ServicesCarousel({ sectionTitle, headline }: ServicesCar
     // Calculate visible cards (show 4 on desktop, 2 on tablet, 1 on mobile)
     const getVisibleServices = () => {
         const result = [];
-        for (let i = 0; i < 4; i++) {
+        const visibleCount = Math.min(4, services.length);
+        for (let i = 0; i < visibleCount; i++) {
             const index = (currentIndex + i) % services.length;
             result.push({ ...services[index], displayIndex: i });
         }
@@ -140,7 +137,7 @@ export default function ServicesCarousel({ sectionTitle, headline }: ServicesCar
                     >
                         {visibleServices.map((service, index) => (
                             <Link
-                                key={`${service.slug}-${index}`}
+                                key={`${service.slug}-${currentIndex}-${index}`}
                                 href={`/services/${service.slug}`}
                                 className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal block"
                                 style={{
