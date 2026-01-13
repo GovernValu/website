@@ -139,9 +139,8 @@ export default function ServicesCarousel({ sectionTitle, headline }: ServicesCar
                             <Link
                                 key={`${service.slug}-${currentIndex}-${index}`}
                                 href={`/services/${service.slug}`}
-                                className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 reveal block"
+                                className="group p-8 border border-gray-100 bg-white shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 block"
                                 style={{
-                                    transitionDelay: `${index * 100}ms`,
                                     animationDelay: `${index * 100}ms`
                                 }}
                             >
@@ -175,8 +174,8 @@ export default function ServicesCarousel({ sectionTitle, headline }: ServicesCar
                                 scrollToIndex(index);
                             }}
                             className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
-                                    ? "bg-brand w-8"
-                                    : "bg-gray-300 hover:bg-gray-400"
+                                ? "bg-brand w-8"
+                                : "bg-gray-300 hover:bg-gray-400"
                                 }`}
                             aria-label={`Go to slide ${index + 1}`}
                         />
