@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     default: "GovernValu | Governance & Investment Advisory - Qatar",
     template: "%s | GovernValu"
   },
-  description: "Premier governance and investment consultation firm in Qatar. Strategic counsel for corporate governance, investment strategy, risk mitigation, valuation services, and family office services across the GCC region.",
+  description: "Premier governance and investment advisory firm based in Türkiye, serving organizations across the world.",
   keywords: ["governance", "investment", "Qatar", "GCC", "corporate governance", "investment strategy", "risk management", "valuation", "family office", "advisory", "Doha", "consulting", "board advisory", "strategic planning", "business solutions", "trademark registration"],
   authors: [{ name: "GovernValu" }],
   creator: "GovernValu",
