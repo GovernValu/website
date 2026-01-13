@@ -7,9 +7,12 @@
         "backgroundImage": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2670&auto=format&fit=crop"
     },
     "quickContact": {
-        "phone": "+974 4412 3456",
+        "phoneWorldwide": "+90 553 775 16 48",
+        "phoneWorldwideLabel": "حول العالم",
+        "phoneQatar": "+974 4412 3456",
+        "phoneQatarLabel": "قطر والخليج",
         "email": "info@governvalu.com",
-        "officeHours": "Sun-Thu, 8:00 AM - 5:00 PM (GST)"
+        "officeHours": "الإثنين - الجمعة، 8:00 ص - 5:00 م"
     },
     "form": {
         "sectionTitle": "Contact Us",
