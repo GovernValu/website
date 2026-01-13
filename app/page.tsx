@@ -177,10 +177,9 @@ export default function Home() {
           <blockquote className="text-3xl md:text-4xl font-serif text-white leading-relaxed italic mb-10">
             &ldquo;{content.testimonial?.quote}&rdquo;
           </blockquote>
-          <cite className="not-italic">
-            <div className="text-brand text-sm font-bold tracking-widest uppercase mb-1">{content.testimonial?.author}</div>
-            <div className="text-gray-500 text-sm">{content.testimonial?.position}</div>
-          </cite>
+          <a href="/contact" className="inline-block bg-brand text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand/90 transition-colors">
+            {t.contactUs}
+          </a>
         </div>
       </section>
 
