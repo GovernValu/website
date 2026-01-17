@@ -8,11 +8,11 @@
     },
     "quickContact": {
         "phoneWorldwide": "+90 553 775 16 48",
-        "phoneWorldwideLabel": "Worldwide",
+        "phoneWorldwideLabel": "Türkiye",
         "phoneQatar": "+974 3378 7934",
         "phoneQatarLabel": "Qatar & Gulf",
         "email": "info@governvalu.com",
-        "officeHours": "Monday - Friday, 8:00 AM - 6:00 PM (Qatar Time)"
+        "officeHours": "Monday - Friday, 8:00 AM - 6:00 PM (Istanbul Time)"
     },
     "form": {
         "sectionTitle": "Contact Us",
@@ -33,8 +33,8 @@
     },
     "headquarters": {
         "title": "Headquarters",
-        "city": "Doha, Qatar",
-        "address": "Qatar Financial Centre\nTower 1, Floor 25\nWest Bay, Doha"
+        "city": "Istanbul, Türkiye",
+        "address": "Istanbul, Türkiye"
     },
     "responsePromise": {
         "title": "24-Hour Response",
@@ -42,9 +42,9 @@
     },
     "map": {
         "sectionTitle": "Visit Our Office",
-        "headline": "Qatar Financial Centre",
-        "description": "Located in the heart of Doha's West Bay, our headquarters offers a world-class environment for confidential strategic discussions.",
-        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.5176454881595!2d51.52084931501227!3d25.286106483863773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45c534ffdce87f%3A0x1cfa88cf2f0c6b1b!2sQatar%20Financial%20Centre!5e0!3m2!1sen!2sus!4v1639000000000!5m2!1sen!2sus"
+        "headline": "Istanbul Office",
+        "description": "Located in Istanbul, Türkiye, our headquarters offers a world-class environment for confidential strategic discussions.",
+        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d385396.3618531!2d28.7318!3d41.0082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cac790b57b6a9f%3A0x4e1b3e9e8d4c6b7e!2sIstanbul%2C%20Turkey!5e0!3m2!1sen!2sus!4v1639000000000!5m2!1sen!2sus"
     },
     "regionalOffices": {
         "sectionTitle": "Global Presence",
