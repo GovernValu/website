@@ -122,7 +122,7 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
                         {/* Quick Contacts */}
                         <div className="grid sm:grid-cols-2 gap-8 reveal" style={{ transitionDelay: "100ms" }}>
                             <div className="p-6 bg-gray-50 border-l-4 border-brand">
-                                <h4 className="font-bold text-onyx mb-1">{contactContent.quickContact?.phoneWorldwideLabel || "Worldwide"}</h4>
+                                <h4 className="font-bold text-onyx mb-1">{contactContent.quickContact?.phoneWorldwideLabel || "Türkiye"}</h4>
                                 <p className="text-gray-600 font-mono text-sm mb-4 dir-ltr">{contactContent.quickContact?.phoneWorldwide}</p>
                                 <h4 className="font-bold text-onyx mb-1">{contactContent.quickContact?.phoneQatarLabel || "Qatar & Gulf"}</h4>
                                 <p className="text-gray-600 font-mono text-sm mb-4 dir-ltr">{contactContent.quickContact?.phoneQatar}</p>

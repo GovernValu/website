@@ -6,7 +6,7 @@ import ContactPageClient from "./ContactPageClient";
 export const metadata: Metadata = {
     title: "Contact Us",
     description: "Contact GovernValu for governance and investment consultation services. Offices in Qatar and Turkey. Get in touch with our expert advisors today.",
-    keywords: ["contact GovernValu", "governance consultation Qatar", "investment advisory contact", "Doha office", "Turkey office", "business consulting contact"],
+    keywords: ["contact GovernValu", "governance consultation Qatar", "investment advisory contact", "Istanbul office", "Turkey office", "business consulting contact"],
     openGraph: {
         title: "Contact Us | GovernValu",
         description: "Get in touch with GovernValu for governance and investment consultation services in Qatar and Turkey.",
