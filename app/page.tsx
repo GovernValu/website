@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSlider from "./components/HeroSlider";
 import ServicesCarousel from "./components/ServicesCarousel";
+import HomeContactForm from "./components/HomeContactForm";
 import { useContent } from "./hooks/useContent";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
@@ -232,33 +233,7 @@ export default function Home() {
           </div>
 
           <div className="bg-gray-50 p-10 md:p-12 border-t-4 border-brand shadow-xl reveal" style={{ transitionDelay: "200ms" }}>
-            <form className="space-y-6">
-              <div className="grid grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-gray-500">{t.firstName}</label>
-                  <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Ahmad" />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-gray-500">{t.lastName}</label>
-                  <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Al-Thani" />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">{t.companyName}</label>
-                <input type="text" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="Organization Name" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">{t.emailAddress}</label>
-                <input type="email" className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx" placeholder="ahmad@company.qa" />
-              </div>
-              <div className="space-y-2">
-                <label className="text-xs uppercase tracking-widest font-bold text-gray-500">{t.inquiryDetails}</label>
-                <textarea rows={4} className="w-full bg-white border border-gray-200 px-4 py-3 text-onyx resize-none" placeholder="How may we assist you?" />
-              </div>
-              <button type="button" className="w-full bg-onyx text-white py-4 uppercase tracking-widest text-sm font-bold hover:bg-brand transition-colors duration-300">
-                {t.requestConsultation}
-              </button>
-            </form>
+            <HomeContactForm t={t} />
           </div>
         </div>
       </section>
