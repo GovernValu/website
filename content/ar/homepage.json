@@ -1,98 +1,98 @@
 {
     "hero": {
-        "badge": "Qatar-Based Advisory",
-        "title": "Precision in",
-        "titleHighlight": "Governance.",
-        "subtitle": "We architect resilient strategies for sovereign wealth funds, regional corporations, and distinguished family offices across the GCC.",
+        "badge": "استشارات من تركيا",
+        "title": "الدقة في",
+        "titleHighlight": "الحوكمة.",
+        "subtitle": "نصمم استراتيجيات مرنة لصناديق الثروة السيادية والشركات الإقليمية ومكاتب العائلات المميزة في منطقة الخليج.",
         "ctaPrimary": {
-            "text": "Partner With Us",
+            "text": "كن شريكاً معنا",
             "link": "/contact"
         },
         "ctaSecondary": {
-            "text": "Explore Our Expertise",
+            "text": "استكشف خبراتنا",
             "link": "/about/expertise"
         }
     },
     "metrics": [
         {
             "value": "$8B+",
-            "label": "Assets Advised"
+            "label": "أصول مُستشار عنها"
         },
         {
             "value": "50+",
-            "label": "Regional Entities"
+            "label": "كيانات إقليمية"
         },
         {
             "value": "GCC",
-            "label": "Market Coverage"
+            "label": "تغطية السوق"
         },
         {
             "value": "100%",
-            "label": "Fiduciary Standard"
+            "label": "معيار الأمانة"
         }
     ],
     "expertise": {
-        "sectionTitle": "Our Expertise",
-        "headline": "Strategic counsel for the complexity of modern wealth.",
+        "sectionTitle": "خبراتنا",
+        "headline": "استشارات استراتيجية للتعامل مع تعقيدات الثروة الحديثة والأسواق المتنوعة",
         "cards": [
             {
                 "icon": "building",
-                "title": "Corporate Governance",
-                "description": "Implementing rigorous frameworks aligned with Qatar Vision 2030 to ensure accountability, fairness, and transparency.",
+                "title": "حوكمة المؤسسات",
+                "description": "تطبيق أطر عمل صارمة متوافقة مع رؤية قطر 2030 لضمان المساءلة والإنصاف والشفافية.",
                 "link": "/about/expertise"
             },
             {
                 "icon": "chart",
-                "title": "Investment Strategy",
-                "description": "Bespoke portfolio construction focusing on asymmetric risk-reward profiles and generational wealth preservation.",
+                "title": "استراتيجية الاستثمار",
+                "description": "بناء محافظ استثمارية مخصصة تركز على ملفات المخاطر والعوائد غير المتماثلة والحفاظ على الثروات بين الأجيال.",
                 "link": "/about/expertise"
             },
             {
                 "icon": "shield",
-                "title": "Risk Mitigation",
-                "description": "Navigating regulatory landscapes and geopolitical shifts to safeguard assets in the evolving GCC landscape.",
+                "title": "الحد من المخاطر",
+                "description": "التنقل في المشهد التنظيمي والتحولات الجيوسياسية لحماية الأصول في بيئة الخليج المتطورة.",
                 "link": "/about/expertise"
             },
             {
                 "icon": "users",
-                "title": "Board Advisory",
-                "description": "Optimizing board composition and effectiveness to drive long-term strategic value and stakeholder confidence.",
+                "title": "استشارات مجلس الإدارة",
+                "description": "تحسين تكوين وفعالية مجلس الإدارة لدفع القيمة الاستراتيجية طويلة المدى وثقة أصحاب المصلحة.",
                 "link": "/about/expertise"
             },
             {
                 "icon": "bank",
-                "title": "Family Office Services",
-                "description": "Holistic management of family affairs, philanthropy, and intergenerational transfer of wealth and values.",
+                "title": "خدمات مكاتب العائلات",
+                "description": "إدارة شاملة لشؤون العائلة والعمل الخيري ونقل الثروات والقيم بين الأجيال.",
                 "link": "/about/expertise"
             },
             {
                 "icon": "globe",
-                "title": "Cross-Border M&A",
-                "description": "Expert guidance on international mergers and acquisitions, ensuring seamless integration and value realization.",
+                "title": "الاندماج والاستحواذ العابر للحدود",
+                "description": "توجيه خبير في عمليات الاندماج والاستحواذ الدولية، مع ضمان التكامل السلس وتحقيق القيمة.",
                 "link": "/about/expertise"
             }
         ]
     },
     "philosophy": {
-        "sectionTitle": "Our Philosophy",
-        "headline": "The Art of Balanced Stewardship",
+        "sectionTitle": "فلسفتنا",
+        "headline": "فن الإدارة المتوازنة",
         "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2664&auto=format&fit=crop",
         "points": [
             {
-                "title": "Unwavering Integrity",
-                "description": "We believe that true value is built on a foundation of trust. Our governance models prioritize ethical leadership."
+                "title": "نزاهة لا تتزعزع",
+                "description": "نؤمن بأن القيمة الحقيقية تُبنى على أساس الثقة. نماذج الحوكمة لدينا تعطي الأولوية للقيادة الأخلاقية."
             },
             {
-                "title": "Long-Horizon Thinking",
-                "description": "In a market obsessed with quarterly results, we engineer strategies for decades, honoring Qatar Vision 2030."
+                "title": "تفكير طويل المدى",
+                "description": "في سوق مهووس بالنتائج الربعية، نصمم استراتيجيات لعقود قادمة، تكريماً لرؤية قطر 2030."
             },
             {
-                "title": "Adaptive Intelligence",
-                "description": "We combine traditional financial wisdom with cutting-edge data analytics to anticipate market shifts."
+                "title": "ذكاء تكيفي",
+                "description": "نجمع بين الحكمة المالية التقليدية وتحليلات البيانات المتطورة لتوقع تحولات السوق."
             }
         ],
         "link": {
-            "text": "Learn More About Our Philosophy",
+            "text": "اعرف المزيد عن فلسفتنا",
             "url": "/about/philosophy"
         }
     },
@@ -102,20 +102,20 @@
         "position": "استشارات الحوكمة والاستثمار"
     },
     "contact": {
-        "headline": "Let's discuss your",
-        "headlineHighlight": "legacy.",
-        "subtitle": "Private consultations are by appointment only. Please enquire to schedule a briefing with a senior partner.",
+        "headline": "جاهزون للإستفسارات",
+        "headlineHighlight": "والمناقشات.",
+        "subtitle": "الاستشارات الخاصة متاحة عن طريق حجز موعد مسبق. يرجى الاستفسار وتعبئة نموذج طلب الاستشارة لتحديد موعد جلسة تعريفية مع أحد استشاريين الشركة.",
         "info": {
             "address": {
-                "label": "Headquarters",
-                "value": "Istanbul, Türkiye"
+                "label": "المقر الرئيسي",
+                "value": "إسطنبول، تركيا"
             },
             "phone": {
-                "label": "Direct Line",
+                "label": "خط مباشر",
                 "value": "+90 553 775 16 48"
             },
             "email": {
-                "label": "General Inquiries",
+                "label": "استفسارات عامة",
                 "value": "info@governvalu.com"
             }
         }

@@ -128,7 +128,7 @@ export const LABELS = {
         expertise: 'خبراتنا',
         teams: 'فرق العمل',
         ourClients: 'العملاء',
-        corpGov: 'حوقمة الشركات',
+        corpGov: 'حوكمة المؤسسات',
         invRel: 'علاقات المستثمرين',
         valuation: 'خدمات التقييم',
         riskMgmt: 'إدارة المخاطر',
