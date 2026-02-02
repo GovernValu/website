@@ -288,36 +288,6 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
                 </div>
             </section>
 
-            {/* Regional Offices */}
-            <section className="py-24 bg-gray-50">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{contactContent.regionalOffices?.sectionTitle}</h2>
-                        <h3 className="text-4xl font-serif text-onyx">{contactContent.regionalOffices?.headline}</h3>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {settingsContent.regionalOffices?.map((office: any, index: number) => (
-                            <div key={index} className="group relative h-[400px] overflow-hidden shadow-xl reveal" style={{ transitionDelay: `${index * 100}ms` }}>
-                                <img
-                                    src={office.image}
-                                    alt={office.city}
-                                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-onyx via-transparent to-transparent opacity-90" />
-                                <div className="absolute bottom-0 left-0 w-full p-8 text-white">
-                                    <h4 className="text-2xl font-serif mb-2">{office.city}</h4>
-                                    <p className="text-sm text-gray-300 uppercase tracking-widest mb-4">{office.country}</p>
-                                    <div className="space-y-1 text-sm font-light text-gray-200">
-                                        <p>{office.address}</p>
-                                        <p><a href={`mailto:${office.email}`} className="hover:text-brand transition-colors">{office.email}</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* FAQ Section */}
             <section className="py-24 bg-white border-t border-gray-100">
