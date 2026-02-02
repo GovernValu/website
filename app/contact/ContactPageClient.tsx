@@ -28,6 +28,21 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
 
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
+    // FAQ Carousel State
+    const [faqIndex, setFaqIndex] = useState(0);
+    const [isAutoPlayingFaq, setIsAutoPlayingFaq] = useState(true);
+    const faqItems = contactContent.faq?.items || [];
+    const faqCardsPerView = 2; // Show 2 cards at a time on desktop
+
+    // Auto-scroll FAQ carousel every 5 seconds
+    useEffect(() => {
+        if (!isAutoPlayingFaq || faqItems.length === 0) return;
+        const interval = setInterval(() => {
+            setFaqIndex((prev) => (prev + faqCardsPerView >= faqItems.length ? 0 : prev + faqCardsPerView));
+        }, 5000);
+        return () => clearInterval(interval);
+    }, [isAutoPlayingFaq, faqItems.length]);
+
     useEffect(() => {
         const reveals = document.querySelectorAll(".reveal");
         const revealOnScroll = () => {
@@ -289,26 +304,86 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
             </section>
 
 
-            {/* FAQ Section */}
-            <section className="py-24 bg-white border-t border-gray-100">
-                <div className="max-w-4xl mx-auto px-6">
-                    <div className="text-center mb-16 reveal">
-                        <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{contactContent.faq?.sectionTitle}</h2>
-                        <h3 className="text-4xl font-serif text-onyx">{contactContent.faq?.headline}</h3>
+            {/* FAQ Section - Carousel */}
+            <section className="py-24 bg-gray-50 border-t border-gray-100">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="flex items-end justify-between mb-12">
+                        <div>
+                            <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{contactContent.faq?.sectionTitle}</h2>
+                            <h3 className="text-4xl font-serif text-onyx">{contactContent.faq?.headline}</h3>
+                            <div className="w-16 h-1 bg-brand mt-4" />
+                        </div>
+
+                        {/* Navigation Arrows */}
+                        {faqItems.length > faqCardsPerView && (
+                            <div className="hidden md:flex items-center gap-3">
+                                <button
+                                    onClick={() => {
+                                        setIsAutoPlayingFaq(false);
+                                        setFaqIndex((prev) => (prev === 0 ? Math.max(0, faqItems.length - faqCardsPerView) : prev - faqCardsPerView));
+                                    }}
+                                    className="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center hover:bg-brand hover:border-brand hover:text-white transition-all duration-300 group bg-white"
+                                    aria-label="Previous"
+                                >
+                                    <svg className="w-5 h-5 text-gray-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setIsAutoPlayingFaq(false);
+                                        setFaqIndex((prev) => (prev + faqCardsPerView >= faqItems.length ? 0 : prev + faqCardsPerView));
+                                    }}
+                                    className="w-12 h-12 border border-gray-300 rounded-full flex items-center justify-center hover:bg-brand hover:border-brand hover:text-white transition-all duration-300 group bg-white"
+                                    aria-label="Next"
+                                >
+                                    <svg className="w-5 h-5 text-gray-600 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            </div>
+                        )}
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {contactContent.faq?.items?.map((faq: any, index: number) => (
-                            <div
-                                key={index}
-                                className="p-6 bg-white border-l-4 border-brand hover:bg-gray-50 transition-colors reveal"
-                                style={{ transitionDelay: `${index * 50}ms` }}
-                            >
-                                <h3 className="font-bold text-onyx mb-2">{faq.question}</h3>
-                                <p className="text-gray-500 font-light text-sm leading-relaxed">{faq.answer}</p>
-                            </div>
-                        ))}
+                    {/* Carousel Container */}
+                    <div className="relative overflow-hidden">
+                        <div
+                            className="flex transition-transform duration-500 ease-in-out"
+                            style={{ transform: `translateX(-${faqIndex * (100 / faqCardsPerView)}%)` }}
+                        >
+                            {faqItems.map((faq: any, index: number) => (
+                                <div
+                                    key={index}
+                                    className="w-full md:w-1/2 flex-shrink-0 px-3"
+                                >
+                                    <div className="p-8 bg-white border-l-4 border-brand shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                        <h3 className="font-bold text-onyx mb-4 text-lg">{faq.question}</h3>
+                                        <p className="text-gray-500 font-light text-sm leading-relaxed">{faq.answer}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
+
+                    {/* Dots Indicator */}
+                    {faqItems.length > faqCardsPerView && (
+                        <div className="flex items-center justify-center gap-2 mt-10">
+                            {Array.from({ length: Math.ceil(faqItems.length / faqCardsPerView) }).map((_, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => {
+                                        setIsAutoPlayingFaq(false);
+                                        setFaqIndex(idx * faqCardsPerView);
+                                    }}
+                                    className={`w-2 h-2 rounded-full transition-all duration-300 ${Math.floor(faqIndex / faqCardsPerView) === idx
+                                        ? "bg-brand w-8"
+                                        : "bg-gray-300 hover:bg-gray-400"
+                                        }`}
+                                    aria-label={`Go to FAQ group ${idx + 1}`}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
