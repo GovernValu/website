@@ -55,20 +55,52 @@
         "headline": "Frequently Asked",
         "items": [
             {
-                "question": "What is the minimum asset threshold?",
-                "answer": "For family office services, engagements begin at $50M in investable assets. Corporate governance audits have no asset minimum."
+                "question": "What is GovernValu, and what does the company do?",
+                "answer": "GovernValu Management Consulting Company LLC provides professional advisory services across corporate governance, risk management, compliance (GRC), investment advisory, business valuation, and strategic business development. We support organizations in building robust governance frameworks, improving decision-making, strengthening internal controls, and increasing investor confidence—while aligning with recognized international best practices."
             },
             {
-                "question": "Do you provide tax or legal counsel?",
-                "answer": "We work alongside your legal and tax teams. While we provide strategic structuring advice, we don't act as legal counsel of record."
+                "question": "What industries does GovernValu serve?",
+                "answer": "GovernValu supports clients across multiple sectors, including: Startups, Retail & FMCG, Holding groups and family businesses, Oil & Gas, Real estate and hospitality, Healthcare and education, Technology and services, SMEs and high-growth companies, and others. Our approach is sector-sensitive—meaning frameworks, KPIs, controls, and governance structures are adapted to the client's operating model, risk profile, and regulatory context."
             },
             {
-                "question": "Are virtual consultations available?",
-                "answer": "Yes. We use encrypted, secure channels for all virtual briefings. However, we recommend an initial in-person discovery session."
+                "question": "What is corporate governance, and why is it important for companies?",
+                "answer": "Corporate governance is the system of rules, processes, and oversight mechanisms used to direct and control a company. It clarifies roles, accountability, decision rights, transparency, and stakeholder protection. Strong corporate governance helps organizations reduce operational and compliance risk, improve performance oversight and accountability, strengthen internal controls and policies, increase investor confidence and access to capital, and support sustainable growth and long-term value creation."
             },
             {
-                "question": "How long does a typical engagement last?",
-                "answer": "Governance audits typically span 8-12 weeks. Ongoing advisory retainers are structured annually with quarterly reviews."
+                "question": "Do you help companies prepare an annual corporate governance report?",
+                "answer": "Yes. GovernValu supports clients in preparing corporate governance reports aligned with regulatory requirements and best practices. Typical deliverables may include: Governance structure and committee charters, Board composition, independence, and roles, Authority matrix execution and policies implementing proofs, Risk management and internal control disclosures, Compliance and ethics framework overview, Policies index (approved and implemented), and Governance KPIs and improvement roadmap."
+            },
+            {
+                "question": "What is GRC (Governance, Risk, and Compliance), and how does it help businesses?",
+                "answer": "GRC integrates governance, risk management, and compliance into a unified management system. Instead of handling these topics separately, GRC ensures alignment across policies and procedures, risk registers and controls, compliance obligations and reporting, internal audit readiness and documentation, and board and management oversight. A mature GRC program reduces duplication, improves risk visibility, and enables better decision-making across the organization."
+            },
+            {
+                "question": "What is company valuation, and when should a business be valued?",
+                "answer": "A company valuation is an estimate of a business's economic value using recognized financial and market methodologies. A valuation is typically required when: bringing in investors or negotiating a partnership, M&A (merger/acquisition) or partial sale, family business succession and shareholder agreements, fundraising, restructuring, or dispute resolution, and IPO readiness or strategic repositioning. GovernValu supports valuations using approaches such as DCF (Discounted Cash Flow), market multiples, and other fit-for-purpose methods. We also specialize in States' Resources valuation for value exchange to pay another country against their services or projects."
+            },
+            {
+                "question": "Can you value intangible assets such as brands and trademarks?",
+                "answer": "Yes, GovernValu provides advisory support for brand valuation and intangible asset valuation, subject to data availability and the valuation purpose. Brand and IP valuation can be relevant for: Licensing or franchising agreements, M&A negotiations, Strategic positioning and brand investment decisions, and Internal value reporting and investor communications. We use internationally recognized valuation logic and document assumptions clearly for decision and negotiation use."
+            },
+            {
+                "question": "Do you provide investment advisory services for individuals and organizations?",
+                "answer": "GovernValu provides investment-related advisory mainly for organizations and investors who need structured decision support, such as: Investment opportunity assessment and screening, Due diligence coordination (commercial/financial/governance/legal), Business case development and investment memos, Deal structuring support and governance terms, and Post-investment governance and reporting frameworks. Where regulatory permissions apply, we tailor the scope to comply with relevant rules and professional standards."
+            },
+            {
+                "question": "What is due diligence, and what does GovernValu cover in due diligence projects?",
+                "answer": "Due diligence is a structured assessment conducted before investing in, partnering with, or acquiring a business. GovernValu supports due diligence focusing on: Governance and management assessment, Risk and compliance exposure, Operational performance and internal controls, Financial review support, Policy and procedure maturity, Red flags and mitigation plan, and Legal assessment (in collaboration with reputable law firms). The output is typically a decision-ready summary with risk grading and recommended protective terms."
+            },
+            {
+                "question": "Do you help family businesses with governance and family charters?",
+                "answer": "Yes. GovernValu supports family enterprises in implementing family governance, including: Family charter design (values, vision, ownership principles), Shareholder and succession governance mechanisms, Family council structures and decision rules, Conflict prevention and escalation pathways, and Board governance and professionalization roadmap. A well-designed family governance framework strengthens continuity, reduces disputes, and improves institutional stability across generations."
+            },
+            {
+                "question": "What is the difference between strategy consulting and business development consulting?",
+                "answer": "Strategy consulting focuses on defining the organization's direction and competitive positioning, including market choice, business model design, and long-term value creation. Business development consulting focuses on execution—driving growth through partnerships, sales channels, market entry plans, pipeline building, and commercial performance improvement. GovernValu often integrates both: strategy clarity + practical execution supported by governance and KPI frameworks."
+            },
+            {
+                "question": "How can I start a project with GovernValu, and what information do you need?",
+                "answer": "To start, we typically request an initial overview of: Your organization's business model and objectives, Current challenges (governance, risk, valuation, growth, etc.), Available documents (structure charts, policies, financials—if relevant), and Timeline expectations and key stakeholders. After that, GovernValu provides a structured proposal including scope, deliverables, timeline, and commercial terms."
             }
         ]
     }
