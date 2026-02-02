@@ -97,7 +97,7 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
                         {contactContent.hero?.badge}
                     </span>
                     <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 leading-tight reveal" style={{ transitionDelay: "100ms" }}>
-                        {contactContent.hero?.title} <span className="text-brand italic font-serif">{contactContent.hero?.titleHighlight}</span>
+                        {contactContent.hero?.title} <span className={`text-brand italic font-serif ${language === 'ar' ? 'text-2xl md:text-3xl block mt-4 not-italic' : ''}`}>{contactContent.hero?.titleHighlight}</span>
                     </h1>
                     <p className="text-xl text-gray-300 font-light max-w-2xl mx-auto reveal" style={{ transitionDelay: "200ms" }}>
                         {contactContent.hero?.subtitle}
