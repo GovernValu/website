@@ -68,32 +68,58 @@ export default function ClientsEditor({ content, onChange }: ClientsEditorProps)
                     label="Client Items"
                     items={content.clients || []}
                     onChange={(clients) => updateField("clients", clients)}
-                    createNew={() => ({ name: "", country: "", field: "", services: "", logo: "" })}
+                    createNew={() => ({ name: "", nameAr: "", country: "", countryAr: "", field: "", fieldAr: "", services: "", servicesAr: "", logo: "" })}
                     itemLabel={(item) => item.name || "New Client"}
                     renderItem={(item, _, updateItem) => (
                         <div className="space-y-3">
-                            <TextField
-                                label="Client Name"
-                                value={item.name}
-                                onChange={(v) => updateItem({ name: v })}
-                            />
                             <div className="grid grid-cols-2 gap-3">
                                 <TextField
-                                    label="Country / Region"
+                                    label="Client Name (English)"
+                                    value={item.name}
+                                    onChange={(v) => updateItem({ name: v })}
+                                />
+                                <TextField
+                                    label="اسم العميل (Arabic)"
+                                    value={item.nameAr || ""}
+                                    onChange={(v) => updateItem({ nameAr: v })}
+                                />
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                <TextField
+                                    label="Country / Region (English)"
                                     value={item.country}
                                     onChange={(v) => updateItem({ country: v })}
                                 />
                                 <TextField
-                                    label="Field / Industry"
+                                    label="البلد / المنطقة (Arabic)"
+                                    value={item.countryAr || ""}
+                                    onChange={(v) => updateItem({ countryAr: v })}
+                                />
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                <TextField
+                                    label="Field / Industry (English)"
                                     value={item.field}
                                     onChange={(v) => updateItem({ field: v })}
                                 />
+                                <TextField
+                                    label="المجال / الصناعة (Arabic)"
+                                    value={item.fieldAr || ""}
+                                    onChange={(v) => updateItem({ fieldAr: v })}
+                                />
                             </div>
-                            <TextField
-                                label="Services Provided"
-                                value={item.services}
-                                onChange={(v) => updateItem({ services: v })}
-                            />
+                            <div className="grid grid-cols-2 gap-3">
+                                <TextField
+                                    label="Services Provided (English)"
+                                    value={item.services}
+                                    onChange={(v) => updateItem({ services: v })}
+                                />
+                                <TextField
+                                    label="الخدمات المقدمة (Arabic)"
+                                    value={item.servicesAr || ""}
+                                    onChange={(v) => updateItem({ servicesAr: v })}
+                                />
+                            </div>
                             <ImageField
                                 label="Client Logo"
                                 value={item.logo}
