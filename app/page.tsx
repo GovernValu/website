@@ -215,7 +215,7 @@ export default function Home() {
                 </div>
                 <div className="text-gray-600">
                   <p className="font-semibold text-onyx">{content.contact?.info?.phone?.label}</p>
-                  <p className="dir-ltr">{content.contact?.info?.phone?.value}</p>
+                  <p className="dir-ltr" dir="ltr">{content.contact?.info?.phone?.value}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4">

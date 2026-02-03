@@ -224,3 +224,10 @@ textarea:focus {
 [dir="rtl"] .rotate-180 {
   transform: rotate(180deg) !important;
 }
+
+/* LTR utility for phone numbers and other numeric content */
+.dir-ltr {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+  text-align: left;
+}

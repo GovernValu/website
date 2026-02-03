@@ -50,7 +50,7 @@ export default function Footer() {
                                 </svg>
                                 <div>
                                     <span className="text-gray-500 text-xs">Türkiye</span><br />
-                                    <a href="https://wa.me/905537751648" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors dir-ltr block text-left inline-block">+90 553 775 16 48</a>
+                                    <a href="https://wa.me/905537751648" target="_blank" rel="noopener noreferrer" className="hover:text-brand transition-colors dir-ltr block" dir="ltr">+90 553 775 16 48</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
@@ -59,7 +59,7 @@ export default function Footer() {
                                 </svg>
                                 <div>
                                     <span className="text-gray-500 text-xs">Qatar & Gulf</span><br />
-                                    <a href="tel:+97433787934" className="hover:text-brand transition-colors dir-ltr block text-left inline-block">+974 3378 7934</a>
+                                    <a href="tel:+97433787934" className="hover:text-brand transition-colors dir-ltr block" dir="ltr">+974 3378 7934</a>
                                 </div>
                             </li>
                             <li className="flex items-start gap-2">
