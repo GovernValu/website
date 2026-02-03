@@ -99,6 +99,7 @@ export default function Footer() {
                             <li><Link href="/services" className="hover:text-brand transition-colors">{t.invRel}</Link></li>
                             <li><Link href="/services" className="hover:text-brand transition-colors">{t.valuation}</Link></li>
                             <li><Link href="/services" className="hover:text-brand transition-colors">{t.riskMgmt}</Link></li>
+                            <li><Link href="/faq" className="hover:text-brand transition-colors">{t.faq || "FAQ"}</Link></li>
                             <li><Link href="/contact" className="hover:text-brand transition-colors">{t.contact}</Link></li>
                         </ul>
                     </div>

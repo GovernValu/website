@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useLanguage } from "../contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
+import Link from "next/link";
 
 interface ContactPageClientProps {
     contactContent: any;
@@ -416,6 +417,16 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
                             ))}
                         </div>
                     )}
+
+                    {/* View All FAQs Link */}
+                    <div className="text-center mt-8">
+                        <Link
+                            href="/faq"
+                            className="inline-flex items-center gap-2 text-brand text-sm font-bold uppercase tracking-widest hover:underline"
+                        >
+                            {t.faq || "FAQ"} →
+                        </Link>
+                    </div>
                 </div>
             </section>
 
