@@ -109,6 +109,7 @@ export const LABELS = {
         ourExpertise: 'Our Expertise',
         expertiseHeadline: 'Strategic counsel for the complexity of modern wealth.',
         viewAllServices: 'View All Services',
+        followUs: 'Follow Us',
     },
     ar: {
         dir: 'rtl',
@@ -204,5 +205,6 @@ export const LABELS = {
         ourExpertise: 'خبراتنا',
         expertiseHeadline: 'استشارات استراتيجية لتعقيدات الثروات الحديثة.',
         viewAllServices: 'عرض جميع الخدمات',
+        followUs: 'تابعنا',
     }
 } as const;
