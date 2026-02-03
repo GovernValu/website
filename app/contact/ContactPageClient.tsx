@@ -379,17 +379,21 @@ export default function ContactPageClient({ contactContent, settingsContent, ini
                     </div>
 
                     {/* Carousel Container */}
-                    <div className="relative overflow-hidden">
+                    <div className="relative overflow-hidden min-h-[250px]">
                         <div
                             className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${faqIndex * (100 / faqCardsPerView)}%)` }}
+                            style={{
+                                transform: language === 'ar'
+                                    ? `translateX(${faqIndex * (100 / faqCardsPerView)}%)`
+                                    : `translateX(-${faqIndex * (100 / faqCardsPerView)}%)`
+                            }}
                         >
                             {faqItems.map((faq: any, index: number) => (
                                 <div
                                     key={index}
                                     className="w-full md:w-1/2 flex-shrink-0 px-3"
                                 >
-                                    <div className="p-8 bg-white border-l-4 border-brand shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+                                    <div className="p-8 bg-white border-l-4 border-brand shadow-lg hover:shadow-xl transition-all duration-300 h-full min-h-[200px]">
                                         <h3 className="font-bold text-onyx mb-4 text-lg">{faq.question}</h3>
                                         <p className="text-gray-500 font-light text-sm leading-relaxed">{faq.answer}</p>
                                     </div>
