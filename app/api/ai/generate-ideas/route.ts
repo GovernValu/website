@@ -3,10 +3,19 @@ import openai from "@/lib/openai";
 
 export async function POST(request: Request) {
     try {
-        const { category, count = 5 } = await request.json();
+        const { category, topic, count = 5 } = await request.json();
 
-        const categoryContext = category
-            ? `Generate blog post ideas specifically for the "${category}" category.`
+        // Build context based on category and/or custom topic
+        let contextParts = [];
+        if (topic) {
+            contextParts.push(`Focus on this topic: "${topic}"`);
+        }
+        if (category) {
+            contextParts.push(`Generate ideas for the "${category}" category`);
+        }
+
+        const categoryContext = contextParts.length > 0
+            ? contextParts.join(". ") + "."
             : "Generate diverse blog post ideas across governance, investment, risk management, and GCC market insights.";
 
         const completion = await openai.chat.completions.create({

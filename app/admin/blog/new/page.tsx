@@ -39,6 +39,7 @@ function NewBlogPostForm() {
     const [generatingIdeas, setGeneratingIdeas] = useState(false);
     const [showIdeasPanel, setShowIdeasPanel] = useState(false);
     const [aiIdeas, setAiIdeas] = useState<BlogIdea[]>([]);
+    const [ideaPrompt, setIdeaPrompt] = useState("");
     const [uploading, setUploading] = useState(false);
     const [form, setForm] = useState({
         title: "",
@@ -137,6 +138,7 @@ function NewBlogPostForm() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     category: selectedCategory?.name || "",
+                    topic: ideaPrompt.trim() || "",
                     count: 6,
                 }),
             });
@@ -374,18 +376,30 @@ function NewBlogPostForm() {
                                 )}
 
                                 {aiIdeas.length > 0 && (
-                                    <div className="mt-4 flex justify-center">
-                                        <button
-                                            type="button"
-                                            onClick={handleGenerateIdeas}
-                                            disabled={generatingIdeas}
-                                            className="text-purple-400 text-sm hover:text-purple-300 transition-colors flex items-center gap-1"
-                                        >
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                            </svg>
-                                            Generate More Ideas
-                                        </button>
+                                    <div className="mt-4 pt-4 border-t border-gray-700">
+                                        <div className="flex gap-2">
+                                            <input
+                                                type="text"
+                                                value={ideaPrompt}
+                                                onChange={(e) => setIdeaPrompt(e.target.value)}
+                                                placeholder="Enter a topic for more specific ideas..."
+                                                className="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 text-sm"
+                                            />
+                                            <button
+                                                type="button"
+                                                onClick={handleGenerateIdeas}
+                                                disabled={generatingIdeas}
+                                                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 flex items-center gap-2 text-sm font-medium whitespace-nowrap"
+                                            >
+                                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                </svg>
+                                                {ideaPrompt.trim() ? "Generate" : "More Ideas"}
+                                            </button>
+                                        </div>
+                                        <p className="text-xs text-gray-500 mt-2">
+                                            💡 Type a specific topic to get targeted ideas, or leave empty for general ideas
+                                        </p>
                                     </div>
                                 )}
                             </div>
