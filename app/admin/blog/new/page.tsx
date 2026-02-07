@@ -26,6 +26,7 @@ function NewBlogPostForm() {
     const [showIdeasPanel, setShowIdeasPanel] = useState(false);
     const [aiIdeas, setAiIdeas] = useState<BlogIdea[]>([]);
     const [uploading, setUploading] = useState(false);
+    const [contentView, setContentView] = useState<"edit" | "preview">("edit");
     const [form, setForm] = useState({
         title: "",
         slug: "",
@@ -391,22 +392,101 @@ function NewBlogPostForm() {
                             />
                         </div>
 
-                        {/* Content */}
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                Content
-                            </label>
-                            <textarea
-                                value={form.content}
-                                onChange={(e) => setForm({ ...form, content: e.target.value })}
-                                required
-                                rows={15}
-                                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none font-mono text-sm"
-                                placeholder="Write your post content here... (HTML supported)"
-                            />
-                            <p className="mt-2 text-xs text-gray-500">
-                                HTML formatting is supported. Use &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, etc.
-                            </p>
+
+                        {/* Content Editor */}
+                        <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
+                            {/* Editor Header with Tabs */}
+                            <div className="flex items-center justify-between border-b border-gray-700 px-4 py-2 bg-gray-900/50">
+                                <div className="flex items-center gap-1">
+                                    <button
+                                        type="button"
+                                        onClick={() => setContentView("edit")}
+                                        className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${contentView === "edit" ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white"}`}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                            Edit
+                                        </span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setContentView("preview")}
+                                        className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${contentView === "preview" ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white"}`}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                            </svg>
+                                            Preview
+                                        </span>
+                                    </button>
+                                </div>
+                                <span className="text-xs text-gray-500">
+                                    {form.content.length} characters
+                                </span>
+                            </div>
+
+                            {/* Formatting Toolbar - Only show in Edit mode */}
+                            {contentView === "edit" && (
+                                <div className="flex items-center gap-1 px-4 py-2 border-b border-gray-700 bg-gray-900/30 flex-wrap">
+                                    {[
+                                        { label: "H2", insert: "<h2>", title: "Heading 2" },
+                                        { label: "H3", insert: "<h3>", title: "Heading 3" },
+                                        { label: "P", insert: "<p>", title: "Paragraph" },
+                                        { label: "B", insert: "<strong>", title: "Bold", className: "font-bold" },
+                                        { label: "I", insert: "<em>", title: "Italic", className: "italic" },
+                                        { label: "UL", insert: "<ul>\n  <li>", title: "Bullet List" },
+                                        { label: "OL", insert: "<ol>\n  <li>", title: "Numbered List" },
+                                        { label: "Link", insert: "<a href=\"\">", title: "Link" },
+                                        { label: "Quote", insert: "<blockquote>", title: "Blockquote" },
+                                    ].map((btn) => (
+                                        <button
+                                            key={btn.label}
+                                            type="button"
+                                            title={btn.title}
+                                            onClick={() => setForm({ ...form, content: form.content + btn.insert })}
+                                            className={`px-3 py-1.5 text-xs text-gray-400 hover:text-white hover:bg-gray-700 rounded transition-colors ${btn.className || ""}`}
+                                        >
+                                            {btn.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Content Area */}
+                            <div className="p-4">
+                                {contentView === "edit" ? (
+                                    <textarea
+                                        value={form.content}
+                                        onChange={(e) => setForm({ ...form, content: e.target.value })}
+                                        required
+                                        rows={18}
+                                        className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none font-mono text-sm"
+                                        placeholder="Write your post content here... (HTML supported)"
+                                    />
+                                ) : (
+                                    <div className="min-h-[400px] bg-white rounded-lg p-6 overflow-auto">
+                                        {form.content ? (
+                                            <article
+                                                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700 prose-blockquote:border-l-brand prose-blockquote:text-gray-600"
+                                                dangerouslySetInnerHTML={{ __html: form.content }}
+                                            />
+                                        ) : (
+                                            <p className="text-gray-400 text-center py-12">No content to preview. Start writing in the Edit tab.</p>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Editor Footer */}
+                            <div className="px-4 py-2 border-t border-gray-700 bg-gray-900/30">
+                                <p className="text-xs text-gray-500">
+                                    💡 Tip: Use HTML tags like &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, &lt;strong&gt; for formatting. Click Preview to see how it looks.
+                                </p>
+                            </div>
                         </div>
                     </div>
 
