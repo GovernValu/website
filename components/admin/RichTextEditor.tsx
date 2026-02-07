@@ -39,6 +39,7 @@ export default function RichTextEditor({ content, onChange, placeholder = "Start
             }),
         ],
         content,
+        immediatelyRender: false,
         editorProps: {
             attributes: {
                 class: "prose prose-lg prose-invert max-w-none focus:outline-none min-h-[400px] px-4 py-3",
@@ -83,8 +84,8 @@ export default function RichTextEditor({ content, onChange, placeholder = "Start
             onClick={onClick}
             title={title}
             className={`p-2 rounded transition-colors ${isActive
-                    ? "bg-brand text-white"
-                    : "text-gray-400 hover:text-white hover:bg-gray-700"
+                ? "bg-brand text-white"
+                : "text-gray-400 hover:text-white hover:bg-gray-700"
                 }`}
         >
             {children}

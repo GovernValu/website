@@ -19,7 +19,7 @@ export async function POST(request: Request) {
             : "Generate diverse blog post ideas across governance, investment, risk management, and GCC market insights.";
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-5-mini-2025-08-07",
+            model: "gpt-4o-mini",
             messages: [
                 {
                     role: "system",
