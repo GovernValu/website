@@ -25,6 +25,7 @@ function NewBlogPostForm() {
     const [generatingIdeas, setGeneratingIdeas] = useState(false);
     const [showIdeasPanel, setShowIdeasPanel] = useState(false);
     const [aiIdeas, setAiIdeas] = useState<BlogIdea[]>([]);
+    const [uploading, setUploading] = useState(false);
     const [form, setForm] = useState({
         title: "",
         slug: "",
@@ -145,6 +146,48 @@ function NewBlogPostForm() {
         handleTitleChange(idea.title);
         setShowIdeasPanel(false);
         toast.success("Idea selected! Click 'Generate with AI' to create the full article.");
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+
+        // Validate file type
+        if (!file.type.startsWith("image/")) {
+            toast.error("Please select an image file");
+            return;
+        }
+
+        // Validate file size (max 5MB)
+        if (file.size > 5 * 1024 * 1024) {
+            toast.error("Image size must be less than 5MB");
+            return;
+        }
+
+        setUploading(true);
+
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const res = await fetch("/api/upload", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setForm({ ...form, image: data.secure_url });
+                toast.success("Image uploaded successfully!");
+            } else {
+                const error = await res.json();
+                toast.error(error.error || "Failed to upload image");
+            }
+        } catch (error) {
+            toast.error("Failed to upload image");
+        } finally {
+            setUploading(false);
+        }
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -427,26 +470,84 @@ function NewBlogPostForm() {
 
                         {/* Featured Image */}
                         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                Featured Image URL
+                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-3">
+                                Featured Image
                             </label>
-                            <input
-                                type="url"
-                                value={form.image}
-                                onChange={(e) => setForm({ ...form, image: e.target.value })}
-                                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand"
-                                placeholder="https://..."
-                            />
-                            {form.image && (
-                                <div className="mt-4">
+
+                            {form.image ? (
+                                <div className="relative group">
                                     <img
                                         src={form.image}
-                                        alt="Preview"
-                                        className="w-full h-40 object-cover rounded-lg"
-                                        onError={(e) => (e.currentTarget.style.display = "none")}
+                                        alt="Featured image preview"
+                                        className="w-full h-48 object-cover rounded-lg"
                                     />
+                                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex items-center justify-center gap-3">
+                                        <label className="cursor-pointer p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors">
+                                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleImageUpload}
+                                                className="hidden"
+                                            />
+                                        </label>
+                                        <button
+                                            type="button"
+                                            onClick={() => setForm({ ...form, image: "" })}
+                                            className="p-2 bg-red-500/80 rounded-lg hover:bg-red-600 transition-colors"
+                                        >
+                                            <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
+                            ) : (
+                                <label className={`relative flex flex-col items-center justify-center w-full h-48 border-2 border-dashed rounded-lg cursor-pointer transition-colors ${uploading ? 'border-brand bg-brand/10' : 'border-gray-600 hover:border-gray-500 bg-gray-900/50 hover:bg-gray-900'}`}>
+                                    {uploading ? (
+                                        <div className="flex flex-col items-center">
+                                            <svg className="animate-spin h-8 w-8 text-brand mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            <span className="text-gray-400 text-sm">Uploading...</span>
+                                        </div>
+                                    ) : (
+                                        <div className="flex flex-col items-center">
+                                            <svg className="w-10 h-10 text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                            </svg>
+                                            <span className="text-gray-400 text-sm font-medium">Click to upload image</span>
+                                            <span className="text-gray-500 text-xs mt-1">PNG, JPG, WEBP up to 5MB</span>
+                                        </div>
+                                    )}
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={handleImageUpload}
+                                        disabled={uploading}
+                                        className="hidden"
+                                    />
+                                </label>
                             )}
+
+                            {/* Optional URL input */}
+                            <div className="mt-3">
+                                <div className="flex items-center gap-2 text-xs text-gray-500 mb-2">
+                                    <div className="flex-1 border-t border-gray-700"></div>
+                                    <span>or paste URL</span>
+                                    <div className="flex-1 border-t border-gray-700"></div>
+                                </div>
+                                <input
+                                    type="url"
+                                    value={form.image}
+                                    onChange={(e) => setForm({ ...form, image: e.target.value })}
+                                    className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm"
+                                    placeholder="https://..."
+                                />
+                            </div>
                         </div>
 
                         {/* SEO */}
