@@ -64,7 +64,6 @@ Generate the article in the following JSON format:
 Remember: NO asterisks, NO markdown formatting. Use ONLY HTML tags.`
                 }
             ],
-            temperature: 0.7,
             max_completion_tokens: 4000,
             response_format: { type: "json_object" }
         });
