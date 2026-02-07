@@ -6,7 +6,7 @@ export async function POST(request: Request) {
         const { category, topic, count = 5 } = await request.json();
 
         // Build context based on category and/or custom topic
-        let contextParts = [];
+        const contextParts: string[] = [];
         if (topic) {
             contextParts.push(`Focus on this topic: "${topic}"`);
         }
