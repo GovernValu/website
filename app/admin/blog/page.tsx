@@ -72,17 +72,24 @@ export default function BlogListPage() {
         setSuggestedTopics([]);
 
         try {
-            const res = await fetch("/api/ai/suggest-topics", {
+            const res = await fetch("/api/ai/generate-ideas", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({}),
+                body: JSON.stringify({ count: 5 }),
             });
 
             if (res.ok) {
                 const data = await res.json();
-                setSuggestedTopics(Array.isArray(data) ? data : data.topics || []);
+                // Map the ideas to the expected format
+                const topics = (data.ideas || []).map((idea: any) => ({
+                    title: idea.title,
+                    description: idea.description,
+                    audience: "Business Leaders"
+                }));
+                setSuggestedTopics(topics);
             } else {
-                toast.error("Failed to get topic ideas");
+                const error = await res.json();
+                toast.error(error.error || "Failed to get topic ideas");
             }
         } catch (error) {
             toast.error("Failed to get topic ideas");
