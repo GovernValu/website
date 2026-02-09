@@ -24,11 +24,11 @@ const notoKufiArabic = Noto_Kufi_Arabic({
 
 export const metadata: Metadata = {
   title: {
-    default: "GovernValu | Governance & Investment Advisory - Qatar",
+    default: "GovernValu | Governance & Investment Advisory - Türkiye",
     template: "%s | GovernValu"
   },
   description: "Premier governance and investment advisory firm based in Türkiye, serving organizations across the world.",
-  keywords: ["governance", "investment", "Qatar", "GCC", "corporate governance", "investment strategy", "risk management", "valuation", "family office", "advisory", "Doha", "consulting", "board advisory", "strategic planning", "business solutions", "trademark registration"],
+  keywords: ["governance", "investment", "Türkiye", "Turkey", "GCC", "MENA", "corporate governance", "investment strategy", "risk management", "valuation", "family office", "advisory", "Istanbul", "consulting", "board advisory", "strategic planning", "business solutions"],
   authors: [{ name: "GovernValu" }],
   creator: "GovernValu",
   publisher: "GovernValu",
@@ -53,8 +53,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "GovernValu | Governance & Investment Advisory",
-    description: "Strategic counsel for the complexity of modern wealth. Premier governance and investment advisory based in Qatar, serving the GCC region.",
-    locale: "en_QA",
+    description: "Strategic counsel for the complexity of modern wealth. Premier governance and investment advisory based in Türkiye, serving organizations worldwide.",
+    locale: "en_TR",
     type: "website",
     siteName: "GovernValu",
     images: [
@@ -69,10 +69,10 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "GovernValu | Governance & Investment Advisory",
-    description: "Strategic counsel for the complexity of modern wealth. Premier advisory based in Qatar.",
+    description: "Strategic counsel for the complexity of modern wealth. Premier advisory based in Türkiye.",
     images: ['/og-image.jpg'],
   },
-  metadataBase: new URL('https://governvalu.qa'),
+  metadataBase: new URL('https://governvalu.com'),
   alternates: {
     canonical: '/',
     languages: {
