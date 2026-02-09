@@ -70,7 +70,7 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                         title: "",
                         shortDescription: "",
                         icon: "building",
-                        features: [],
+                        features: [] as string[],
                         fullDescription: "",
                         image: "",
                         details: {
@@ -78,13 +78,13 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                             featureCard2: { title: "", description: "" },
                             keyPointsTitle: "",
                             keyPointsHeadline: "",
-                            keyPoints: [],
+                            keyPoints: [] as { title: string; description: string }[],
                             processTitle: "",
                             processHeadline: "",
-                            process: [],
+                            process: [] as { title: string; description: string }[],
                             whyChooseUsTitle: "",
                             whyChooseUsHeadline: "",
-                            whyChooseUs: [],
+                            whyChooseUs: [] as { title: string; description: string }[],
                             sidebar: { title: "", description: "" },
                             ctaBanner: { headline: "", subtext: "", button1Text: "", button2Text: "" }
                         }
