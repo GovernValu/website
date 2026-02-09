@@ -94,7 +94,7 @@ export default function AdminServicesPage() {
         }
     };
 
-    const handleAddService = () => {
+    const handleAddService = async () => {
         const newService = {
             slug: `new-service-${Date.now()}`,
             title: "New Service",
@@ -107,30 +107,57 @@ export default function AdminServicesPage() {
                 featureCard2: { title: "", description: "" },
                 keyPointsTitle: "",
                 keyPointsHeadline: "",
-                keyPoints: [],
+                keyPoints: [] as { title: string; description: string }[],
                 processTitle: "",
                 processHeadline: "",
-                process: [],
+                process: [] as { title: string; description: string }[],
                 whyChooseUsTitle: "",
                 whyChooseUsHeadline: "",
-                whyChooseUs: [],
+                whyChooseUs: [] as { title: string; description: string }[],
                 sidebar: { title: "", description: "" },
                 ctaBanner: { headline: "", subtext: "", button1Text: "", button2Text: "" },
             },
         };
 
-        if (activeTab === "en") {
-            setContentEn({
-                ...contentEn,
-                services: [...(contentEn?.services || []), newService],
-            });
-        } else {
-            setContentAr({
-                ...contentAr,
-                services: [...(contentAr?.services || []), newService],
-            });
+        // Add to both English and Arabic content
+        const updatedEn = {
+            ...contentEn,
+            services: [...(contentEn?.services || []), newService],
+        };
+        const updatedAr = {
+            ...contentAr,
+            services: [...(contentAr?.services || []), { ...newService, title: "خدمة جديدة", shortDescription: "أدخل وصفًا قصيرًا..." }],
+        };
+
+        setContentEn(updatedEn);
+        setContentAr(updatedAr);
+
+        // Auto-save both languages
+        setSaving(true);
+        try {
+            const [resEn, resAr] = await Promise.all([
+                fetch("/api/content/services?lang=en", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedEn),
+                }),
+                fetch("/api/content/services?lang=ar", {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(updatedAr),
+                }),
+            ]);
+
+            if (resEn.ok && resAr.ok) {
+                toast.success("New service created! Click Edit to add content.");
+            } else {
+                toast.error("Failed to save new service");
+            }
+        } catch (error) {
+            toast.error("Failed to save new service");
+        } finally {
+            setSaving(false);
         }
-        toast.success("New service added! Don't forget to save.");
     };
 
     const handleDeleteService = (index: number) => {
@@ -172,8 +199,8 @@ export default function AdminServicesPage() {
                         <button
                             onClick={() => setActiveTab("en")}
                             className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === "en"
-                                    ? "bg-brand text-white"
-                                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                                ? "bg-brand text-white"
+                                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                                 }`}
                         >
                             English
@@ -181,8 +208,8 @@ export default function AdminServicesPage() {
                         <button
                             onClick={() => setActiveTab("ar")}
                             className={`px-4 py-2 text-sm font-medium transition-colors ${activeTab === "ar"
-                                    ? "bg-brand text-white"
-                                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                                ? "bg-brand text-white"
+                                : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                                 }`}
                         >
                             العربية
