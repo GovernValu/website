@@ -34,12 +34,6 @@ const pages = [
         lastEdited: "Just now",
     },
     {
-        id: "services",
-        name: "Services",
-        description: "Service offerings and detailed service pages",
-        lastEdited: "Just now",
-    },
-    {
         id: "partners",
         name: "Partnerships",
         description: "Strategic partners and alliances",
