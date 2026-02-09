@@ -76,6 +76,15 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                         details: {
                             featureCard1: { title: "", description: "" },
                             featureCard2: { title: "", description: "" },
+                            keyPointsTitle: "",
+                            keyPointsHeadline: "",
+                            keyPoints: [],
+                            processTitle: "",
+                            processHeadline: "",
+                            process: [],
+                            whyChooseUsTitle: "",
+                            whyChooseUsHeadline: "",
+                            whyChooseUs: [],
                             sidebar: { title: "", description: "" },
                             ctaBanner: { headline: "", subtext: "", button1Text: "", button2Text: "" }
                         }
@@ -167,6 +176,141 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                                             rows={2}
                                         />
                                     </div>
+                                </div>
+
+                                {/* Key Points Section */}
+                                <div className="space-y-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                                    <h5 className="text-sm font-semibold text-green-800">Key Points / What We Offer</h5>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Section Title"
+                                            value={item.details?.keyPointsTitle || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, keyPointsTitle: v }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Section Headline"
+                                            value={item.details?.keyPointsHeadline || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, keyPointsHeadline: v }
+                                            })}
+                                        />
+                                    </div>
+                                    <ArrayEditor
+                                        label="Key Points"
+                                        items={item.details?.keyPoints || []}
+                                        onChange={(keyPoints) => updateItem({
+                                            details: { ...item.details, keyPoints }
+                                        })}
+                                        createNew={() => ({ title: "", description: "" })}
+                                        itemLabel={(kp) => kp.title || "New Key Point"}
+                                        renderItem={(kp, _, updateKp) => (
+                                            <div className="space-y-2">
+                                                <TextField
+                                                    label="Title"
+                                                    value={kp.title}
+                                                    onChange={(v) => updateKp({ title: v })}
+                                                />
+                                                <TextArea
+                                                    label="Description"
+                                                    value={kp.description}
+                                                    onChange={(v) => updateKp({ description: v })}
+                                                    rows={2}
+                                                />
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+
+                                {/* Process Section */}
+                                <div className="space-y-3 p-3 bg-purple-50 rounded-lg border border-purple-200">
+                                    <h5 className="text-sm font-semibold text-purple-800">Process / How We Deliver</h5>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Section Title"
+                                            value={item.details?.processTitle || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, processTitle: v }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Section Headline"
+                                            value={item.details?.processHeadline || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, processHeadline: v }
+                                            })}
+                                        />
+                                    </div>
+                                    <ArrayEditor
+                                        label="Process Steps"
+                                        items={item.details?.process || []}
+                                        onChange={(process) => updateItem({
+                                            details: { ...item.details, process }
+                                        })}
+                                        createNew={() => ({ title: "", description: "" })}
+                                        itemLabel={(step) => step.title || "New Step"}
+                                        renderItem={(step, _, updateStep) => (
+                                            <div className="space-y-2">
+                                                <TextField
+                                                    label="Title"
+                                                    value={step.title}
+                                                    onChange={(v) => updateStep({ title: v })}
+                                                />
+                                                <TextArea
+                                                    label="Description"
+                                                    value={step.description}
+                                                    onChange={(v) => updateStep({ description: v })}
+                                                    rows={2}
+                                                />
+                                            </div>
+                                        )}
+                                    />
+                                </div>
+
+                                {/* Why Choose Us Section */}
+                                <div className="space-y-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
+                                    <h5 className="text-sm font-semibold text-orange-800">Why Choose Us</h5>
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <TextField
+                                            label="Section Title"
+                                            value={item.details?.whyChooseUsTitle || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, whyChooseUsTitle: v }
+                                            })}
+                                        />
+                                        <TextField
+                                            label="Section Headline"
+                                            value={item.details?.whyChooseUsHeadline || ""}
+                                            onChange={(v) => updateItem({
+                                                details: { ...item.details, whyChooseUsHeadline: v }
+                                            })}
+                                        />
+                                    </div>
+                                    <ArrayEditor
+                                        label="Reasons"
+                                        items={item.details?.whyChooseUs || []}
+                                        onChange={(whyChooseUs) => updateItem({
+                                            details: { ...item.details, whyChooseUs }
+                                        })}
+                                        createNew={() => ({ title: "", description: "" })}
+                                        itemLabel={(reason) => reason.title || "New Reason"}
+                                        renderItem={(reason, _, updateReason) => (
+                                            <div className="space-y-2">
+                                                <TextField
+                                                    label="Title"
+                                                    value={reason.title}
+                                                    onChange={(v) => updateReason({ title: v })}
+                                                />
+                                                <TextArea
+                                                    label="Description"
+                                                    value={reason.description}
+                                                    onChange={(v) => updateReason({ description: v })}
+                                                    rows={2}
+                                                />
+                                            </div>
+                                        )}
+                                    />
                                 </div>
 
                                 {/* Sidebar */}
