@@ -29,8 +29,8 @@ export default function ServiceEditorPage({ params }: ServiceEditorPageProps) {
         async function fetchContent() {
             try {
                 const [resEn, resAr] = await Promise.all([
-                    fetch("/api/content/services?lang=en"),
-                    fetch("/api/content/services?lang=ar"),
+                    fetch("/api/content/services?lang=en", { cache: "no-store" }),
+                    fetch("/api/content/services?lang=ar", { cache: "no-store" }),
                 ]);
 
                 if (resEn.ok && resAr.ok) {
