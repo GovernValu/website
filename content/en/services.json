@@ -40,6 +40,114 @@
     },
     "services": [
         {
+            "slug": "due-diligence",
+            "title": "Due Diligence Services (Transaction & Investment Due Diligence)",
+            "shortDescription": "Decision-grade insight that helps investors, boards, and executives move forward with confidence—whether acquiring, investing, partnering, raising capital, or preparing for divestment.",
+            "fullDescription": "At GovernValu, our Due Diligence Services provide independent, structured analysis across the full transaction lifecycle—supporting both Buy-Side and Sell-Side/Vendor Due Diligence engagements. We combine commercial, financial, operational, governance, and risk analysis to identify value drivers, hidden liabilities, and deal-breakers, then translate findings into practical deal protections and a clear value-creation roadmap.",
+            "icon": "shield",
+            "image": "https://images.unsplash.com/photo-1554224154-26032ffc0d07?q=80&w=2670&auto=format&fit=crop",
+            "details": {
+                "featureCard1": {
+                    "title": "Buy-Side Due Diligence",
+                    "description": "Validate the investment thesis, quantify upside/downside scenarios, and support negotiation with evidence-based adjustments and protections."
+                },
+                "featureCard2": {
+                    "title": "Sell-Side / Vendor Due Diligence",
+                    "description": "Improve readiness for fundraising, partial sale, or full divestment. Anticipate buyer questions and strengthen your valuation narrative."
+                },
+                "keyPointsTitle": "Our Due Diligence Workstreams",
+                "keyPointsHeadline": "Comprehensive Coverage Across All Transaction Dimensions",
+                "keyPoints": [
+                    {
+                        "title": "Commercial & Market Due Diligence",
+                        "description": "We assess whether the business can sustainably win in its market—covering market sizing, competitive positioning, customer concentration, channel performance, and product portfolio viability."
+                    },
+                    {
+                        "title": "Financial Due Diligence (Quality of Earnings)",
+                        "description": "We verify the reliability of reported performance and cash generation, including quality of earnings normalization, working capital analysis, net debt assessment, CAPEX requirements, and forecast realism."
+                    },
+                    {
+                        "title": "Operational Due Diligence",
+                        "description": "We evaluate how the business runs and what it will take to scale—covering operating model maturity, supply chain resilience, productivity, technology enablement, and business continuity."
+                    },
+                    {
+                        "title": "Governance, Risk & Compliance (GRC) Due Diligence",
+                        "description": "A core differentiator: we assess governance strength and control integrity—critical for institutional investors. Covers board effectiveness, internal controls, compliance posture, and ethics mechanisms."
+                    },
+                    {
+                        "title": "Organizational & Human Capital Due Diligence",
+                        "description": "We assess leadership capability and talent risks that affect execution—including leadership depth, key-person dependency, incentive alignment, and talent retention risks."
+                    },
+                    {
+                        "title": "Strategic Fit & Integration Readiness",
+                        "description": "For acquisitions and partnerships, we help plan Day 1 / Day 100 to protect value—covering synergy identification, integration complexity assessment, and priority initiative sequencing."
+                    }
+                ],
+                "processTitle": "Our Approach",
+                "processHeadline": "How We Deliver Due Diligence",
+                "process": [
+                    {
+                        "title": "Scoping & Hypothesis Setup",
+                        "description": "Define objectives, transaction context, and key questions aligned to the investment thesis."
+                    },
+                    {
+                        "title": "Information Request & Data Room Review",
+                        "description": "Targeted data collection and validation through structured information requests and data room analysis."
+                    },
+                    {
+                        "title": "Management & Stakeholder Interviews",
+                        "description": "Structured interviews with management and key stakeholders to test assumptions and surface critical issues."
+                    },
+                    {
+                        "title": "Analysis & Triangulation",
+                        "description": "Cross-checking financial, market, operational, and governance findings for a coherent, integrated view."
+                    },
+                    {
+                        "title": "Findings Workshop",
+                        "description": "Align early on critical risks and negotiation points with an interim findings workshop before the final report."
+                    },
+                    {
+                        "title": "Final Report & Decision Support",
+                        "description": "Clear, board-ready recommendations with actionable next steps and practical deal protections."
+                    }
+                ],
+                "whyChooseUsTitle": "Why GovernValu",
+                "whyChooseUsHeadline": "Why Choose Us for Due Diligence",
+                "whyChooseUs": [
+                    {
+                        "title": "Integrated Lens",
+                        "description": "Commercial + financial + operational + GRC in one coherent view—no blind spots, no siloed reports."
+                    },
+                    {
+                        "title": "Board-Ready Outputs",
+                        "description": "Structured, decision-grade reporting built for governance—clear, evidence-based, and ready to use."
+                    },
+                    {
+                        "title": "Value-Creation Focus",
+                        "description": "Not only 'what's wrong,' but how to improve and capture upside with a 100-Day Value Creation Plan."
+                    },
+                    {
+                        "title": "Practical Deal Support",
+                        "description": "Findings translated into negotiation leverage, risk-mitigation actions, warranties, and covenants."
+                    },
+                    {
+                        "title": "Confidential & Independent",
+                        "description": "Disciplined handling of sensitive information with strict independence and confidentiality protocols."
+                    }
+                ],
+                "sidebar": {
+                    "title": "Planning a Transaction?",
+                    "description": "Get decision-grade due diligence that protects your investment and unlocks value."
+                },
+                "ctaBanner": {
+                    "headline": "Invest with Confidence",
+                    "subtext": "Independent due diligence that protects your deal and powers your value-creation roadmap.",
+                    "button1Text": "Request Due Diligence",
+                    "button2Text": "Learn More"
+                }
+            }
+        },
+        {
             "slug": "governance-systems",
             "title": "Building, Implementing, and Empowering Governance Systems",
             "shortDescription": "Building and establishing governance systems in accordance with international and local standards and principles, and in line with best practices.",
