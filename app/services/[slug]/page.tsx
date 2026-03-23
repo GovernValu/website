@@ -128,7 +128,7 @@ export default function ServiceDetailPage() {
                             </div>
 
                             {/* Title */}
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white leading-tight">
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
                                 {service.title}
                             </h1>
 
