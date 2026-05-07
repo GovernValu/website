@@ -1,24 +1,53 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Metadata } from "next";
+import { LANGUAGE_COOKIE_NAME, isValidLanguage, type Language } from "@/lib/i18n";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
+async function getLocale(): Promise<Language> {
+    const store = await cookies();
+    const raw = store.get(LANGUAGE_COOKIE_NAME)?.value;
+    return raw && isValidLanguage(raw) ? raw : "en";
+}
+
+function localize(post: any, locale: Language) {
+    if (locale === "ar") {
+        return {
+            title: post.titleAr || post.title,
+            excerpt: post.excerptAr || post.excerpt,
+            content: post.contentAr || post.content,
+            metaTitle: post.metaTitleAr || post.metaTitle,
+            metaDesc: post.metaDescAr || post.metaDesc,
+        };
+    }
+    return {
+        title: post.title,
+        excerpt: post.excerpt,
+        content: post.content,
+        metaTitle: post.metaTitle,
+        metaDesc: post.metaDesc,
+    };
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
     const post = await getPost(slug);
+    const locale = await getLocale();
 
     if (!post) {
         return { title: "Post Not Found" };
     }
 
-    const title = post.metaTitle || post.title;
-    const description = post.metaDesc || post.excerpt || `Read ${post.title} on GovernValu's blog - insights on governance and investment.`;
+    const loc = localize(post, locale);
+    const title = loc.metaTitle || loc.title;
+    const description = loc.metaDesc || loc.excerpt || `Read ${loc.title} on GovernValu's blog - insights on governance and investment.`;
 
     return {
         title: title,
@@ -29,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             description: description,
             type: "article",
             publishedTime: post.createdAt?.toISOString(),
-            images: post.image ? [{ url: post.image, alt: post.title }] : undefined,
+            images: post.image ? [{ url: post.image, alt: loc.title }] : undefined,
         },
         twitter: {
             card: "summary_large_image",
@@ -42,10 +71,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 async function getPost(slug: string) {
     try {
-        return await prisma.blogPost.findUnique({
-            where: { slug, published: true },
+        const bySlug = await prisma.blogPost.findFirst({
+            where: { OR: [{ slug }, { slugAr: slug }], published: true },
             include: { category: true },
         });
+        return bySlug;
     } catch (error) {
         return null;
     }
@@ -80,10 +110,14 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound();
     }
 
+    const locale = await getLocale();
+    const loc = localize(post, locale);
+    const isAr = locale === "ar";
+
     const relatedPosts = await getRelatedPosts(post.categoryId, slug);
 
-    // Calculate read time (average 200 words per minute)
-    const wordCount = post.content.replace(/<[^>]*>/g, "").split(/\s+/).length;
+    // Read time based on the localized content actually being shown.
+    const wordCount = loc.content.replace(/<[^>]*>/g, "").split(/\s+/).length;
     const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
     return (
@@ -126,8 +160,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                         )}
 
                         {/* Title */}
-                        <h1 className="text-4xl md:text-5xl font-serif font-medium text-white mb-6 leading-tight">
-                            {post.title}
+                        <h1 dir={isAr ? "rtl" : "ltr"} className={`text-4xl md:text-5xl font-serif font-medium text-white mb-6 leading-tight ${isAr ? "text-right" : ""}`}>
+                            {loc.title}
                         </h1>
 
                         {/* Meta */}
@@ -162,7 +196,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                             <div className="relative overflow-hidden rounded-lg">
                                 <img
                                     src={post.image}
-                                    alt={post.title}
+                                    alt={loc.title}
                                     className="w-full aspect-video object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
@@ -175,8 +209,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <section className="px-6 pb-16">
                     <div className="max-w-3xl mx-auto">
                         <article
-                            className="prose prose-lg prose-invert prose-headings:font-serif prose-headings:text-white prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-gray-300 prose-li:text-gray-300 prose-li:marker:text-brand max-w-none"
-                            dangerouslySetInnerHTML={{ __html: post.content }}
+                            dir={isAr ? "rtl" : "ltr"}
+                            className={`prose prose-lg prose-invert prose-headings:font-serif prose-headings:text-white prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-brand prose-a:no-underline hover:prose-a:underline prose-strong:text-white prose-ul:text-gray-300 prose-li:text-gray-300 prose-li:marker:text-brand max-w-none ${isAr ? "text-right" : ""}`}
+                            dangerouslySetInnerHTML={{ __html: loc.content }}
                         />
                     </div>
                 </section>
@@ -189,7 +224,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 <span className="text-gray-400 text-sm">Share this article</span>
                                 <div className="flex items-center gap-3">
                                     <a
-                                        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(`https://governvalu.com/blog/${post.slug}`)}`}
+                                        href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(loc.title)}&url=${encodeURIComponent(`https://governvalu.com/blog/${post.slug}`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-lg text-gray-400 hover:bg-brand hover:text-white transition-colors"
@@ -199,7 +234,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                         </svg>
                                     </a>
                                     <a
-                                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://governvalu.com/blog/${post.slug}`)}&title=${encodeURIComponent(post.title)}`}
+                                        href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(`https://governvalu.com/blog/${post.slug}`)}&title=${encodeURIComponent(loc.title)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-lg text-gray-400 hover:bg-[#0077B5] hover:text-white transition-colors"
@@ -244,7 +279,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 </div>
 
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                    {relatedPosts.map((relatedPost) => (
+                                    {relatedPosts.map((relatedPost) => {
+                                        const rTitle = isAr ? (relatedPost.titleAr || relatedPost.title) : relatedPost.title;
+                                        return (
                                         <Link
                                             key={relatedPost.id}
                                             href={`/blog/${relatedPost.slug}`}
@@ -254,7 +291,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                                 <div className="aspect-video overflow-hidden">
                                                     <img
                                                         src={relatedPost.image}
-                                                        alt={relatedPost.title}
+                                                        alt={rTitle}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                     />
                                                 </div>
@@ -266,7 +303,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                                     </span>
                                                 )}
                                                 <h3 className="text-lg font-serif text-white mt-2 mb-3 group-hover:text-brand transition-colors line-clamp-2">
-                                                    {relatedPost.title}
+                                                    {rTitle}
                                                 </h3>
                                                 <span className="text-gray-500 text-xs">
                                                     {new Date(relatedPost.createdAt).toLocaleDateString("en-US", {
@@ -277,7 +314,8 @@ export default async function BlogPostPage({ params }: PageProps) {
                                                 </span>
                                             </div>
                                         </Link>
-                                    ))}
+                                    );
+                                    })}
                                 </div>
                             </div>
                         </div>

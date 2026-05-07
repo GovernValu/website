@@ -6,6 +6,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import slugify from "slugify";
 import dynamic from "next/dynamic";
+import { translateBlogFields } from "@/lib/blog-translate";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
     ssr: false,
@@ -35,6 +36,8 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [generating, setGenerating] = useState(false);
+    const [activeLang, setActiveLang] = useState<"en" | "ar">("en");
+    const [translating, setTranslating] = useState(false);
     const [form, setForm] = useState({
         title: "",
         slug: "",
@@ -44,8 +47,71 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
         categoryId: "",
         metaTitle: "",
         metaDesc: "",
+        titleAr: "",
+        excerptAr: "",
+        contentAr: "",
+        metaTitleAr: "",
+        metaDescAr: "",
         published: false,
     });
+
+    const isAr = activeLang === "ar";
+    const dirAttr = isAr ? "rtl" : "ltr";
+
+    const handleTranslate = async () => {
+        const direction = isAr ? "en-ar" : "ar-en";
+        const source = isAr
+            ? {
+                title: form.title,
+                excerpt: form.excerpt,
+                content: form.content,
+                metaTitle: form.metaTitle,
+                metaDesc: form.metaDesc,
+            }
+            : {
+                title: form.titleAr,
+                excerpt: form.excerptAr,
+                content: form.contentAr,
+                metaTitle: form.metaTitleAr,
+                metaDesc: form.metaDescAr,
+            };
+
+        const hasSource = Object.values(source).some((v) => v.trim().length > 0);
+        if (!hasSource) {
+            toast.error(`Fill in the ${isAr ? "English" : "Arabic"} side first.`);
+            return;
+        }
+
+        setTranslating(true);
+        try {
+            const t = await translateBlogFields(direction, source);
+            if (isAr) {
+                setForm((f) => ({
+                    ...f,
+                    titleAr: t.title || f.titleAr,
+                    excerptAr: t.excerpt || f.excerptAr,
+                    contentAr: t.content || f.contentAr,
+                    metaTitleAr: t.metaTitle || f.metaTitleAr,
+                    metaDescAr: t.metaDesc || f.metaDescAr,
+                }));
+            } else {
+                setForm((f) => ({
+                    ...f,
+                    title: t.title || f.title,
+                    slug: t.title ? slugify(t.title, { lower: true, strict: true }) : f.slug,
+                    excerpt: t.excerpt || f.excerpt,
+                    content: t.content || f.content,
+                    metaTitle: t.metaTitle || f.metaTitle,
+                    metaDesc: t.metaDesc || f.metaDesc,
+                }));
+            }
+            toast.success("Translated!");
+        } catch (e: any) {
+            toast.error(e.message || "Translation failed");
+        } finally {
+            setTranslating(false);
+        }
+    };
 
     useEffect(() => {
         fetchData();
@@ -69,6 +135,11 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                     categoryId: post.categoryId || "",
                     metaTitle: post.metaTitle || "",
                     metaDesc: post.metaDesc || "",
+                    titleAr: post.titleAr || "",
+                    excerptAr: post.excerptAr || "",
+                    contentAr: post.contentAr || "",
+                    metaTitleAr: post.metaTitleAr || "",
+                    metaDescAr: post.metaDescAr || "",
                     published: post.published,
                 });
             } else {
@@ -190,18 +261,60 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                         <p className="text-gray-400 mt-1">Update blog article</p>
                     </div>
                 </div>
-                {form.published && (
-                    <Link
-                        href={`/blog/${form.slug}`}
-                        target="_blank"
-                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                <div className="flex items-center gap-3 flex-wrap">
+                    <div className="flex rounded-lg overflow-hidden border border-gray-700">
+                        <button
+                            type="button"
+                            onClick={() => setActiveLang("en")}
+                            className={`px-4 py-2 text-sm font-medium transition-colors ${activeLang === "en" ? "bg-brand text-white" : "bg-gray-800 text-gray-400 hover:text-white"}`}
+                        >
+                            English
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() => setActiveLang("ar")}
+                            className={`px-4 py-2 text-sm font-medium transition-colors ${activeLang === "ar" ? "bg-brand text-white" : "bg-gray-800 text-gray-400 hover:text-white"}`}
+                        >
+                            العربية
+                        </button>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={handleTranslate}
+                        disabled={translating}
+                        title={`Translate from ${isAr ? "English" : "Arabic"} into the current tab`}
+                        className="flex items-center gap-2 px-3 py-2 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        View Post
-                    </Link>
-                )}
+                        {translating ? (
+                            <>
+                                <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Translating...
+                            </>
+                        ) : (
+                            <>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                                </svg>
+                                Translate from {isAr ? "EN" : "AR"}
+                            </>
+                        )}
+                    </button>
+                    {form.published && (
+                        <Link
+                            href={`/blog/${form.slug}`}
+                            target="_blank"
+                            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                        >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                            View Post
+                        </Link>
+                    )}
+                </div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -240,11 +353,18 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                             </div>
                             <input
                                 type="text"
-                                value={form.title}
-                                onChange={(e) => handleTitleChange(e.target.value)}
-                                required
-                                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white text-lg placeholder-gray-500 focus:outline-none focus:border-brand"
-                                placeholder="Enter post title..."
+                                dir={dirAttr}
+                                value={isAr ? form.titleAr : form.title}
+                                onChange={(e) => {
+                                    if (isAr) {
+                                        setForm({ ...form, titleAr: e.target.value });
+                                    } else {
+                                        handleTitleChange(e.target.value);
+                                    }
+                                }}
+                                required={!isAr}
+                                className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white text-lg placeholder-gray-500 focus:outline-none focus:border-brand ${isAr ? "text-right" : ""}`}
+                                placeholder={isAr ? "أدخل عنوان المقال..." : "Enter post title..."}
                             />
                             <div className="mt-2 text-sm text-gray-500">
                                 Slug: <span className="text-gray-400">/blog/{form.slug || "..."}</span>
@@ -254,22 +374,30 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                         {/* Excerpt */}
                         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
                             <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                Excerpt
+                                Excerpt ({isAr ? "العربية" : "English"})
                             </label>
                             <textarea
-                                value={form.excerpt}
-                                onChange={(e) => setForm({ ...form, excerpt: e.target.value })}
+                                dir={dirAttr}
+                                value={isAr ? form.excerptAr : form.excerpt}
+                                onChange={(e) => setForm({
+                                    ...form,
+                                    [isAr ? "excerptAr" : "excerpt"]: e.target.value,
+                                })}
                                 rows={3}
-                                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none"
-                                placeholder="Brief summary of the post..."
+                                className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none ${isAr ? "text-right" : ""}`}
+                                placeholder={isAr ? "ملخص قصير للمقال..." : "Brief summary of the post..."}
                             />
                         </div>
 
                         {/* WYSIWYG Content Editor */}
                         <RichTextEditor
-                            content={form.content}
-                            onChange={(html) => setForm({ ...form, content: html })}
-                            placeholder="Write your post content here..."
+                            key={activeLang}
+                            content={isAr ? form.contentAr : form.content}
+                            onChange={(html) => setForm({
+                                ...form,
+                                [isAr ? "contentAr" : "content"]: html,
+                            })}
+                            placeholder={isAr ? "اكتب محتوى المقال هنا..." : "Write your post content here..."}
                         />
                     </div>
 
@@ -357,7 +485,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
 
                         {/* SEO */}
                         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <h3 className="text-white font-medium mb-4">SEO</h3>
+                            <h3 className="text-white font-medium mb-4">SEO ({isAr ? "العربية" : "English"})</h3>
                             <div className="space-y-4">
                                 <div>
                                     <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
@@ -365,10 +493,14 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                     </label>
                                     <input
                                         type="text"
-                                        value={form.metaTitle}
-                                        onChange={(e) => setForm({ ...form, metaTitle: e.target.value })}
-                                        className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm"
-                                        placeholder="SEO title..."
+                                        dir={dirAttr}
+                                        value={isAr ? form.metaTitleAr : form.metaTitle}
+                                        onChange={(e) => setForm({
+                                            ...form,
+                                            [isAr ? "metaTitleAr" : "metaTitle"]: e.target.value,
+                                        })}
+                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm ${isAr ? "text-right" : ""}`}
+                                        placeholder={isAr ? "عنوان SEO..." : "SEO title..."}
                                     />
                                 </div>
                                 <div>
@@ -376,11 +508,15 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                         Meta Description
                                     </label>
                                     <textarea
-                                        value={form.metaDesc}
-                                        onChange={(e) => setForm({ ...form, metaDesc: e.target.value })}
+                                        dir={dirAttr}
+                                        value={isAr ? form.metaDescAr : form.metaDesc}
+                                        onChange={(e) => setForm({
+                                            ...form,
+                                            [isAr ? "metaDescAr" : "metaDesc"]: e.target.value,
+                                        })}
                                         rows={3}
-                                        className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none text-sm"
-                                        placeholder="SEO description..."
+                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none text-sm ${isAr ? "text-right" : ""}`}
+                                        placeholder={isAr ? "وصف SEO..." : "SEO description..."}
                                     />
                                 </div>
                             </div>

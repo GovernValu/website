@@ -1,8 +1,16 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Metadata } from "next";
+import { LANGUAGE_COOKIE_NAME, isValidLanguage, type Language } from "@/lib/i18n";
+
+async function getLocale(): Promise<Language> {
+    const store = await cookies();
+    const raw = store.get(LANGUAGE_COOKIE_NAME)?.value;
+    return raw && isValidLanguage(raw) ? raw : "en";
+}
 
 export const metadata: Metadata = {
     title: "Blog & Insights",
@@ -50,6 +58,10 @@ interface BlogPageProps {
 
 export default async function BlogPage({ searchParams }: BlogPageProps) {
     const { category: selectedCategory } = await searchParams;
+    const locale = await getLocale();
+    const isAr = locale === "ar";
+    const titleOf = (p: any) => (isAr ? p.titleAr || p.title : p.title);
+    const excerptOf = (p: any) => (isAr ? p.excerptAr || p.excerpt : p.excerpt);
     const [allPosts, categories] = await Promise.all([
         getPublishedPosts(),
         getCategories(),
@@ -140,7 +152,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                         <div className="aspect-video md:aspect-auto overflow-hidden">
                                             <img
                                                 src={posts[0].image}
-                                                alt={posts[0].title}
+                                                alt={titleOf(posts[0])}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                             />
                                         </div>
@@ -154,12 +166,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                                 {posts[0].category.name}
                                             </span>
                                         )}
-                                        <h2 className="text-2xl md:text-3xl font-serif text-white mb-4 group-hover:text-brand transition-colors">
-                                            {posts[0].title}
+                                        <h2 dir={isAr ? "rtl" : "ltr"} className={`text-2xl md:text-3xl font-serif text-white mb-4 group-hover:text-brand transition-colors ${isAr ? "text-right" : ""}`}>
+                                            {titleOf(posts[0])}
                                         </h2>
-                                        {posts[0].excerpt && (
-                                            <p className="text-gray-400 mb-6 line-clamp-3">
-                                                {posts[0].excerpt}
+                                        {excerptOf(posts[0]) && (
+                                            <p dir={isAr ? "rtl" : "ltr"} className={`text-gray-400 mb-6 line-clamp-3 ${isAr ? "text-right" : ""}`}>
+                                                {excerptOf(posts[0])}
                                             </p>
                                         )}
                                         <div className="flex items-center justify-between">
@@ -218,7 +230,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                             <div className="aspect-video overflow-hidden">
                                                 <img
                                                     src={post.image}
-                                                    alt={post.title}
+                                                    alt={titleOf(post)}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
                                             </div>
@@ -229,12 +241,12 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                                     {post.category.name}
                                                 </span>
                                             )}
-                                            <h2 className="text-xl font-serif text-white mt-2 mb-3 group-hover:text-brand transition-colors line-clamp-2">
-                                                {post.title}
+                                            <h2 dir={isAr ? "rtl" : "ltr"} className={`text-xl font-serif text-white mt-2 mb-3 group-hover:text-brand transition-colors line-clamp-2 ${isAr ? "text-right" : ""}`}>
+                                                {titleOf(post)}
                                             </h2>
-                                            {post.excerpt && (
-                                                <p className="text-gray-400 text-sm line-clamp-2">
-                                                    {post.excerpt}
+                                            {excerptOf(post) && (
+                                                <p dir={isAr ? "rtl" : "ltr"} className={`text-gray-400 text-sm line-clamp-2 ${isAr ? "text-right" : ""}`}>
+                                                    {excerptOf(post)}
                                                 </p>
                                             )}
                                             <div className="mt-4 flex items-center justify-between">

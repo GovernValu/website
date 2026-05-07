@@ -31,6 +31,12 @@ export async function POST(request: Request) {
                 categoryId: data.categoryId || null,
                 metaTitle: data.metaTitle || null,
                 metaDesc: data.metaDesc || null,
+                titleAr: data.titleAr || null,
+                slugAr: data.slugAr || null,
+                excerptAr: data.excerptAr || null,
+                contentAr: data.contentAr || null,
+                metaTitleAr: data.metaTitleAr || null,
+                metaDescAr: data.metaDescAr || null,
                 published: data.published || false,
             },
         });

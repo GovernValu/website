@@ -32,6 +32,12 @@ model BlogPost {
   category    BlogCategory? @relation(fields: [categoryId], references: [id])
   metaTitle   String?
   metaDesc    String?
+  titleAr     String?
+  slugAr      String?       @unique
+  excerptAr   String?
+  contentAr   String?       @db.Text
+  metaTitleAr String?
+  metaDescAr  String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
 }
