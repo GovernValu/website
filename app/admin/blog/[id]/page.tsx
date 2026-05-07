@@ -5,6 +5,19 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import toast from "react-hot-toast";
 import slugify from "slugify";
+import dynamic from "next/dynamic";
+
+const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
+    ssr: false,
+    loading: () => (
+        <div className="bg-gray-800 rounded-xl border border-gray-700 p-6">
+            <div className="animate-pulse flex flex-col gap-4">
+                <div className="h-10 bg-gray-700 rounded"></div>
+                <div className="h-64 bg-gray-700 rounded"></div>
+            </div>
+        </div>
+    ),
+});
 
 interface Category {
     id: string;
@@ -252,23 +265,12 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                             />
                         </div>
 
-                        {/* Content */}
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                Content
-                            </label>
-                            <textarea
-                                value={form.content}
-                                onChange={(e) => setForm({ ...form, content: e.target.value })}
-                                required
-                                rows={15}
-                                className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none font-mono text-sm"
-                                placeholder="Write your post content here... (HTML supported)"
-                            />
-                            <p className="mt-2 text-xs text-gray-500">
-                                HTML formatting is supported. Use &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;, etc.
-                            </p>
-                        </div>
+                        {/* WYSIWYG Content Editor */}
+                        <RichTextEditor
+                            content={form.content}
+                            onChange={(html) => setForm({ ...form, content: html })}
+                            placeholder="Write your post content here..."
+                        />
                     </div>
 
                     {/* Sidebar */}

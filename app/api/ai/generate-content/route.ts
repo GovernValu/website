@@ -75,14 +75,20 @@ Remember: NO asterisks, NO markdown formatting. Use ONLY HTML tags.`
 
         const article = JSON.parse(content);
 
-        // Additional cleanup to remove any asterisks that might have slipped through
+        // Strip any stray markdown emphasis markers that might have slipped through.
+        // Only wrap in <p> if the model returned plain text (no HTML tags at all).
         if (article.content) {
-            article.content = article.content
-                .replace(/\*\*/g, '')
-                .replace(/\*/g, '')
-                .replace(/\n\n/g, '</p><p>')
-                .replace(/^(?!<)/, '<p>')
-                .replace(/(?!>)$/, '</p>');
+            let html = article.content.replace(/\*\*/g, '').replace(/\*/g, '');
+            const hasHtmlTags = /<\/?[a-z][^>]*>/i.test(html);
+            if (!hasHtmlTags) {
+                html = html
+                    .split(/\n{2,}/)
+                    .map((p: string) => p.trim())
+                    .filter(Boolean)
+                    .map((p: string) => `<p>${p.replace(/\n/g, '<br/>')}</p>`)
+                    .join('');
+            }
+            article.content = html;
         }
 
         return NextResponse.json(article);
