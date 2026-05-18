@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import { slugifyAr } from "@/lib/slugify";
 
 export async function GET(
     request: Request,
@@ -50,7 +51,7 @@ export async function PUT(
                 metaTitle: data.metaTitle || null,
                 metaDesc: data.metaDesc || null,
                 titleAr: data.titleAr || null,
-                slugAr: data.slugAr || null,
+                slugAr: data.slugAr || (data.titleAr ? slugifyAr(data.titleAr) : null),
                 excerptAr: data.excerptAr || null,
                 contentAr: data.contentAr || null,
                 metaTitleAr: data.metaTitleAr || null,
