@@ -69,10 +69,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+function safeDecode(s: string): string {
+    try {
+        return decodeURIComponent(s);
+    } catch {
+        return s;
+    }
+}
+
 async function getPost(slug: string) {
     try {
+        const decoded = safeDecode(slug);
+        const candidates = Array.from(new Set([slug, decoded]));
         const bySlug = await prisma.blogPost.findFirst({
-            where: { OR: [{ slug }, { slugAr: slug }], published: true },
+            where: {
+                published: true,
+                OR: [
+                    { slug: { in: candidates } },
+                    { slugAr: { in: candidates } },
+                ],
+            },
             include: { category: true },
         });
         return bySlug;
