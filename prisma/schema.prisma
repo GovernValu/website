@@ -27,6 +27,7 @@ model BlogPost {
   excerpt     String?
   content     String        @db.Text
   image       String?
+  imageAr     String?
   published   Boolean       @default(false)
   categoryId  String?
   category    BlogCategory? @relation(fields: [categoryId], references: [id])

@@ -47,6 +47,7 @@ export async function PUT(
                 excerpt: data.excerpt || null,
                 content: data.content,
                 image: data.image || null,
+                imageAr: data.imageAr || null,
                 categoryId: data.categoryId || null,
                 metaTitle: data.metaTitle || null,
                 metaDesc: data.metaDesc || null,

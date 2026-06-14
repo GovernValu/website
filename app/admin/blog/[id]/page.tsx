@@ -45,6 +45,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
         excerpt: "",
         content: "",
         image: "",
+        imageAr: "",
         categoryId: "",
         metaTitle: "",
         metaDesc: "",
@@ -58,6 +59,8 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
 
     const isAr = activeLang === "ar";
     const dirAttr = isAr ? "rtl" : "ltr";
+    const imageField = isAr ? "imageAr" : "image";
+    const currentImage = isAr ? form.imageAr : form.image;
 
     const handleTranslate = async () => {
         const direction = isAr ? "en-ar" : "ar-en";
@@ -133,6 +136,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                     excerpt: post.excerpt || "",
                     content: post.content,
                     image: post.image || "",
+                    imageAr: post.imageAr || "",
                     categoryId: post.categoryId || "",
                     metaTitle: post.metaTitle || "",
                     metaDesc: post.metaDesc || "",
@@ -241,7 +245,8 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
 
             if (res.ok) {
                 const data = await res.json();
-                setForm((f) => ({ ...f, image: data.secure_url }));
+                const field = activeLang === "ar" ? "imageAr" : "image";
+                setForm((f) => ({ ...f, [field]: data.secure_url }));
                 toast.success("Image uploaded successfully!");
             } else {
                 const error = await res.json();
@@ -506,14 +511,19 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
 
                         {/* Featured Image */}
                         <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-3">
-                                Featured Image
+                            <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-1">
+                                Featured Image ({isAr ? "العربية" : "English"})
                             </label>
+                            <p className="text-xs text-gray-500 mb-3">
+                                {isAr
+                                    ? "صورة الغلاف الخاصة بالنسخة العربية"
+                                    : "Cover image for the English version. Switch to العربية to set a separate Arabic cover."}
+                            </p>
 
-                            {form.image ? (
+                            {currentImage ? (
                                 <div className="relative group">
                                     <img
-                                        src={form.image}
+                                        src={currentImage}
                                         alt="Featured image preview"
                                         className="w-full h-48 object-cover rounded-lg"
                                         onError={(e) => (e.currentTarget.style.opacity = "0.3")}
@@ -533,7 +543,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                         </label>
                                         <button
                                             type="button"
-                                            onClick={() => setForm({ ...form, image: "" })}
+                                            onClick={() => setForm({ ...form, [imageField]: "" })}
                                             className="p-2 bg-red-500/80 rounded-lg hover:bg-red-600 transition-colors"
                                             title="Remove image"
                                         >
@@ -590,8 +600,8 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                 </div>
                                 <input
                                     type="url"
-                                    value={form.image}
-                                    onChange={(e) => setForm({ ...form, image: e.target.value })}
+                                    value={currentImage}
+                                    onChange={(e) => setForm({ ...form, [imageField]: e.target.value })}
                                     className="w-full bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm"
                                     placeholder="https://..."
                                 />

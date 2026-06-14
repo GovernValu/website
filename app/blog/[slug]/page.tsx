@@ -25,6 +25,7 @@ function localize(post: any, locale: Language) {
             content: post.contentAr || post.content,
             metaTitle: post.metaTitleAr || post.metaTitle,
             metaDesc: post.metaDescAr || post.metaDesc,
+            image: post.imageAr || post.image,
         };
     }
     return {
@@ -33,6 +34,7 @@ function localize(post: any, locale: Language) {
         content: post.content,
         metaTitle: post.metaTitle,
         metaDesc: post.metaDesc,
+        image: post.image,
     };
 }
 
@@ -58,13 +60,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             description: description,
             type: "article",
             publishedTime: post.createdAt?.toISOString(),
-            images: post.image ? [{ url: post.image, alt: loc.title }] : undefined,
+            images: loc.image ? [{ url: loc.image, alt: loc.title }] : undefined,
         },
         twitter: {
             card: "summary_large_image",
             title: title,
             description: description,
-            images: post.image ? [post.image] : undefined,
+            images: loc.image ? [loc.image] : undefined,
         },
     };
 }
@@ -209,12 +211,12 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </section>
 
                 {/* Featured Image */}
-                {post.image && (
+                {loc.image && (
                     <section className="px-6 pb-12">
                         <div className="max-w-4xl mx-auto">
                             <div className="relative overflow-hidden rounded-lg">
                                 <img
-                                    src={post.image}
+                                    src={loc.image}
                                     alt={loc.title}
                                     className="w-full aspect-video object-cover"
                                 />
@@ -314,16 +316,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                                     {relatedPosts.map((relatedPost) => {
                                         const rTitle = isAr ? (relatedPost.titleAr || relatedPost.title) : relatedPost.title;
                                         const rSlug = isAr ? (relatedPost.slugAr || relatedPost.slug) : relatedPost.slug;
+                                        const rImage = isAr ? (relatedPost.imageAr || relatedPost.image) : relatedPost.image;
                                         return (
                                         <Link
                                             key={relatedPost.id}
                                             href={`/blog/${rSlug}`}
                                             className="group bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all duration-300 overflow-hidden"
                                         >
-                                            {relatedPost.image && (
+                                            {rImage && (
                                                 <div className="aspect-video overflow-hidden">
                                                     <img
-                                                        src={relatedPost.image}
+                                                        src={rImage}
                                                         alt={rTitle}
                                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                     />

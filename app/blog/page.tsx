@@ -63,6 +63,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const titleOf = (p: any) => (isAr ? p.titleAr || p.title : p.title);
     const excerptOf = (p: any) => (isAr ? p.excerptAr || p.excerpt : p.excerpt);
     const slugOf = (p: any) => (isAr ? p.slugAr || p.slug : p.slug);
+    const imageOf = (p: any) => (isAr ? p.imageAr || p.image : p.image);
     const [allPosts, categories] = await Promise.all([
         getPublishedPosts(),
         getCategories(),
@@ -149,10 +150,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                 className="group block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-brand/50 transition-all duration-500 overflow-hidden"
                             >
                                 <div className="grid md:grid-cols-2 gap-0">
-                                    {posts[0].image && (
+                                    {imageOf(posts[0]) && (
                                         <div className="aspect-video md:aspect-auto overflow-hidden">
                                             <img
-                                                src={posts[0].image}
+                                                src={imageOf(posts[0])}
                                                 alt={titleOf(posts[0])}
                                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                             />
@@ -227,10 +228,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                         href={`/blog/${slugOf(post)}`}
                                         className="group bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all duration-300 overflow-hidden"
                                     >
-                                        {post.image && (
+                                        {imageOf(post) && (
                                             <div className="aspect-video overflow-hidden">
                                                 <img
-                                                    src={post.image}
+                                                    src={imageOf(post)}
                                                     alt={titleOf(post)}
                                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                                 />
