@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import slugify from "slugify";
 import dynamic from "next/dynamic";
 import { translateBlogFields } from "@/lib/blog-translate";
+import { slugifyAr } from "@/lib/slugify";
 
 const RichTextEditor = dynamic(() => import("@/components/admin/RichTextEditor"), {
     ssr: false,
@@ -39,9 +40,12 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
     const [uploading, setUploading] = useState(false);
     const [activeLang, setActiveLang] = useState<"en" | "ar">("en");
     const [translating, setTranslating] = useState(false);
+    const [slugTouched, setSlugTouched] = useState(false);
+    const [slugArTouched, setSlugArTouched] = useState(false);
     const [form, setForm] = useState({
         title: "",
         slug: "",
+        slugAr: "",
         excerpt: "",
         content: "",
         image: "",
@@ -133,6 +137,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                 setForm({
                     title: post.title,
                     slug: post.slug,
+                    slugAr: post.slugAr || "",
                     excerpt: post.excerpt || "",
                     content: post.content,
                     image: post.image || "",
@@ -147,6 +152,10 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                     metaDescAr: post.metaDescAr || "",
                     published: post.published,
                 });
+                // Existing posts already have slugs — don't let title edits silently
+                // change a published URL. The user can still edit the slug manually.
+                setSlugTouched(true);
+                setSlugArTouched(!!post.slugAr);
             } else {
                 toast.error("Post not found");
                 router.push("/admin/blog");
@@ -164,11 +173,11 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
     };
 
     const handleTitleChange = (title: string) => {
-        setForm({
-            ...form,
+        setForm((f) => ({
+            ...f,
             title,
-            slug: slugify(title, { lower: true, strict: true }),
-        });
+            slug: slugTouched ? f.slug : slugify(title, { lower: true, strict: true }),
+        }));
     };
 
     const handleGenerateWithAI = async () => {
@@ -269,7 +278,11 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
             const res = await fetch(`/api/blog/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: JSON.stringify({
+                    ...form,
+                    slug: form.slug || slugify(form.title, { lower: true, strict: true }),
+                    slugAr: form.slugAr || (form.titleAr ? slugifyAr(form.titleAr) : ""),
+                }),
             });
 
             if (res.ok) {
@@ -407,7 +420,8 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                 value={isAr ? form.titleAr : form.title}
                                 onChange={(e) => {
                                     if (isAr) {
-                                        setForm({ ...form, titleAr: e.target.value });
+                                        const v = e.target.value;
+                                        setForm((f) => ({ ...f, titleAr: v, slugAr: slugArTouched ? f.slugAr : slugifyAr(v) }));
                                     } else {
                                         handleTitleChange(e.target.value);
                                     }
@@ -417,7 +431,7 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                                 placeholder={isAr ? "أدخل عنوان المقال..." : "Enter post title..."}
                             />
                             <div className="mt-2 text-sm text-gray-500">
-                                Slug: <span className="text-gray-400">/blog/{form.slug || "..."}</span>
+                                Slug: <span className="text-gray-400" dir="ltr">/blog/{(isAr ? form.slugAr : form.slug) || "..."}</span>
                             </div>
                         </div>
 
@@ -449,6 +463,86 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                             })}
                             placeholder={isAr ? "اكتب محتوى المقال هنا..." : "Write your post content here..."}
                         />
+
+                        {/* Meta & SEO */}
+                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
+                            <div className="flex items-center gap-2 mb-1">
+                                <svg className="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5a1.99 1.99 0 011.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.99 1.99 0 014 9V4a1 1 0 011-1z" />
+                                </svg>
+                                <h3 className="text-white font-medium">Meta &amp; SEO ({isAr ? "العربية" : "English"})</h3>
+                            </div>
+                            <p className="text-xs text-gray-500 mb-4">
+                                {isAr
+                                    ? "بيانات الرابط ومحركات البحث ومشاركة وسائل التواصل للنسخة العربية. بدّل اللغة لتحرير النسخة الأخرى."
+                                    : "URL, search & social-share metadata for the English version. Switch the language tab to edit the Arabic version."}
+                            </p>
+                            <div className="space-y-4">
+                                {/* Slug */}
+                                <div>
+                                    <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
+                                        URL Slug
+                                    </label>
+                                    <div className="flex items-stretch rounded-lg overflow-hidden border border-gray-700 focus-within:border-brand bg-gray-900">
+                                        <span dir="ltr" className="inline-flex items-center px-3 bg-gray-900/80 text-gray-500 text-sm border-r border-gray-700 whitespace-nowrap">/blog/</span>
+                                        <input
+                                            type="text"
+                                            dir={dirAttr}
+                                            value={isAr ? form.slugAr : form.slug}
+                                            onChange={(e) => {
+                                                const v = e.target.value;
+                                                if (isAr) { setSlugArTouched(true); setForm((f) => ({ ...f, slugAr: v })); }
+                                                else { setSlugTouched(true); setForm((f) => ({ ...f, slug: v })); }
+                                            }}
+                                            onBlur={(e) => {
+                                                const v = e.target.value;
+                                                if (isAr) setForm((f) => ({ ...f, slugAr: slugifyAr(v) }));
+                                                else setForm((f) => ({ ...f, slug: slugify(v, { lower: true, strict: true }) }));
+                                            }}
+                                            className={`flex-1 min-w-0 bg-gray-900 px-3 py-2 text-white placeholder-gray-500 focus:outline-none text-sm ${isAr ? "text-right" : ""}`}
+                                            placeholder={isAr ? "الرابط-العربي" : "post-url-slug"}
+                                        />
+                                    </div>
+                                    <p className="text-xs text-gray-500 mt-1">
+                                        {isAr ? "اتركه فارغاً لتوليده تلقائياً من العنوان." : "Leave empty to auto-generate from the title."}
+                                    </p>
+                                </div>
+                                {/* Meta Title */}
+                                <div>
+                                    <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
+                                        Meta Title
+                                    </label>
+                                    <input
+                                        type="text"
+                                        dir={dirAttr}
+                                        value={isAr ? form.metaTitleAr : form.metaTitle}
+                                        onChange={(e) => setForm({
+                                            ...form,
+                                            [isAr ? "metaTitleAr" : "metaTitle"]: e.target.value,
+                                        })}
+                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm ${isAr ? "text-right" : ""}`}
+                                        placeholder={isAr ? "عنوان الميتا (يظهر في نتائج البحث والمشاركة)" : "Meta title (shown in search & social shares)"}
+                                    />
+                                </div>
+                                {/* Meta Description */}
+                                <div>
+                                    <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
+                                        Meta Description
+                                    </label>
+                                    <textarea
+                                        dir={dirAttr}
+                                        value={isAr ? form.metaDescAr : form.metaDesc}
+                                        onChange={(e) => setForm({
+                                            ...form,
+                                            [isAr ? "metaDescAr" : "metaDesc"]: e.target.value,
+                                        })}
+                                        rows={3}
+                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none text-sm ${isAr ? "text-right" : ""}`}
+                                        placeholder={isAr ? "وصف الميتا (يظهر في نتائج البحث والمشاركة)" : "Meta description (shown in search & social shares)"}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Sidebar */}
@@ -608,44 +702,6 @@ export default function EditBlogPostPage({ params }: BlogEditorProps) {
                             </div>
                         </div>
 
-                        {/* SEO */}
-                        <div className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-                            <h3 className="text-white font-medium mb-4">SEO ({isAr ? "العربية" : "English"})</h3>
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                        Meta Title
-                                    </label>
-                                    <input
-                                        type="text"
-                                        dir={dirAttr}
-                                        value={isAr ? form.metaTitleAr : form.metaTitle}
-                                        onChange={(e) => setForm({
-                                            ...form,
-                                            [isAr ? "metaTitleAr" : "metaTitle"]: e.target.value,
-                                        })}
-                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand text-sm ${isAr ? "text-right" : ""}`}
-                                        placeholder={isAr ? "عنوان SEO..." : "SEO title..."}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="block text-xs uppercase tracking-widest font-bold text-gray-400 mb-2">
-                                        Meta Description
-                                    </label>
-                                    <textarea
-                                        dir={dirAttr}
-                                        value={isAr ? form.metaDescAr : form.metaDesc}
-                                        onChange={(e) => setForm({
-                                            ...form,
-                                            [isAr ? "metaDescAr" : "metaDesc"]: e.target.value,
-                                        })}
-                                        rows={3}
-                                        className={`w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand resize-none text-sm ${isAr ? "text-right" : ""}`}
-                                        placeholder={isAr ? "وصف SEO..." : "SEO description..."}
-                                    />
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </form>

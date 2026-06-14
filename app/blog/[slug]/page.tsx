@@ -11,10 +11,23 @@ interface PageProps {
     params: Promise<{ slug: string }>;
 }
 
-async function getLocale(): Promise<Language> {
+async function getCookieLocale(): Promise<Language | null> {
     const store = await cookies();
     const raw = store.get(LANGUAGE_COOKIE_NAME)?.value;
-    return raw && isValidLanguage(raw) ? raw : "en";
+    return raw && isValidLanguage(raw) ? raw : null;
+}
+
+// Resolve the effective locale for an article page.
+// Prefer an explicit language cookie so the on-site language toggle keeps working
+// for human visitors (toggling reloads the same URL). Fall back to the language
+// implied by the slug — this is what social/search crawlers (WhatsApp, Twitter,
+// Google…) hit, since they fetch the shared URL without a language cookie, so the
+// share preview and SEO metadata match the language of the shared link.
+function resolveLocale(post: any, slug: string, cookieLocale: Language | null): Language {
+    if (cookieLocale) return cookieLocale;
+    const decoded = safeDecode(slug);
+    if (post?.slugAr && (post.slugAr === slug || post.slugAr === decoded)) return "ar";
+    return "en";
 }
 
 function localize(post: any, locale: Language) {
@@ -41,24 +54,38 @@ function localize(post: any, locale: Language) {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
     const { slug } = await params;
     const post = await getPost(slug);
-    const locale = await getLocale();
 
     if (!post) {
         return { title: "Post Not Found" };
     }
 
+    const locale = resolveLocale(post, slug, await getCookieLocale());
+    const isAr = locale === "ar";
     const loc = localize(post, locale);
     const title = loc.metaTitle || loc.title;
     const description = loc.metaDesc || loc.excerpt || `Read ${loc.title} on GovernValu's blog - insights on governance and investment.`;
+
+    const enUrl = `https://governvalu.com/blog/${post.slug}`;
+    const arUrl = post.slugAr ? `https://governvalu.com/blog/${post.slugAr}` : enUrl;
+    const canonical = isAr ? arUrl : enUrl;
 
     return {
         title: title,
         description: description,
         keywords: [post.category?.name || "governance", "GovernValu blog", "investment insights", "Qatar advisory", "GCC business"],
+        alternates: {
+            canonical: canonical,
+            languages: {
+                en: enUrl,
+                ar: arUrl,
+            },
+        },
         openGraph: {
             title: `${title} | GovernValu`,
             description: description,
             type: "article",
+            url: canonical,
+            locale: isAr ? "ar_AR" : "en_US",
             publishedTime: post.createdAt?.toISOString(),
             images: loc.image ? [{ url: loc.image, alt: loc.title }] : undefined,
         },
@@ -128,7 +155,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         notFound();
     }
 
-    const locale = await getLocale();
+    const locale = resolveLocale(post, slug, await getCookieLocale());
     const loc = localize(post, locale);
     const isAr = locale === "ar";
 
