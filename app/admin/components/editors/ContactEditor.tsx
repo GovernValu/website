@@ -130,6 +130,37 @@ export default function ContactEditor({ content, onChange }: ContactEditorProps)
                     rows={3}
                     helpText="Use \n for line breaks"
                 />
+                <TextField
+                    label="Phone"
+                    value={content.headquarters?.phone || ""}
+                    onChange={(v) => updateField("headquarters", { ...content.headquarters, phone: v })}
+                />
+            </SectionCard>
+
+            {/* International Office */}
+            <SectionCard title="International Office" defaultOpen={false}>
+                <TextField
+                    label="Title"
+                    value={content.internationalOffice?.title || ""}
+                    onChange={(v) => updateField("internationalOffice", { ...content.internationalOffice, title: v })}
+                />
+                <TextField
+                    label="City"
+                    value={content.internationalOffice?.city || ""}
+                    onChange={(v) => updateField("internationalOffice", { ...content.internationalOffice, city: v })}
+                />
+                <TextArea
+                    label="Address"
+                    value={content.internationalOffice?.address || ""}
+                    onChange={(v) => updateField("internationalOffice", { ...content.internationalOffice, address: v })}
+                    rows={4}
+                    helpText="Use \n for line breaks"
+                />
+                <TextField
+                    label="Phone"
+                    value={content.internationalOffice?.phone || ""}
+                    onChange={(v) => updateField("internationalOffice", { ...content.internationalOffice, phone: v })}
+                />
             </SectionCard>
 
             {/* Response Promise */}

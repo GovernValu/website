@@ -33,8 +33,15 @@
     },
     "headquarters": {
         "title": "Headquarters",
-        "city": "Istanbul, Türkiye",
-        "address": "Istanbul, Türkiye"
+        "city": "Istanbul – Türkiye",
+        "address": "Istanbul – Türkiye\nGOVERNVALU YÖNETIM DANISMANLIGI TICARET LIMITED SIRKETI\nCR: 48273-5",
+        "phone": "+90 553 775 16 48"
+    },
+    "internationalOffice": {
+        "title": "International Office",
+        "city": "Doha – Qatar",
+        "address": "Doha – Qatar\nGovern Value for Management Consulting Co., W.L.L\nشركة جوفرن فاليو للاستشارات الإدارية ذ.م.م\nCR: 244917",
+        "phone": "+974 3378 7934"
     },
     "responsePromise": {
         "title": "24-Hour Response",

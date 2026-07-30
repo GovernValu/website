@@ -33,8 +33,15 @@
     },
     "headquarters": {
         "title": "المقر الرئيسي",
-        "city": "إسطنبول، تركيا",
-        "address": "إسطنبول، تركيا"
+        "city": "إسطنبول – تركيا",
+        "address": "إسطنبول – تركيا\nGOVERNVALU YÖNETIM DANISMANLIGI TICARET LIMITED SIRKETI\nرقم السجل التجاري: 48273-5",
+        "phone": "+90 553 775 16 48"
+    },
+    "internationalOffice": {
+        "title": "المكتب الدولي",
+        "city": "الدوحة – قطر",
+        "address": "الدوحة – قطر\nشركة جوفرن فاليو للاستشارات الإدارية ذ.م.م\nGovern Value for Management Consulting Co., W.L.L\nرقم السجل التجاري: 244917",
+        "phone": "+974 3378 7934"
     },
     "responsePromise": {
         "title": "وقت الاستجابة",
