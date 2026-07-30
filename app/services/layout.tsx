@@ -8,6 +8,11 @@ export const metadata: Metadata = {
         title: "Our Services | GovernValu",
         description: "Comprehensive governance and investment advisory services in Qatar and the GCC region.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "GovernValu governance and investment advisory services" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        images: ["/og-image-en.jpg"],
     },
 };
 

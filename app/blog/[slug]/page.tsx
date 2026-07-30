@@ -1,30 +1,21 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
-import { cookies } from "next/headers";
 import prisma from "@/lib/prisma";
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { Metadata } from "next";
-import { LANGUAGE_COOKIE_NAME, isValidLanguage, type Language } from "@/lib/i18n";
+import { type Language } from "@/lib/i18n";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
-}
-
-async function getCookieLocale(): Promise<Language | null> {
-    const store = await cookies();
-    const raw = store.get(LANGUAGE_COOKIE_NAME)?.value;
-    return raw && isValidLanguage(raw) ? raw : null;
+    searchParams: Promise<{ __lang?: string }>;
 }
 
 // Resolve the effective locale for an article page.
-// Prefer an explicit language cookie so the on-site language toggle keeps working
-// for human visitors (toggling reloads the same URL). Fall back to the language
-// implied by the slug — this is what social/search crawlers (WhatsApp, Twitter,
-// Google…) hit, since they fetch the shared URL without a language cookie, so the
-// share preview and SEO metadata match the language of the shared link.
-function resolveLocale(post: any, slug: string, cookieLocale: Language | null): Language {
-    if (cookieLocale) return cookieLocale;
+// The public route is authoritative, so previews never depend on a visitor cookie.
+// Arabic-slug matching remains only to migrate previously shared links.
+function resolveLocale(post: any, slug: string, routeLocale?: string): Language {
+    if (routeLocale === "ar") return "ar";
     const decoded = safeDecode(slug);
     if (post?.slugAr && (post.slugAr === slug || post.slugAr === decoded)) return "ar";
     return "en";
@@ -51,33 +42,41 @@ function localize(post: any, locale: Language) {
     };
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
     const { slug } = await params;
+    const { __lang } = await searchParams;
     const post = await getPost(slug);
 
     if (!post) {
-        return { title: "Post Not Found" };
+        return { title: __lang === "ar" ? "المقال غير موجود" : "Post Not Found" };
     }
 
-    const locale = resolveLocale(post, slug, await getCookieLocale());
+    const locale = resolveLocale(post, slug, __lang);
     const isAr = locale === "ar";
     const loc = localize(post, locale);
     const title = loc.metaTitle || loc.title;
-    const description = loc.metaDesc || loc.excerpt || `Read ${loc.title} on GovernValu's blog - insights on governance and investment.`;
+    const description = loc.metaDesc || loc.excerpt || (isAr
+        ? `اقرأ ${loc.title} على مدونة GovernValu — رؤى في الحوكمة والاستثمار.`
+        : `Read ${loc.title} on GovernValu's blog - insights on governance and investment.`);
 
     const enUrl = `https://governvalu.com/blog/${post.slug}`;
-    const arUrl = post.slugAr ? `https://governvalu.com/blog/${post.slugAr}` : enUrl;
+    const arUrl = `https://governvalu.com/ar/blog/${post.slug}`;
     const canonical = isAr ? arUrl : enUrl;
+    const fallbackImage = `https://governvalu.com/${isAr ? "og-image-ar.jpg" : "og-image-en.jpg"}`;
+    const previewImage = loc.image || fallbackImage;
 
     return {
         title: title,
         description: description,
-        keywords: [post.category?.name || "governance", "GovernValu blog", "investment insights", "Qatar advisory", "GCC business"],
+        keywords: isAr
+            ? ["الحوكمة", "مدونة GovernValu", "رؤى الاستثمار", "استشارات قطر", "الأعمال في الخليج"]
+            : [post.category?.name || "governance", "GovernValu blog", "investment insights", "Qatar advisory", "GCC business"],
         alternates: {
             canonical: canonical,
             languages: {
-                en: enUrl,
-                ar: arUrl,
+                "en": enUrl,
+                "ar": arUrl,
+                "x-default": enUrl,
             },
         },
         openGraph: {
@@ -86,14 +85,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             type: "article",
             url: canonical,
             locale: isAr ? "ar_AR" : "en_US",
+            alternateLocale: isAr ? ["en_US"] : ["ar_AR"],
             publishedTime: post.createdAt?.toISOString(),
-            images: loc.image ? [{ url: loc.image, alt: loc.title }] : undefined,
+            images: [{ url: previewImage, alt: loc.title }],
         },
         twitter: {
             card: "summary_large_image",
             title: title,
             description: description,
-            images: loc.image ? [loc.image] : undefined,
+            images: [previewImage],
         },
     };
 }
@@ -147,22 +147,29 @@ async function getRelatedPosts(categoryId: string | null, currentSlug: string) {
 
 export const dynamic = "force-dynamic";
 
-export default async function BlogPostPage({ params }: PageProps) {
+export default async function BlogPostPage({ params, searchParams }: PageProps) {
     const { slug } = await params;
+    const { __lang } = await searchParams;
     const post = await getPost(slug);
 
     if (!post) {
         notFound();
     }
 
-    const locale = resolveLocale(post, slug, await getCookieLocale());
+    const locale = resolveLocale(post, slug, __lang);
     const loc = localize(post, locale);
     const isAr = locale === "ar";
 
-    const relatedPosts = await getRelatedPosts(post.categoryId, slug);
+    const decodedSlug = safeDecode(slug);
+    const isLegacyArabicSlug = __lang !== "ar" && post.slugAr
+        && (post.slugAr === slug || post.slugAr === decodedSlug);
+    if (isLegacyArabicSlug) {
+        permanentRedirect(`/ar/blog/${post.slug}`);
+    }
 
-    const canonicalSlug = isAr ? (post.slugAr || post.slug) : post.slug;
-    const shareUrl = `https://governvalu.com/blog/${canonicalSlug}`;
+    const relatedPosts = await getRelatedPosts(post.categoryId, post.slug);
+    const blogPath = isAr ? "/ar/blog" : "/blog";
+    const shareUrl = `https://governvalu.com${blogPath}/${post.slug}`;
 
     // Read time based on the localized content actually being shown.
     const wordCount = loc.content.replace(/<[^>]*>/g, "").split(/\s+/).length;
@@ -178,17 +185,17 @@ export default async function BlogPostPage({ params }: PageProps) {
                         {/* Breadcrumb */}
                         <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
                             <Link href="/" className="hover:text-gray-300 transition-colors">
-                                Home
+                                {isAr ? "الرئيسية" : "Home"}
                             </Link>
                             <span>/</span>
-                            <Link href="/blog" className="hover:text-gray-300 transition-colors">
-                                Blog
+                            <Link href={blogPath} className="hover:text-gray-300 transition-colors">
+                                {isAr ? "المدونة" : "Blog"}
                             </Link>
                             {post.category && (
                                 <>
                                     <span>/</span>
                                     <Link
-                                        href={`/blog?category=${post.category.slug}`}
+                                        href={`${blogPath}?category=${post.category.slug}`}
                                         className="text-brand hover:text-brand-light transition-colors"
                                     >
                                         {post.category.name}
@@ -200,7 +207,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                         {/* Category */}
                         {post.category && (
                             <Link
-                                href={`/blog?category=${post.category.slug}`}
+                                href={`${blogPath}?category=${post.category.slug}`}
                                 className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-4 hover:bg-brand/20 transition-colors"
                             >
                                 {post.category.name}
@@ -219,7 +226,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                 </svg>
                                 <span>
-                                    {new Date(post.createdAt).toLocaleDateString("en-US", {
+                                    {new Date(post.createdAt).toLocaleDateString(isAr ? "ar-QA" : "en-US", {
                                         year: "numeric",
                                         month: "long",
                                         day: "numeric",
@@ -231,7 +238,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                <span>{readTime} min read</span>
+                                <span>{isAr ? `${readTime} دقيقة قراءة` : `${readTime} min read`}</span>
                             </div>
                         </div>
                     </div>
@@ -314,13 +321,13 @@ export default async function BlogPostPage({ params }: PageProps) {
                 <section className="px-6 pb-16">
                     <div className="max-w-3xl mx-auto">
                         <Link
-                            href="/blog"
+                            href={blogPath}
                             className="inline-flex items-center gap-2 text-brand hover:text-white transition-colors group"
                         >
                             <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
-                            Back to Blog
+                            {isAr ? "العودة إلى المدونة" : "Back to Blog"}
                         </Link>
                     </div>
                 </section>
@@ -332,22 +339,21 @@ export default async function BlogPostPage({ params }: PageProps) {
                             <div className="border-t border-gray-800 pt-16">
                                 <div className="text-center mb-12">
                                     <span className="inline-block py-1 px-3 border border-brand/50 rounded-full bg-brand/10 text-brand text-xs font-bold tracking-[0.2em] uppercase mb-4">
-                                        Related Articles
+                                        {isAr ? "مقالات ذات صلة" : "Related Articles"}
                                     </span>
                                     <h2 className="text-3xl font-serif text-white">
-                                        Continue Reading
+                                        {isAr ? "تابع القراءة" : "Continue Reading"}
                                     </h2>
                                 </div>
 
                                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {relatedPosts.map((relatedPost) => {
                                         const rTitle = isAr ? (relatedPost.titleAr || relatedPost.title) : relatedPost.title;
-                                        const rSlug = isAr ? (relatedPost.slugAr || relatedPost.slug) : relatedPost.slug;
                                         const rImage = isAr ? (relatedPost.imageAr || relatedPost.image) : relatedPost.image;
                                         return (
                                         <Link
                                             key={relatedPost.id}
-                                            href={`/blog/${rSlug}`}
+                                            href={`${blogPath}/${relatedPost.slug}`}
                                             className="group bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all duration-300 overflow-hidden"
                                         >
                                             {rImage && (
@@ -369,7 +375,7 @@ export default async function BlogPostPage({ params }: PageProps) {
                                                     {rTitle}
                                                 </h3>
                                                 <span className="text-gray-500 text-xs">
-                                                    {new Date(relatedPost.createdAt).toLocaleDateString("en-US", {
+                                                    {new Date(relatedPost.createdAt).toLocaleDateString(isAr ? "ar-QA" : "en-US", {
                                                         year: "numeric",
                                                         month: "long",
                                                         day: "numeric",

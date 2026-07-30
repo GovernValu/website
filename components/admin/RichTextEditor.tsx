@@ -7,14 +7,21 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect, useState } from "react";
+import { sanitizeCmsHtml } from "@/lib/html";
 
 interface RichTextEditorProps {
     content: string;
     onChange: (html: string) => void;
     placeholder?: string;
+    minHeightClassName?: string;
 }
 
-export default function RichTextEditor({ content, onChange, placeholder = "Start writing your content..." }: RichTextEditorProps) {
+export default function RichTextEditor({
+    content,
+    onChange,
+    placeholder = "Start writing your content...",
+    minHeightClassName = "min-h-[400px]",
+}: RichTextEditorProps) {
     const [viewMode, setViewMode] = useState<"edit" | "preview">("edit");
 
     const editor = useEditor({
@@ -42,7 +49,7 @@ export default function RichTextEditor({ content, onChange, placeholder = "Start
         immediatelyRender: false,
         editorProps: {
             attributes: {
-                class: "prose prose-lg prose-invert max-w-none focus:outline-none min-h-[400px] px-4 py-3",
+                class: `prose prose-lg prose-invert max-w-none focus:outline-none ${minHeightClassName} px-4 py-3`,
             },
         },
         onUpdate: ({ editor }) => {
@@ -350,7 +357,7 @@ export default function RichTextEditor({ content, onChange, placeholder = "Start
                     </div>
 
                     {/* Editor Content */}
-                    <div className="bg-gray-900 min-h-[400px]">
+                    <div className={`bg-gray-900 ${minHeightClassName}`}>
                         <EditorContent editor={editor} />
                     </div>
                 </>
@@ -359,7 +366,7 @@ export default function RichTextEditor({ content, onChange, placeholder = "Start
                 <div className="p-6 bg-white min-h-[450px]">
                     <article
                         className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
-                        dangerouslySetInnerHTML={{ __html: content }}
+                        dangerouslySetInnerHTML={{ __html: sanitizeCmsHtml(content) }}
                     />
                 </div>
             )}

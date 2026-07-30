@@ -5,6 +5,7 @@ import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import CmsRichText from "../../components/CmsRichText";
 import { useContent } from "../../hooks/useContent";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
@@ -133,9 +134,10 @@ export default function ServiceDetailPage() {
                             </h1>
 
                             {/* Short Description */}
-                            <p className="text-2xl text-gray-300 font-light leading-relaxed max-w-2xl">
-                                {service.shortDescription}
-                            </p>
+                            <CmsRichText
+                                html={service.shortDescription}
+                                className="text-2xl text-gray-300 font-light leading-relaxed max-w-2xl [&_p]:m-0"
+                            />
 
                             {/* CTA Buttons */}
                             <div className="flex flex-wrap gap-6 pt-4">
@@ -213,9 +215,10 @@ export default function ServiceDetailPage() {
                                     {language === 'ar' ? 'خدمات متكاملة ومتخصصة' : 'Comprehensive & Specialized Services'}
                                 </h2>
                                 <div className="prose prose-xl max-w-none text-gray-700 leading-relaxed space-y-6">
-                                    <p className="text-2xl font-light text-gray-800 leading-relaxed">
-                                        {description}
-                                    </p>
+                                    <CmsRichText
+                                        html={description}
+                                        className="text-2xl font-light text-gray-800 leading-relaxed [&_p]:mb-4"
+                                    />
                                     <p className="text-lg text-gray-600">
                                         {language === 'ar'
                                             ? 'نقدم حلولاً شاملة تجمع بين الخبرة العميقة والمنهجيات المثبتة لتحقيق نتائج استثنائية. فريقنا من الخبراء يعمل معك جنباً إلى جنب لضمان تحقيق أهدافك الاستراتيجية.'
@@ -235,7 +238,10 @@ export default function ServiceDetailPage() {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-2xl font-bold text-onyx mb-3">{details.featureCard1?.title || "Professional Expertise"}</h3>
-                                            <p className="text-gray-600 leading-relaxed">{details.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}</p>
+                                            <CmsRichText
+                                                html={details.featureCard1?.description || "Delivered by industry-leading professionals with deep domain knowledge."}
+                                                className="text-gray-600 leading-relaxed [&_p]:m-0"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +254,10 @@ export default function ServiceDetailPage() {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-2xl font-bold text-onyx mb-3">{details.featureCard2?.title || "Tailored Solutions"}</h3>
-                                            <p className="text-gray-600 leading-relaxed">{details.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}</p>
+                                            <CmsRichText
+                                                html={details.featureCard2?.description || "Customized approaches designed to fit your unique organizational needs."}
+                                                className="text-gray-600 leading-relaxed [&_p]:m-0"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +270,10 @@ export default function ServiceDetailPage() {
                             <div className="sticky top-24 space-y-8">
                                 <div className="bg-onyx text-white p-10 rounded-2xl shadow-2xl">
                                     <h3 className="text-2xl font-serif font-bold mb-4">{details.sidebar?.title || "Need Expert Guidance?"}</h3>
-                                    <p className="text-gray-300 mb-8 leading-relaxed">{details.sidebar?.description || "Contact us to learn more about how we can help your organization achieve excellence."}</p>
+                                    <CmsRichText
+                                        html={details.sidebar?.description || "Contact us to learn more about how we can help your organization achieve excellence."}
+                                        className="text-gray-300 mb-8 leading-relaxed [&_p]:m-0"
+                                    />
 
                                     <Link
                                         href="/contact"
@@ -350,7 +362,7 @@ export default function ServiceDetailPage() {
                                         </div>
                                         <div className="flex-1">
                                             <h3 className="text-2xl font-bold text-onyx mb-4 group-hover:text-brand transition-colors">{point.title}</h3>
-                                            <p className="text-gray-600 leading-relaxed">{point.description}</p>
+                                            <CmsRichText html={point.description} className="text-gray-600 leading-relaxed [&_p]:m-0" />
                                         </div>
                                     </div>
                                 </div>
@@ -399,7 +411,7 @@ export default function ServiceDetailPage() {
                                                     </div>
                                                 </div>
                                                 <h3 className="text-3xl font-bold text-onyx mb-5 group-hover:text-brand transition-colors">{step.title}</h3>
-                                                <p className="text-gray-600 text-lg leading-relaxed">{step.description}</p>
+                                                <CmsRichText html={step.description} className="text-gray-600 text-lg leading-relaxed [&_p]:m-0" />
                                             </div>
                                         </div>
 
@@ -456,7 +468,7 @@ export default function ServiceDetailPage() {
                                             </svg>
                                         </div>
                                         <h3 className="text-2xl font-bold mb-4 group-hover:text-brand transition-colors">{item.title}</h3>
-                                        <p className="text-gray-300 leading-relaxed text-lg">{item.description}</p>
+                                        <CmsRichText html={item.description} className="text-gray-300 leading-relaxed text-lg [&_p]:m-0" />
                                     </div>
                                 </div>
                             ))}
@@ -476,9 +488,10 @@ export default function ServiceDetailPage() {
                     <h2 className="text-4xl md:text-6xl font-serif font-bold text-white mb-8 leading-tight">
                         {details.ctaBanner?.headline || "Ready to Transform Your Organization?"}
                     </h2>
-                    <p className="text-2xl text-white/90 font-light mb-12 max-w-3xl mx-auto leading-relaxed">
-                        {details.ctaBanner?.subtext || `Let us help you achieve excellence in ${service.title.toLowerCase()}.`}
-                    </p>
+                    <CmsRichText
+                        html={details.ctaBanner?.subtext || `Let us help you achieve excellence in ${service.title.toLowerCase()}.`}
+                        className="text-2xl text-white/90 font-light mb-12 max-w-3xl mx-auto leading-relaxed [&_p]:m-0"
+                    />
                     <div className="flex flex-col sm:flex-row gap-6 justify-center">
                         <Link
                             href="/contact"

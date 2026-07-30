@@ -8,6 +8,7 @@ export const metadata: Metadata = {
         title: "About GovernValu",
         description: "Premier governance and investment advisory firm based in Türkiye, serving organizations across the world.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "About GovernValu" }],
     },
 };
 

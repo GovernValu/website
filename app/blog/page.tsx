@@ -20,6 +20,11 @@ export const metadata: Metadata = {
         title: "Blog & Insights | GovernValu",
         description: "Latest insights and industry updates on governance and investment from GovernValu.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "GovernValu governance and investment insights" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        images: ["/og-image-en.jpg"],
     },
 };
 
@@ -62,7 +67,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     const isAr = locale === "ar";
     const titleOf = (p: any) => (isAr ? p.titleAr || p.title : p.title);
     const excerptOf = (p: any) => (isAr ? p.excerptAr || p.excerpt : p.excerpt);
-    const slugOf = (p: any) => (isAr ? p.slugAr || p.slug : p.slug);
+    const pathOf = (p: any) => `${isAr ? "/ar/blog" : "/blog"}/${p.slug}`;
     const imageOf = (p: any) => (isAr ? p.imageAr || p.image : p.image);
     const [allPosts, categories] = await Promise.all([
         getPublishedPosts(),
@@ -146,7 +151,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                     <section className="px-6 pb-12">
                         <div className="max-w-6xl mx-auto">
                             <Link
-                                href={`/blog/${slugOf(posts[0])}`}
+                                href={pathOf(posts[0])}
                                 className="group block bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-700 hover:border-brand/50 transition-all duration-500 overflow-hidden"
                             >
                                 <div className="grid md:grid-cols-2 gap-0">
@@ -225,7 +230,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                                 {(selectedCategory ? posts : posts.slice(1)).map((post) => (
                                     <Link
                                         key={post.id}
-                                        href={`/blog/${slugOf(post)}`}
+                                        href={pathOf(post)}
                                         className="group bg-gray-900 border border-gray-800 hover:border-gray-700 transition-all duration-300 overflow-hidden"
                                     >
                                         {imageOf(post) && (

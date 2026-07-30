@@ -84,6 +84,19 @@ export default function AdminLayout({
     }, []);
 
     useEffect(() => {
+        setSidebarOpen(false);
+    }, [pathname]);
+
+    useEffect(() => {
+        if (!sidebarOpen) return;
+        const closeOnEscape = (event: KeyboardEvent) => {
+            if (event.key === "Escape") setSidebarOpen(false);
+        };
+        window.addEventListener("keydown", closeOnEscape);
+        return () => window.removeEventListener("keydown", closeOnEscape);
+    }, [sidebarOpen]);
+
+    useEffect(() => {
         // Only redirect after mounted and session is confirmed unauthenticated
         if (mounted && status === "unauthenticated" && pathname !== "/admin/login") {
             router.push("/admin/login");
@@ -118,6 +131,10 @@ export default function AdminLayout({
         );
     }
 
+    const currentSection = navigation
+        .filter((item) => pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href)))
+        .sort((a, b) => b.href.length - a.href.length)[0]?.name || "Dashboard";
+
     return (
         <div className="min-h-screen bg-gray-900">
             <Toaster position="top-right" />
@@ -131,7 +148,11 @@ export default function AdminLayout({
             )}
 
             {/* Sidebar */}
-            <aside className={`fixed top-0 left-0 z-50 h-full w-64 bg-onyx border-r border-gray-800 transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside
+                id="admin-navigation"
+                aria-label="Admin navigation"
+                className={`fixed top-0 left-0 z-50 h-full w-64 bg-onyx border-r border-gray-800 transform transition-transform duration-300 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+            >
                 <div className="flex flex-col h-full">
                     {/* Logo */}
                     <div className="p-6 border-b border-gray-800">
@@ -199,13 +220,19 @@ export default function AdminLayout({
                     <div className="flex items-center justify-between px-6 py-4">
                         <button
                             onClick={() => setSidebarOpen(true)}
+                            aria-label="Open admin navigation"
+                            aria-controls="admin-navigation"
+                            aria-expanded={sidebarOpen}
                             className="lg:hidden text-gray-400 hover:text-white"
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <div className="flex-1" />
+                        <div className="ml-4 flex-1">
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500">Workspace</p>
+                            <p className="text-sm font-medium text-white">{currentSection}</p>
+                        </div>
                         <Link
                             href="/"
                             target="_blank"

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
         title: "Our Clients | GovernValu",
         description: "Leading organizations across Qatar and the GCC trust GovernValu for governance and investment advisory.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "GovernValu clients" }],
     },
 };
 

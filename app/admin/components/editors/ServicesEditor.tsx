@@ -2,12 +2,12 @@
 
 import {
     TextField,
-    TextArea,
     ImageField,
     SectionCard,
     ArrayEditor,
     StringArrayEditor,
 } from "../ContentFields";
+import TextArea from "../RichTextField";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 interface ServicesEditorProps {
@@ -324,7 +324,7 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                                                 details: { ...item.details, sidebar: { ...item.details?.sidebar, title: v } }
                                             })}
                                         />
-                                        <TextField
+                                        <TextArea
                                             label="Description"
                                             value={item.details?.sidebar?.description || ""}
                                             onChange={(v) => updateItem({
@@ -345,7 +345,7 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                                                 details: { ...item.details, ctaBanner: { ...item.details?.ctaBanner, headline: v } }
                                             })}
                                         />
-                                        <TextField
+                                        <TextArea
                                             label="Subtext"
                                             value={item.details?.ctaBanner?.subtext || ""}
                                             onChange={(v) => updateItem({
@@ -434,6 +434,40 @@ export default function ServicesEditor({ content, onChange }: ServicesEditorProp
                     onChange={(v) => updateField("methodology", { ...content.methodology, quote: v })}
                     rows={3}
                 />
+            </SectionCard>
+
+            {/* Closing CTA */}
+            <SectionCard title="Closing Call to Action" defaultOpen={false}>
+                <div className="grid grid-cols-2 gap-4">
+                    <TextField
+                        label="Headline"
+                        value={content.cta?.headline || ""}
+                        onChange={(v) => updateField("cta", { ...content.cta, headline: v })}
+                    />
+                    <TextField
+                        label="Highlighted Text"
+                        value={content.cta?.headlineHighlight || ""}
+                        onChange={(v) => updateField("cta", { ...content.cta, headlineHighlight: v })}
+                    />
+                </div>
+                <TextArea
+                    label="Supporting Text"
+                    value={content.cta?.subtitle || ""}
+                    onChange={(v) => updateField("cta", { ...content.cta, subtitle: v })}
+                    rows={3}
+                />
+                <div className="grid grid-cols-2 gap-4">
+                    <TextField
+                        label="Button Text"
+                        value={content.cta?.buttonText || ""}
+                        onChange={(v) => updateField("cta", { ...content.cta, buttonText: v })}
+                    />
+                    <TextField
+                        label="Button Link"
+                        value={content.cta?.buttonLink || ""}
+                        onChange={(v) => updateField("cta", { ...content.cta, buttonLink: v })}
+                    />
+                </div>
             </SectionCard>
         </div>
     );

@@ -8,6 +8,7 @@ export const metadata: Metadata = {
         title: "Our Partners | GovernValu",
         description: "Strategic partnerships with leading global organizations for world-class advisory services.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "GovernValu strategic partnerships" }],
     },
 };
 

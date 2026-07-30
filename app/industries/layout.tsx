@@ -8,6 +8,7 @@ export const metadata: Metadata = {
         title: "Industries We Serve | GovernValu",
         description: "Specialized governance and investment advisory across multiple industries in Qatar and the GCC.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "Industries served by GovernValu" }],
     },
 };
 

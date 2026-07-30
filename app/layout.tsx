@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "GovernValu",
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image-en.jpg',
         width: 1200,
         height: 630,
         alt: 'GovernValu - Governance & Investment Advisory',
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "GovernValu | Governance & Investment Advisory",
     description: "Strategic counsel for the complexity of modern wealth. Premier advisory based in Türkiye.",
-    images: ['/og-image.jpg'],
+    images: ['/og-image-en.jpg'],
   },
   metadataBase: new URL('https://governvalu.com'),
   alternates: {

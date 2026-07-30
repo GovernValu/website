@@ -33,6 +33,7 @@ export default function PageEditor({ params }: PageEditorProps) {
     const [saving, setSaving] = useState(false);
     const [viewMode, setViewMode] = useState<"visual" | "json">("visual");
     const [jsonText, setJsonText] = useState("");
+    const [savedSnapshots, setSavedSnapshots] = useState({ en: "", ar: "" });
 
     useEffect(() => {
         async function fetchContent() {
@@ -48,6 +49,10 @@ export default function PageEditor({ params }: PageEditorProps) {
                     setContentEn(dataEn);
                     setContentAr(dataAr);
                     setJsonText(JSON.stringify(dataEn, null, 2));
+                    setSavedSnapshots({
+                        en: JSON.stringify(dataEn),
+                        ar: JSON.stringify(dataAr),
+                    });
                 } else {
                     toast.error("Failed to load content");
                 }
@@ -61,6 +66,31 @@ export default function PageEditor({ params }: PageEditorProps) {
     }, [page]);
 
     const activeContent = editorLang === "en" ? contentEn : contentAr;
+    const contentSnapshot = (lang: "en" | "ar") => JSON.stringify(lang === "en" ? contentEn : contentAr);
+    const isStoredDraftDirty = (lang: "en" | "ar") => {
+        const content = lang === "en" ? contentEn : contentAr;
+        return Boolean(content) && contentSnapshot(lang) !== savedSnapshots[lang];
+    };
+    let activeJsonDirty = false;
+    if (viewMode === "json") {
+        try {
+            activeJsonDirty = JSON.stringify(JSON.parse(jsonText)) !== savedSnapshots[editorLang];
+        } catch {
+            activeJsonDirty = true;
+        }
+    }
+    const activeDirty = viewMode === "json" ? activeJsonDirty : isStoredDraftDirty(editorLang);
+    const hasUnsavedChanges = activeDirty
+        || isStoredDraftDirty(editorLang === "en" ? "ar" : "en");
+
+    useEffect(() => {
+        if (!hasUnsavedChanges) return;
+        const warnBeforeUnload = (event: BeforeUnloadEvent) => {
+            event.preventDefault();
+        };
+        window.addEventListener("beforeunload", warnBeforeUnload);
+        return () => window.removeEventListener("beforeunload", warnBeforeUnload);
+    }, [hasUnsavedChanges]);
 
     // Sync JSON text when content changes (from visual editor) or lang switches
     useEffect(() => {
@@ -91,6 +121,24 @@ export default function PageEditor({ params }: PageEditorProps) {
         setViewMode(mode);
     };
 
+    const handleLanguageSwitch = (nextLang: "en" | "ar") => {
+        if (nextLang === editorLang) return;
+
+        if (viewMode === "json") {
+            try {
+                const parsed = JSON.parse(jsonText);
+                handleContentChange(parsed);
+            } catch {
+                toast.error("Fix the invalid JSON before switching languages");
+                return;
+            }
+        }
+
+        const nextContent = nextLang === "en" ? contentEn : contentAr;
+        setEditorLang(nextLang);
+        setJsonText(JSON.stringify(nextContent, null, 2));
+    };
+
     const handleSave = async () => {
         try {
             let dataToSave = activeContent;
@@ -114,6 +162,12 @@ export default function PageEditor({ params }: PageEditorProps) {
             });
 
             if (res.ok) {
+                const savedSnapshot = JSON.stringify(dataToSave);
+                setSavedSnapshots((current) => ({
+                    ...current,
+                    [editorLang]: savedSnapshot,
+                }));
+                setJsonText(JSON.stringify(dataToSave, null, 2));
                 toast.success(`${editorLang === "en" ? "English" : "Arabic"} content saved successfully!`);
             } else {
                 toast.error("Failed to save content");
@@ -148,6 +202,19 @@ export default function PageEditor({ params }: PageEditorProps) {
         teams: "About - Teams",
         contact: "Contact",
         settings: "Site Settings",
+    };
+    const previewPaths: Record<string, string> = {
+        homepage: "/",
+        services: "/services",
+        industries: "/industries",
+        partners: "/partners",
+        clients: "/clients",
+        about: "/about",
+        board: "/about/board",
+        philosophy: "/about/philosophy",
+        expertise: "/about/expertise",
+        teams: "/about/teams",
+        contact: "/contact",
     };
 
     // Render the appropriate editor based on page
@@ -201,7 +268,7 @@ export default function PageEditor({ params }: PageEditorProps) {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="sticky top-[57px] z-30 -mx-2 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-gray-800 bg-gray-900/95 px-2 py-3 backdrop-blur">
                 <div className="flex items-center gap-4">
                     <Link
                         href="/admin/pages"
@@ -212,11 +279,28 @@ export default function PageEditor({ params }: PageEditorProps) {
                         </svg>
                     </Link>
                     <div>
-                        <h1 className="text-3xl font-serif text-white">{pageNames[page] || page}</h1>
-                        <p className="text-gray-400 mt-1">Edit content for both languages</p>
+                        <div className="flex flex-wrap items-center gap-3">
+                            <h1 className="text-3xl font-serif text-white">{pageNames[page] || page}</h1>
+                            {hasUnsavedChanges && (
+                                <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-300">
+                                    Unsaved changes
+                                </span>
+                            )}
+                        </div>
+                        <p className="text-gray-400 mt-1">Edit English and Arabic content with save-state protection</p>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
+                    {previewPaths[page] && (
+                        <Link
+                            href={previewPaths[page]}
+                            target="_blank"
+                            className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
+                        >
+                            Preview page
+                            <span aria-hidden="true">↗</span>
+                        </Link>
+                    )}
                     {/* View Mode Toggle */}
                     <div className="flex bg-gray-800 rounded-lg p-1">
                         <button
@@ -252,7 +336,7 @@ export default function PageEditor({ params }: PageEditorProps) {
                         disabled={saving}
                         className="px-6 py-2 bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors disabled:opacity-50 flex items-center gap-2"
                     >
-                        {saving ? "Saving..." : "Save Changes"}
+                        {saving ? "Saving..." : activeDirty ? "Save Changes" : "Saved"}
                     </button>
                 </div>
             </div>
@@ -260,22 +344,24 @@ export default function PageEditor({ params }: PageEditorProps) {
             {/* Language Tabs */}
             <div className="border-b border-gray-700 flex gap-6">
                 <button
-                    onClick={() => setEditorLang("en")}
+                    onClick={() => handleLanguageSwitch("en")}
                     className={`pb-3 text-sm font-medium transition-colors border-b-2 ${editorLang === "en"
                         ? "border-brand text-white"
                         : "border-transparent text-gray-400 hover:text-gray-300"
                         }`}
                 >
                     English (EN)
+                    {isStoredDraftDirty("en") && <span className="ml-2 text-amber-400">●</span>}
                 </button>
                 <button
-                    onClick={() => setEditorLang("ar")}
+                    onClick={() => handleLanguageSwitch("ar")}
                     className={`pb-3 text-sm font-medium transition-colors border-b-2 ${editorLang === "ar"
                         ? "border-brand text-white"
                         : "border-transparent text-gray-400 hover:text-gray-300"
                         }`}
                 >
                     Arabic (AR)
+                    {isStoredDraftDirty("ar") && <span className="ml-2 text-amber-400">●</span>}
                 </button>
             </div>
 

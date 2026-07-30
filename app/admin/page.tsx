@@ -110,8 +110,10 @@ export default function AdminDashboard() {
     const quickActions = [
         { name: "New Hero Slide", href: "/admin/slides/new", icon: "🖼️" },
         { name: "New Blog Post", href: "/admin/blog/new", icon: "+" },
+        { name: "Manage Services", href: "/admin/services", icon: "⚙️" },
         { name: "Upload Media", href: "/admin/media", icon: "📷" },
         { name: "View Contacts", href: "/admin/contacts", icon: "📧" },
+        { name: "View Website", href: "/", icon: "↗" },
     ];
 
     const pages = [

@@ -450,7 +450,7 @@ function NewBlogPostForm() {
                                 placeholder={isAr ? "أدخل عنوان المقال..." : "Enter post title or click 'Get Ideas' for AI suggestions..."}
                             />
                             <div className="mt-2 text-sm text-gray-500">
-                                Slug: <span className="text-gray-400" dir="ltr">/blog/{(isAr ? form.slugAr : form.slug) || "..."}</span>
+                                Public URL: <span className="text-gray-400" dir="ltr">{isAr ? "/ar/blog/" : "/blog/"}{form.slug || "..."}</span>
                             </div>
                         </div>
 
@@ -585,27 +585,26 @@ function NewBlogPostForm() {
                                         URL Slug
                                     </label>
                                     <div className="flex items-stretch rounded-lg overflow-hidden border border-gray-700 focus-within:border-brand bg-gray-900">
-                                        <span dir="ltr" className="inline-flex items-center px-3 bg-gray-900/80 text-gray-500 text-sm border-r border-gray-700 whitespace-nowrap">/blog/</span>
+                                        <span dir="ltr" className="inline-flex items-center px-3 bg-gray-900/80 text-gray-500 text-sm border-r border-gray-700 whitespace-nowrap">{isAr ? "/ar/blog/" : "/blog/"}</span>
                                         <input
                                             type="text"
-                                            dir={dirAttr}
-                                            value={isAr ? form.slugAr : form.slug}
+                                            dir="ltr"
+                                            value={form.slug}
+                                            disabled={isAr}
                                             onChange={(e) => {
                                                 const v = e.target.value;
-                                                if (isAr) { setSlugArTouched(true); setForm((f) => ({ ...f, slugAr: v })); }
-                                                else { setSlugTouched(true); setForm((f) => ({ ...f, slug: v })); }
+                                                setSlugTouched(true);
+                                                setForm((f) => ({ ...f, slug: v }));
                                             }}
                                             onBlur={(e) => {
-                                                const v = e.target.value;
-                                                if (isAr) setForm((f) => ({ ...f, slugAr: slugifyAr(v) }));
-                                                else setForm((f) => ({ ...f, slug: slugify(v, { lower: true, strict: true }) }));
+                                                setForm((f) => ({ ...f, slug: slugify(e.target.value, { lower: true, strict: true }) }));
                                             }}
-                                            className={`flex-1 min-w-0 bg-gray-900 px-3 py-2 text-white placeholder-gray-500 focus:outline-none text-sm ${isAr ? "text-right" : ""}`}
-                                            placeholder={isAr ? "الرابط-العربي" : "post-url-slug"}
+                                            className="flex-1 min-w-0 bg-gray-900 px-3 py-2 text-white placeholder-gray-500 focus:outline-none text-sm disabled:text-gray-500 disabled:cursor-not-allowed"
+                                            placeholder="post-url-slug"
                                         />
                                     </div>
                                     <p className="text-xs text-gray-500 mt-1">
-                                        {isAr ? "اتركه فارغاً لتوليده تلقائياً من العنوان." : "Leave empty to auto-generate from the title."}
+                                        {isAr ? "تستخدم الصفحة العربية نفس الرابط الإنجليزي المقروء ضمن مسار /ar لتجنب الروابط العربية المشفّرة." : "Leave empty to auto-generate from the title."}
                                     </p>
                                 </div>
                                 {/* Meta Title */}

@@ -11,6 +11,7 @@ export const metadata: Metadata = {
         title: "Contact Us | GovernValu",
         description: "Get in touch with GovernValu for governance and investment consultation services in Qatar and Turkey.",
         type: "website",
+        images: [{ url: "/corniche-doha.webp", alt: "Contact GovernValu" }],
     },
 };
 

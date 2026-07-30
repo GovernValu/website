@@ -11,6 +11,7 @@ export const metadata: Metadata = {
         title: "Frequently Asked Questions | GovernValu",
         description: "Find answers to common questions about GovernValu's governance consulting and advisory services.",
         type: "website",
+        images: [{ url: "/og-image-en.jpg", alt: "GovernValu frequently asked questions" }],
     },
 };
 

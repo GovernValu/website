@@ -5,11 +5,11 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import {
     TextField,
-    TextArea,
     ImageField,
     SectionCard,
     ArrayEditor,
 } from "../../components/ContentFields";
+import TextArea from "../../components/RichTextField";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -417,7 +417,7 @@ export default function ServiceEditorPage({ params }: ServiceEditorPageProps) {
                                         details: { ...service.details, sidebar: { ...service.details?.sidebar, title: v } }
                                     })}
                                 />
-                                <TextField
+                                <TextArea
                                     label="Description"
                                     value={service.details?.sidebar?.description || ""}
                                     onChange={(v) => updateService({
@@ -436,7 +436,7 @@ export default function ServiceEditorPage({ params }: ServiceEditorPageProps) {
                                         details: { ...service.details, ctaBanner: { ...service.details?.ctaBanner, headline: v } }
                                     })}
                                 />
-                                <TextField
+                                <TextArea
                                     label="Subtext"
                                     value={service.details?.ctaBanner?.subtext || ""}
                                     onChange={(v) => updateService({

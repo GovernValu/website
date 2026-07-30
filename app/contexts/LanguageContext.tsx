@@ -19,13 +19,22 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // Initialize from cookie or browser preference
+        // Localized article URLs are authoritative so direct/shared links render
+        // with matching navigation language even when no cookie exists.
         const savedLang = Cookies.get(LANGUAGE_COOKIE_NAME) as Language;
-        if (savedLang && (savedLang === 'en' || savedLang === 'ar')) {
-            setLanguageState(savedLang);
-            document.documentElement.lang = savedLang;
-            document.documentElement.dir = getDirection(savedLang);
-        }
+        const pathname = window.location.pathname;
+        const articleRouteLang: Language | null = pathname.startsWith('/ar/blog/')
+            ? 'ar'
+            : pathname.startsWith('/blog/')
+                ? 'en'
+                : null;
+        const initialLang = articleRouteLang
+            || (savedLang && (savedLang === 'en' || savedLang === 'ar') ? savedLang : DEFAULT_LANGUAGE);
+
+        setLanguageState(initialLang);
+        Cookies.set(LANGUAGE_COOKIE_NAME, initialLang, { expires: 365 });
+        document.documentElement.lang = initialLang;
+        document.documentElement.dir = getDirection(initialLang);
         setMounted(true);
     }, []);
 
@@ -34,6 +43,19 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
         Cookies.set(LANGUAGE_COOKIE_NAME, lang, { expires: 365 });
         document.documentElement.lang = lang;
         document.documentElement.dir = getDirection(lang);
+
+        const url = new URL(window.location.href);
+        if (lang === 'ar' && url.pathname.startsWith('/blog/')) {
+            url.pathname = `/ar${url.pathname}`;
+            window.location.assign(url.toString());
+            return;
+        }
+        if (lang === 'en' && url.pathname.startsWith('/ar/blog/')) {
+            url.pathname = url.pathname.replace(/^\/ar/, '');
+            window.location.assign(url.toString());
+            return;
+        }
+
         window.location.reload(); // Reload to refresh all content
     };
 

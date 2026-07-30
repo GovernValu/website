@@ -21,6 +21,7 @@ import {
     verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { cmsHtmlToText } from "@/lib/html";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -122,7 +123,7 @@ function SortableServiceCard({
                 <div className="flex-1 min-w-0">
                     <h3 className="text-white font-semibold truncate">{service.title}</h3>
                     <p className="text-gray-400 text-sm truncate mt-0.5">
-                        {service.shortDescription}
+                        {cmsHtmlToText(service.shortDescription)}
                     </p>
                 </div>
 

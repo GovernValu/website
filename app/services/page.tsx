@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CmsRichText from "../components/CmsRichText";
 import { useContent } from "../hooks/useContent";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
@@ -89,9 +90,11 @@ export default function ServicesPage() {
                         {content.hero.title} <br />
                         <span className="italic text-brand font-serif">{content.hero.titleHighlight}</span>
                     </h1>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-gray-300 font-light leading-relaxed reveal" style={{ transitionDelay: "100ms" }}>
-                        {content.hero.subtitle}
-                    </p>
+                    <CmsRichText
+                        html={content.hero.subtitle}
+                        className="mt-4 max-w-2xl mx-auto text-lg text-gray-300 font-light leading-relaxed reveal [&_p]:m-0"
+                        style={{ transitionDelay: "100ms" }}
+                    />
                 </div>
                 <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce">
                     <div className="w-px h-12 bg-gradient-to-b from-brand to-transparent" />
@@ -118,7 +121,10 @@ export default function ServicesPage() {
                                     {ICONS[service.icon] || ICONS['building']}
                                 </div>
                                 <h4 className="text-xl font-serif mb-3 text-onyx">{service.title}</h4>
-                                <p className="text-gray-600 text-sm font-light leading-relaxed mb-4 line-clamp-3">{service.shortDescription}</p>
+                                <CmsRichText
+                                    html={service.shortDescription}
+                                    className="text-gray-600 text-sm font-light leading-relaxed mb-4 line-clamp-3 [&_p]:m-0"
+                                />
                                 <span className="inline-flex items-center gap-2 text-brand text-xs font-bold uppercase tracking-widest group-hover:underline">
                                     {t.exploreService}
                                     <svg className="w-3 h-3 rtl-flip" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -135,9 +141,10 @@ export default function ServicesPage() {
             <section className="py-20 bg-onyx text-white">
                 <div className="max-w-4xl mx-auto px-6 text-center reveal">
                     <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-6">{content.methodology.sectionTitle}</h2>
-                    <p className="text-2xl md:text-3xl font-serif leading-relaxed">
-                        &ldquo;{content.methodology.quote}&rdquo;
-                    </p>
+                    <CmsRichText
+                        html={content.methodology.quote}
+                        className="text-2xl md:text-3xl font-serif leading-relaxed [&_p]:m-0"
+                    />
                 </div>
             </section>
 
@@ -163,9 +170,10 @@ export default function ServicesPage() {
                                     </div>
                                     <h2 className="text-3xl font-serif text-onyx">{content.services[0].title}</h2>
                                 </div>
-                                <p className="text-gray-600 font-light leading-relaxed mb-8">
-                                    {content.services[0].fullDescription}
-                                </p>
+                                <CmsRichText
+                                    html={content.services[0].fullDescription}
+                                    className="text-gray-600 font-light leading-relaxed mb-8 [&_p]:mb-3"
+                                />
                                 <ul className="space-y-4 mb-8">
                                     {content.services[0].benefits?.map((benefit: any, idx: number) => (
                                         <li key={idx} className="flex items-start gap-3">
@@ -174,7 +182,7 @@ export default function ServicesPage() {
                                             </svg>
                                             <div>
                                                 <h4 className="font-bold text-onyx text-sm uppercase tracking-wide">{benefit.title}</h4>
-                                                <p className="text-sm text-gray-500 mt-1">{benefit.description}</p>
+                                                <CmsRichText html={benefit.description} className="text-sm text-gray-500 mt-1 [&_p]:m-0" />
                                             </div>
                                         </li>
                                     ))}
@@ -203,15 +211,16 @@ export default function ServicesPage() {
                                     </div>
                                     <h2 className="text-3xl font-serif text-white">{content.services[1].title}</h2>
                                 </div>
-                                <p className="text-gray-400 font-light leading-relaxed mb-8">
-                                    {content.services[1].fullDescription}
-                                </p>
+                                <CmsRichText
+                                    html={content.services[1].fullDescription}
+                                    className="text-gray-400 font-light leading-relaxed mb-8 [&_p]:mb-3"
+                                />
                                 <ul className="space-y-6 mb-8">
                                     {content.services[1].benefits?.map((benefit: any, idx: number) => (
                                         <li key={idx} className="flex items-start gap-3 border-l border-brand/30 pl-6">
                                             <div>
                                                 <h4 className="font-bold text-white text-sm uppercase tracking-wide">{benefit.title}</h4>
-                                                <p className="text-sm text-gray-500 mt-1">{benefit.description}</p>
+                                                <CmsRichText html={benefit.description} className="text-sm text-gray-500 mt-1 [&_p]:m-0" />
                                             </div>
                                         </li>
                                     ))}
@@ -260,14 +269,15 @@ export default function ServicesPage() {
                                     </div>
                                     <h2 className="text-3xl font-serif text-onyx">{content.services[2].title}</h2>
                                 </div>
-                                <p className="text-gray-600 font-light leading-relaxed mb-8">
-                                    {content.services[2].fullDescription}
-                                </p>
+                                <CmsRichText
+                                    html={content.services[2].fullDescription}
+                                    className="text-gray-600 font-light leading-relaxed mb-8 [&_p]:mb-3"
+                                />
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                     {content.services[2].benefits?.map((benefit: any, idx: number) => (
                                         <div key={idx} className="p-5 border border-gray-100 bg-gray-50 hover:border-brand/30 transition-colors">
                                             <h4 className="font-bold text-sm uppercase mb-2">{benefit.title}</h4>
-                                            <p className="text-xs text-gray-500 leading-relaxed">{benefit.description}</p>
+                                            <CmsRichText html={benefit.description} className="text-xs text-gray-500 leading-relaxed [&_p]:m-0" />
                                         </div>
                                     ))}
                                 </div>
@@ -305,7 +315,7 @@ export default function ServicesPage() {
                                     {index === 3 && <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>}
                                 </div>
                                 <h4 className="text-lg font-serif mb-3">{step.title}</h4>
-                                <p className="text-sm text-gray-400 font-light leading-relaxed">{step.description}</p>
+                                <CmsRichText html={step.description} className="text-sm text-gray-400 font-light leading-relaxed [&_p]:m-0" />
                             </div>
                         ))}
                     </div>
@@ -318,9 +328,10 @@ export default function ServicesPage() {
                     <h2 className="text-5xl font-serif text-onyx mb-8">
                         {content.cta.headline} <span className="text-brand">{content.cta.headlineHighlight}</span>
                     </h2>
-                    <p className="text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto">
-                        {content.cta.subtitle}
-                    </p>
+                    <CmsRichText
+                        html={content.cta.subtitle}
+                        className="text-xl text-gray-600 font-light mb-10 max-w-2xl mx-auto [&_p]:m-0"
+                    />
                     <Link href={content.cta.buttonLink} className="inline-block px-10 py-4 bg-onyx text-white text-sm uppercase tracking-widest font-bold hover:bg-brand transition-colors duration-300">
                         {content.cta.buttonText}
                     </Link>
