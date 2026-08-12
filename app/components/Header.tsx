@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
+import { BROCHURE_URL, BROCHURE_FILENAME } from "@/lib/brochure";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 export default function Header() {
@@ -42,7 +43,7 @@ export default function Header() {
 
                     {/* Desktop Menu */}
                     <div className="hidden lg:block">
-                        <div className="ml-10 flex items-center space-x-10 rtl:space-x-reverse">
+                        <div className="ml-10 flex items-center space-x-7 rtl:space-x-reverse">
                             {/* About Dropdown */}
                             <div
                                 className="relative group"
@@ -87,7 +88,21 @@ export default function Header() {
                             <Link href="/blog" className="hover-underline-animation text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors">
                                 {t.news}
                             </Link>
-                            <Link href="/contact" className="px-6 py-2.5 border border-brand text-brand hover:bg-brand hover:text-white transition-all duration-300 text-sm font-medium uppercase tracking-wider">
+                            {/* Label is hidden below xl so the eight-item nav does not overflow at lg */}
+                            <a
+                                href={BROCHURE_URL}
+                                download={BROCHURE_FILENAME}
+                                title={t.downloadBrochure}
+                                aria-label={t.downloadBrochure}
+                                className="inline-flex items-center gap-2 text-sm font-medium tracking-widest uppercase text-gray-300 hover:text-white transition-colors"
+                            >
+                                <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v11m0 0l-4-4m4 4l4-4M4 19h16" />
+                                </svg>
+                                <span className="hidden xl:inline whitespace-nowrap">{t.downloadBrochure}</span>
+                            </a>
+
+                            <Link href="/contact" className="px-6 py-2.5 border border-brand text-brand hover:bg-brand hover:text-white transition-all duration-300 text-sm font-medium uppercase tracking-wider whitespace-nowrap">
                                 {t.contact}
                             </Link>
 
@@ -154,6 +169,16 @@ export default function Header() {
                     <Link href="/partners" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.partnerships}</Link>
                     <Link href="/clients" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.ourClients}</Link>
                     <Link href="/blog" className="block px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800">{t.news}</Link>
+                    <a
+                        href={BROCHURE_URL}
+                        download={BROCHURE_FILENAME}
+                        className="flex items-center gap-2 px-3 py-4 text-base font-medium text-gray-300 hover:text-brand border-b border-gray-800"
+                    >
+                        <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v11m0 0l-4-4m4 4l4-4M4 19h16" />
+                        </svg>
+                        {t.downloadBrochure}
+                    </a>
                     <Link href="/contact" className="block px-3 py-4 text-base font-medium text-brand font-bold">{t.contact}</Link>
                 </div>
             </div>

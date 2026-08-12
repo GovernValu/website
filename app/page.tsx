@@ -9,6 +9,7 @@ import HomeContactForm from "./components/HomeContactForm";
 import { useContent } from "./hooks/useContent";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LABELS } from "@/lib/i18n";
+import { BROCHURE_URL, BROCHURE_FILENAME } from "@/lib/brochure";
 
 interface Slide {
   id: string;
@@ -163,6 +164,45 @@ export default function Home() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Profile / Brochure Section */}
+      <section className="py-24 bg-onyx border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="reveal">
+              <a href={BROCHURE_URL} download={BROCHURE_FILENAME} className="block group">
+                <img
+                  src="/brochure/cover.jpg"
+                  alt={t.companyProfile}
+                  className="w-full max-w-lg shadow-2xl border-b-4 border-brand transition-transform duration-700 group-hover:-translate-y-2"
+                />
+              </a>
+            </div>
+            <div className="reveal" style={{ transitionDelay: "150ms" }}>
+              <h2 className="text-brand text-sm font-bold tracking-[0.2em] uppercase mb-4">{t.companyProfile}</h2>
+              <h3 className="text-4xl md:text-5xl font-serif text-white mb-6 leading-tight">
+                {t.brochureHeadline}
+              </h3>
+              <p className="text-gray-400 font-light leading-relaxed mb-10 max-w-xl">
+                {t.brochureSubtitle}
+              </p>
+              <div className="flex flex-wrap items-center gap-6">
+                <a
+                  href={BROCHURE_URL}
+                  download={BROCHURE_FILENAME}
+                  className="inline-flex items-center gap-3 bg-brand text-white px-8 py-4 text-sm uppercase tracking-widest font-bold hover:bg-brand/90 transition-colors"
+                >
+                  <svg className="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v11m0 0l-4-4m4 4l4-4M4 19h16" />
+                  </svg>
+                  {t.downloadBrochure}
+                </a>
+                <span className="text-xs uppercase tracking-widest text-gray-500">{t.brochureMeta}</span>
+              </div>
             </div>
           </div>
         </div>

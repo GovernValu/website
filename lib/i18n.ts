@@ -45,6 +45,11 @@ export const LABELS = {
         contactUs: 'Contact Us',
         exploreAllServices: 'Explore All Services',
         step: 'Step',
+        downloadBrochure: 'Download Brochure',
+        companyProfile: 'Company Profile',
+        brochureHeadline: 'Ten years of governance excellence, in one document.',
+        brochureSubtitle: 'Our 10th Anniversary company profile covers our mandate, advisory services, sector expertise, and the institutions we serve across the GCC and beyond.',
+        brochureMeta: 'PDF · 12 pages',
         // Section Headers
         ourServices: 'Our Services',
         whatWeOffer: 'What We Offer',
@@ -142,6 +147,11 @@ export const LABELS = {
         contactUs: 'اتصل بنا',
         exploreAllServices: 'استكشف جميع الخدمات',
         step: 'المرحلة',
+        downloadBrochure: 'تحميل الملف التعريفي',
+        companyProfile: 'الملف التعريفي',
+        brochureHeadline: 'عشر سنوات من التميز في الحوكمة، في وثيقة واحدة.',
+        brochureSubtitle: 'يستعرض ملفنا التعريفي بمناسبة الذكرى العاشرة رسالتنا وخدماتنا الاستشارية وخبراتنا القطاعية والمؤسسات التي نخدمها في دول الخليج وخارجها.',
+        brochureMeta: 'PDF · ١٢ صفحة',
         // Section Headers
         ourServices: 'خدماتنا',
         whatWeOffer: 'ما نقدمه',
