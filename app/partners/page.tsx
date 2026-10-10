@@ -85,20 +85,20 @@ export default function PartnersPage() {
                         {content.partnerships?.map((partnership: any, index: number) => (
                             <div
                                 key={partnership.country}
-                                className="group bg-white border border-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden reveal"
+                                className="group bg-white border border-gray-200/70 rounded-2xl shadow-sm hover:shadow-xl hover:shadow-gray-300/40 hover:border-brand/25 transition-all duration-500 overflow-hidden reveal"
                                 style={{ transitionDelay: `${index * 100}ms` }}
                             >
                                 {/* Logo Section */}
-                                <div className="bg-gray-50 p-10 flex items-center justify-center min-h-[280px] group-hover:bg-brand/5 transition-colors duration-500">
+                                <div className="m-2 mb-0 rounded-xl bg-gradient-to-b from-white to-gray-50 p-10 flex items-center justify-center min-h-[280px]">
                                     <img
                                         src={partnership.logo}
                                         alt={partnership.country}
-                                        className="max-h-48 max-w-[320px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
+                                        className="max-h-48 max-w-[320px] object-contain mix-blend-multiply brightness-103 contrast-105 transition-transform duration-500 group-hover:scale-105"
                                     />
                                 </div>
 
                                 {/* Content Section */}
-                                <div className="p-8 border-t border-gray-100">
+                                <div className="p-8">
                                     <div className="flex items-center gap-2 mb-3">
                                         <svg className="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

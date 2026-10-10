@@ -5,7 +5,7 @@ import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { optimizedImage } from "@/lib/image";
-import { CLIENT_SECTORS } from "@/lib/clients";
+import { CLIENT_SECTORS, sectorById } from "@/lib/clients";
 
 export default function ClientsPageClient({ content, lang = "en" }: { content: any; lang?: "en" | "ar" }) {
     const [sector, setSector] = useState("all");
@@ -107,47 +107,63 @@ export default function ClientsPageClient({ content, lang = "en" }: { content: a
                         </div>
                     )}
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {visibleClients.map((client: any, index: number) => (
-                            <div
-                                key={`${client.logo}-${index}`}
-                                className="group bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden reveal"
-                                style={{ transitionDelay: `${Math.min(index * 30, 300)}ms` }}
-                            >
-                                {/* Logo Section */}
-                                <div className="bg-gray-50 p-6 flex items-center justify-center h-48 group-hover:bg-brand/5 transition-colors duration-500">
-                                    <img
-                                        src={optimizedImage(client.logo, 360)}
-                                        alt={client.name}
-                                        loading={index < 8 ? "eager" : "lazy"}
-                                        decoding="async"
-                                        className="max-h-28 max-w-[180px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
-                                    />
-                                </div>
-
-                                {/* Content Section */}
-                                <div className="p-5 border-t border-gray-100">
-                                    <h3 className="font-serif text-lg text-onyx line-clamp-1">{client.name}</h3>
-                                    <p className="text-brand font-bold text-sm mt-1 mb-3">{client.services}</p>
-
-                                    <div className="space-y-2 text-sm">
-                                        <div className="flex items-start gap-2">
-                                            <svg className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                            </svg>
-                                            <span className="text-gray-600">{client.country}</span>
+                        {visibleClients.map((client: any, index: number) => {
+                            const sectorInfo = sectorById(client.sector);
+                            return (
+                                <div
+                                    key={`${client.logo}-${index}`}
+                                    className="reveal"
+                                    style={{ transitionDelay: `${Math.min(index * 30, 300)}ms` }}
+                                >
+                                    <article className="group relative h-full flex flex-col bg-white rounded-2xl border border-gray-200/70 shadow-sm hover:shadow-xl hover:shadow-gray-300/40 hover:border-brand/25 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
+                                        {/* Logo in full colour; multiply (plus a slight lift for off-white JPGs) blends logo backgrounds into the panel */}
+                                        <div className="relative h-44 sm:h-48 m-2 mb-0 rounded-xl bg-gradient-to-b from-white to-gray-50 flex items-center justify-center p-8">
+                                            <span className="absolute top-3 start-3 px-2.5 py-1 rounded-full bg-white/80 border border-gray-200/80 text-[11px] font-medium text-gray-500 backdrop-blur-sm">
+                                                {lang === "ar" ? sectorInfo.ar : sectorInfo.en}
+                                            </span>
+                                            <img
+                                                src={optimizedImage(client.logo, 360)}
+                                                alt={client.name}
+                                                loading={index < 8 ? "eager" : "lazy"}
+                                                decoding="async"
+                                                className="max-h-24 max-w-[78%] object-contain mix-blend-multiply brightness-103 contrast-105 transition-transform duration-500 group-hover:scale-105"
+                                            />
                                         </div>
 
-                                        <div className="flex items-start gap-2">
-                                            <svg className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                            </svg>
-                                            <span className="text-gray-600">{client.field}</span>
+                                        {/* Details */}
+                                        <div className="flex-1 flex flex-col px-5 pt-4 pb-5">
+                                            <h3 className="font-serif text-lg leading-snug text-onyx line-clamp-2" title={client.name}>{client.name}</h3>
+                                            {client.services && (
+                                                <p className="text-brand font-semibold text-sm mt-1.5">{client.services}</p>
+                                            )}
+
+                                            <div className="mt-auto pt-4 flex flex-wrap gap-2 text-xs text-gray-600">
+                                                {client.country && (
+                                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-100">
+                                                        <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        </svg>
+                                                        {client.country}
+                                                    </span>
+                                                )}
+                                                {client.field && (
+                                                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-100">
+                                                        <svg className="w-3.5 h-3.5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                                        </svg>
+                                                        {client.field}
+                                                    </span>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        {/* Brand accent on hover */}
+                                        <span className="absolute inset-x-0 bottom-0 h-0.5 bg-brand origin-left rtl:origin-right scale-x-0 group-hover:scale-x-100 transition-transform duration-500" aria-hidden="true" />
+                                    </article>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </section>
