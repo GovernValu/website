@@ -27,6 +27,15 @@ import {
     CHECKERBOARD,
 } from "../ContentFields";
 import { arabicKey, missingArabicFields, SHARED_LISTS } from "@/lib/bilingual";
+import {
+    CLIENT_SECTORS,
+    clientAddedAt,
+    clientSector,
+    inferSector,
+    sectorById,
+    sortClients,
+    type ClientsOrder,
+} from "@/lib/clients";
 import { optimizedImage } from "@/lib/image";
 import { translateFields } from "../../lib/translate";
 
@@ -42,6 +51,10 @@ interface ClientItem {
     services: string;
     servicesAr: string;
     logo: string;
+    /** Set when added in the portal (ISO date). */
+    addedAt?: string;
+    /** Chosen sector id; detected from the industry when empty. */
+    sector?: string;
     [key: string]: unknown;
 }
 
@@ -52,7 +65,10 @@ interface ClientsEditorProps {
     lang: "en" | "ar";
     /** The shared bilingual client list, stored once for both languages. */
     clients: ClientItem[];
-    onClientsChange: (clients: ClientItem[]) => void;
+    /** How the website orders the list. */
+    orderMode: ClientsOrder;
+    /** Merge changes into the English record, which owns the shared list. */
+    onSharedChange: (patch: { clients?: ClientItem[]; clientsOrder?: ClientsOrder }) => void;
 }
 
 const CLIENT_FIELDS = SHARED_LISTS.clients.fields;
@@ -90,6 +106,9 @@ function clientId(client: object): string {
 
 const text = (value: unknown) => (typeof value === "string" ? value.trim() : "");
 
+const NEW_FOR_DAYS = 30;
+const formatDate = (date: Date) => date.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+
 function clientStatus(client: ClientItem) {
     if (!text(client.logo)) return { tone: "red", label: "No logo" } as const;
     const missing = missingArabicFields(client, CLIENT_FIELDS).length;
@@ -103,8 +122,9 @@ const TONE_CLASSES = {
     green: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
 };
 
-export default function ClientsEditor({ content, onChange, lang, clients, onClientsChange }: ClientsEditorProps) {
+export default function ClientsEditor({ content, onChange, lang, clients, orderMode, onSharedChange }: ClientsEditorProps) {
     const [query, setQuery] = useState("");
+    const [sector, setSector] = useState("all");
     const [onlyIncomplete, setOnlyIncomplete] = useState(false);
     const [editing, setEditing] = useState<{ index: number | null; client: ClientItem } | null>(null);
 
@@ -116,45 +136,62 @@ export default function ClientsEditor({ content, onChange, lang, clients, onClie
     const updateField = (key: string, value: any) => {
         onChange({ ...content, [key]: value });
     };
+    const setClients = (next: ClientItem[]) => onSharedChange({ clients: next });
 
+    // Shown in website order, so the grid matches the live page.
+    const websiteOrder = sortClients(clients, orderMode);
     const needsAttention = clients.filter((client) => clientStatus(client).tone !== "green").length;
+    const sectorCounts = CLIENT_SECTORS
+        .map((item) => ({ ...item, count: clients.filter((client) => clientSector(client) === item.id).length }))
+        .filter((item) => item.count > 0);
     const search = query.trim().toLowerCase();
-    const visible = clients
-        .map((client, index) => ({ client, index }))
+    const filtering = Boolean(search) || onlyIncomplete || sector !== "all";
+    const visible = websiteOrder
+        .map((client, position) => ({ client, position, index: clients.indexOf(client) }))
         .filter(({ client }) => {
             if (onlyIncomplete && clientStatus(client).tone === "green") return false;
+            if (sector !== "all" && clientSector(client) !== sector) return false;
             if (!search) return true;
             return CLIENT_FIELDS.some((field) =>
                 [client[field], client[arabicKey(field)]].some((value) => text(value).toLowerCase().includes(search))
             );
         });
-    // Reordering a filtered view would be ambiguous, so drag only works on the full list.
-    const canReorder = !search && !onlyIncomplete;
+    // Dragging only makes sense on the full list in custom order.
+    const canReorder = orderMode === "custom" && !filtering;
 
     const handleDragEnd = ({ active, over }: DragEndEvent) => {
         if (!over || active.id === over.id) return;
         const from = clients.findIndex((client) => clientId(client) === active.id);
         const to = clients.findIndex((client) => clientId(client) === over.id);
         if (from < 0 || to < 0) return;
-        onClientsChange(arrayMove(clients, from, to));
+        setClients(arrayMove(clients, from, to));
+    };
+
+    const setOrderMode = (mode: ClientsOrder) => {
+        if (mode === orderMode) return;
+        // Start the custom order from what the website shows now, so nothing jumps.
+        onSharedChange(mode === "custom" ? { clientsOrder: mode, clients: websiteOrder } : { clientsOrder: mode });
     };
 
     const applyEdit = (client: ClientItem) => {
         if (!editing) return;
         if (editing.index === null) {
-            onClientsChange([...clients, client]);
-            toast.success("Client added. Click Save to publish it.");
+            // New clients lead the custom order; "newest first" places them by date anyway.
+            setClients(orderMode === "custom" ? [client, ...clients] : [...clients, client]);
+            toast.success("Client added at the top. Click Save to publish it.");
         } else {
             const next = [...clients];
             next[editing.index] = client;
-            onClientsChange(next);
+            setClients(next);
         }
         setEditing(null);
     };
 
     const removeClient = (index: number) => {
-        onClientsChange(clients.filter((_, i) => i !== index));
+        setClients(clients.filter((_, i) => i !== index));
     };
+
+    const newClient = () => setEditing({ index: null, client: { ...emptyClient(), addedAt: new Date().toISOString() } });
 
     return (
         <div className="space-y-4">
@@ -176,7 +213,7 @@ export default function ClientsEditor({ content, onChange, lang, clients, onClie
                     </div>
                     <button
                         type="button"
-                        onClick={() => setEditing({ index: null, client: emptyClient() })}
+                        onClick={newClient}
                         className="flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark"
                     >
                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -186,53 +223,91 @@ export default function ClientsEditor({ content, onChange, lang, clients, onClie
                     </button>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 px-5 py-3">
-                    <div className="relative min-w-[220px] flex-1">
-                        <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                        </svg>
-                        <input
-                            type="search"
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            placeholder="Search clients in English or Arabic…"
-                            className="w-full rounded-lg border border-gray-600 bg-gray-700 py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand"
-                        />
+                <div className="space-y-3 px-5 py-3">
+                    <div className="flex flex-wrap items-center gap-3">
+                        <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">Website order</span>
+                        <div className="flex rounded-lg bg-gray-900 p-1" role="group" aria-label="Website order">
+                            {([
+                                ["newest", "Newest first"],
+                                ["custom", "Custom (drag)"],
+                            ] as const).map(([mode, label]) => (
+                                <button
+                                    key={mode}
+                                    type="button"
+                                    onClick={() => setOrderMode(mode)}
+                                    aria-pressed={orderMode === mode}
+                                    className={`rounded-md px-3 py-1.5 text-sm transition-colors ${orderMode === mode ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white"}`}
+                                >
+                                    {label}
+                                </button>
+                            ))}
+                        </div>
+                        <p className="text-xs text-gray-500">
+                            {orderMode === "newest"
+                                ? "Recently added clients appear first on the website automatically."
+                                : canReorder
+                                    ? "Drag the handle on a logo to set the website order."
+                                    : "Clear the search and filters to drag."}
+                        </p>
                     </div>
-                    <button
-                        type="button"
-                        onClick={() => setOnlyIncomplete(!onlyIncomplete)}
-                        aria-pressed={onlyIncomplete}
-                        className={`rounded-lg border px-3 py-2 text-sm transition-colors ${onlyIncomplete
-                            ? "border-amber-500/40 bg-amber-500/10 text-amber-200"
-                            : "border-gray-600 text-gray-300 hover:border-gray-500"
-                            }`}
-                    >
-                        Needs attention ({needsAttention})
-                    </button>
-                    <p className="text-xs text-gray-500">
-                        {canReorder ? "Drag the handle on a logo to reorder." : "Clear the search and filter to reorder."}
-                    </p>
+                    <div className="flex flex-wrap items-center gap-3">
+                        <div className="relative min-w-[220px] flex-1">
+                            <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+                            </svg>
+                            <input
+                                type="search"
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                placeholder="Search clients in English or Arabic…"
+                                className="w-full rounded-lg border border-gray-600 bg-gray-700 py-2 pl-9 pr-3 text-sm text-white placeholder-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+                            />
+                        </div>
+                        <select
+                            value={sector}
+                            onChange={(e) => setSector(e.target.value)}
+                            aria-label="Filter by sector"
+                            className="rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+                        >
+                            <option value="all">All sectors ({clients.length})</option>
+                            {sectorCounts.map((item) => (
+                                <option key={item.id} value={item.id}>
+                                    {item.en} ({item.count})
+                                </option>
+                            ))}
+                        </select>
+                        <button
+                            type="button"
+                            onClick={() => setOnlyIncomplete(!onlyIncomplete)}
+                            aria-pressed={onlyIncomplete}
+                            className={`rounded-lg border px-3 py-2 text-sm transition-colors ${onlyIncomplete
+                                ? "border-amber-500/40 bg-amber-500/10 text-amber-200"
+                                : "border-gray-600 text-gray-300 hover:border-gray-500"
+                                }`}
+                        >
+                            Needs attention ({needsAttention})
+                        </button>
+                    </div>
                 </div>
 
                 <div className="px-5 pb-5">
                     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                         <SortableContext items={visible.map(({ client }) => clientId(client))} strategy={rectSortingStrategy}>
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
-                                {visible.map(({ client, index }) => (
+                                {visible.map(({ client, index, position }) => (
                                     <ClientCard
                                         key={clientId(client)}
                                         client={client}
-                                        position={index + 1}
+                                        position={position + 1}
                                         draggable={canReorder}
                                         onEdit={() => setEditing({ index, client })}
                                         onRemove={() => removeClient(index)}
                                     />
                                 ))}
-                                {!search && !onlyIncomplete && (
+                                {!filtering && (
                                     <button
                                         type="button"
-                                        onClick={() => setEditing({ index: null, client: emptyClient() })}
+                                        onClick={newClient}
                                         className="flex min-h-[220px] flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-gray-600 text-sm text-gray-400 transition-colors hover:border-brand hover:text-white"
                                     >
                                         <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +319,7 @@ export default function ClientsEditor({ content, onChange, lang, clients, onClie
                             </div>
                         </SortableContext>
                     </DndContext>
-                    {visible.length === 0 && (search || onlyIncomplete) && (
+                    {visible.length === 0 && filtering && (
                         <p className="py-10 text-center text-sm text-gray-500">No clients match this view.</p>
                     )}
                 </div>
@@ -354,6 +429,8 @@ function ClientCard({ client, position, draggable, onEdit, onRemove }: ClientCar
         disabled: !draggable,
     });
     const status = clientStatus(client);
+    const addedAt = clientAddedAt(client);
+    const isNew = addedAt !== null && Date.now() - addedAt.getTime() < NEW_FOR_DAYS * 24 * 3600 * 1000;
 
     useEffect(() => {
         if (!confirming) return;
@@ -384,8 +461,11 @@ function ClientCard({ client, position, draggable, onEdit, onRemove }: ClientCar
                 ) : (
                     <span className="text-xs font-medium uppercase tracking-wider text-gray-400">No logo yet</span>
                 )}
-                <span className="absolute right-2 top-2 rounded-full bg-gray-900/70 px-2 py-0.5 text-[11px] tabular-nums text-white">
-                    #{position}
+                <span className="absolute right-2 top-2 flex items-center gap-1">
+                    {isNew && (
+                        <span className="rounded-full bg-brand px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">New</span>
+                    )}
+                    <span className="rounded-full bg-gray-900/70 px-2 py-0.5 text-[11px] tabular-nums text-white">#{position}</span>
                 </span>
             </button>
             {draggable && (
@@ -411,6 +491,10 @@ function ClientCard({ client, position, draggable, onEdit, onRemove }: ClientCar
                 </p>
                 <p className="truncate text-xs text-gray-500">
                     {[text(client.country), text(client.field)].filter(Boolean).join(" · ") || "No details yet"}
+                </p>
+                <p className="truncate text-xs text-gray-500">
+                    <span className="text-gray-400">{sectorById(clientSector(client)).en}</span>
+                    {addedAt && <> · Added {formatDate(addedAt)}</>}
                 </p>
                 <div className="mt-auto flex items-center justify-between gap-2 pt-3">
                     <span className={`rounded-full border px-2 py-0.5 text-[11px] font-medium ${TONE_CLASSES[status.tone]}`}>
@@ -604,6 +688,22 @@ function ClientDialog({ initial, isNew, onCancel, onApply }: ClientDialogProps) 
                             );
                         })}
 
+                        <label className="block space-y-1">
+                            <span className="block text-sm text-gray-300">Sector (website filter)</span>
+                            <select
+                                value={draft.sector || ""}
+                                onChange={(e) => update("sector", e.target.value)}
+                                className="w-full rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white focus:border-transparent focus:outline-none focus:ring-2 focus:ring-brand"
+                            >
+                                <option value="">Auto: {sectorById(inferSector(draft.field)).en}</option>
+                                {CLIENT_SECTORS.map((item) => (
+                                    <option key={item.id} value={item.id}>
+                                        {item.en} · {item.ar}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
                         <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-800 bg-gray-800/60 px-4 py-3">
                             <p className="text-sm text-gray-400">
                                 {missingArabic.length > 0
@@ -634,7 +734,10 @@ function ClientDialog({ initial, isNew, onCancel, onApply }: ClientDialogProps) 
                         </button>
                         <button
                             type="button"
-                            onClick={() => onApply(draft)}
+                            onClick={() => {
+                                const { sector, ...rest } = draft;
+                                onApply(sector ? { ...rest, sector } : rest);
+                            }}
                             disabled={!canApply}
                             className="rounded-lg bg-brand px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-50"
                         >

@@ -3,6 +3,8 @@
 // Shared by the public site and the admin portal, so keep this file free of
 // server-only imports.
 
+import { prepareClients } from "./clients";
+
 export type ContentLang = "en" | "ar";
 
 export interface SharedList {
@@ -12,6 +14,8 @@ export interface SharedList {
     fields: string[];
     /** Item key holding the single image used for both languages. */
     imageKey?: string;
+    /** Order/enrich the list for the website, given the English record. */
+    prepare?: (items: any[], enRecord: any) => any[];
 }
 
 /**
@@ -21,7 +25,7 @@ export interface SharedList {
  * languages.
  */
 export const SHARED_LISTS: Record<string, SharedList> = {
-    clients: { key: "clients", fields: ["name", "country", "field", "services"], imageKey: "logo" },
+    clients: { key: "clients", fields: ["name", "country", "field", "services"], imageKey: "logo", prepare: prepareClients },
 };
 
 export const arabicKey = (field: string) => `${field}Ar`;
@@ -53,9 +57,10 @@ export function applySharedLists<T>(page: string, lang: ContentLang, content: T 
     const source = enContent?.[shared?.key ?? ""];
     if (!shared || !Array.isArray(source)) return content;
 
+    const items = shared.prepare ? shared.prepare(source, enContent) : source;
     return {
         ...((content ?? enContent) as any),
-        [shared.key]: source.map((item: any) => localizeItem(item, shared.fields, lang)),
+        [shared.key]: items.map((item: any) => localizeItem(item, shared.fields, lang)),
     } as T;
 }
 

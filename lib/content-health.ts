@@ -14,7 +14,7 @@ export interface TranslationIssue {
 
 // Keys holding links, media and identifiers rather than translatable text.
 const NON_TEXT_KEY = /^(id|slug|icon|image|logo|src|video|email|phone|whatsapp|href|url|link)$/i;
-const NON_TEXT_SUFFIX = /(Link|Url|Href|Image|Logo|Icon|Slug|Email|Phone)$/;
+const NON_TEXT_SUFFIX = /(Link|Url|Href|Image|Logo|Icon|Slug|Email|Phone|Order)$/;
 const NON_TEXT_VALUE = /^(\/|https?:|mailto:|tel:|#)/i;
 
 const omitKey = (record: any, key?: string) => {

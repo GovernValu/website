@@ -24,5 +24,5 @@ export default async function ClientsPage() {
     // Fetch content directly on the server
     const content = await getContent<any>('clients', lang);
 
-    return <ClientsPageClient content={content} />;
+    return <ClientsPageClient content={content} lang={lang} />;
 }

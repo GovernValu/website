@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { optimizedImage } from "@/lib/image";
+import { CLIENT_SECTORS } from "@/lib/clients";
 
-export default function ClientsPageClient({ content }: { content: any }) {
+export default function ClientsPageClient({ content, lang = "en" }: { content: any; lang?: "en" | "ar" }) {
+    const [sector, setSector] = useState("all");
 
     useEffect(() => {
         if (!content) return;
@@ -23,7 +25,7 @@ export default function ClientsPageClient({ content }: { content: any }) {
         window.addEventListener("scroll", revealOnScroll);
         setTimeout(revealOnScroll, 100);
         return () => window.removeEventListener("scroll", revealOnScroll);
-    }, [content]);
+    }, [content, sector]);
 
     if (!content) {
         return (
@@ -34,6 +36,18 @@ export default function ClientsPageClient({ content }: { content: any }) {
     }
 
     const { hero, intro, clients, cta } = content;
+    const allClients: any[] = clients || [];
+    // Sector chips, most common first; only shown when there is something to filter.
+    const sectors = CLIENT_SECTORS
+        .map((item) => ({ ...item, count: allClients.filter((client) => client.sector === item.id).length }))
+        .filter((item) => item.count > 0)
+        .sort((a, b) => b.count - a.count);
+    const visibleClients = sector === "all" ? allClients : allClients.filter((client) => client.sector === sector);
+    const chipClass = (active: boolean) =>
+        `px-4 py-2 rounded-full text-sm border transition-colors ${active
+            ? "bg-brand border-brand text-white"
+            : "bg-white border-gray-200 text-gray-600 hover:border-brand hover:text-brand"
+        }`;
 
     return (
         <>
@@ -74,8 +88,26 @@ export default function ClientsPageClient({ content }: { content: any }) {
             {/* Clients Grid */}
             <section className="py-24 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-6">
+                    {sectors.length > 1 && (
+                        <div className="flex flex-wrap justify-center gap-2 mb-12" role="group" aria-label={lang === "ar" ? "تصفية حسب القطاع" : "Filter by sector"}>
+                            <button type="button" onClick={() => setSector("all")} aria-pressed={sector === "all"} className={chipClass(sector === "all")}>
+                                {lang === "ar" ? "الكل" : "All"} <span className="opacity-70">({allClients.length})</span>
+                            </button>
+                            {sectors.map((item) => (
+                                <button
+                                    key={item.id}
+                                    type="button"
+                                    onClick={() => setSector(item.id)}
+                                    aria-pressed={sector === item.id}
+                                    className={chipClass(sector === item.id)}
+                                >
+                                    {lang === "ar" ? item.ar : item.en} <span className="opacity-70">({item.count})</span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {clients?.map((client: any, index: number) => (
+                        {visibleClients.map((client: any, index: number) => (
                             <div
                                 key={`${client.logo}-${index}`}
                                 className="group bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden reveal"

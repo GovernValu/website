@@ -3,17 +3,33 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { timeAgo } from "../lib/useContentStatus";
+import { optimizedImage } from "@/lib/image";
 
 interface BlogPost {
     id: string;
     title: string;
     slug: string;
     excerpt: string | null;
+    image: string | null;
+    titleAr: string | null;
+    contentAr: string | null;
     published: boolean;
     category: { name: string } | null;
     createdAt: string;
     updatedAt: string;
 }
+
+type SortKey = "newest" | "oldest" | "updated" | "title";
+
+const SORTS: Record<SortKey, { label: string; compare: (a: BlogPost, b: BlogPost) => number }> = {
+    newest: { label: "Newest first", compare: (a, b) => b.createdAt.localeCompare(a.createdAt) },
+    oldest: { label: "Oldest first", compare: (a, b) => a.createdAt.localeCompare(b.createdAt) },
+    updated: { label: "Recently updated", compare: (a, b) => b.updatedAt.localeCompare(a.updatedAt) },
+    title: { label: "Title A → Z", compare: (a, b) => a.title.localeCompare(b.title) },
+};
+
+const hasArabic = (post: BlogPost) => Boolean(post.titleAr?.trim() && post.contentAr?.trim());
 
 interface TopicSuggestion {
     title: string;
@@ -26,6 +42,9 @@ export default function BlogListPage() {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
     const [filter, setFilter] = useState<"all" | "published" | "draft">("all");
+    const [category, setCategory] = useState("all");
+    const [sort, setSort] = useState<SortKey>("newest");
+    const [onlyMissingArabic, setOnlyMissingArabic] = useState(false);
 
     // AI Topic Suggestions
     const [showTopicSuggestions, setShowTopicSuggestions] = useState(false);
@@ -98,14 +117,26 @@ export default function BlogListPage() {
         }
     };
 
-    const filteredPosts = posts.filter((post) => {
-        const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
-        const matchesFilter =
-            filter === "all" ||
-            (filter === "published" && post.published) ||
-            (filter === "draft" && !post.published);
-        return matchesSearch && matchesFilter;
-    });
+    const categories = Array.from(new Set(posts.map((post) => post.category?.name || "Uncategorized"))).sort();
+    const missingArabicCount = posts.filter((post) => !hasArabic(post)).length;
+    const search = searchTerm.trim().toLowerCase();
+    const filteredPosts = posts
+        .filter((post) => {
+            const matchesSearch =
+                !search ||
+                post.title.toLowerCase().includes(search) ||
+                (post.titleAr || "").toLowerCase().includes(search);
+            const matchesFilter =
+                filter === "all" ||
+                (filter === "published" && post.published) ||
+                (filter === "draft" && !post.published);
+            const matchesCategory = category === "all" || (post.category?.name || "Uncategorized") === category;
+            const matchesArabic = !onlyMissingArabic || !hasArabic(post);
+            return matchesSearch && matchesFilter && matchesCategory && matchesArabic;
+        })
+        .sort(SORTS[sort].compare);
+    const selectClass =
+        "bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-brand";
 
     return (
         <div className="space-y-6">
@@ -219,7 +250,7 @@ export default function BlogListPage() {
                 <div className="flex-1">
                     <input
                         type="text"
-                        placeholder="Search posts..."
+                        placeholder="Search posts in English or Arabic..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-brand"
@@ -239,6 +270,35 @@ export default function BlogListPage() {
                         </button>
                     ))}
                 </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+                <select value={category} onChange={(e) => setCategory(e.target.value)} aria-label="Filter by category" className={selectClass}>
+                    <option value="all">All categories</option>
+                    {categories.map((name) => (
+                        <option key={name} value={name}>{name}</option>
+                    ))}
+                </select>
+                <select value={sort} onChange={(e) => setSort(e.target.value as SortKey)} aria-label="Sort posts" className={selectClass}>
+                    {(Object.keys(SORTS) as SortKey[]).map((key) => (
+                        <option key={key} value={key}>{SORTS[key].label}</option>
+                    ))}
+                </select>
+                <button
+                    type="button"
+                    onClick={() => setOnlyMissingArabic(!onlyMissingArabic)}
+                    aria-pressed={onlyMissingArabic}
+                    className={`rounded-lg border px-3 py-2 text-sm transition-colors ${onlyMissingArabic
+                        ? "border-amber-500/40 bg-amber-500/10 text-amber-200"
+                        : "border-gray-700 text-gray-400 hover:text-white"
+                        }`}
+                >
+                    Missing Arabic ({missingArabicCount})
+                </button>
+                {!loading && (
+                    <span className="ml-auto text-sm text-gray-500">
+                        {filteredPosts.length} of {posts.length} posts
+                    </span>
+                )}
             </div>
 
             {/* Posts List */}
@@ -291,12 +351,32 @@ export default function BlogListPage() {
                             {filteredPosts.map((post) => (
                                 <tr key={post.id} className="hover:bg-gray-750 transition-colors">
                                     <td className="px-6 py-4">
-                                        <Link href={`/admin/blog/${post.id}`} className="text-white hover:text-brand transition-colors">
-                                            {post.title}
-                                        </Link>
-                                        {post.excerpt && (
-                                            <p className="text-gray-500 text-sm truncate max-w-md">{post.excerpt}</p>
-                                        )}
+                                        <div className="flex items-center gap-3">
+                                            {post.image ? (
+                                                // eslint-disable-next-line @next/next/no-img-element
+                                                <img
+                                                    src={optimizedImage(post.image, 160)}
+                                                    alt=""
+                                                    loading="lazy"
+                                                    className="h-12 w-16 shrink-0 rounded-md bg-gray-700 object-cover"
+                                                />
+                                            ) : (
+                                                <div className="h-12 w-16 shrink-0 rounded-md bg-gray-700" />
+                                            )}
+                                            <div className="min-w-0">
+                                                <Link href={`/admin/blog/${post.id}`} className="text-white hover:text-brand transition-colors">
+                                                    {post.title}
+                                                </Link>
+                                                {post.excerpt && (
+                                                    <p className="text-gray-500 text-sm truncate max-w-md">{post.excerpt}</p>
+                                                )}
+                                                {!hasArabic(post) && (
+                                                    <span className="mt-1 inline-block rounded-full border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 text-[11px] text-amber-300">
+                                                        Arabic missing
+                                                    </span>
+                                                )}
+                                            </div>
+                                        </div>
                                     </td>
                                     <td className="px-6 py-4">
                                         <span className="text-gray-400 text-sm">
@@ -313,8 +393,11 @@ export default function BlogListPage() {
                                             {post.published ? "Published" : "Draft"}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-gray-400 text-sm">
-                                        {new Date(post.createdAt).toLocaleDateString()}
+                                    <td className="px-6 py-4 text-sm whitespace-nowrap">
+                                        <p className="text-gray-300">
+                                            {new Date(post.createdAt).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                                        </p>
+                                        <p className="text-xs text-gray-500">Updated {timeAgo(post.updatedAt)}</p>
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex items-center justify-end gap-2">

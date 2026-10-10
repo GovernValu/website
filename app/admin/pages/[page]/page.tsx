@@ -6,6 +6,7 @@ import Link from "next/link";
 import { SHARED_LISTS, stripSharedLists } from "@/lib/bilingual";
 import { compareTranslations, summarizeIssues } from "@/lib/content-health";
 import { getCmsPage } from "@/lib/cms-pages";
+import { clientsOrderOf } from "@/lib/clients";
 
 // Import page-specific editors
 import HomepageEditor from "../../components/editors/HomepageEditor";
@@ -269,9 +270,8 @@ export default function PageEditor({ params }: PageEditorProps) {
                         onChange={handleContentChange}
                         lang={editorLang}
                         clients={(contentEn?.[sharedList?.key ?? "clients"] as any[]) || []}
-                        onClientsChange={(clients) =>
-                            setContentEn((current) => ({ ...(current || {}), [sharedList?.key ?? "clients"]: clients }))
-                        }
+                        orderMode={clientsOrderOf(contentEn)}
+                        onSharedChange={(patch) => setContentEn((current) => ({ ...(current || {}), ...patch }))}
                     />
                 );
             case "philosophy":
