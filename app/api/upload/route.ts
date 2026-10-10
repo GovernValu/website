@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import prisma from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth";
 
 // Route segment config for App Router - use dynamic runtime
 export const dynamic = 'force-dynamic';
@@ -8,6 +9,9 @@ export const dynamic = 'force-dynamic';
 // Next.js App Router doesn't have built-in bodyParser config like Pages Router
 
 export async function POST(request: Request) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const formData = await request.formData();
         const file = formData.get("file") as File;

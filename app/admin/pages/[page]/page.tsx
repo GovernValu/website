@@ -1,8 +1,11 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useMemo, useRef, use } from "react";
 import toast from "react-hot-toast";
 import Link from "next/link";
+import { SHARED_LISTS, stripSharedLists } from "@/lib/bilingual";
+import { compareTranslations, summarizeIssues } from "@/lib/content-health";
+import { getCmsPage } from "@/lib/cms-pages";
 
 // Import page-specific editors
 import HomepageEditor from "../../components/editors/HomepageEditor";
@@ -39,13 +42,14 @@ export default function PageEditor({ params }: PageEditorProps) {
         async function fetchContent() {
             try {
                 const [resEn, resAr] = await Promise.all([
-                    fetch(`/api/content/${page}?lang=en`),
-                    fetch(`/api/content/${page}?lang=ar`)
+                    fetch(`/api/content/${page}?lang=en&raw=1`, { cache: "no-store" }),
+                    fetch(`/api/content/${page}?lang=ar&raw=1`, { cache: "no-store" })
                 ]);
 
                 if (resEn.ok && resAr.ok) {
                     const dataEn = await resEn.json();
-                    const dataAr = await resAr.json();
+                    // Shared lists live in the English record only (see lib/bilingual.ts).
+                    const dataAr = stripSharedLists(page, "ar", await resAr.json());
                     setContentEn(dataEn);
                     setContentAr(dataAr);
                     setJsonText(JSON.stringify(dataEn, null, 2));
@@ -140,44 +144,89 @@ export default function PageEditor({ params }: PageEditorProps) {
     };
 
     const handleSave = async () => {
+        let drafts = { en: contentEn, ar: contentAr };
+
+        if (viewMode === "json") {
+            try {
+                const parsed = JSON.parse(jsonText);
+                handleContentChange(parsed);
+                drafts = { ...drafts, [editorLang]: parsed };
+            } catch {
+                toast.error("Invalid JSON format");
+                return;
+            }
+        }
+
+        // Save every language with changes, so nothing is left behind in the other tab.
+        const pending = (["en", "ar"] as const).filter(
+            (lang) => drafts[lang] && JSON.stringify(drafts[lang]) !== savedSnapshots[lang]
+        );
+        if (pending.length === 0) {
+            toast.success("Everything is already saved");
+            return;
+        }
+
+        setSaving(true);
         try {
-            let dataToSave = activeContent;
+            // English first: the Arabic save copies shared lists from the saved English record.
+            const results: { lang: "en" | "ar"; ok: boolean; status: number; snapshot: string }[] = [];
+            for (const lang of pending) {
+                const res = await fetch(`/api/content/${page}?lang=${lang}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(drafts[lang]),
+                });
+                results.push({ lang, ok: res.ok, status: res.status, snapshot: JSON.stringify(drafts[lang]) });
+            }
 
+            const saved = results.filter((result) => result.ok);
+            setSavedSnapshots((current) => ({
+                ...current,
+                ...Object.fromEntries(saved.map((result) => [result.lang, result.snapshot])),
+            }));
             if (viewMode === "json") {
-                try {
-                    dataToSave = JSON.parse(jsonText);
-                    handleContentChange(dataToSave);
-                } catch (error) {
-                    toast.error("Invalid JSON format");
-                    return;
-                }
+                setJsonText(JSON.stringify(drafts[editorLang], null, 2));
             }
 
-            setSaving(true);
-
-            const res = await fetch(`/api/content/${page}?lang=${editorLang}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(dataToSave),
-            });
-
-            if (res.ok) {
-                const savedSnapshot = JSON.stringify(dataToSave);
-                setSavedSnapshots((current) => ({
-                    ...current,
-                    [editorLang]: savedSnapshot,
-                }));
-                setJsonText(JSON.stringify(dataToSave, null, 2));
-                toast.success(`${editorLang === "en" ? "English" : "Arabic"} content saved successfully!`);
-            } else {
-                toast.error("Failed to save content");
+            const names = { en: "English", ar: "Arabic" };
+            if (saved.length > 0) {
+                toast.success(`${saved.map((result) => names[result.lang]).join(" and ")} saved. The website is updated.`);
             }
-        } catch (error) {
+            const failed = results.filter((result) => !result.ok);
+            if (failed.some((result) => result.status === 401)) {
+                toast.error("Your session has expired. Sign in again in a new tab, then save.");
+            } else if (failed.length > 0) {
+                toast.error(`Failed to save ${failed.map((result) => names[result.lang]).join(" and ")}`);
+            }
+        } catch {
             toast.error("Failed to save content");
         } finally {
             setSaving(false);
         }
     };
+
+    // Ctrl/⌘+S saves, like a desktop editor.
+    const saveRef = useRef(handleSave);
+    useEffect(() => {
+        saveRef.current = handleSave;
+    });
+    useEffect(() => {
+        const onKeyDown = (event: KeyboardEvent) => {
+            if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "s") {
+                event.preventDefault();
+                saveRef.current();
+            }
+        };
+        window.addEventListener("keydown", onKeyDown);
+        return () => window.removeEventListener("keydown", onKeyDown);
+    }, []);
+
+    const translationIssues = useMemo(
+        () => (contentEn && contentAr ? compareTranslations(page, contentEn, contentAr) : []),
+        [page, contentEn, contentAr]
+    );
+    const issueSummary = summarizeIssues(translationIssues);
+    const [showIssues, setShowIssues] = useState(false);
 
     const formatJson = () => {
         try {
@@ -189,33 +238,8 @@ export default function PageEditor({ params }: PageEditorProps) {
         }
     };
 
-    const pageNames: Record<string, string> = {
-        homepage: "Homepage",
-        services: "Services",
-        industries: "Industries",
-        partners: "Partners",
-        clients: "Clients",
-        about: "About - Who We Are",
-        board: "About - Board",
-        philosophy: "About - Philosophy",
-        expertise: "About - Expertise",
-        teams: "About - Teams",
-        contact: "Contact",
-        settings: "Site Settings",
-    };
-    const previewPaths: Record<string, string> = {
-        homepage: "/",
-        services: "/services",
-        industries: "/industries",
-        partners: "/partners",
-        clients: "/clients",
-        about: "/about",
-        board: "/about/board",
-        philosophy: "/about/philosophy",
-        expertise: "/about/expertise",
-        teams: "/about/teams",
-        contact: "/contact",
-    };
+    const cmsPage = getCmsPage(page);
+    const sharedList = SHARED_LISTS[page];
 
     // Render the appropriate editor based on page
     const renderEditor = () => {
@@ -239,7 +263,17 @@ export default function PageEditor({ params }: PageEditorProps) {
             case "board":
                 return <BoardEditor content={activeContent as any} onChange={handleContentChange} />;
             case "clients":
-                return <ClientsEditor content={activeContent as any} onChange={handleContentChange} />;
+                return (
+                    <ClientsEditor
+                        content={activeContent as any}
+                        onChange={handleContentChange}
+                        lang={editorLang}
+                        clients={(contentEn?.[sharedList?.key ?? "clients"] as any[]) || []}
+                        onClientsChange={(clients) =>
+                            setContentEn((current) => ({ ...(current || {}), [sharedList?.key ?? "clients"]: clients }))
+                        }
+                    />
+                );
             case "philosophy":
                 return <PhilosophyEditor content={activeContent as any} onChange={handleContentChange} />;
             case "expertise":
@@ -280,20 +314,25 @@ export default function PageEditor({ params }: PageEditorProps) {
                     </Link>
                     <div>
                         <div className="flex flex-wrap items-center gap-3">
-                            <h1 className="text-3xl font-serif text-white">{pageNames[page] || page}</h1>
+                            <h1 className="text-3xl font-serif text-white">{cmsPage?.name || page}</h1>
                             {hasUnsavedChanges && (
                                 <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-300">
                                     Unsaved changes
                                 </span>
                             )}
                         </div>
-                        <p className="text-gray-400 mt-1">Edit English and Arabic content with save-state protection</p>
+                        <p className="text-gray-400 mt-1">
+                            {sharedList
+                                ? "Shared lists apply to both languages; page texts are edited per language."
+                                : "Edit English and Arabic content. Save stores both languages."}
+                            <span className="ml-2 hidden text-xs text-gray-500 md:inline">Ctrl/⌘ + S to save</span>
+                        </p>
                     </div>
                 </div>
                 <div className="flex items-center gap-3">
-                    {previewPaths[page] && (
+                    {cmsPage?.previewPath && (
                         <Link
-                            href={previewPaths[page]}
+                            href={cmsPage.previewPath}
                             target="_blank"
                             className="inline-flex items-center gap-2 rounded-lg border border-gray-700 bg-gray-800 px-4 py-2 text-sm text-gray-300 transition-colors hover:border-gray-600 hover:text-white"
                         >
@@ -336,7 +375,7 @@ export default function PageEditor({ params }: PageEditorProps) {
                         disabled={saving}
                         className="px-6 py-2 bg-brand text-white rounded-lg hover:bg-brand-dark transition-colors disabled:opacity-50 flex items-center gap-2"
                     >
-                        {saving ? "Saving..." : activeDirty ? "Save Changes" : "Saved"}
+                        {saving ? "Saving..." : hasUnsavedChanges ? "Save changes" : "Saved"}
                     </button>
                 </div>
             </div>
@@ -364,6 +403,53 @@ export default function PageEditor({ params }: PageEditorProps) {
                     {isStoredDraftDirty("ar") && <span className="ml-2 text-amber-400">●</span>}
                 </button>
             </div>
+
+            {/* English / Arabic parity check, updated as you type */}
+            {contentEn && contentAr && (
+                <div
+                    className={`rounded-xl border px-4 py-3 ${issueSummary.total === 0
+                        ? "border-emerald-500/20 bg-emerald-500/5"
+                        : "border-amber-500/20 bg-amber-500/5"
+                        }`}
+                >
+                    <div className="flex flex-wrap items-center justify-between gap-3">
+                        <p className={`text-sm ${issueSummary.total === 0 ? "text-emerald-300" : "text-amber-200"}`}>
+                            {issueSummary.total === 0
+                                ? "Arabic version is complete and matches the English structure."
+                                : [
+                                    issueSummary.count > 0 && `${issueSummary.count} list${issueSummary.count > 1 ? "s have" : " has"} a different number of items in Arabic`,
+                                    issueSummary.missing > 0 && `${issueSummary.missing} Arabic field${issueSummary.missing > 1 ? "s" : ""} empty`,
+                                    issueSummary.same > 0 && `${issueSummary.same} still in English`,
+                                ].filter(Boolean).join(" · ")}
+                        </p>
+                        {issueSummary.total > 0 && (
+                            <button
+                                type="button"
+                                onClick={() => setShowIssues(!showIssues)}
+                                className="text-sm text-amber-300 hover:text-amber-200"
+                            >
+                                {showIssues ? "Hide details" : "Show details"}
+                            </button>
+                        )}
+                    </div>
+                    {showIssues && issueSummary.total > 0 && (
+                        <ul className="mt-3 max-h-64 space-y-1.5 overflow-y-auto border-t border-amber-500/10 pt-3">
+                            {translationIssues.slice(0, 50).map((issue) => (
+                                <li key={`${issue.kind}-${issue.path}`} className="flex gap-3 text-xs">
+                                    <span className="w-24 shrink-0 font-medium text-amber-300">
+                                        {issue.kind === "count" ? "Item count" : issue.kind === "missing" ? "Empty in AR" : "Not translated"}
+                                    </span>
+                                    <code className="shrink-0 text-gray-400">{issue.path}</code>
+                                    <span className="truncate text-gray-500">{issue.detail}</span>
+                                </li>
+                            ))}
+                            {translationIssues.length > 50 && (
+                                <li className="text-xs text-gray-500">…and {translationIssues.length - 50} more</li>
+                            )}
+                        </ul>
+                    )}
+                </div>
+            )}
 
             {/* Content Editor */}
             <div dir={editorLang === 'ar' ? 'rtl' : 'ltr'}>

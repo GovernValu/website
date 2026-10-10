@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import openai from "@/lib/openai";
+import { requireAdmin } from "@/lib/auth";
 
 interface TranslatePayload {
     direction: "en-ar" | "ar-en";
@@ -8,9 +9,55 @@ interface TranslatePayload {
     content?: string;
     metaTitle?: string;
     metaDesc?: string;
+    /** Generic mode: any map of short CMS fields (names, labels, sentences). */
+    fields?: Record<string, string>;
+}
+
+async function translateFieldMap(
+    fields: Record<string, string>,
+    sourceLang: string,
+    targetLang: string
+): Promise<Record<string, string>> {
+    const source = Object.fromEntries(
+        Object.entries(fields).filter(([, value]) => typeof value === "string" && value.trim())
+    );
+    if (Object.keys(source).length === 0) return {};
+
+    const completion = await openai.chat.completions.create({
+        model: "gpt-5-mini-2025-08-07",
+        messages: [
+            {
+                role: "system",
+                content: `You are a professional ${sourceLang}-to-${targetLang} translator for GovernValu, a governance and investment advisory firm in Qatar serving the GCC.
+
+Rules:
+- The values are short website fields: company and organisation names, countries, industries, service names, headings and sentences.
+- Use the official or commonly used ${targetLang} name for well-known organisations, countries and places. Transliterate brand names that have no ${targetLang} equivalent; keep acronyms (e.g. AFG, CPU) as they are.
+- Use formal, professional ${targetLang}. Translate naturally, not word-for-word.
+- Return STRICT JSON only, with exactly the same keys as the input. No explanations.`,
+            },
+            {
+                role: "user",
+                content: JSON.stringify(source, null, 2),
+            },
+        ],
+        max_completion_tokens: 3000,
+        response_format: { type: "json_object" },
+    });
+
+    const raw = completion.choices[0]?.message?.content;
+    if (!raw) throw new Error("No translation returned");
+    const translated = JSON.parse(raw) as Record<string, unknown>;
+
+    return Object.fromEntries(
+        Object.keys(source).map((key) => [key, typeof translated[key] === "string" ? (translated[key] as string).trim() : ""])
+    );
 }
 
 export async function POST(request: Request) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const data = (await request.json()) as TranslatePayload;
         const { direction } = data;
@@ -24,6 +71,11 @@ export async function POST(request: Request) {
 
         const sourceLang = direction === "en-ar" ? "English" : "Arabic";
         const targetLang = direction === "en-ar" ? "Arabic" : "English";
+
+        if (data.fields && typeof data.fields === "object") {
+            const fields = await translateFieldMap(data.fields, sourceLang, targetLang);
+            return NextResponse.json({ fields });
+        }
 
         const fields = {
             title: data.title || "",

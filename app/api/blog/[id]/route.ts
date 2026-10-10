@@ -1,11 +1,15 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { slugifyAr } from "@/lib/slugify";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const { id } = await params;
 
     try {
@@ -34,6 +38,9 @@ export async function PUT(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const { id } = await params;
 
     try {
@@ -80,6 +87,9 @@ export async function DELETE(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const { id } = await params;
 
     try {

@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import { slugifyAr } from "@/lib/slugify";
+import { requireAdmin } from "@/lib/auth";
 
 export async function GET() {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const posts = await prisma.blogPost.findMany({
             include: { category: true },
@@ -19,6 +23,9 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const data = await request.json();
 

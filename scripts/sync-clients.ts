@@ -19,6 +19,18 @@ async function syncClients() {
                 console.log(`Reading ${lang} clients content from ${filePath}...`);
                 const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
+                // Clients added in the admin portal exist only in the database; never
+                // replace a longer live list with an older file unless forced.
+                const existing = await prisma.pageContent.findUnique({
+                    where: { page_lang: { page: 'clients', lang } },
+                });
+                const liveCount = ((existing?.content as any)?.clients ?? []).length;
+                const fileCount = (content.clients ?? []).length;
+                if (liveCount > fileCount && !process.argv.includes('--force')) {
+                    console.warn(`⚠️ Skipping ${lang}: database has ${liveCount} clients, file has ${fileCount}. Re-run with --force to overwrite.`);
+                    continue;
+                }
+
                 console.log(`Upserting ${lang} clients content to database...`);
                 await prisma.pageContent.upsert({
                     where: {

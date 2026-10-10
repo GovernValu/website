@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getContent, saveContent } from "@/lib/content";
+import { requireAdmin } from "@/lib/auth";
 
 export const dynamic = 'force-dynamic';
 
@@ -10,9 +11,11 @@ export async function GET(
     const { page } = await params;
     const { searchParams } = new URL(request.url);
     const lang = searchParams.get('lang') || 'en';
+    // The admin editor needs the stored record, not the localized page view.
+    const raw = searchParams.get('raw') === '1';
 
     try {
-        const content = await getContent(page, lang);
+        const content = await getContent(page, lang, { raw });
 
         if (!content) {
             return NextResponse.json(
@@ -35,6 +38,9 @@ export async function PUT(
     request: Request,
     { params }: { params: Promise<{ page: string }> }
 ) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     const { page } = await params;
     const { searchParams } = new URL(request.url);
     const lang = searchParams.get('lang') || 'en';

@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import openai from "@/lib/openai";
+import { requireAdmin } from "@/lib/auth";
 
 export async function POST(request: Request) {
+    const denied = await requireAdmin();
+    if (denied) return denied;
+
     try {
         const { title, category, categoryName } = await request.json();
 

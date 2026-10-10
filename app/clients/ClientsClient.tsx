@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { optimizedImage } from "@/lib/image";
 
 export default function ClientsPageClient({ content }: { content: any }) {
 
@@ -76,15 +77,17 @@ export default function ClientsPageClient({ content }: { content: any }) {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                         {clients?.map((client: any, index: number) => (
                             <div
-                                key={client.name}
+                                key={`${client.logo}-${index}`}
                                 className="group bg-white rounded-xl border border-gray-100 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 overflow-hidden reveal"
                                 style={{ transitionDelay: `${Math.min(index * 30, 300)}ms` }}
                             >
                                 {/* Logo Section */}
                                 <div className="bg-gray-50 p-6 flex items-center justify-center h-48 group-hover:bg-brand/5 transition-colors duration-500">
                                     <img
-                                        src={client.logo}
+                                        src={optimizedImage(client.logo, 360)}
                                         alt={client.name}
+                                        loading={index < 8 ? "eager" : "lazy"}
+                                        decoding="async"
                                         className="max-h-28 max-w-[180px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-500"
                                     />
                                 </div>
